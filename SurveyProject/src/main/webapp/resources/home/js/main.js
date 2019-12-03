@@ -165,5 +165,12 @@ $( function () {
 
 } );
 
-
+// 테스트용 스크립트
+$('.btn-layer').on('click', function() {
+    var target = $(this).attr('href');
+    $(target).fadeIn();
+ });
+ $('.btn-layerClose').on('click', function() {
+    $('.layer-wrap').fadeOut();
+ });
 

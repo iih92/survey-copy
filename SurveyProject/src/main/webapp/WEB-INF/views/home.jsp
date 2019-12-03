@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +10,16 @@
 <link rel="icon" type="image/png" href="favicon.ico">
 
 <!--Google Font link-->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
 <!-- css link -->
 <link rel="stylesheet" href="resources/home/css/slick.css">
@@ -24,7 +30,7 @@
 <link rel="stylesheet" href="resources/home/css/bootstrap.css">
 <link rel="stylesheet" href="resources/home/css/magnific-popup.css">
 <link rel="stylesheet" href="resources/home/css/bootsnav.css">
- <!--another template's css-->
+<!--another template's css-->
 <link rel="stylesheet" href="resources/home/css/main.css" />
 <!--For Plugins external css-->
 <link rel="stylesheet" href="resources/home/css/plugins.css" />
@@ -32,8 +38,18 @@
 <link rel="stylesheet" href="resources/home/css/style.css">
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/home/css/responsive.css" />
-<script src="resources/home/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script
+	src="resources/home/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<!--  
 
+띄우는부분 시작 
+
+ -->
+<!--  
+
+띄우는부분 끝 
+
+ -->
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="100">
 	<!-- Preloader -->
@@ -51,7 +67,8 @@
 
 	<div class="culmn">
 		<!--Home page style-->
-		<nav class="navbar navbar-default bootsnav navbar-fixed no-background white">
+		<nav
+			class="navbar navbar-default bootsnav navbar-fixed no-background white">
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">
@@ -78,9 +95,8 @@
 						data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="#brand"> 
-						<img src="resources/home/images/logo.png" class="logo" alt="">
-						<!--<img src="resources/home/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
+					<a class="navbar-brand" href="#brand"> <img
+						src="resources/home/images/logo.png" class="logo" alt=""> <!--<img src="resources/home/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
 					</a>
 				</div>
 				<!-- End Header Navigation -->
@@ -92,7 +108,8 @@
 						<li><a href="#features">Guide</a></li>
 						<li><a href="#service">Make Survey</a></li>
 						<li><a href="#portfolio">Do Survey</a></li>
-						<li><a href="#test">Sign in / Sign up</a></li>
+						<li><a href="#layer"><label for="modal" class="labelB">Sign1
+									in / Sign up</label></a></li>
 						<li><a href="#contact">Contact Us</a></li>
 					</ul>
 				</div>
@@ -112,18 +129,23 @@
 									<div class="home_text ">
 										<!--  style.css line 110 -->
 										<h1 class="text-yellow">Welcome to Made</h1>
-										<h3 class="text-white text-uppercase">
-										We Create a Concept into The Market</h3> <br><br>
-										<div style="display: inline-block; text-align:center; width:200px;">
-											<a href="#" class="button style2 fit" data-poptrox="youtube,800x400">Start Su1rveying</a>
+										<h3 class="text-white text-uppercase">We Create a Concept
+											into The Market</h3>
+										<br>
+										<br>
+										<div
+											style="display: inline-block; text-align: center; width: 200px;">
+											<a href="#" class="button style2 fit"
+												data-poptrox="youtube,800x400"><label for="modal" class="labelB">Start Su1rveying</label></a>
 										</div>
-									</div>					
+									</div>
 								</div>
 								<!-- End off slid item -->
 							</div>
 						</div>
 					</div>
-					<br/> <!--<i class="fa fa-angle-down m-top-10 fadeIn mouse-message"></i>-->
+					<br />
+					<!--<i class="fa fa-angle-down m-top-10 fadeIn mouse-message"></i>-->
 				</div>
 				<!--End off row-->
 			</div>
@@ -136,14 +158,14 @@
 			<div class="inner">
 				<!-- Boxes -->
 				<div class="thumbnails">
-					<div class="box"> <!--  main.css line 544 -->
-						<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
+					<div class="box">
+						<!--  main.css line 544 -->
+						<a href="https://youtu.be/s6zR2T9vn2c" class="image fit"><img
+							src="images/pic01.jpg" alt="" /></a>
 						<div class="inner">
 							<h3>Nascetur nunc varius commodo</h3>
-							<p>
-								Interdum amet accumsan placerat commodo ut amet aliquam
-								blandit nunc tempor lobortis nunc non. Mi accumsan.
-							</p>
+							<p>Interdum amet accumsan placerat commodo ut amet aliquam
+								blandit nunc tempor lobortis nunc non. Mi accumsan.</p>
 						</div>
 					</div>
 
@@ -152,10 +174,8 @@
 							src="images/pic02.jpg" alt="" /></a>
 						<div class="inner">
 							<h3>Nascetur nunc varius commodo</h3>
-							<p>
-								Interdum amet accumsan placerat commodo ut amet aliquam
-								blandit nunc tempor lobortis nunc non. Mi accumsan.
-							</p>
+							<p>Interdum amet accumsan placerat commodo ut amet aliquam
+								blandit nunc tempor lobortis nunc non. Mi accumsan.</p>
 						</div>
 					</div>
 
@@ -164,17 +184,43 @@
 							src="images/pic03.jpg" alt="" /></a>
 						<div class="inner">
 							<h3>Nascetur nunc varius commodo</h3>
-							<p>
-								Interdum amet accumsan placerat commodo ut amet aliquam
-								blandit nunc tempor lobortis nunc non. Mi accumsan.
-							</p>
+							<p>Interdum amet accumsan placerat commodo ut amet aliquam
+								blandit nunc tempor lobortis nunc non. Mi accumsan.</p>
+
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
+ 
+			<!-- 
+<div class="box_modal">
+  <label for="modal" class="closer">x</label>
+  <div class="text">
+    <h3>모달 윈도우</h3>
+    <p>다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파.</p>
+      <jsp:include page="temp/temp_login.jsp" flush="true" />  
+  </div>
+</div>
+      -->
+
+ 			<input type="checkbox"
+				id="modal" class="hiddenC">
+			<div class="box_modal">
+				<label for="modal" class="closer">dddddㅇ</label>
+				<div class="text">
+					<jsp:include page="temp/temp_login.jsp" flush="true" />
+				</div>
+			</div>
+
+ 
+
+
+
+		<div
+			class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
 			<div class="col-md-12">
 				<p class="wow fadeInRight" data-wow-duration="1s">
 					Made with <i class="fa fa-heart"></i> by <a target="_blank"
@@ -185,6 +231,7 @@
 		</div>
 	</div>
 
+
 	<!-- JS includes -->
 	<script src="resources/home/js/vendor/jquery-1.11.2.min.js"></script>
 	<script src="resources/home/js/vendor/bootstrap.min.js"></script>
@@ -194,7 +241,8 @@
 	<script src="resources/home/js/js.isotope.js"></script>
 	<script src="resources/home/js/jquery.collapse.js"></script>
 	<script src="resources/home/js/bootsnav.js"></script>
-	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script
+		src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="resources/home/js/plugins.js"></script>
 	<script src="resources/home/js/main.js"></script>
 

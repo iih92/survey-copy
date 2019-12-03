@@ -11,5 +11,10 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
+
+	@RequestMapping(value = "/temp_login")
+	public String temp_login() {
+		return "temp/temp_login";
+	}
 	
 }

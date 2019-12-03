@@ -112,6 +112,7 @@ section { overflow: hidden; }
     
 }
 
+
 .disabled{
     cursor: not-allowed;
 }
@@ -884,13 +885,37 @@ Nav Menu style
 nav.navbar.bootsnav ul.nav li.active > a{
     color:#01aef0;
 }
+/* 로그인 팝업 하면서 추가한부분임 */
+nav.navbar.bootsnav ul.nav li.active > label{
+    color:#01aef0;
+}
+/* 여기까지 팝업 하면서 추가한부분임 */
 nav.navbar.bootsnav.no-background.white ul.nav > li > a {
+    color: #fff;
+}
+nav.navbar.bootsnav.no-background.white ul.nav > li > a > label {
     color: #fff;
 }
 nav.navbar.bootsnav.no-background.white ul.nav > li.active > a {
     color: #01aef0;
 }
-
+/* 밑에껀 로그인 팝업 하면서 추가한부분임  */
+nav.navbar.bootsnav.no-background.white ul.nav > li.active > label {
+    color: #01aef0;
+}
+/* 여기까지 로그인 팝업 하면서 추가한부분임 */
+nav .login{
+		
+	font-size : 20pt;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
 /*
 Home Section style
 ==================*/
@@ -1185,6 +1210,11 @@ tems Section style
     font-size:12px;
 }
 .teams_item ul li a i{
+    color:#7b8895;
+    transition: all 0.6s;
+    font-size:16px;
+}
+.teams_item ul li label{
     color:#7b8895;
     transition: all 0.6s;
     font-size:16px;
@@ -1535,4 +1565,83 @@ tems Section style
 .main_footer i {
     padding: 0px 5px;
     color: #ff0000;
+}
+/* 레이어 팝업 테스트 */ 
+.layerTest {
+	 
+	  position:fixed;
+  display:block;
+  width:300px;
+  height:150px;
+  top:50%;
+  left:50%;
+  margin-top:-75px;
+  margin-left:-150px;
+  background:#d9e5e9;
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+	
+	
+} 
+.buttonTest {
+  font-size:19px;
+  font-weight:600;
+  vertical-align:middle;
+  cursor:pointer;
+  color:black;
+}
+.box_modal {
+  position:absolute;
+  display:block;
+  width:460px;
+  height:610px;
+  top:25%;
+  left:45%;
+  margin-top:-75px;
+  margin-left:-150px;
+  background:#FFFFFF;
+  border:1px solid #386980;
+  overflow:hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 1;
+  filter: alpha(opacity=60);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+   
+   /*안쪽에 스크롤 생성하고싶으면 overflow-y: scroll; */
+  box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
+z-index : 100;
+  
+  
+  
+}
+/* 모달 윈도우가 팝업되는 코어 소스 */
+input#modal[type=checkbox]:checked ~ .box_modal {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.hiddenC {
+  display:none;
+  visibility:hidden;
+}
+.labelB {
+  font-size:16px;
+  font-weight:600;
+  vertical-align:middle;
+  cursor:pointer;
 }

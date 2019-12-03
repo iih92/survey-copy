@@ -55,7 +55,11 @@ nav.navbar.bootsnav ul.nav > li > a{
     color: #6f6f6f;
     background-color: transparent !important;
 }
-
+/* 로그인하면서 추가함 */
+nav.navbar.bootsnav ul.nav > li > a ?label{
+    color: #6f6f6f;
+    background-color: transparent !important;
+}
 nav.navbar.bootsnav ul.nav li.megamenu-fw > a:hover,
 nav.navbar.bootsnav ul.nav li.megamenu-fw > a:focus,
 nav.navbar.bootsnav ul.nav li.active > a:hover,
@@ -81,6 +85,9 @@ nav.navbar.bootsnav ul.nav .dropdown-menu .dropdown-menu{
 nav.navbar.bootsnav ul.nav ul.dropdown-menu > li > a{
     white-space:normal;
 }
+nav.navbar.bootsnav ul.nav ul.dropdown-menu > li > label{
+    white-space:normal;
+}
 
 
 ul.menu-col{
@@ -90,6 +97,9 @@ ul.menu-col{
 }
 
 ul.menu-col li a{
+    color: #6f6f6f;
+}
+ul.menu-col li label{
     color: #6f6f6f;
 }
 
@@ -193,6 +203,15 @@ nav.bootsnav.navbar-full .navbar-collapse ul.nav > li > a{
     font-size: 24px;
     padding: 10px 15px;
 }
+nav.bootsnav.navbar-full .navbar-collapse ul.nav > li > label{
+    display: table;
+    margin: auto;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 24px;
+    padding: 10px 15px;
+}
 
 li.close-full-menu > a{
     padding-top: 0px !important;
@@ -226,6 +245,13 @@ li.close-full-menu{
 }
 
 .attr-nav > ul > li > a{
+    color: #6f6f6f;
+    display: block;
+    padding: 28px 15px;
+    position: relative;
+}
+
+.attr-nav > ul > li > label{
     color: #6f6f6f;
     display: block;
     padding: 28px 15px;
@@ -559,6 +585,11 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         border-bottom: solid 1px #eee;
         color: #6f6f6f;
     }
+    nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > label{
+        padding: 10px 15px;
+        border-bottom: solid 1px #eee;
+        color: #6f6f6f;
+    }
     
     nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li:last-child > a{
         border-bottom: none;
@@ -622,6 +653,15 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     }
     
     nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a{
+        text-align: left;
+        padding: 5px 0;
+        display: block;
+        width: 100%;
+        margin-bottom: 0;
+        border-bottom: none;
+        color: #6f6f6f;
+    }
+    nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li label{
         text-align: left;
         padding: 5px 0;
         display: block;
@@ -928,6 +968,11 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         color: #6f6f6f;
         border: none;
     }
+    nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu li label{
+        padding:  5px 15px;
+        color: #6f6f6f;
+        border: none;
+    }
     
     nav.bootsnav.navbar-sidebar ul.nav li.dropdown ul.dropdown-menu ul.dropdown-menu{
         padding-left: 15px;
@@ -1097,6 +1142,13 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     }
     
     nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu  > li > a{
+        display: block;
+        width: 100%;
+        border-bottom: solid 1px #e0e0e0;
+        padding: 10px 0;
+        color: #6f6f6f;
+    }
+    nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu  > li > label{
         display: block;
         width: 100%;
         border-bottom: solid 1px #e0e0e0;

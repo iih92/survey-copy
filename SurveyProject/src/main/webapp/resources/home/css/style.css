@@ -824,252 +824,136 @@ textarea::-ms-input-placeholder {
 	-webkit-animation: loading-center-absolute 1.5s infinite;
 	animation: loading-center-absolute 1.5s infinite;
 }
+.object{
+    width: 25px;
+    height: 25px;
+    background-color: #FFF;
+    float: left;
 
-.object {
-	width: 25px;
-	height: 25px;
-	background-color: #FFF;
-	float: left;
 }
+
+/*없으면 안됨*/
 
 #object_one {
-	-webkit-animation: object_one 1.5s infinite;
-	animation: object_one 1.5s infinite;
+    -webkit-animation: object_one 1.5s infinite;
+    animation: object_one 1.5s infinite;
 }
-
 #object_two {
-	-webkit-animation: object_two 1.5s infinite;
-	animation: object_two 1.5s infinite;
+    -webkit-animation: object_two 1.5s infinite;
+    animation: object_two 1.5s infinite;
 }
-
 #object_three {
-	-webkit-animation: object_three 1.5s infinite;
-	animation: object_three 1.5s infinite;
+    -webkit-animation: object_three 1.5s infinite;
+    animation: object_three 1.5s infinite;
 }
-
 #object_four {
-	-webkit-animation: object_four 1.5s infinite;
-	animation: object_four 1.5s infinite;
+    -webkit-animation: object_four 1.5s infinite;
+    animation: object_four 1.5s infinite;
 }
+*/
 
-@
--webkit-keyframes loading-center-absolute { 100% {
-	-webkit-transform: rotate(-45deg);
-}
 
-}
-@
-keyframes loading-center-absolute { 100% {
-	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-}
+@-webkit-keyframes loading-center-absolute {
+    100% { -webkit-transform: rotate(-45deg); }
 
 }
-@
--webkit-keyframes object_one { 25% {
-	-webkit-transform: translate(0, -50px) rotate(-180deg);
+
+@keyframes loading-center-absolute {
+    100% { 
+        transform:  rotate(-45deg);
+        -webkit-transform:  rotate(-45deg);
+    }
 }
 
-100%
-{
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
- 
-}
-}
-@
-keyframes object_one { 25% {
-	transform: translate(0, -50px) rotate(-180deg);
-	-webkit-transform: translate(0, -50px) rotate(-180deg);
+
+
+@-webkit-keyframes object_one {
+    25% { -webkit-transform: translate(0,-50px) rotate(-180deg); }
+    100% { -webkit-transform: translate(0,0) rotate(-180deg); }
+
 }
 
-100%
-{
-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-        
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-    
-}
-}
-@
--webkit-keyframes object_two { 25% {
-	-webkit-transform: translate(50px, 0) rotate(-180deg);
+@keyframes object_one {
+    25% { 
+        transform: translate(0,-50px) rotate(-180deg);
+        -webkit-transform: translate(0,-50px) rotate(-180deg);
+    } 
+    100% { 
+        transform: translate(0,0) rotate(-180deg);
+        -webkit-transform: translate(0,0) rotate(-180deg);
+    }
 }
 
-100%
-{
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
- 
-}
-}
-@
-keyframes object_two { 25% {
-	transform: translate(50px, 0) rotate(-180deg);
-	-webkit-transform: translate(50px, 0) rotate(-180deg);
+
+@-webkit-keyframes object_two {
+    25% { -webkit-transform: translate(50px,0) rotate(-180deg); }
+    100% { -webkit-transform: translate(0,0) rotate(-180deg); }
 }
 
-100%
-{
-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-        
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-    
-}
-}
-@
--webkit-keyframes object_three { 25% {
-	-webkit-transform: translate(-50px, 0) rotate(-180deg);
+@keyframes object_two {
+    25% { 
+        transform: translate(50px,0) rotate(-180deg);
+        -webkit-transform: translate(50px,0) rotate(-180deg);
+    } 
+    100% { 
+        transform: translate(0,0) rotate(-180deg);
+        -webkit-transform: translate(0,0) rotate(-180deg);
+    }
 }
 
-100%
-{
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
- 
-}
-}
-@
-keyframes object_three { 25% {
-	transform: translate(-50px, 0) rotate(-180deg);
-	-webkit-transform: translate(-50px, 0) rotate(-180deg);
+@-webkit-keyframes object_three {
+    25% { -webkit-transform: translate(-50px,0) rotate(-180deg); }
+    100% { -webkit-transform: translate(0,0) rotate(-180deg); }
 }
 
-100%
-{
-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-        
--webkit-transform
-:
- 
-rtranslate
-(0
-,
-0)
-rotate
-(-180deg);
-
-    
-}
-}
-@
--webkit-keyframes object_four { 25% {
-	-webkit-transform: translate(0, 50px) rotate(-180deg);
+@keyframes object_three {
+    25% { 
+        transform:  translate(-50px,0) rotate(-180deg);
+        -webkit-transform:  translate(-50px,0) rotate(-180deg);
+    } 
+    100% { 
+        transform: translate(0,0) rotate(-180deg);
+        -webkit-transform: rtranslate(0,0) rotate(-180deg);
+    }
 }
 
-100%
-{
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
- 
-}
-}
-@
-keyframes object_four { 25% {
-	transform: translate(0, 50px) rotate(-180deg);
-	-webkit-transform: translate(0, 50px) rotate(-180deg);
+
+@-webkit-keyframes object_four {
+    25% { -webkit-transform: translate(0,50px) rotate(-180deg); }
+    100% { -webkit-transform: translate(0,0) rotate(-180deg); }
 }
 
-100%
-{
-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-        
--webkit-transform
-:
- 
-translate
-(0
-,
-0)
-rotate
-(-180deg);
-
-    
+@keyframes object_four {
+    25% { 
+        transform: translate(0,50px) rotate(-180deg); 
+        -webkit-transform: translate(0,50px) rotate(-180deg);  
+    } 
+    100% { 
+        transform: translate(0,0) rotate(-180deg);
+        -webkit-transform: translate(0,0) rotate(-180deg);
+    }
 }
-}
+
 /*End off Preloader*/
+
+
+/*
+Nav Menu style
+==================*/
+
+.navbar-brand {
+    padding: 30px 15px;
+}
+nav.navbar.bootsnav ul.nav li.active > a{
+    color:#01aef0;
+}
+nav.navbar.bootsnav.no-background.white ul.nav > li > a {
+    color: #fff;
+}
+nav.navbar.bootsnav.no-background.white ul.nav > li.active > a {
+    color: #01aef0;
+}
+
 
 /*
 Nav Menu style
@@ -1079,11 +963,11 @@ Nav Menu style
 }
 
 nav.navbar.bootsnav ul.nav li.active>a {
-	color: #01aef0;
+	color: #6f6f6f;
 }
 /* 로그인 팝업 하면서 추가한부분임 */
 nav.navbar.bootsnav ul.nav li.active>label {
-	color: #01aef0;
+	color: #6f6f6f;
 }
 /* 여기까지 팝업 하면서 추가한부분임 */
 nav.navbar.bootsnav.no-background.white ul.nav>li>a {
@@ -1095,11 +979,11 @@ nav.navbar.bootsnav.no-background.white ul.nav>li>a>label {
 }
 
 nav.navbar.bootsnav.no-background.white ul.nav>li.active>a {
-	color: #01aef0;
+	color: #fff;
 }
 /* 밑에껀 로그인 팝업 하면서 추가한부분임  */
 nav.navbar.bootsnav.no-background.white ul.nav>li.active>label {
-	color: #01aef0;
+	color: #fff;
 }
 /* 여기까지 로그인 팝업 하면서 추가한부분임 */
 nav .login {
@@ -1151,34 +1035,82 @@ Home Section style
 15%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 1;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 50%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 100%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 29%;
 }
 }
@@ -1191,34 +1123,82 @@ top
 15%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 1;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 50%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 100%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 29%;
 }
 }
@@ -1231,34 +1211,82 @@ keyframes scroll-ani { 0% {
 15%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 1;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 50%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 50%;
 }
 100%
 {
 opacity
+
+
+
+
 :
+
+
  
+
+
 0;
 top
+
+
+
+
 :
+
+
  
+
+
 29%;
 }
 }

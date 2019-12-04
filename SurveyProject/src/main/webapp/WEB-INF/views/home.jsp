@@ -209,7 +209,7 @@
  			<input type="checkbox"
 				id="modal" class="hiddenC">
 			<div class="box_modal">
-				<label for="modal" class="closer">dddddㅇ</label>
+				<label for="modal" class="closer">dddd다시올려보기dㅇ</label>
 				<div class="text">
 					<jsp:include page="temp/temp_login.jsp" flush="true" />
 				</div>

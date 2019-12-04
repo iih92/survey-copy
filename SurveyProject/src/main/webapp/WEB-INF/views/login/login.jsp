@@ -41,11 +41,11 @@
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" for="ckb1">
 								Remember me
-							</label> 
+							</label>
 						</div>
 
 						<div>
-			             <a href=""><label for="modal" class="closer"  >sign up</label></a>
+			             <a href=""><label for="modal_regi">sign up</label></a>
 						</div>
 					</div>
 	

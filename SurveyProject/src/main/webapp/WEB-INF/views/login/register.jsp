@@ -73,10 +73,10 @@
         });
     </script>
 </head>
-<body>
+<body class="reg_body1">
     <div class="main">
         <section class="signup">
-            <div class="container">
+            <div class="reg_container">
                 <div class="signup-content">
                     <form action="#" id="register" method="post">
                         <h2 class="form-title">Create account</h2>

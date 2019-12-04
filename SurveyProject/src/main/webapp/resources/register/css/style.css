@@ -103,7 +103,7 @@ h2 {
     clear: both; 
 }
 
-body {
+.reg_body1 {
     font-size: 14px;
     line-height: 1.8;
     color: #474c4c;
@@ -116,10 +116,9 @@ body {
     -o-background-size: cover;
     -ms-background-size: cover;
     background-position: center center;
-    padding: 115px 0;
 }
 
-.container {
+.reg_container {
   width: 660px;
   position: relative;
   margin: 0 auto; 

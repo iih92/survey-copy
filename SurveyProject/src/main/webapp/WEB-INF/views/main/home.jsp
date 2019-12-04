@@ -197,7 +197,7 @@
 		
 		<input type="checkbox" id="modal" class="hiddenC">
 		<div class="box_modal">
-			<label for="modal" class="closer" style="color: black; ">X</label>
+		<p style="visibility:hidden;">ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ<label for="modal" style="display:inline-block; visibility:visible;"><img src="resources/home/images/exit.png" width=15px height=15px style="position:display; top:20%; left:20%;"></label></p>
 			<div class="text">
 				<c:import url="../login/login.jsp"></c:import>
 			</div>

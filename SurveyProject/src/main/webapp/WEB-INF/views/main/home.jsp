@@ -98,8 +98,8 @@
 						data-target="#navbar-menu">
 						<i class="fa fa-bars" style="color: black"></i>
 					</button>
-					<a class="navbar-brand" href="#brand"> <img
-						src="resources/home/images/logo.png" class="logo" alt=""> <!--<img src="resources/home/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
+					<a class="navbar-brand" href="#brand" style="height: 20px; width: 120px;"> 
+						<img src="resources/logo/logo.png" class="logo" alt=""> 
 					</a>
 				</div>
 				<!-- End Header Navigation -->

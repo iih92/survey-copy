@@ -942,7 +942,7 @@ Nav Menu style
 ==================*/
 
 .navbar-brand {
-    padding: 30px 15px;
+    padding: 0px 15px;
 }
 nav.navbar.bootsnav ul.nav li.active > a{
     color:#01aef0;

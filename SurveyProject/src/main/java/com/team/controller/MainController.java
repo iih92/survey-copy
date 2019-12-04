@@ -22,4 +22,9 @@ public class MainController {
 		return "login/register";
 	}
 
+	@RequestMapping(value = "/main")
+	public String main() {
+		return "include/main";
+	}
+
 }

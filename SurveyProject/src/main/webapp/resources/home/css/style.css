@@ -905,7 +905,6 @@ nav.navbar.bootsnav.no-background.white ul.nav > li.active > label {
 }
 /* 여기까지 로그인 팝업 하면서 추가한부분임 */
 nav .login{
-		
 	font-size : 20pt;
 		-moz-appearance: none;
 		-webkit-appearance: none;

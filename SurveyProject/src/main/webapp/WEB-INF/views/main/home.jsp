@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,39 +194,21 @@
 				</div>
 			</div>
 		</div>
-
- 
-			<!-- 
-<div class="box_modal">
-  <label for="modal" class="closer">x</label>
-  <div class="text">
-    <h3>모달 윈도우</h3>
-    <p>다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파.</p>
-      <jsp:include page="temp/temp_login.jsp" flush="true" />  
-  </div>
-</div>
-      -->
-
- 			<input type="checkbox"
-				id="modal" class="hiddenC">
-			<div class="box_modal">
-				<label for="modal" class="closer">dddd다시올려보기dㅇ</label>
-				<div class="text">
-					<jsp:include page="temp/temp_login.jsp" flush="true" />
-				</div>
+		
+		<input type="checkbox" id="modal" class="hiddenC">
+		<div class="box_modal">
+			<label for="modal" class="closer"></label>
+			<div class="text">
+				<c:import url="../login/login.jsp"></c:import>
 			</div>
+		</div>
 
- 
-
-
-
-		<div
-			class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
+		<div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
 			<div class="col-md-12">
 				<p class="wow fadeInRight" data-wow-duration="1s">
-					Made with <i class="fa fa-heart"></i> by <a target="_blank"
-						href="http://bootstrapthemes.co">Bootstrap Themes</a> 2016. All
-					Rights Reserved
+					Made with <i class="fa fa-heart"></i> by <a target="_blank" href="http://bootstrapthemes.co">
+					Bootstrap Themes</a> 
+					2016. All Rights Reserved
 				</p>
 			</div>
 		</div>
@@ -241,8 +224,7 @@
 	<script src="resources/home/js/js.isotope.js"></script>
 	<script src="resources/home/js/jquery.collapse.js"></script>
 	<script src="resources/home/js/bootsnav.js"></script>
-	<script
-		src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 	<script src="resources/home/js/plugins.js"></script>
 	<script src="resources/home/js/main.js"></script>
 

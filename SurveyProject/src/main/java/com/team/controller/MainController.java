@@ -11,5 +11,15 @@ public class MainController {
 	public String home() {
 		return "main/home";
 	}
+	
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "login/login";
+	}
+	
+	@RequestMapping(value = "/register")
+	public String register() {
+		return "login/register";
+	}
 
 }

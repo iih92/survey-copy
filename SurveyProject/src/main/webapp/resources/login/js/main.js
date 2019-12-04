@@ -1,8 +1,5 @@
-
 (function ($) {
     "use strict";
-
-
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
@@ -16,7 +13,6 @@
                 check=false;
             }
         }
-
         return check;
     });
 
@@ -39,7 +35,7 @@
             }
         }
     }
-
+    
     function showValidate(input) {
         var thisAlert = $(input).parent();
 
@@ -51,7 +47,5 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
-    
-
+  
 })(jQuery);

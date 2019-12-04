@@ -21,7 +21,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="register">
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
@@ -41,20 +41,17 @@
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" for="ckb1">
 								Remember me
-							</label>
+							</label> 
 						</div>
 
 						<div>
-			             <!-- forgout 위치-->
+			             <a href=""><label for="modal" class="closer"  >sign up</label></a>
 						</div>
 					</div>
-
+	
 					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<button class="login100-form-btn">Login</button>
 					</div>
-
 				</form>
 			</div>
 		</div>

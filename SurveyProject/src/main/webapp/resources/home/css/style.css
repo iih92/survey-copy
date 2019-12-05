@@ -942,7 +942,7 @@ Nav Menu style
 ==================*/
 
 .navbar-brand {
-    padding: 0px 15px;
+    padding: 10px 15px;
 }
 nav.navbar.bootsnav ul.nav li.active > a{
     color:#01aef0;
@@ -952,14 +952,6 @@ nav.navbar.bootsnav.no-background.white ul.nav > li > a {
 }
 nav.navbar.bootsnav.no-background.white ul.nav > li.active > a {
     color: #01aef0;
-}
-
-
-/*
-Nav Menu style
-==================*/
-.navbar-brand {
-	padding: 30px 15px;
 }
 
 nav.navbar.bootsnav ul.nav li.active>a {
@@ -1928,7 +1920,7 @@ input#modal[type=checkbox]:checked ~ .box_modal {
 }
 
 .labelB {
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 600;
 	vertical-align: middle;
 	cursor: pointer;
@@ -1962,8 +1954,7 @@ input#modal[type=checkbox]:checked ~ .box_modal {
 	-ms-transform: scale(0, 0);
 	transform: scale(0, 0);
 	/*안쪽에 스크롤 생성하고싶으면 overflow-y: scroll; */
-	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px, rgba(0, 0, 0, 0.5) 2px 2px
-		3px 3px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px, rgba(0, 0, 0, 0.5) 2px 2px 3px 3px;
 	z-index: 100;
 }
 
@@ -1978,4 +1969,9 @@ input#modal_regi[type=checkbox]:checked ~ .box_modal_regi {
 	position: display;
 	margin-left: 650px;
 	margin-top: 10px;
+}	
+
+.link {
+	font-family: Ubuntu-Regular, sans-serif;
+	font-size: 16px;
 }

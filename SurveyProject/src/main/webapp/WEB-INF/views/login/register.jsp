@@ -70,6 +70,10 @@
                     console.log("성공");
                 } 
             });
+            
+            $('#checkfail').click(function() {
+				$('.hiddenC').attr("checked",false);
+			});          
         });
     </script>
 </head>
@@ -92,8 +96,9 @@
                             <input type="password" class="form-input" name="password" id="password" placeholder="Password"/>
                             <span toggle="#password" class="zmdi zmdi-eye-off field-icon toggle-password"></span>  
                             <span class="focus-input"></span>
-                        </div>
-                        <span class="condition"></span> 
+	                        <span class="condition"></span> 
+	                    </div>
+	                    
                         <div class="form-group">
                             <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
                             <span class="focus-input"></span>
@@ -104,11 +109,14 @@
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        Have already an account ? 
+                        <label for="modal">
+                        	<font id="checkfail">Login here</font>
+                        </label>
                     </p>
                 </div>
             </div>
         </section>
     </div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 </html>

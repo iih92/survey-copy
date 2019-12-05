@@ -42,7 +42,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #403866;
+  color: #01aef0;
 }
 
 /*---------------------------------------------*/
@@ -90,8 +90,10 @@ textarea::-moz-placeholder { color: #b0b5b5;}
 textarea:-ms-input-placeholder { color: #b0b5b5;}
 
 label {
-  display: block;
-  margin: 0;
+	font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 16px;
+  	display: block;
+  	margin: 0;
 }
 
 /*---------------------------------------------*/
@@ -180,16 +182,16 @@ iframe {
 
 /*---------------------------------------------*/
 .input100 {
-  font-family: Ubuntu-Bold;
-  color: #403866;
-  line-height: 1.2;
-  font-size: 18px;
+	font-family: 'Ubuntu-Regular', sans-serif;
+   	font-size: 18px;
+  	color: #474c4c;
+  	line-height: 1.2;
 
-  display: block;
-  width: 100%;
-  background: transparent;
-  height: 62px;
-  padding: 0 20px 0 38px;
+	display: block;
+	width: 100%;  	  
+	background: transparent;
+	height: 62px;
+	padding: 0 20px 0 38px;
 }
 /*[ Focus Input ]*/
 
@@ -307,7 +309,7 @@ iframe {
 
 .login100-form-btn {
   font-family: Ubuntu-Bold;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;

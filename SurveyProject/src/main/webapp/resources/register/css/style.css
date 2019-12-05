@@ -1,3 +1,15 @@
+/*[ FONT ]*/
+
+@font-face {
+  font-family: Ubuntu-Regular;
+  src: url('../../login/fonts/ubuntu/Ubuntu-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Ubuntu-Bold;
+  src: url('../../login/fonts/ubuntu/Ubuntu-Bold.ttf'); 
+}
+
 /* @extend display-flex; */
 display-flex, .display-flex, .display-flex-center {
   display: flex;
@@ -9,14 +21,6 @@ list-type-ulli {
   margin: 0;
   padding: 0; }
 
-/* 나눔 고딕 */
-@font-face {
-  font-family: 'Nanum Gothic';
-  font-style: normal;
-  font-weight: 700;
-  src:url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
-  src:url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'), url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'), url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff) format('woff'), url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf) format('truetype');
-}
 
 a:focus, a:active {
   text-decoration: none;
@@ -92,8 +96,8 @@ h2 {
     padding: 0;
     font-weight: 900;
     color: #474c4c;
-    font-family: 'Nanum Gothic', sans-serif;
-    font-size: 24px;
+    font-family: 'Ubuntu-Bold', sans-serif;
+    font-size: 30px;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 40px;
@@ -184,35 +188,36 @@ h2 {
     display: block;
     border: 1px solid #ebebeb;
     background: transparent;
-    padding: 17px 20px;
+    padding: 10px 20px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     color: #474c4c; 
+    font-family: "Ubuntu-Regular";
 }
 
 .form-input::-webkit-input-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
     color: #b0b5b5; 
-    font-weight: 500;
+    font-size : 18px;
 }
 
 .form-input::-moz-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
     color: #b0b5b5; 
-    font-weight: 500;
+    font-size : 18px;
 }
 
 .form-input:-ms-input-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
     color: #b0b5b5; 
-    font-weight: 500;
+    font-size : 18px;
 }
 
 .form-input:-moz-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
     color: #b0b5b5; 
-    font-weight: 500; 
+    font-size : 18px;
 }
 
 .focus-input {
@@ -286,21 +291,25 @@ h2 {
 }
 
 .form-input:focus::-webkit-input-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 18px;
     color: #474c4c; 
 }
 
 .form-input:focus::-moz-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 18px;
     color: #474c4c; 
 }
 
 .form-input:focus:-ms-input-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 18px;
     color: #474c4c; 
 }
 .form-input:focus:-moz-placeholder {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 18px;
     color: #474c4c; 
 }
 
@@ -318,12 +327,13 @@ h2 {
     color: #fff;
     text-transform: uppercase;
     border: none;
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Ubuntu-Bold', sans-serif;
     background-image: -moz-linear-gradient(to left, #01aef0, #00ebfc);
     background-image: -ms-linear-gradient(to left, #01aef0, #00ebfc);
     background-image: -o-linear-gradient(to left, #01aef0, #00ebfc);
     background-image: -webkit-linear-gradient(to left, #01aef0, #00ebfc);
     background-image: linear-gradient(to left,#01aef0 ,#00ebfc ); 
+    font-size: 20px;
     
 }
 
@@ -337,8 +347,6 @@ input[type=checkbox]:not(old) {
 
 input[type=checkbox]:not(old) + label {
   display: inline-block;
-  margin-top: 7px;
-  margin-bottom: 25px; 
 }
 
 input[type=checkbox]:not(old) + label > span {
@@ -382,11 +390,12 @@ input[type=checkbox]:not(old):checked + label > span:before {
 }
 
 .loginhere {
-  color: #474c4c;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  	color: #474c4c;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size: 18px;	
+    text-align: center;
+ 	margin-top: 20px;
+	margin-bottom: 5px;
 }
 
 .loginhere-link {
@@ -404,8 +413,8 @@ input[type=checkbox]:not(old):checked + label > span:before {
 }
 
 .confirm, .condition {
-    font-family: 'Nanum Gothic', sans-serif;
-    font-weight: 1000;
+    font-family: 'Ubuntu-Regular', sans-serif;
+    font-size : 18px;
     color: red;
    
 }
@@ -419,3 +428,10 @@ input[type=checkbox]:not(old):checked + label > span:before {
     padding: 50px 25px; } }
 
 /*# sourceMappingURL=style.css.map */
+.form-submit:disabled {
+	background-image: -moz-linear-gradient(to left,#6d7878,#afb6b6); 
+    background-image: -ms-linear-gradient(to left,#6d7878,#afb6b6); 
+    background-image: -o-linear-gradient(to left,#6d7878,#afb6b6); 
+    background-image: -webkit-linear-gradient(to left,#6d7878,#afb6b6); 
+    background-image: linear-gradient(to left,#6d7878,#afb6b6); 
+}

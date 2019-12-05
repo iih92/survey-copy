@@ -98,7 +98,7 @@
 						data-target="#navbar-menu">
 						<i class="fa fa-bars" style="color: black"></i>
 					</button>
-					<a class="navbar-brand" href="#brand" style="height: 20px; width: 120px;"> 
+					<a class="navbar-brand" href="#brand" style="height: 20px; width: 160px;"> 
 						<img src="resources/logo/logo.png" class="logo" alt=""> 
 					</a>
 				</div>
@@ -108,12 +108,12 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#home" class="link">Home</a></li>
-						<li><a href="#features" class="link">Guide</a></li>
-						<li><a href="#service" class="link">Make Survey</a></li>
-						<li><a href="#portfolio" class="link">Do Survey</a></li>
-						<li><a href="#layer" class="link"><label for="modal"
-								class="labelB">Sign1 in / Sign up</label></a></li>
-						<li><a href="#contact" class="link">Contact Us</a></li>
+						<li><a href="#">
+							<label for="modal" class="link">Sign In</label>
+						</a></li>
+						<li><a href="#">
+							<label for="modal_regi" class="link">Sign Up</label>
+						</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -131,15 +131,14 @@
 								<div class="slid_item">
 									<div class="home_text ">
 										<!--  style.css line 110 -->
-										<h1 class="text-yellow">Welcome to Made</h1>
-										<h3 class="text-white text-uppercase">We Create a Concept
-											into The Market</h3>
+										<h1 class="text-yellow">Welcome to Surveying</h1>
+										<h3 class="text-white text-uppercase">Make your own survey and share it</h3>
 										<br> <br>
 										<div
 											style="display: inline-block; text-align: center; width: 200px;">
 											<a href="#" class="button style2 fit"
 												data-poptrox="youtube,800x400"><label for="modal"
-												class="labelB">Start Su1rveying</label></a>
+												class="labelB">START</label></a>
 										</div>
 									</div>
 								</div>
@@ -198,11 +197,30 @@
 							</div>
 						</a>
 					</div>
+					
+					<!-- box(3) -->
+					<div class="box">
+						<a href="#"> <!-- mouse over -->
+							<div class="over">
+								<img src="resources/home/images/coin.png" alt="" />
+								<h1
+									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
+							</div> <!-- icon div -->
+							<div class="box_image">
+								<img src="resources/home/images/icon-1.jpg" alt="" />
+							</div> <!-- inner div -->
+							<div class="inner">
+								<h3>자바 수업 평가 설문조사</h3>
+								<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
+								<font> 마감 날짜 : 2019.12.03 </font>
+							</div>
+						</a>
+					</div>
+					
 				</div>
 			</div>
 		</div>
 		<!-- main end -->
-
 
 		<input type="checkbox" id="modal" class="hiddenC">
 		<div class="box_modal">
@@ -237,9 +255,8 @@
 			class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
 			<div class="col-md-12">
 				<p class="wow fadeInRight" data-wow-duration="1s">
-					Made with <i class="fa fa-heart"></i> by <a target="_blank"
-						href="http://bootstrapthemes.co"> Bootstrap Themes</a> 2016. All
-					Rights Reserved
+					Copyright 2019 <i class="fa fa-heart"></i>
+					<a target="_blank" href="#"> Made by Sueveying</a>
 				</p>
 			</div>
 		</div>

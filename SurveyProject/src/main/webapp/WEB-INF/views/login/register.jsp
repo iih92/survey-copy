@@ -26,6 +26,7 @@
                 }
             });
             
+            /* 비밀번호와 재확인 비밀번호가 일치하는지 확인 & 비밀번호가 7자리가 넘어가는지 확인*/
             $("#password").keyup(function(){
                 var password = $(this).val();
                 var repassword = $("#re_password").val();
@@ -45,6 +46,7 @@
                 }
             });
             
+            /* 비밀번호와 재확인 비밀번호가 일치하는지 확인 */
             $("#re_password").keyup(function(){
                 var password = $("#password").val();
                 var repassword = $(this).val();
@@ -57,6 +59,7 @@
                 }
             });
             
+            /* 모든 칸에 입력을 해야 submit 버튼을 활성화 시킴 */
             $(':input').keyup(function(){
                 var nickname = $("#nickname").val();
                 var id = $("#id").val();
@@ -71,6 +74,7 @@
                 } 
             });
             
+            /* 회원가입 창에서 로그인 하러가기를 눌렀을시 회원가입창 닫기 */
             $('#checkfail').click(function() {
 				$('.hiddenC').attr("checked",false);
 			});          

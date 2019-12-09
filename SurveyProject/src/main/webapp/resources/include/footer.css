@@ -5,7 +5,7 @@ hmtl, body{
     min-height: 100%;
 }
 .content {
-    min-height: calc(100vh - 20px);
+    min-height: calc(40vh - 20px);
 }
 
 .footer{
@@ -16,7 +16,6 @@ hmtl, body{
     color: #797979;
     background-color: #1b1b1b;
     overflow: hidden;
-    text-align: center;
 }
 .sententce {
     position: relative;

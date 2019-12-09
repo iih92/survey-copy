@@ -1,116 +1,312 @@
-body{
-    padding:10px;
+body {
+   padding: 10px;
+   background-color: gainsboro;
 }
+
+/*항목추가 버튼 css--------------------------------------------------------------------------------*/
 
 .fab {
-  cursor: pointer;
-}
-.fab-backdrop {
-  color: rgba(255, 255, 255, 0);
-}
-.fab-primary, .fab-secondary {
-  transition: all 0.35s ease-in-out;
-}
-.fab.active .fab-primary {
-  opacity: 0;
-  transform: rotate(225deg);
-}
-.fab-secondary {
-  opacity: 0;
-  transform: rotate(-225deg);
-}
-.fab.active .fab-secondary {
-  opacity: 1;
-  transform: rotate(0);
-  margin-top: -2px;
+   cursor: pointer;
 }
 
-#inbox .show-on-hover:hover > ul.dropdown-menu {
-    display: block;    
-    
+.fab-backdrop {
+   color: rgba(255, 255, 255, 0);
 }
+
+.fab-primary, .fab-secondary {
+   transition: all 0.35s ease-in-out;
+}
+
+.fab.active .fab-primary {
+   opacity: 0;
+   transform: rotate(225deg);
+}
+
+.fab-secondary {
+   opacity: 0;
+   transform: rotate(-225deg);
+}
+
+.fab.active .fab-secondary {
+   opacity: 1;
+   transform: rotate(0);
+   margin-top: -2px;
+}
+
+#inbox .show-on-hover:hover>ul.dropdown-menu {
+   display: block;
+}
+
 #inbox .show-on-hover {
-    position: absolute;
-    bottom: 80px;
-    right: 80px;
+   position: absolute;
+   bottom: 80px;
+   right: 80px;
 }
-#inbox .btn-io{
-    border-radius: 50%;
-    height: 54px;
-    width: 54px;
-    padding: 0 !important;
-    box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
+
+#inbox .btn-io {
+   border-radius: 50%;
+   height: 54px;
+   width: 54px;
+   padding: 0 !important;
+   box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
 }
-#inbox .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
-top: auto;
-bottom: 100%;
-margin-bottom: 1px;
-margin-bottom: -5px;
-padding-bottom: 30px;
+
+#inbox .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu
+   {
+   top: auto;
+   bottom: 100%;
+   margin-bottom: 1px;
+   margin-bottom: -5px;
+   padding-bottom: 30px;
 }
+
 #inbox .dropdown-menu-right {
-right: 0 !Important;
-left: auto !Important;
+   right: 0 !Important;
+   left: auto !Important;
 }
+
 #inbox .dropdown-menu {
-position: absolute;
-top: 100%;
-left: 0;
-z-index: 1000;
-display: none;
-float: left;
-min-width: 50px;
-padding: 5px 0;
-margin: 2px 0 0;
-font-size: 14px;
-text-align: center;
-list-style: none;
-background-color: rgba(255, 255, 255, 0) !Important;
--webkit-background-clip: padding-box;
-background-clip: padding-box;
-border: none;
-border-radius: 0px;
--webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
+   position: absolute;
+   top: 100%;
+   left: 0;
+   z-index: 1000;
+   display: none;
+   float: left;
+   min-width: 50px;
+   padding: 5px 0;
+   margin: 2px 0 0;
+   font-size: 14px;
+   text-align: center;
+   list-style: none;
+   background-color: rgba(255, 255, 255, 0) !Important;
+   -webkit-background-clip: padding-box;
+   background-clip: padding-box;
+   border: none;
+   border-radius: 0px;
+   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0) !Important;
 }
-#inbox .fa-iox{
-    font-size: 22px;
+
+#inbox .fa-iox {
+   font-size: 22px;
 }
-#inbox .dropdown-menu > li > button {
-display: block;
-padding: 0;
-margin-top: 20px;
-clear: both;
-font-weight: normal;
-line-height: 1.42857143;
-color: #333;
-background: #fff;
-white-space: nowrap;
-width: 40px;
-height: 40px;
-border: solid 1px #ccc;
-border-radius: 50px;
-font-size: 21px;
-box-shadow: 0px 3px 7px 0px rgba(203, 203, 203, 0.72);
+
+#inbox .dropdown-menu>li>button {
+   display: block;
+   padding: 0;
+   margin-top: 20px;
+   clear: both;
+   font-weight: normal;
+   line-height: 1.42857143;
+   color: #333;
+   background: #fff;
+   white-space: nowrap;
+   width: 40px;
+   height: 40px;
+   border: solid 1px #ccc;
+   border-radius: 50px;
+   font-size: 21px;
+   box-shadow: 0px 3px 7px 0px rgba(203, 203, 203, 0.72);
 }
-#inbox .dropdown-menu > li:first-child>button {
-    background: #6E4320 !important;
-    color: #fff !important;
+
+#inbox .dropdown-menu>li:first-child>button {
+   background: #6E4320 !important;
+   color: #fff !important;
 }
-#inbox .dropdown-menu > li:last-child>button{
-    background: #D3A516;
-    color: #fff;
+
+#inbox .dropdown-menu>li:last-child>button {
+   background: #D3A516;
+   color: #fff;
 }
-#inbox .dropdown-menu > li:nth-child(3)>button {
-    background: #3C80F6;
-    color: #fff;
+
+#inbox .dropdown-menu>li:nth-child(3)>button {
+   background: #3C80F6;
+   color: #fff;
 }
-#inbox .dropdown-menu > li:nth-child(2)>button {
-    background: #2CAC26;
-    color: #fff;
+
+#inbox .dropdown-menu>li:nth-child(2)>button {
+   background: #2CAC26;
+   color: #fff;
 }
-#inbox .fa-iosm{
-    
-    margin-top: 7px;
+
+#inbox .fa-iosm {
+   margin-top: 7px;
 }
-/*--------------------------------------------------------------------------------*/
+
+
+/*설문조사 form--------------------------------------------------------------------------------*/
+
+h1{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/*main DIV*/
+.main {
+   width: 100%;
+   height: 100%;
+   margin-top: 10%;
+   margin-bottom: 5%;
+   background-color: whitesmoke;
+   border-radius: 10px;
+   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+   display: flex;
+   flex-flow: column;
+   padding: 5%;
+}
+
+/*추가되는(quiz) DIV css*/
+.quiz {
+   margin-bottom: 2%;
+   background-color: white;
+   border-radius: 5px;
+   border: 3px solid #D5D5D5;
+   padding-left: 3%;
+   padding-bottom: 1%;
+}
+
+/*제목 DIV css*/
+.title {
+   text-align: center;
+   margin-bottom: 3%;
+}
+
+/*체크박스 크키 css*/
+input[type=checkbox] {
+   -ms-transform: scale(2);
+   -moz-transform: scale(2);
+   -webkit-transform: scale(2);
+   -o-transform: scale(2);
+   padding: 0px;
+   margin-right: 2.2%;
+   margin-left: 1%;
+}
+
+/*radio 크키 css*/
+input[type=radio] {
+   -ms-transform: scale(2);
+   -moz-transform: scale(2);
+   -webkit-transform: scale(2);
+   -o-transform: scale(2);
+   padding: 0px;
+   margin-right: 2.2%;
+   margin-left: 1%;
+}
+
+/*제목_input css*/
+.title_input[type="text"] {
+   height: 45%;
+   padding: .5em .3em;
+   border: none;
+   background-color: #D5D5D5;
+   width: 80%;
+   border: 4px solid #A6A6A6;
+   font-size: 30px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 1000;
+   text-align: center;
+}
+
+ /*질문_input css*/
+.question_input[type="text"] { 
+   padding: .4em .2em;
+   border: none;
+   background-color: #D5D5D5;
+   width: 80%;
+   font-size: 20px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 600;
+   margin: 1%;
+}
+
+/*기본_input css*/
+input[type="text"] {
+   padding: .4em .2em;
+   border: none;
+   background-color: #efefef;
+   width: 80%;
+   font-size: 17px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 400;
+   margin: 0.5%;
+}
+
+/*주관식 css*/
+textarea {
+   padding: .5em .3em;
+   border: none;
+   background-color: #efefef;
+   width: 80%;
+   margin-left: 5%;
+   margin-top: 0%;
+}
+
+/*삭제버튼 css*/
+#delinner, #delR, #delC, #delT, #delinnerCheck  {
+   /*width:5%;*/
+   background-color: #f8585b;
+   border: none;
+   color: #fff;
+   padding: 5px 10px 5px 10px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 15px;
+   margin: 5px;
+   cursor: pointer;
+   border-radius: 3px;
+}
+
+#delinner:active, #delR:active {
+   background-color: #FFA7A7;
+}
+
+
+ /* 항목추가버튼 css */
+#addR, #addC, #addT {
+   background-color: #f8585b;
+   border: none;
+   color: #fff;
+   padding: 5px 10px 5px 10px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 15px;
+   margin: 0px;
+   cursor: pointer;
+   background-color: #01aef0;
+   border-radius: 3px;
+}
+
+#addR:active {
+   background-color: #00ebfc;
+}
+
+/*설문등록 버튼 css*/
+#save{
+   border: none;
+   color: #fff;
+   padding: 1% 45% 1% 45%;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 30px;
+   margin: auto;
+   cursor: pointer;
+   background-color: #01aef0;
+   border-radius: 4px;
+   font-family: 'Noto Sans KR', sans-serif;
+   font-weight: 500;
+}
+
+#save:active {
+   background-color: #00ebfc;
+}
+
+/*Q 글씨 css*/
+.Q {
+   font-size: 30px;
+   font-weight: 1000;
+   margin-right: 1.2%;
+   font-family: 'Malgun Gothic';
+}

@@ -9,22 +9,6 @@ public class MainController {
 
 	@RequestMapping(value = "/")
 	public String home() {
-		return "main/home";
+		return "home/main";
 	}
-	
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "login/login";
-	}
-	
-	@RequestMapping(value = "/register")
-	public String register() {
-		return "login/register";
-	}
-
-	@RequestMapping(value = "/main")
-	public String main() {
-		return "include/main";
-	}
-
 }

@@ -17,7 +17,7 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <link rel="stylesheet" href="resources/board/main.css">
-
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 <script>
         $(document).ready(function(){
             $('.fab').hover(function(){
@@ -39,9 +39,10 @@
          	$("#radio").click(function(){
             	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
             	$("#div"+cnt).append("<div id=input"+cnt+"></div><br>");
-           		$("#input"+cnt).append("<font>"+(cnt+1)+"번 문항</font><br>");                 
+           		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
+           		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");        		
            		$("#input"+cnt).append("<input type='radio' name="+cnt+">");
-   				$("#input"+cnt).append("<input type='input' name="+cnt+"><br>");
+   				$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
      			$("#div"+cnt).append("<input type='button' value='라디오 버튼 추가' id='addR' name="+cnt+">"); 
      			// 라디오 삭제 버튼
                	$("#div"+cnt).append("<input type='button' value='삭제' id='delR' name="+cnt+">");
@@ -53,7 +54,7 @@
             	// 라디오 추가 버튼을 누르면 group 이름 가져옴
             	var group = $(this).attr("name");
               	$("#input"+group).append("<input type='radio' id=radio"+numR+" name="+group+">");    
-              	$("#input"+group).append("<input type='input' id=radio"+numR+" name="+group+">");
+              	$("#input"+group).append("<input type='text' id=radio"+numR+" name=R"+group+">");
               	$("#input"+group).append("<span id=spanR"+numR+"><input type='button' value='삭제' id='delinner' class="+numR+" name="+numR+"><br></span>");
                	numR++;
             });
@@ -80,7 +81,7 @@
             		    if(rs >= 1){ 
             		    	for(var i = group1; i < cnt; i++ ){ 		
             		    		var temp = i+1;     
-            		    		$("#div"+temp+" font").text(temp+"번 문항");    
+            		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
             		    		$("#div"+i+" #addR").attr('name',i);            		    	 
@@ -104,9 +105,9 @@
      		// 주관식 div 생성
    			$("#text").click(function(){
          	 	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
-              	$("#div"+cnt).append("<font>"+(cnt+1)+"번 문항</font><br>");
-               	$("#div"+cnt).append("<input type='input' name="+cnt+"><br>");
-               	$("#div"+cnt).append("<textarea name="+cnt+"></textarea><br>");     
+              	$("#div"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
+              	$("#div"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문' name="+cnt+"> <br>");  
+               	$("#div"+cnt).append("<textarea rows='10' name="+cnt+"></textarea><br>");     
                 // 주관식 삭제 버튼 
                 $("#div"+cnt).append("<input type='button' value='삭제' id='delT' name="+cnt+">");
                 cnt++;
@@ -126,7 +127,7 @@
             		    if(rs >= 1){ 
             		    	for(var i = group1; i < cnt; i++){ 	
             		    		var temp = i+1;     
-            		    		$("#div"+temp+" font").text(temp+"번 문항");    
+            		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
             		    		$("#div"+i+" #addR").attr('name',i);            		    	 
@@ -151,9 +152,10 @@
           	$("#check").click(function(){
        	        $("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
    	          	$("#div"+cnt).append("<div id=input"+cnt+"></div><br>");
-           		$("#input"+cnt).append("<font id=test>"+(cnt+1)+"번 문항</font><br>");
+           		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
+           		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");  
               	$("#input"+cnt).append("<input type='checkbox' name="+cnt+">");
-               	$("#input"+cnt).append("<input type='input' name="+cnt+"><br>");
+               	$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
               	$("#div"+cnt).append("<input type='button' value='체크박스 추가' id='addC' name="+cnt+" >");
                	// 체크 박스 삭제 버튼
               	$("#div"+cnt).append("<input type='button' value='삭제' id='delC' name="+cnt+">");
@@ -164,7 +166,7 @@
           	$(document).on('click','#addC',function(){
            		var group = $(this).attr("name");
               	$("#input"+group).append("<input type='checkbox' id=check"+numC+" name="+group+">");   
-              	$("#input"+group).append("<input type='input' id=check"+numC+" name="+group+">");
+              	$("#input"+group).append("<input type='text' id=check"+numC+" name="+group+">");
               	$("#input"+group).append("<span id=spanC"+numC+"><input type='button' value='삭제' id='delinnerCheck' class="+numC+" name="+numC+"><br></span>");
               	numC++;
          	});
@@ -194,7 +196,7 @@
             		    if(rs >= 1){
             		    	for(var i = group1;i<cnt;i++ ){
             		    		var temp=i+1;    
-            		    		$("#div"+temp+" font").text(temp+"번 문항");    
+            		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
             		    		$("#div"+i+" #addC").attr('name',i);            		    	 
@@ -213,27 +215,37 @@
             	});      
             });
           	/*------------------------------------ CheckBox End -----------------------------------------------*/ 
-    	});  
+          	/*------------------------------------ 스크롤 따라오기 -----------------------------------------------*/ 
+	     	var currentPosition = parseInt($("#remote").css("top")); 
+	     	$(window).scroll(function() { 
+	     		var position = $(window).scrollTop(); 
+	     		$("#remote").stop().animate({
+	     			"top":position+currentPosition+"px"},200); 
+	     		});
+          	/*------------------------------------ html 코드 주소에 뭍히기 -----------------------------------------------*/ 
+     		$('#save').click(function(){
+	     		var link = $('#form').html();
+	     		$("#link").attr("value", link);
+				$("#surveyForm").submit();
+	     	});  	
+	    });  
 	</script>
-	<style>
-		.quiz {
-			border-style: solid;
-		}
-	</style>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<%@include file="../include/header.jsp" %>
 	<!-- 옆에 버튼 만들어주는 div start -->
 	<div class="container">
-		<div class="row">
+		<div class="row" >
 			<div id="inbox">
-				<div class="fab btn-group show-on-hover dropup">
+				<div class="fab btn-group show-on-hover dropup" id="remote">
 					<div data-toggle="tooltip" data-placement="left" title="Compose"
 						style="margin-left: 42px;">
 						<button type="button"
 							class="btn btn-danger btn-io dropdown-toggle"
-							data-toggle="dropdown">
+							data-toggle="dropdown" >
 							<span class="fa-stack fa-2x"> <i
 								class="fa fa-circle fa-stack-2x fab-backdrop"></i> 
 								<i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i> 
@@ -242,7 +254,6 @@
 						</button>
 					</div>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-
 						<li><button type="button" id="radio" data-toggle="tooltip"
 								data-placement="left" title="radio">
 								<i class="far fa-dot-circle"></i>
@@ -260,10 +271,15 @@
 			</div>
 		</div>
 		<!-- 옆에 버튼 만들어주는 div end -->
-		<form action="#">
-			
-			<div id="form"></div>
+		<form id="surveyForm" action="surveySave" method="post">
+			<input type="hidden" id="link" name="link">
+			<div id="form" class="main">
+				<!--제목-->
+		        <div class="title"><input type="text" class="title_input" name="title" placeholder="나만의 설문 만들기"></div>
+			</div>
+			<input type="button" id="save" value="설문등록">
 		</form>
 	</div>
+	<%@include file="../include/footer.jsp" %>
 </body>
 </html>

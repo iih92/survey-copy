@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<!-- Board 관련 sql문 작성 -->
+	<!-- namespace 변경 예정 -->
+	<mapper namespace="Board">
+		<!-- 설문조사 폼 저장 -->
+		<insert id="surveySave" parameterType="Bdto">
+			insert into test (num,code,title) values(serveyboard_seq.nextval,#{code},#{title})
+		</insert>
+		
+		<!-- 가장 최근 번호 가져오기 -->
+		<select id="currentNum" parameterType="Bdto" resultType="int">
+			select num from test where title=#{title}
+		</select>
+		
+		<!-- 설문조사 폼 가져오기 -->
+		<select id="surveySelect" resultType="Bdto">
+			select * from test where num=#{num}
+		</select>
+	</mapper>

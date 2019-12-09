@@ -261,6 +261,7 @@
 		</div>
 		<!-- 옆에 버튼 만들어주는 div end -->
 		<form action="#">
+			
 			<div id="form"></div>
 		</form>
 	</div>

@@ -19,16 +19,16 @@
 <link rel="stylesheet" href="resources/board/main.css">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 <script>
-        $(document).ready(function(){
-            $('.fab').hover(function(){
-                $(this).toggleClass('active');
-            });
-            $(function(){
-              $('[data-toggle="tooltip"]').tooltip();
-            });
-        });
-    </script>
-	<script>										
+$(document).ready(function(){
+		$('.fab').hover(function(){
+		$(this).toggleClass('active');
+	});
+	$(function(){
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+});
+</script>
+<script>										
     	var cnt = 0; 	// div 나누는 변수
         var numR = 0; 	// 라디오 버튼 추가를 위한 변수
      	var numC = 0;  // 체크 박스 추가를 위한 변수

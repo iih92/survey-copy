@@ -104,6 +104,7 @@ html, body {
     font-weight: 1000;
     padding-top: 10px;
     padding-bottom: 10px;
+  	align-items: center;
 }
     
 .hmenu {

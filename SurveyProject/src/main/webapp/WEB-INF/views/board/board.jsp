@@ -42,7 +42,7 @@
            		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
            		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");        		
            		$("#input"+cnt).append("<input type='radio' name="+cnt+">");
-   				$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
+   				$("#input"+cnt).append("<input type='text' name=R"+cnt+"><br>");
      			$("#div"+cnt).append("<input type='button' value='라디오 버튼 추가' id='addR' name="+cnt+">"); 
      			// 라디오 삭제 버튼
                	$("#div"+cnt).append("<input type='button' value='삭제' id='delR' name="+cnt+">");
@@ -155,7 +155,7 @@
            		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
            		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");  
               	$("#input"+cnt).append("<input type='checkbox' name="+cnt+">");
-               	$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
+               	$("#input"+cnt).append("<input type='text' name=C"+cnt+"><br>");
               	$("#div"+cnt).append("<input type='button' value='체크박스 추가' id='addC' name="+cnt+" >");
                	// 체크 박스 삭제 버튼
               	$("#div"+cnt).append("<input type='button' value='삭제' id='delC' name="+cnt+">");
@@ -166,7 +166,7 @@
           	$(document).on('click','#addC',function(){
            		var group = $(this).attr("name");
               	$("#input"+group).append("<input type='checkbox' id=check"+numC+" name="+group+">");   
-              	$("#input"+group).append("<input type='text' id=check"+numC+" name="+group+">");
+              	$("#input"+group).append("<input type='text' id=check"+numC+" name=C"+group+">");
               	$("#input"+group).append("<span id=spanC"+numC+"><input type='button' value='삭제' id='delinnerCheck' class="+numC+" name="+numC+"><br></span>");
               	numC++;
          	});

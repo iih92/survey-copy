@@ -6,3 +6,6 @@ create table member(
   pw varchar2(20),
   nick varchar2(20)
 );
+
+insert into member values ('1','1','1');
+insert into member values ('2','2','2');

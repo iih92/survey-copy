@@ -34,5 +34,20 @@ public class BoardController {
 		service.surveySelect(model);
 		return "board/test";
 	}
+	
+	@RequestMapping(value = "mypage")
+	public String myPage() {
+		return "MyPage/main";
+	}
+	
+	@RequestMapping(value = "detail")
+	public String myDetail() {
+		return "MyPage/detail";
+	}
+	
+	@RequestMapping(value = "mainpage")
+	public String mainPage() {
+		return "Main/main";
+	}
 
 }

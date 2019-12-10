@@ -22,18 +22,18 @@ public class BoardService implements IBoardService {
 	public void surveySave(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String div="";
+		String form="";
 		Enumeration<Object> params = request.getParameterNames();
 		System.out.println("----------------------------");
 		while (params.hasMoreElements()){
 		    String name = (String)params.nextElement();
 		    System.out.println(name + " : " +request.getParameter(name));
 		    if(name.substring(0,1).equals("q")) {
-		    	div = div + "@" + name + request.getParameter(name);
+		    	form = form + "@" + name + request.getParameter(name);
 		    } else {
-		    	div = div + name +":"+ request.getParameter(name)+",";
+		    	form = form + name +":"+ request.getParameter(name)+",";
 		    }
-		    System.out.println(div);
+		    System.out.println(form);
 		}
 		
 		System.out.println("----------------------------");
@@ -46,7 +46,7 @@ public class BoardService implements IBoardService {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int num = Integer.parseInt(request.getParameter("num"));
-		model.addAttribute("dto", dao.surveySelect(num));	
+		dao.surveySelect(num);
 	}
 
 }

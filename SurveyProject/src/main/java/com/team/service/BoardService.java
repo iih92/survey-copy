@@ -27,6 +27,7 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String code="";
 		BoardDTO dto = new BoardDTO();
+		// request 객체 안에있는 모든 값을 조회할수 있는 역할
 		Enumeration<Object> params = request.getParameterNames();
 		while (params.hasMoreElements()){
 		    String name = (String)params.nextElement();

@@ -15,8 +15,14 @@ public class BoardDAO {
 	private SqlSession sqlsession;
 	
 	public int surveySave(BoardDTO dto) {
-		sqlsession.insert(namespace + ".surveySave", dto);	
-		return sqlsession.selectOne(namespace + ".currentNum");
+		int i = 0;
+		try {
+			sqlsession.insert(namespace + ".surveySave", dto);				
+			i = sqlsession.selectOne(namespace + ".currentNum");
+		} catch (Exception e) {
+			
+		}
+		return i;
 	}
 
 	public BoardDTO surveySelect(int num) {

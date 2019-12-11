@@ -235,7 +235,25 @@ $(document).ready(function(){
           	/*------------------------------------ html 코드 주소에 뭍히기 -----------------------------------------------*/ 
      		$('#save').click(function(){
 				$("#surveyForm").submit();
-	     	});  	
+	     	});
+          	
+            var replaceChar = /[~!@\$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi; 
+            var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+            $("#hash").on("focusout", function() {
+                var x = $(this).val();
+                if (x.length > 0) {
+                    if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
+                        x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+                    }
+                    $(this).val(x);
+                    
+                    if(!(x.match("#"))){
+                        alert("# 해시태그를 달아주세요")
+                    }
+                }
+                }).on("keyup", function() {
+                    $(this).val($(this).val().replace(replaceChar, ""));
+           });
 	    });  
 	</script>
 
@@ -282,7 +300,11 @@ $(document).ready(function(){
 		<form id="surveyForm" action="surveySave" method="post">
 			<div id="form" class="main">
 				<!--제목-->
-		        <div class="title"><input type="text" class="title_input" name="title" placeholder="나만의 설문 만들기"></div>
+				<div class="title">
+            		<input type="text" class="title_input" placeholder="나만의 설문 만들기" >
+            		<input type="text" class="hash_input" id="hash" placeholder="#해시태그">
+            		<div class="dedline">마감날짜 : <input type="date"></div>    
+        		</div>
 			</div>
 			<input type="button" id="save" value="설문등록">
 		</form>

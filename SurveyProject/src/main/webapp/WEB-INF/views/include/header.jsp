@@ -21,6 +21,15 @@
 	});
     
 </script>
+<style>
+
+.middle{
+	text-align:center; margin-right:20px; margin-top:4px; color:white;
+} 
+
+
+</style>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="resources/include/header.css">
 <header>
     <div class="headerdiv">       
@@ -43,13 +52,34 @@
                 <!-- 로고 -->
                 <div class="headerlogo">
                     <img src="resources/logo/logo-2.png" class="logo" alt=""> 
+                    
+                   
                 </div> 
+		                
+		                 <c:choose>
+						<c:when test="${loginUser == null}"></c:when>
+						<c:otherwise>
+							 
+							 <div class="middle">
+							 Your welcome, ${loginUser }.  
+							 </div>
+							 
+						</c:otherwise>
+						</c:choose>
+		                
+		                
                 <!-- navbar menu -->
                 <div class="headermenu">
                     <ul class="menugroup">
                         <li class="link"><a href="#" class="hmenu">Home</a></li>
                         <li class="link"><a href="#" class="hmenu">Test</a></li>
                         <li class="link"><a href="#" class="hmenu">MyPage</a></li>
+                        <c:choose>
+						<c:when test="${loginUser == null}"></c:when>
+						<c:otherwise>
+							<li class="link"><a href="signOut" class="hmenu">Sign out</a></li>
+						</c:otherwise>
+						</c:choose>
                         <li class="link"><button class="makeform" type="submit">START</button></li>
                         <li class="link"><button class="search"><i class="fa fa-search"></i></button></li>
 				    </ul>

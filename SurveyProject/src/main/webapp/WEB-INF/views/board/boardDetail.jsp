@@ -12,7 +12,9 @@
 	$(document).ready(function(){
 		var divnum = 0;
 		var code = '${code}';
+		console.log(code);
 		var s1 = code.split(",");
+		console.log(s1);
 		for(i=0; i<s1.length; i++){
 			if(s1[i].substring(0,1) == 'q'){
 				var qu = s1[i].split(":");

@@ -1,5 +1,7 @@
 package com.team.dto;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +9,9 @@ import lombok.Setter;
 public class BoardDTO {
 
 	private int num;
-	private String code;
 	private String title;
+	private String code;
+	private String hashtag;
+	private Date deadline;
 	
 }

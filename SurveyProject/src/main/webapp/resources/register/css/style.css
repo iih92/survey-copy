@@ -414,9 +414,14 @@ input[type=checkbox]:not(old):checked + label > span:before {
 
 .confirm, .condition {
     font-family: 'Ubuntu-Regular', sans-serif;
-    font-size : 18px;
+    font-size : 15px;
     color: red;
    
+}
+
+.check_font{
+	font-family: 'Ubuntu-Regular', sans-serif;
+	font-size : 15px;
 }
 
 @media screen and (max-width: 768px) {

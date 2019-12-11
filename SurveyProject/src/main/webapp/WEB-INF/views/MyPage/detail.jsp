@@ -133,14 +133,14 @@ hr {
 	<div class="content">
 		<ul>
 			<li>아이디</li>
-			<input name="id" value="${dto.id }" id="id"
-				style="background-color: #f3f3f3;" readonly="readonly"><br>
+			<input name="id" value="${dto.id }" id="id" style="background-color: #f3f3f3;" readonly="readonly"><br>
 			<form action="changenick">
 				<li>변경할 닉네임</li>
 				<input type="text" name="nick" autocomplete="off">
 				<button type="submit" id="btnNick">수정</button>
 			</form>
-			<form action="changepw">
+			<form action="changepw" method="post">
+				<input type="hidden" name="nick" value="1">
 				<li>변경할 비밀번호</li>
 				<input type="password" name="pw" id="pw" autocomplete="off"><br>
 				<li>변경할 비밀번호 재입력</li>

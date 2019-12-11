@@ -1936,13 +1936,14 @@ input#modal[type=checkbox]:checked ~ .box_modal {
 	position: absolute;
 	display: block;
 	width: 700px;
-	height: 700px;
+	height: auto;
 	top: 20%;
 	left: 38%;
 	margin-top: -75px;
 	margin-left: -150px;
 	background: #FFFFFF;
 	border: 1px solid #386980;
+	border-radius: 5px;
 	overflow: hidden;
 	/* 아래 부분은 애니메이션 효과를 위한 부분 */
 	visibility: collapse;

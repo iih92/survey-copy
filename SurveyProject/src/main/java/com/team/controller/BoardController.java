@@ -22,17 +22,22 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "surveySave")
-	public String surveySave(Model model, HttpServletRequest request) {
+	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
-		service.surveySave(model);
-		return "home/main";
+		int num = service.surveySave(model);
+		if(num != 0) {
+			redirect.addAttribute("num",num);
+			return "redirect:boarddetail";			
+		} else {
+			return "redirect:mainpage";		
+		}
 	}
 	
-	@RequestMapping(value = "test")
+	@RequestMapping(value = "boarddetail")
 	public String surveySelect(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveySelect(model);
-		return "board/test";
+		return "board/boardDetail";
 	}
 	
 	@RequestMapping(value = "mypage")

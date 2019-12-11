@@ -99,7 +99,7 @@ html, body {
     display: flex;
     width: 100%;
     background: #01aef0;
-    font-family: Ubuntu-Regular, sans-serif;
+    font-family: Ubuntu-Regular, sans-serif;	
     font-size: 16px;
     font-weight: 1000;
     padding-top: 10px;
@@ -181,3 +181,12 @@ html, body {
     color: white;
     padding-left: 100px;
 }
+
+.middle{
+	text-align:center;
+	margin-right:50%;
+	margin-top:4px;
+	color:white;
+} 
+
+

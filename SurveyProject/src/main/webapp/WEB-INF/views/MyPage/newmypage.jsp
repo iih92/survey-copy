@@ -362,7 +362,7 @@ font-family:'Noto Sans KR',sans-serif;
          		}
         	});
         }); 
-        $("#navM2").mouseenter(function(){
+        $("#navM3").mouseenter(function(){
         	$.ajax({
         		 url: "mypage",
          	    type: "GET",
@@ -370,8 +370,8 @@ font-family:'Noto Sans KR',sans-serif;
          	    	      
          	    	      
          	    	      
-         	    	      $("#navM2").css("background-color","white");
-         	    	      $("#navM2").css("font-weight","bold"); 
+         	    	      $("#navM3").css("background-color","white");
+         	    	      $("#navM3").css("font-weight","bold"); 
          	    	       
          	    },
          	    error:function(){
@@ -379,7 +379,7 @@ font-family:'Noto Sans KR',sans-serif;
          		}
         	});
         }); 
-        $("#navM2").mouseleave(function(){
+        $("#navM3").mouseleave(function(){
         	$.ajax({
         		 url: "mypage",
          	    type: "GET",
@@ -387,8 +387,110 @@ font-family:'Noto Sans KR',sans-serif;
          	    	      
          	    	      
          	    	      
-         	    	      $("#navM2").css("background-color","#efefef");
-         	    	      $("#navM2").css("font-weight","normal"); 
+         	    	      $("#navM3").css("background-color","#efefef");
+         	    	      $("#navM3").css("font-weight","normal"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM4").mouseenter(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM4").css("background-color","white");
+         	    	      $("#navM4").css("font-weight","bold"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM4").mouseleave(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM4").css("background-color","#efefef");
+         	    	      $("#navM4").css("font-weight","normal"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM5").mouseenter(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM5").css("background-color","white");
+         	    	      $("#navM5").css("font-weight","bold"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM5").mouseleave(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM5").css("background-color","#efefef");
+         	    	      $("#navM5").css("font-weight","normal"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM6").mouseenter(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM6").css("background-color","white");
+         	    	      $("#navM6").css("font-weight","bold"); 
+         	    	       
+         	    },
+         	    error:function(){
+         			alert("문제가 발생했습니다"); 
+         		}
+        	});
+        }); 
+        $("#navM6").mouseleave(function(){
+        	$.ajax({
+        		 url: "mypage",
+         	    type: "GET",
+         	    success: function() {
+         	    	      
+         	    	      
+         	    	      
+         	    	      $("#navM6").css("background-color","#efefef");
+         	    	      $("#navM6").css("font-weight","normal"); 
          	    	       
          	    },
          	    error:function(){

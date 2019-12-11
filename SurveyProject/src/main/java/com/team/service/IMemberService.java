@@ -9,4 +9,8 @@ public interface IMemberService {
 	public void signUp(Model model);
 	public void changePw(Model model);
 	public void changeNick(Model model);
+	
+	public int idCheck(String id);
+	public int nickCheck(String nick);
+	
 }

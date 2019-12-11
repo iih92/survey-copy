@@ -4,5 +4,20 @@
 	<!-- Login 관련 sql문 작성 -->
 	<!-- namespace 변경 예정 -->
 	<mapper namespace="Member">
+	
+	<!-- 회원 가입 -->
+	<insert id="singUp" parameterType="Mdto">
+		insert into member values(#{id},#{pw},#{nick})
+	</insert>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="checkOverId" parameterType="String" resultType="int">
+		select count(*) from member where id = #{id}
+	</select>
 
+	<!-- 닉네임 중복 체크 -->
+	<select id="checkOverNick" parameterType="String" resultType="int">
+		select count(*) from member where nick = #{nick}
+	</select>
+	
 	</mapper>

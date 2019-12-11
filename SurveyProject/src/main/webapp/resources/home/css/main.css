@@ -161,7 +161,7 @@
    }
 
 
-        /* surveying button */
+       /* surveying button */
       input[type="submit"].style2,
       input[type="reset"].style2,
       input[type="button"].style2,
@@ -182,13 +182,13 @@
                 color: #01aef0;
          }
             
-            /* active */
+         /* active */
          input[type="submit"].style2:active,
          input[type="reset"].style2:active,
          input[type="button"].style2:active,
          button.style2:active,
          .button.style2:active {
-            background-color: #ff8b02;
+            background-color: #00ebfc;
                 color: white;
                 
          }

@@ -34,11 +34,9 @@ public class BoardService implements IBoardService {
 		    	code = code + name +":" + request.getParameter(name)+",";		    	
 		    }
 		}
-		
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtage"));
 		dto.setCode(code);
-		System.out.println(dto.getCode() +" "+ dto.getTitle() +" "+ dto.getHashtag());
 		return dao.surveySave(dto);
 	}
 

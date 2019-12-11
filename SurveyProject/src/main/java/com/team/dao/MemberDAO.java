@@ -16,29 +16,22 @@ public class MemberDAO {
 	
 	//회원가입
 	public void singUp(MemberDTO dto) {
-		System.out.println(dto);
-		session.insert(namespace+".singUp",dto);
-		
+		session.insert(namespace+".singUp",dto);	
 	}
 	
 	//아이디 중복체크
 	public int checkOverId(String id) {	
-		System.out.println("중복체크하는 아이디 :" + id);
 		return session.selectOne(namespace+".checkOverId",id);
 	}
 	
 	//닉네임 중복체크
 	public int checkOverNick(String nick) {
-		System.out.println("중복체크하는 닉네임 :" + nick);
 		return session.selectOne(namespace+".checkOverNick",nick);
 	}
 
 	//로그인
 	public MemberDTO signIn(String id,String pw) {
-		System.out.println("MemberDAO -> signIn 메소드 진입"); 
-		MemberDTO dto = new MemberDTO();
-		System.out.println("MemberDAO -> signIn 메소드 종료"); 
-		return dto = session.selectOne(namespace+".signIn", id);		 
+		return session.selectOne(namespace+".signIn", id);		 
 	}
 	
 	

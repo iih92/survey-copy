@@ -111,7 +111,8 @@ $(document).ready(function(){
          	 	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
               	$("#div"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
               	$("#div"+cnt).append("<font class='Q'>Q</font> <input type='text' id='q"+cnt+"' name='q"+cnt+"' class='question_input' placeholder='질문' name="+cnt+"> <br>");  
-               	$("#div"+cnt).append("<textarea rows='10' disabled='true' name="+cnt+"></textarea><br>");     
+               	$("#div"+cnt).append("<textarea rows='10' disabled='true' name="+cnt+"></textarea><br>");  
+               	$("#div"+cnt).append("<input type='hidden' name='T'"+cnt+" value='text'>");      	
                 // 주관식 삭제 버튼 
                 $("#div"+cnt).append("<input type='button' value='삭제' id='delT' name="+cnt+">");
                 cnt++;

@@ -22,10 +22,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "surveySave")
-	public String surveySave(Model model, HttpServletRequest request) {
+	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
-		service.surveySave(model);
-		return "home/main";
+		int num = service.surveySave(model);
+		System.out.println(num);
+		redirect.addAttribute("num",num);
+		return "redirect:test";
 	}
 	
 	@RequestMapping(value = "test")

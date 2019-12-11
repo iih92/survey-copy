@@ -16,7 +16,7 @@ public class BoardDAO {
 	
 	public int surveySave(BoardDTO dto) {
 		sqlsession.insert(namespace + ".surveySave", dto);	
-		return sqlsession.selectOne(namespace + ".currentNum", dto);	
+		return sqlsession.selectOne(namespace + ".currentNum");
 	}
 
 	public BoardDTO surveySelect(int num) {

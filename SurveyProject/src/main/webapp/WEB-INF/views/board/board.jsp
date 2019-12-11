@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="resources/board/main.css">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 <script>
-$(document).ready(function(){
-		$('.fab').hover(function(){
-		$(this).toggleClass('active');
+	$(document).ready(function(){
+			$('.fab').hover(function(){
+			$(this).toggleClass('active');
+		});
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+		});
 	});
-	$(function(){
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-});
 </script>
 <script>										
     	var cnt = 0; 	// div 나누는 변수
@@ -301,9 +301,9 @@ $(document).ready(function(){
 			<div id="form" class="main">
 				<!--제목-->
 				<div class="title">
-            		<input type="text" class="title_input" placeholder="나만의 설문 만들기" >
-            		<input type="text" class="hash_input" id="hash" placeholder="#해시태그">
-            		<div class="dedline">마감날짜 : <input type="date"></div>    
+            		<input type="text" class="title_input" placeholder="나만의 설문 만들기" name="title">
+            		<input type="text"  name="hashtag" class="hash_input" id="hash" placeholder="#해시태그">
+            		<div class="dedline">마감날짜 : <input type="date" name="deadline"></div>    
         		</div>
 			</div>
 			<input type="button" id="save" value="설문등록">

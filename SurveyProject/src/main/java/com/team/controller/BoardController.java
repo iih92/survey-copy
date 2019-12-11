@@ -37,7 +37,7 @@ public class BoardController {
 	public String surveySelect(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveySelect(model);
-		return "board/bordDetail";
+		return "board/boardDetail";
 	}
 	
 	@RequestMapping(value = "mypage")

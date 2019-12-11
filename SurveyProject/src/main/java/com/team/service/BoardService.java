@@ -1,9 +1,7 @@
 package com.team.service;
 
-import java.util.ArrayList;
+import java.sql.Date;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +29,15 @@ public class BoardService implements IBoardService {
 		Enumeration<Object> params = request.getParameterNames();
 		while (params.hasMoreElements()){
 		    String name = (String)params.nextElement();
-		    if(name.equals("title")) { } 
+		    if(name.equals("title") || name.equals("hashtag") || name.equals("deadline")) { } 
 		    else {
 		    	code = code + name +":" + request.getParameter(name)+",";		    	
 		    }
 		}		
 		dto.setTitle(request.getParameter("title"));
+		dto.setHashtag(request.getParameter("hashtage"));
 		dto.setCode(code);
+		System.out.println(dto.getCode() +" "+ dto.getTitle() +" "+ dto.getHashtag());
 		return dao.surveySave(dto);
 	}
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<!-- Login 관련 sql문 작성 -->
+	<!-- namespace 변경 예정 -->
+	<mapper namespace="Member">
+		
+		
+		<!-- 내 정보 변경 -->
+		<update id="changePw" parameterType="Mdto">
+			update member set pw=#{pw}
+			where id=#{id}
+		</update>
+		<update id="changeNick" parameterType="Mdto">
+			update member set nick=#{nick}
+			where id=#{id}
+		</update>
+	</mapper>

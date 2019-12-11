@@ -19,24 +19,26 @@ public class BoardService implements IBoardService {
 	private BoardDAO dao;
 	
 	@Override
-	public int surveySave(Model model) {
+	public void surveySave(Model model) {
 		Map<String,Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		String form="";
 		Enumeration<Object> params = request.getParameterNames();
 		System.out.println("----------------------------");
 		while (params.hasMoreElements()){
 		    String name = (String)params.nextElement();
 		    System.out.println(name + " : " +request.getParameter(name));
+		    if(name.substring(0,1).equals("q")) {
+		    	form = form + "@" + name + request.getParameter(name);
+		    } else {
+		    	form = form + name +":"+ request.getParameter(name)+",";
+		    }
+		    System.out.println(form);
 		}
+		
 		System.out.println("----------------------------");
 
-		String code = request.getParameter("link");
-		String title = request.getParameter("title");
-		BoardDTO dto = new BoardDTO();
-		dto.setTitle(title);
-		dto.setCode(code);
-		return dao.surveySave(dto);
+//		return dao.surveySave(dto);
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class BoardService implements IBoardService {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int num = Integer.parseInt(request.getParameter("num"));
-		model.addAttribute("dto", dao.surveySelect(num));	
+		dao.surveySelect(num);
 	}
 
 }

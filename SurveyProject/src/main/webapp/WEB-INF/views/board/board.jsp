@@ -32,7 +32,7 @@ $(document).ready(function(){
     	var cnt = 0; 	// div 나누는 변수
         var numR = 0; 	// 라디오 버튼 추가를 위한 변수
      	var numC = 0;  // 체크 박스 추가를 위한 변수
-		
+    	var numI = 1;
      	$(document).ready(function(){    
      		/*------------------------------------ Radio Start -----------------------------------------------*/
      		// 라디오 div 생성
@@ -40,9 +40,9 @@ $(document).ready(function(){
             	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
             	$("#div"+cnt).append("<div id=input"+cnt+"></div><br>");
            		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
-           		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");        		
-           		$("#input"+cnt).append("<input type='radio' name="+cnt+">");
-   				$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
+           		$("#input"+cnt).append("<font class='	Q'>Q</font> <input type='text' id='q"+cnt+"' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");        		
+           		$("#input"+cnt).append("<input type='radio' disabled='true' name="+cnt+"> ");
+   				$("#input"+cnt).append("<input type='text' name=R"+cnt+"0><br>");
      			$("#div"+cnt).append("<input type='button' value='라디오 버튼 추가' id='addR' name="+cnt+">"); 
      			// 라디오 삭제 버튼
                	$("#div"+cnt).append("<input type='button' value='삭제' id='delR' name="+cnt+">");
@@ -53,10 +53,12 @@ $(document).ready(function(){
             $(document).on('click','#addR',function(){
             	// 라디오 추가 버튼을 누르면 group 이름 가져옴
             	var group = $(this).attr("name");
-              	$("#input"+group).append("<input type='radio' id=radio"+numR+" name="+group+">");    
-              	$("#input"+group).append("<input type='text' id=radio"+numR+" name=R"+group+">");
+				
+              	$("#input"+group).append("<input type='radio' disabled='true' id=radio"+numR+" name="+group+">");    
+              	$("#input"+group).append("<input type='text' id=radio"+numR+" name=R"+group+""+numI+">");
               	$("#input"+group).append("<span id=spanR"+numR+"><input type='button' value='삭제' id='delinner' class="+numR+" name="+numR+"><br></span>");
                	numR++;
+				numI++;
             });
                
          	// 같은 div에 있는 라디오 버튼 삭제
@@ -84,6 +86,8 @@ $(document).ready(function(){
             		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
+            		    		$('#q'+temp).attr('name','q'+i);
+            		    		$('#q'+temp).attr('id','q'+i);
             		    		$("#div"+i+" #addR").attr('name',i);            		    	 
             		    		$("#div"+i+" #delR").attr('name',i);     
             		    		$("#div"+i+" #addC").attr('name',i);            		    	 
@@ -106,8 +110,8 @@ $(document).ready(function(){
    			$("#text").click(function(){
          	 	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
               	$("#div"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
-              	$("#div"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문' name="+cnt+"> <br>");  
-               	$("#div"+cnt).append("<textarea rows='10' name="+cnt+"></textarea><br>");     
+              	$("#div"+cnt).append("<font class='Q'>Q</font> <input type='text' id='q"+cnt+"' name='q"+cnt+"' class='question_input' placeholder='질문' name="+cnt+"> <br>");  
+               	$("#div"+cnt).append("<textarea rows='10' disabled='true' name="+cnt+"></textarea><br>");     
                 // 주관식 삭제 버튼 
                 $("#div"+cnt).append("<input type='button' value='삭제' id='delT' name="+cnt+">");
                 cnt++;
@@ -130,6 +134,8 @@ $(document).ready(function(){
             		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
+            		    		$('#q'+temp).attr('name','q'+i);
+            		    		$('#q'+temp).attr('id','q'+i);
             		    		$("#div"+i+" #addR").attr('name',i);            		    	 
             		    		$("#div"+i+" #delR").attr('name',i);     
             		    		$("#div"+i+" #addC").attr('name',i);            		    	 
@@ -153,9 +159,9 @@ $(document).ready(function(){
        	        $("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
    	          	$("#div"+cnt).append("<div id=input"+cnt+"></div><br>");
            		$("#input"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
-           		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");  
-              	$("#input"+cnt).append("<input type='checkbox' name="+cnt+">");
-               	$("#input"+cnt).append("<input type='text' name="+cnt+"><br>");
+           		$("#input"+cnt).append("<font class='Q'>Q</font> <input type='text' id='q"+cnt+"' name='q"+cnt+"' class='question_input' placeholder='질문'> <br>");  
+              	$("#input"+cnt).append("<input type='checkbox' disabled='true' name="+cnt+">");
+               	$("#input"+cnt).append("<input type='text' name=C"+cnt+"0><br>");
               	$("#div"+cnt).append("<input type='button' value='체크박스 추가' id='addC' name="+cnt+" >");
                	// 체크 박스 삭제 버튼
               	$("#div"+cnt).append("<input type='button' value='삭제' id='delC' name="+cnt+">");
@@ -165,10 +171,11 @@ $(document).ready(function(){
          	// 같은 div에 있는 체크박스 추가
           	$(document).on('click','#addC',function(){
            		var group = $(this).attr("name");
-              	$("#input"+group).append("<input type='checkbox' id=check"+numC+" name="+group+">");   
-              	$("#input"+group).append("<input type='text' id=check"+numC+" name="+group+">");
+              	$("#input"+group).append("<input type='checkbox' disabled='true' id=check"+numC+" name="+group+">");   
+              	$("#input"+group).append("<input type='text' id=check"+numC+" name=C"+group+""+numI+">");
               	$("#input"+group).append("<span id=spanC"+numC+"><input type='button' value='삭제' id='delinnerCheck' class="+numC+" name="+numC+"><br></span>");
               	numC++;
+              	numI++;
          	});
          	
           	// 체크박스 항목 삭제 버튼
@@ -199,6 +206,8 @@ $(document).ready(function(){
             		    		$("#div"+temp+" h1").text("["+temp+"]");    
             		    		$("#div"+temp).attr('id','div'+i);
             		    		$("#input"+temp).attr('id','input'+i);
+            		    		$('#q'+temp).attr('name','q'+i);
+            		    		$('#q'+temp).attr('id','q'+i);
             		    		$("#div"+i+" #addC").attr('name',i);            		    	 
             		    		$("#div"+i+" #delC").attr('name',i);            		    	 
             		    		$("#div"+i+" #addR").attr('name',i);            		    	 
@@ -224,8 +233,6 @@ $(document).ready(function(){
 	     		});
           	/*------------------------------------ html 코드 주소에 뭍히기 -----------------------------------------------*/ 
      		$('#save').click(function(){
-	     		var link = $('#form').html();
-	     		$("#link").attr("value", link);
 				$("#surveyForm").submit();
 	     	});  	
 	    });  
@@ -272,7 +279,6 @@ $(document).ready(function(){
 		</div>
 		<!-- 옆에 버튼 만들어주는 div end -->
 		<form id="surveyForm" action="surveySave" method="post">
-			<input type="hidden" id="link" name="link">
 			<div id="form" class="main">
 				<!--제목-->
 		        <div class="title"><input type="text" class="title_input" name="title" placeholder="나만의 설문 만들기"></div>

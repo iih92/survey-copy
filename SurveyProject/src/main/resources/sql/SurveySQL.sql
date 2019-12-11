@@ -7,6 +7,8 @@ create table member(
   nick varchar2(20)
 );
 
+insert into member values('1','1','1');
+
 // 테스트용 
 create table board(
   num NUMBER,

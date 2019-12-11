@@ -16,17 +16,40 @@
 	<link rel="stylesheet" type="text/css" href="resources/login/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="resources/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/login/css/main.css">
-	<script type="text/javascript">
-		function login(){
-			alert("힝");
-		}
+	<script>
+		var cnt=0;
+		function test(){
+  			console.log(cnt);
+   			cnt++;
+   
+		   	$.ajax({
+		      url:"ajax_json_login02",
+		      type:"POST",  
+		      data:$("#lform").serialize(),
+		      success:function(data){
+		         console.log("ㅇ"); 
+		
+		         if(data.rs==1){
+		            location.href="mainpage";
+		         }else if(data.rs==2){
+		            alert("비밀번호가 일치하지 않습니다.");
+		         }else{
+		            alert("일치하는 아이디가 없습니다.");
+		         }
+		         
+			      },
+			      error:function(){
+			         console.log("ㄴ");
+			      }
+			   });
+			}
 	</script>
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" method="post" action="signIn">
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="signIn" id="lform">
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
@@ -53,11 +76,8 @@
 			             <a href=""><label for="modal_regi">sign up</label></a>
 						</div>
 					</div>
-	
-					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">Login</button>
-					</div>
 				</form>
+				<button class="login100-form-btn" onclick=test() >Login</button>
 			</div>
 		</div>
 	</div>

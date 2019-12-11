@@ -131,8 +131,41 @@ public class MemberService implements IMemberService{
 	}
 
 
+	@Override
+	   public String[] signIn2(MemberDTO dto) {
+	      // TODO Auto-generated method stub
+	      
+	      String[] result = new String[2];
+	      
+	      MemberDTO mdto = new MemberDTO();
+	      mdto = dao.signIn(dto.getId(), dto.getPw());
+	      
+	      try {
 
-
-
-
+	         //dto는 사용자가 입력한 값
+	         System.out.println("dto >> "+dto.getId()+" "+dto.getPw());
+	         //mdto는 데이터베이스에서 얻어온값
+	         System.out.println("mdto >> "+mdto.getId()+" "+mdto.getPw());
+	         
+	         if(dto.getPw().equals(mdto.getPw())) {
+	            //비밀번호 일치
+	            result[0]="1";
+	            result[1]=mdto.getNick();
+	            System.out.println("비밀번호 일치 >> "+mdto.getPw()+" "+dto.getPw());
+	         }else {
+	            //비밀번호 불일치 
+	            result[0]="2";
+	            System.out.println("비밀번호 불일치 >> "+mdto.getPw()+" "+dto.getPw());
+	         }
+	         
+	      }catch (Exception e) {
+	         // 아이디가 없다. 
+	         result[0]="3";
+	         System.out.println("아이디가 없다.");
+	      }
+	      
+	      return result;
+	      
+	   }
+	
 }

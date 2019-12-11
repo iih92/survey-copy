@@ -111,7 +111,8 @@ $(document).ready(function(){
          	 	$("#form").append("<div id=div"+cnt+" class='quiz'></div><br id=br"+cnt+">");
               	$("#div"+cnt).append("<h1 id=test>["+(cnt+1)+"]</h1><br>");
               	$("#div"+cnt).append("<font class='Q'>Q</font> <input type='text' id='q"+cnt+"' name='q"+cnt+"' class='question_input' placeholder='질문' name="+cnt+"> <br>");  
-               	$("#div"+cnt).append("<textarea rows='10' disabled='true' name="+cnt+"></textarea><br>");     
+               	$("#div"+cnt).append("<textarea rows='10' disabled='true' name="+cnt+"></textarea><br>");  
+               	$("#div"+cnt).append("<input type='hidden' name='T'"+cnt+" value='text'>");      	
                 // 주관식 삭제 버튼 
                 $("#div"+cnt).append("<input type='button' value='삭제' id='delT' name="+cnt+">");
                 cnt++;
@@ -234,7 +235,25 @@ $(document).ready(function(){
           	/*------------------------------------ html 코드 주소에 뭍히기 -----------------------------------------------*/ 
      		$('#save').click(function(){
 				$("#surveyForm").submit();
-	     	});  	
+	     	});
+          	
+            var replaceChar = /[~!@\$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi; 
+            var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+            $("#hash").on("focusout", function() {
+                var x = $(this).val();
+                if (x.length > 0) {
+                    if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
+                        x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+                    }
+                    $(this).val(x);
+                    
+                    if(!(x.match("#"))){
+                        alert("# 해시태그를 달아주세요")
+                    }
+                }
+                }).on("keyup", function() {
+                    $(this).val($(this).val().replace(replaceChar, ""));
+           });
 	    });  
 	</script>
 
@@ -281,7 +300,11 @@ $(document).ready(function(){
 		<form id="surveyForm" action="surveySave" method="post">
 			<div id="form" class="main">
 				<!--제목-->
-		        <div class="title"><input type="text" class="title_input" name="title" placeholder="나만의 설문 만들기"></div>
+				<div class="title">
+            		<input type="text" class="title_input" placeholder="나만의 설문 만들기"  name="title">
+            		<input type="text" class="hash_input" id="hash" placeholder="#해시태그">
+            		<div class="dedline">마감날짜 : <input type="date"></div>    
+        		</div>
 			</div>
 			<input type="button" id="save" value="설문등록">
 		</form>

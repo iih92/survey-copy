@@ -87,7 +87,7 @@
 				<!-- navbar menu -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home" class="link">Home</a></li>
+						<li><a href="mainpage" class="link">Home</a></li>
 						<li><a href="#">
 							<label for="modal" class="link">Sign In</label>
 						</a></li>

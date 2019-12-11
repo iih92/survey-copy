@@ -16,23 +16,28 @@
 	<link rel="stylesheet" type="text/css" href="resources/login/vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="resources/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/login/css/main.css">
+	<script type="text/javascript">
+		function login(){
+			alert("힝");
+		}
+	</script>
 </head>
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" method="post" action="register">
+				<form class="login100-form validate-form flex-sb flex-w" method="post" action="signIn">
 					<span class="login100-form-title p-b-51">
 						Login
 					</span>
 					
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="id" placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
 				
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="pw" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					

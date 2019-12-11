@@ -6,3 +6,15 @@ create table member(
   pw varchar2(20),
   nick varchar2(20)
 );
+
+// 테스트용 
+create table board(
+  num NUMBER,
+  title varchar2(4000),
+  code varchar2(4000)
+);
+
+create SEQUENCE board_num;
+
+
+

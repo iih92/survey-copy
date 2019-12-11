@@ -6,16 +6,16 @@
 	<mapper namespace="Board">
 		<!-- 설문조사 폼 저장 -->
 		<insert id="surveySave" parameterType="Bdto">
-			insert into test (num,code,title) values(serveyboard_seq.nextval,#{code},#{title})
+			insert into board(num,title,code) values(board_num.nextval,#{title},#{code})
 		</insert>
 		
 		<!-- 가장 최근 번호 가져오기 -->
 		<select id="currentNum" parameterType="Bdto" resultType="int">
-			select num from test where title=#{title}
+			SELECT * FROM (SELECT * FROM board ORDER BY ROWNUM DESC) WHERE ROWNUM = 1
 		</select>
 		
 		<!-- 설문조사 폼 가져오기 -->
 		<select id="surveySelect" resultType="Bdto">
-			select * from test where num=#{num}
+			select * from board where num=#{num}
 		</select>
 	</mapper>

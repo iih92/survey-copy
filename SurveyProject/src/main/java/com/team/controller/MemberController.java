@@ -1,10 +1,8 @@
 package com.team.controller;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,7 @@ public class MemberController {
 	@Autowired
 	private IMemberService service;
 	
-	//회원가입
+	//[회원가입]
 	@RequestMapping("signUp")
 	public String registerSave(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -30,7 +28,7 @@ public class MemberController {
 		return "home/main";
 	}
 	
-	//아이디 중복체크
+	//[아이디 중복체크]
 	@RequestMapping(value = "idCheck",  method = RequestMethod.POST)	
 	@ResponseBody
 	public int idcheck(@RequestBody String id) {
@@ -42,7 +40,7 @@ public class MemberController {
 	}
 	
 	
-	//닉네임 중복체크
+	//[닉네임 중복체크]
 	@RequestMapping(value = "nickCheck",  method = RequestMethod.POST)	
 	@ResponseBody
 	public int nickcheck(@RequestBody String nick) {
@@ -52,4 +50,28 @@ public class MemberController {
 		count = service.nickCheck(nick);
         return count;
 	}
+	
+	//[로그인]
+	@RequestMapping(value = "signIn")
+	public String signInProc(Model model, HttpServletRequest request, HttpSession session) {
+		System.out.println("MemberController -> signInProc 메소드 진입");
+ 		
+		// 서비스 소환술
+		model.addAttribute("request",request);
+		service.signIn(model);
+
+		// 세션 들어왔는지 확인
+		System.out.println(session.getAttribute("loginUser"));
+		System.out.println("MemberController -> signInProc 메소드 종료");
+		return "login/chkLogin";
+	}
+	
+	//[로그아웃]
+	@RequestMapping(value = "signOut")
+	public String signOutProc(Model model, HttpServletRequest request, HttpSession session) {		
+		session.invalidate();		
+		return "home/main";
+	}
+	
+	
 }

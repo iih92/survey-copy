@@ -32,5 +32,14 @@ public class MemberDAO {
 		System.out.println("중복체크하는 닉네임 :" + nick);
 		return session.selectOne(namespace+".checkOverNick",nick);
 	}
-		
+
+	//로그인
+	public MemberDTO signIn(String id,String pw) {
+		System.out.println("MemberDAO -> signIn 메소드 진입"); 
+		MemberDTO dto = new MemberDTO();
+		System.out.println("MemberDAO -> signIn 메소드 종료"); 
+		return dto = session.selectOne(namespace+".signIn", id);		 
+	}
+	
+	
 }

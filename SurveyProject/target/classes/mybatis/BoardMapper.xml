@@ -6,7 +6,7 @@
 	<mapper namespace="Board">
 		<!-- 설문조사 폼 저장 -->
 		<insert id="surveySave" parameterType="Bdto">
-			insert into board(num,title,code) values(board_num.nextval,#{title},#{code})
+			insert into board(num,title,code,hashtag,deadline) values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline})
 		</insert>
 		
 		<!-- 가장 최근 번호 가져오기 -->
@@ -18,4 +18,9 @@
 		<select id="surveySelect" resultType="Bdto">
 			select * from board where num=#{num}
 		</select>
+		
+		<update id="surveyUpdate" parameterType="Bdto">
+			update board set title=#{title}, code=#{code}, hashtag=#{hashtag}, deadline=#{deadline} where num = #{num}
+		</update>
+
 	</mapper>

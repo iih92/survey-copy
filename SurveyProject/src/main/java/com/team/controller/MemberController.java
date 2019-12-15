@@ -39,7 +39,6 @@ public class MemberController {
 		return "Main/main";
 	}
 
-
 	//[회원가입]
 	@RequestMapping("signUp")
 	public String registerSave(Model model, HttpServletRequest request) {
@@ -96,5 +95,21 @@ public class MemberController {
 		session.invalidate();		
 		return "home/main";
 	}
+	
+	@RequestMapping(value = "mypage")
+	public String myPage() {
+		return "MyPage/main";
+	}
+	
+	@RequestMapping(value = "detail")
+	public String myDetail() {
+		return "MyPage/detail";
+	}
+	
+	@RequestMapping(value = "mainpage")
+	public String mainPage() {
+		return "Main/main";
+	}
+
 
 }

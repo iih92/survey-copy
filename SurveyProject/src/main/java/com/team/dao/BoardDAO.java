@@ -16,18 +16,29 @@ public class BoardDAO {
 	
 	public int surveySave(BoardDTO dto) {
 		
-		int i = 0;
+		int num = 0;
 		try {
 			sqlsession.insert(namespace + ".surveySave", dto);				
-			i = sqlsession.selectOne(namespace + ".currentNum");
-		} catch (Exception e) {
-			
-		}
-		return i;
+			num = sqlsession.selectOne(namespace + ".currentNum");
+		} catch (Exception e) { }
+		return num;
 	}
 
 	public BoardDTO surveySelect(int num) {
 		return sqlsession.selectOne(namespace + ".surveySelect", num);
+	}
+
+	public BoardDTO surveyModify(int num) {
+		return sqlsession.selectOne(namespace + ".surveySelect", num);
+	}
+
+	public int surveyUpdate(BoardDTO dto) {
+		int num = 0;
+		try {
+			sqlsession.insert(namespace + ".surveyUpdate", dto);				
+			num = sqlsession.selectOne(namespace + ".currentNum");
+		} catch (Exception e) { }
+		return num;
 	}
 
 }

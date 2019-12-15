@@ -1,5 +1,8 @@
 package com.team.service;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -22,9 +25,12 @@ public class BoardService implements IBoardService {
 	public int surveySave(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String code="";
 		BoardDTO dto = new BoardDTO();
-		
+		String date = request.getParameter("deadline");
+		dto.setTitle(request.getParameter("title"));
+		dto.setHashtag(request.getParameter("hashtag"));
+		String code="";
+
 		// request 객체 안에있는 모든 값을 조회할수 있는 역할
 		Enumeration<Object> params = request.getParameterNames();
 		while (params.hasMoreElements()){
@@ -34,9 +40,9 @@ public class BoardService implements IBoardService {
 		    	code = code + name +":" + request.getParameter(name)+",";		    	
 		    }
 		}
-		dto.setTitle(request.getParameter("title"));
-		dto.setHashtag(request.getParameter("hashtage"));
 		dto.setCode(code);
+		Date deadline = Date.valueOf(date);
+		dto.setDeadline(deadline);
 		return dao.surveySave(dto);
 	}
 
@@ -49,6 +55,41 @@ public class BoardService implements IBoardService {
 		String code = dto.getCode();
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
+	}
+
+	@Override
+	public void surveyModify(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int num = Integer.parseInt(request.getParameter("num"));
+		model.addAttribute("dto", dao.surveyModify(num));
+	}
+
+	@Override
+	public int surveyUpdate(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		BoardDTO dto = new BoardDTO();
+		String date = request.getParameter("deadline");
+		dto.setTitle(request.getParameter("title"));
+		dto.setHashtag(request.getParameter("hashtag"));
+		dto.setNum(Integer.parseInt(request.getParameter("num")));
+		String code="";
+
+		// request 객체 안에있는 모든 값을 조회할수 있는 역할
+		Enumeration<Object> params = request.getParameterNames();
+		while (params.hasMoreElements()){
+		    String name = (String)params.nextElement();
+		    if(name.equals("title") || name.equals("hashtag") || name.equals("deadline")) { } 
+		    else {
+		    	code = code + name +":" + request.getParameter(name)+",";		    	
+		    }
+		}
+		dto.setCode(code);
+		Date deadline = Date.valueOf(date);
+		dto.setDeadline(deadline);
+		dao.surveyUpdate(dto);
+		return dto.getNum();
 	}
 
 }

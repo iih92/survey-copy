@@ -19,8 +19,7 @@ public class MemberDAO {
 		session.update(namespace + ".changePw", dto);
 	}
 
-	
-	//회원가입
+	//회원가입	
 	public void singUp(MemberDTO dto) {
 		session.insert(namespace+".singUp",dto);	
 	}

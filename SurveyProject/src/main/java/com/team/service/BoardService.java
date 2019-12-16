@@ -31,6 +31,7 @@ public class BoardService implements IBoardService {
 		dto.setDeadline(deadline);
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtag"));
+		dto.setNick(request.getParameter("nick"));
 		dto.setPoint(500);
 		String code="";
 
@@ -96,6 +97,17 @@ public class BoardService implements IBoardService {
 	@Override
 	public void surveyAllSelect(Model model) {
 		model.addAttribute("list", dao.surveyAllSelect());
+	}
+
+	
+	@Override
+	public void surveyDelet(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		model.addAttribute("dto", dao.surveyDelet(num));
+		
 	}
 
 }

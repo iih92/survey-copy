@@ -65,7 +65,7 @@
 			<div id="form" class="main">
 				<!--제목-->
 				<div class="title">
-
+					<input type="hidden" value="${loginUser}" name="nick">
             		<input type="text" class="title_input" placeholder="나만의 설문 만들기" name="title">
             		<input type="text"  name="hashtag" class="hash_input" id="hash" placeholder="#해시태그">
             		<div class="dedline">마감날짜 : <input id="deadline" type="date" name="deadline"></div>    

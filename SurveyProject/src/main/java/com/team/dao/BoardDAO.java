@@ -48,4 +48,9 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace + ".surveyAllSelect");
 	}
 
+	
+	public Object surveyDelet(int num) {
+		return sqlsession.delete(namespace + ".surveyDelete", num);
+	}
+
 }

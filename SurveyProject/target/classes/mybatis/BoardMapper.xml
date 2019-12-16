@@ -4,10 +4,11 @@
 	<!-- Board 관련 sql문 작성 -->
 	<!-- namespace 변경 예정 -->
 	<mapper namespace="Board">
+	
 		<!-- 설문조사 폼 저장 -->
 		<insert id="surveySave" parameterType="Bdto">
-			insert into board(num,title,code,hashtag,deadline,point) 
-			values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point})
+			insert into board(num,title,code,hashtag,deadline,point,nick) 
+			values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick})
 		</insert>
 		
 		<!-- 가장 최근 번호 가져오기 -->
@@ -25,12 +26,18 @@
 			update board set hit= hit+1 where num=#{num}
 		</update>
 		
-		
+		<!-- 설문조사 수정 -->
 		<update id="surveyUpdate" parameterType="Bdto">
 			update board set title=#{title}, code=#{code}, hashtag=#{hashtag}, deadline=#{deadline} where num = #{num}
 		</update>
-
+		
+		<!-- 설문조사 (전체)가져오기 -->
 		<select id="surveyAllSelect" resultType="Bdto">
 			SELECT * FROM BOARD order by num desc
 		</select>
+		
+		<!-- 설문조사 삭제 -->
+		<delete id="surveyDelete" parameterType="int">
+			delete from board where num=#{num}
+		</delete>
 	</mapper>

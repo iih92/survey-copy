@@ -65,5 +65,12 @@ public class BoardController {
 			return "redirect:mainpage";		
 		}
 	}
+	
+	@RequestMapping(value="boardDelet")
+	public String boardDelet(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.surveyDelet(model);
+		return "redirect:mainpage";
+	}
 
 }

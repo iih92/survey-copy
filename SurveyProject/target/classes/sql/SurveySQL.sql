@@ -17,7 +17,8 @@ create table board(
   deadline DATE,
   createDate DATE default sysdate  ,
   hit number DEFAULT 0,
-  point number
+  point number,
+  nick varchar2(4000)
 );
 
 create SEQUENCE board_num;

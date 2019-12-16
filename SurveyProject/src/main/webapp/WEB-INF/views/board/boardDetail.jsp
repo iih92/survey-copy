@@ -106,6 +106,22 @@
 		font-weight: 500;
 		margin-left: 1%;	
 		}
+		
+		/*등록 버튼*/
+        .surveySave {
+		border: none;
+		color: #fff;
+		text-align: right;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 30px;
+		cursor: pointer;
+		background-color: #01aef0;
+		border-radius: 4px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 500;
+		margin-left: 91%;		
+		}
 
 
 </style>
@@ -132,10 +148,18 @@
 	   </div>
 	</div>
 	
+	<c:choose>
+	
+	<c:when test="${dto.nick == loginUser }">
+		<input type=button class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
+		<input type=button class=delButton onclick="location.href='boardDelet?num=${dto.num}'" value="삭제">
+	</c:when>
+	
+	<c:otherwise>
+		<input type=button class=surveySave value="등록">
+	</c:otherwise>
 
-	<input type=button class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
-	<input type=button class=delButton value="삭제">
-
+	</c:choose>
 	
 	<%@include file="../include/footer.jsp" %>
 

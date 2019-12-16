@@ -9,9 +9,12 @@ import lombok.Setter;
 public class BoardDTO {
 
 	private int num;
+	private int hit;
+	private int point;
 	private String title;
 	private String code;
 	private String hashtag;
 	private Date deadline;
+	private Date createDate;
 	
 }

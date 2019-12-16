@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,36 +13,7 @@
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
 <script src="resources/jquery-3.4.1.js"></script>
-<script>
-	$(document).ready(function(){
-		var divnum = 0;
-		var code = '${code}';
-		console.log(code);
-		var s1 = code.split(",");
-		console.log(s1);
-		for(i=0; i<s1.length; i++){
-			if(s1[i].substring(0,1) == 'q'){
-				var qu = s1[i].split(":");
-				$("#question").append("<div id=div"+divnum+">");
-				$("#div"+divnum).append("<h3>"+"["+(divnum+1)+"]&nbsp;"+qu[1]);
-				divnum++;
-			} else {
-				console.log(s1[i]);
-				var s2 = s1[i].split(":");
-				console.log(s2);
-				if(s1[i].substring(0,1) == 'R'){
-					$("#div"+(divnum-1)).append("<input type='radio' name='R"+divnum+"' value="+s2[1]+">");
-					$("#div"+(divnum-1)).append("<font>"+s2[1]+"<br>");
-				} else if(s1[i].substring(0,1) == 'C'){
-					$("#div"+(divnum-1)).append("<input type='checkbox' name='C"+divnum+"'' 'value="+s2[1]+">");	
-					$("#div"+(divnum-1)).append("<font>"+s2[1]+"<br>");
-				} else if(s1[i].substring(0,1) == 'T'){
-					$("#div"+(divnum-1)).append("<textarea rows='20' cols='20' name='T"+divnum+"'>");
-				}
-			}
-		}
-	});
-</script>
+
 
 <style type="text/css">
 
@@ -138,22 +109,35 @@
 
 
 </style>
+
+<script src="resources/board/boardDetail.js" ></script>
+
 </head>
 <body>
+
 	<%@include file="../include/header.jsp" %>
 	
-
 	
-	<div id="form" class="main">
-				<div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
-				<div id="question"></div>
+	<fmt:formatDate var="deadline" value="${ dto.deadline }" pattern="yyyy-MM-dd"/>
+
+	<div class="main">
+	   <input type="hidden" id="code" value="${code}">   
+	   <div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
+	   <div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
+	   <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
+	   <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
+	   
+	
+	   <div id="question">
+	   </div>
 	</div>
 	
 
-	<input type=button class=modify value="수정">
+	<input type=button class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
 	<input type=button class=delButton value="삭제">
 
 	
 	<%@include file="../include/footer.jsp" %>
+
 </body>
 </html>

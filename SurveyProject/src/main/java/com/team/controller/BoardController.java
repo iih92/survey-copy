@@ -16,6 +16,13 @@ public class BoardController {
 	@Autowired
 	private IBoardService service;
 	
+	
+	@RequestMapping(value = "mainpage")
+	public String mainPage(Model model) {
+		service.surveyAllSelect(model);
+		return "Main/main";
+	}
+	
 	@RequestMapping(value = "board")
 	public String board() {
 		return "board/board";
@@ -40,19 +47,23 @@ public class BoardController {
 		return "board/boardDetail";
 	}
 	
-	@RequestMapping(value = "mypage")
-	public String myPage() {
-		return "MyPage/main";
+	@RequestMapping(value = "boardmodify")
+	public String surveyModify(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.surveyModify(model);
+		return "board/boardModify";
 	}
 	
-	@RequestMapping(value = "detail")
-	public String myDetail() {
-		return "MyPage/detail";
-	}
-	
-	@RequestMapping(value = "mainpage")
-	public String mainPage() {
-		return "Main/main";
+	@RequestMapping(value = "surveyUpdate")
+	public String surveyUpdate(Model model, HttpServletRequest request, RedirectAttributes redirect) {
+		model.addAttribute("request", request);
+		int num = service.surveyUpdate(model);
+		if(num != 0) {
+			redirect.addAttribute("num",num);
+			return "redirect:boarddetail";			
+		} else {
+			return "redirect:mainpage";		
+		}
 	}
 
 }

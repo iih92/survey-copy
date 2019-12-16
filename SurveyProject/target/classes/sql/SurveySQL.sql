@@ -9,14 +9,17 @@ create table member(
 
 insert into member values('1','1','1');
 
-// 테스트용 
 create table board(
   num NUMBER,
   title varchar2(4000),
-  code varchar2(4000)
+  code varchar2(4000),
+  hashtag varchar2(4000),
+  deadline DATE,
+  createDate DATE default sysdate  ,
+  hit number DEFAULT 0,
+  point number
 );
 
 create SEQUENCE board_num;
-
 
 

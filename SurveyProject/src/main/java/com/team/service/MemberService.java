@@ -81,7 +81,6 @@ public class MemberService implements IMemberService{
 	//로그아웃
 	@Override
 	public void signOut(Model model) {
-		// TODO Auto-generated method stub
 		
 	}
 

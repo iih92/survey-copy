@@ -8,70 +8,70 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
      <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 <style> 
-.wrapperMy{  
-font-family:'Noto Sans KR',sans-serif;
-    min-height:574px;
-    min-width:700px;
-    width:100%;
-    display:flex; 
-    
-}
-
-#navbarMy{ 
-	 
-    background-color:#efefef;
-    min-width:250px;
-    width:20%;
-    /*
-    
-   min-height: inherit;
-    height:100%;
-    width:25%;
-    float:left;
-*/
-/*
+	.wrapperMy{  
+	font-family:'Noto Sans KR',sans-serif;
+	    min-height:574px;
+	    min-width:700px;
+	    width:100%;
+	    display:flex; 
+	    
+	}
 	
+	#navbarMy{ 
+		 
+	    background-color:#efefef;
+	    min-width:250px;
+	    width:20%;
+	    /*
+	    
+	   min-height: inherit;
+	    height:100%;
+	    width:25%;
+	    float:left;
+	*/
+	/*
+		
+		
+		height:100%;
+		 
+	*/
+		
+	}
+	#sectionMy{ 
 	
-	height:100%;
-	 
-*/
+	    min-width:700px;
+	        width:80%;
+	/*
+	    height:100%;
+	    min-height:inherit;
+	*/
+	}
 	
-}
-#sectionMy{ 
-
-    min-width:700px;
-        width:80%;
-/*
-    height:100%;
-    min-height:inherit;
-*/
-}
-
-    .navbarTitle span{
-            
-        font-size:15pt;
-        margin: 10px 10px 10px 80px;
-        display:none;   
-    }
-    
-    .navbarUserInfo{
-        margin-top:20px;
-        text-align: center;
-    }
-    .navbarPoint{
-        margin-top:20px;
-        text-align: center;
-    }
-    .navbarMenu li{
-        margin:20px 0 20px 0;
-    }
-    .navbarMenu ul{
-    	list-style:none;
-    }
-    #navbarHr{
-    	border:1px solid white;
-    	
-    }
+	    .navbarTitle span{
+	            
+	        font-size:15pt;
+	        margin: 10px 10px 10px 80px;
+	        display:none;   
+	    }
+	    
+	    .navbarUserInfo{
+	        margin-top:20px;
+	        text-align: center;
+	    }
+	    .navbarPoint{
+	        margin-top:20px;
+	        text-align: center;
+	    }
+	    .navbarMenu li{
+	        margin:20px 0 20px 0;
+	    }
+	    .navbarMenu ul{
+	    	list-style:none;
+	    }
+	    #navbarHr{
+	    	border:1px solid white;
+	    	
+	    }
      
 </style>
 </head>
@@ -91,8 +91,7 @@ font-family:'Noto Sans KR',sans-serif;
     </div>
 
     <div class="navbarUserInfo">
-            <span class="nbarInfoSpan" id="nbIs1"><b>김 아무개</b></span>
-        
+            <span class="nbarInfoSpan" id="nbIs1"><b>김 아무개</b></span>     
             <span class="nbarInfoSpan" id="nbIs1">님</span>
     </div>
     
@@ -101,43 +100,27 @@ font-family:'Noto Sans KR',sans-serif;
         You have <i>1000</i> Points
         </span>
     </div>
+    
+    
     <hr id="navbarHr">
-    <div class="navbarMenu">
-        <ul>
-        
-            <li id="navM1">
-              	내 정보 변경 
-            </li>     
-        <li id="navM2">
-            포인트 내역 열람
-            
-            </li>    
-        <li id="navM3">
-            내 설문조사
-            </li>     
-        <li id="navM4">
-            나비게이션 바 메뉴4    
-            </li>     
-        <li id="navM5">
-            나비게이션 바 메뉴5    
-            </li>    
-        <li id="navM6">
-            나비게이션 바 메뉴6    
-            </li>    
-        
-        </ul>
-    
+    <div class="navbarMenu">   
+       <ul>      
+        <li id="navM1">내 정보 변경</li>     
+      	<li id="navM2">포인트 내역 열람</li>    
+      	<li id="navM3">내 설문조사</li>     
+      	<li id="navM4">나비게이션 바 메뉴4</li>     
+      	<li id="navM5">나비게이션 바 메뉴5</li>    
+     	<li id="navM6">나비게이션 바 메뉴6</li>            
+       </ul>    
     </div>
-    
-    
+      
 </div>
 
-<div id=sectionMy>
-<div>
-여기는 섹션.. ㄴㄴㅇ
-	</div>					
+	<div id=sectionMy>
+		<div>여기는 섹션.. ㄴㄴㅇ</div>					
+	</div>
 </div>
-</div>
+
 </body>
  <script src="resources/jquery-3.4.1.js"></script>
         <script>
@@ -152,15 +135,11 @@ font-family:'Noto Sans KR',sans-serif;
             	    	      for(var i=2;i<=6;i++){
             	    	    	  $("#navM"+i).css("background-color","#efefef");
                 	    	      $("#navM"+i).css("font-weight","normal");
-            	    	      }
-            	    	      
+            	    	      }           	    	      
             	    	      
             	    	      $("#navM1").css("background-color","white");
             	    	      $("#navM1").css("font-weight","bold");
-            	    	       
-            	    	       
-            	    	       
-            	    	      
+	      
             	    },
             	    error:function(){
             			alert("문제가 발생했습니다"); 

@@ -87,13 +87,26 @@
 				<!-- navbar menu -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="mainpage" class="link">Home</a></li>
-						<li><a href="#">
-							<label for="modal" class="link">Sign In</label>
-						</a></li>
+						
+						<c:choose>
+							<c:when test="${loginUser != null}">
+								<li><a href="mainpage" class="link">Home</a></li>
+								<li><a href="signOut" class="link">Sign out</a></li>
+							</c:when>
+							
+							<c:otherwise>
+								<li><a href="#"><label for="modal" class="link">Home</label></a></li>
+								<li><a href="#">
+									<label for="modal" class="link">Sign In</label>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
+						
+
 						<li><a href="#">
 							<label for="modal_regi" class="link">Sign Up</label>
 						</a></li>
+						
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

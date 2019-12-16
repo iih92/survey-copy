@@ -129,6 +129,7 @@ html, body {
     flex: 3;
     list-style: none;
     display: flex;
+    padding:0px;
 }
 
 .link {
@@ -146,13 +147,13 @@ html, body {
 
 /* header button 버튼 */
 .makeform {
-    padding: 3px 10px 3px 10px;
+    padding: 5px 10px 5px 10px;
     background-color: #00ebfe !important;
     color: white;
     border-radius: 4px;
     text-align: center;
     border: none;
-    font-family: Ubuntu-Regular, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 	font-size: 16px;
     font-weight: 1000;
 }
@@ -183,9 +184,12 @@ html, body {
 
 .middle{
 	text-align:center;
-	margin-right:50%;
+	margin-right:20px;
 	margin-top:4px;
 	color:white;
+	border: 2px solid #ffff;
+	border-radius:4px;
+	padding:4px;
 } 
 
 

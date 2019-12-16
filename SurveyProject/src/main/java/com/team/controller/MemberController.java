@@ -106,7 +106,7 @@ public class MemberController {
 		    System.out.println("컨트롤러 아이디 없다~");
 		    map.put("rs",result[0]); 
 		}
-		ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();
 		String strJson = mapper.writeValueAsString(map);
 		return strJson;       
 	}

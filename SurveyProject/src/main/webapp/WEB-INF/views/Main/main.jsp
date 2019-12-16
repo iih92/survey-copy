@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 
 <!-- css link -->
-<link rel="stylesheet" href="resources/main/css/main.css" />
+<link rel="stylesheet" href="resources/main/css/main.css"/>
 <!--For Plugins external css-->
-<link rel="stylesheet" href="resources/main/css/plugins.css" />
+<link rel="stylesheet" href="resources/main/css/plugins.css"/>
 <!--Theme custom css -->
 <link rel="stylesheet" href="resources/main/css/style.css">
 
@@ -32,7 +32,7 @@
         <!-- Boxes -->
         <div class="thumbnails">  
                    
-            <!-- best box 시작구역 --------------------------------------------------------------------------------------> 
+            <!-- best box 시작구역 ------------------------------------------------------------------------------------> 
             <!-- best Survey -->
             <div class="best">
                 <h3>&nbsp;&nbsp;BEST SURVEY</h3>
@@ -55,7 +55,7 @@
 						<h3>자바 수업 평가 설문조사</h3>
 			        
 						<p> #자바 #수업 #설문조사 #개발자 #스프링
-			                            #체크 #컴공과 #한국대학교 </p>
+			                #체크 #컴공과 #한국대학교 </p>
 			            <font> 마감 날짜 : 2019.12.03 </font>
 					</div>
             </a>      

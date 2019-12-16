@@ -120,7 +120,7 @@
             
             <c:forEach var="dto" items="${ list }">
             <div class="boxmini" >
-            <a href="boarddetail?num=${dto.num }">                       
+            	<a href="boarddetail?num=${dto.num }">                       
                     <!-- mouse over -->
                    <div class="over">
                         <img src="resources/main/images/coin.png" alt=""/>
@@ -136,11 +136,12 @@
 						<p> ${ dto.hashtag } </p>
                         <font> 마감 날짜 : ${ dto.deadline } </font>
 					</div>
-            </a>      
+           		</a>      
             </div>
+            
             </c:forEach>
             <!--  boxmini(1) end -->
-
+			
         </div>
         <!-- thumbnails end -->
     </div>

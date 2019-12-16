@@ -26,10 +26,26 @@
 <link rel="stylesheet" type="text/css"
 	href="resources/login/css/main.css">
 <script>
-		var cnt=0;
-		function login(){
-   			cnt++;
-		   	$.ajax({
+	$(document).ready(function(){ 
+	   var is_CookieId = getCookie("CookieId");
+	   if(is_CookieId==null){
+	      $("input:checkbox[id='ckb1']").prop("checked",false);
+	   } else{
+	      $("input:checkbox[id='ckb1']").prop("checked",true);
+	      $("#usernameC").val(is_CookieId);
+	   }   
+	});
+	var cnt=0;
+	function login(){
+		if($("input:checkbox[id='ckb1']").is(":checked")){
+			setCookie("CookieId",$("#usernameC").val(),3);
+		}else{
+			deleteCookie("CookieId");
+	    }
+	    
+		cnt++;
+		
+		$.ajax({
 		      url:"signIn",
 		      type:"POST",  
 		      data:$("#lform").serialize(),
@@ -43,11 +59,22 @@
 		         }
 		         
 			      },
-			      error:function(){
-			         console.log("ㄴ");
-			      }
+			      error:function(){}
 			   });
-			}
+		}
+	var setCookie = function(name, value, exp) {
+		var date = new Date();
+		date.setTime(date.getTime() + exp*24*60*60*1000);
+		document.cookie = name + '=' + value + ';expires=' + date.toUTCString();
+		};
+	var getCookie = function(name) {
+		var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+		return value? value[2] : null;
+	};
+	var deleteCookie = function(name) {
+		document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+	}
+
 	</script>
 </head>
 <body>
@@ -60,7 +87,7 @@
 
 					<div class="wrap-input100 validate-input m-b-16"
 						data-validate="Username is required">
-						<input class="input100" type="text" name="id"
+						<input class="input100" type="text" name="id" id="usernameC"
 							placeholder="Username"> <span class="focus-input100"></span>
 					</div>
 

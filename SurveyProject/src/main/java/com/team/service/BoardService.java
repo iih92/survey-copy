@@ -27,8 +27,11 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		BoardDTO dto = new BoardDTO();
 		String date = request.getParameter("deadline");
+		Date deadline = Date.valueOf(date);
+		dto.setDeadline(deadline);
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtag"));
+		dto.setPoint(500);
 		String code="";
 
 		// request 객체 안에있는 모든 값을 조회할수 있는 역할
@@ -41,8 +44,6 @@ public class BoardService implements IBoardService {
 		    }
 		}
 		dto.setCode(code);
-		Date deadline = Date.valueOf(date);
-		dto.setDeadline(deadline);
 		return dao.surveySave(dto);
 	}
 
@@ -90,6 +91,11 @@ public class BoardService implements IBoardService {
 		dto.setDeadline(deadline);
 		dao.surveyUpdate(dto);
 		return dto.getNum();
+	}
+
+	@Override
+	public void surveyAllSelect(Model model) {
+		model.addAttribute("list", dao.surveyAllSelect());
 	}
 
 }

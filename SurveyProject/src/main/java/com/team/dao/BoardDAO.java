@@ -1,5 +1,7 @@
 package com.team.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,11 +22,12 @@ public class BoardDAO {
 		try {
 			sqlsession.insert(namespace + ".surveySave", dto);				
 			num = sqlsession.selectOne(namespace + ".currentNum");
-		} catch (Exception e) { }
+		} catch (Exception e) { System.out.println(e); }
 		return num;
 	}
 
 	public BoardDTO surveySelect(int num) {
+		sqlsession.update(namespace + ".up", num);
 		return sqlsession.selectOne(namespace + ".surveySelect", num);
 	}
 
@@ -39,6 +42,10 @@ public class BoardDAO {
 			num = sqlsession.selectOne(namespace + ".currentNum");
 		} catch (Exception e) { }
 		return num;
+	}
+
+	public List<BoardDTO> surveyAllSelect() {
+		return sqlsession.selectList(namespace + ".surveyAllSelect");
 	}
 
 }

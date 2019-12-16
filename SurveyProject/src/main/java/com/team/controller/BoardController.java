@@ -16,6 +16,13 @@ public class BoardController {
 	@Autowired
 	private IBoardService service;
 	
+	
+	@RequestMapping(value = "mainpage")
+	public String mainPage(Model model) {
+		service.surveyAllSelect(model);
+		return "Main/main";
+	}
+	
 	@RequestMapping(value = "board")
 	public String board() {
 		return "board/board";
@@ -58,7 +65,5 @@ public class BoardController {
 			return "redirect:mainpage";		
 		}
 	}
-	
-	
 
 }

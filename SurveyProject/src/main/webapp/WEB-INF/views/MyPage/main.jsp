@@ -1,37 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="resources/jquery-3.4.1.js"></script>
+<script src="resources/MyPage/mypage.js" type="text/javascript"></script>
+<link href="resources/MyPage/main.css" rel="stylesheet">
+
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap"
+	rel="stylesheet">
 </head>
-<style>
-.flex-container {
-  display: flex;
-  flex-direction: column;
-}
 
-.flex_item {
-  margin-top: auto;
-}
-</style>
 <body>
+	<div class=flex-container>
+		<div>
+			<%@ include file="../include/header.jsp"%>
+		</div>
 
-<div class=flex-container>
-<div  >
-<%@ include file="../include/header.jsp" %>
-</div> 
- 
-<div  >
-<jsp:include page="newmypage.jsp" flush="true"/>
-</div>
- 
-<div class=flex_item >
-<jsp:include page="../include/footer.jsp" flush="true"/>
-</div>
+		<div>
+			<div class=wrapperMy>
+				<div id=navbarMy>
+					<div class=navbarTitle>
+						<span class=nbarTitleSpan id="nbts1"> MY PAGE </span> <span
+							class=nbarTitleSpan id="nbts2"> <i class="fas fa-times"></i>
+						</span>
+					</div>
 
-</div>
+					<div class="navbarUserInfo">
+						<span class="nbarInfoSpan" id="nbIs1"><b>김 아무개</b></span> <span
+							class="nbarInfoSpan" id="nbIs1">님</span>
+					</div>
+
+					<div class=navbarPoint>
+						<span class="navbarpointSpan" id="nbps1"> You have <i>1000</i>
+							Points
+						</span>
+					</div>
+
+					<hr id="navbarHr">
+					<div class="navbarMenu">
+						<ul>
+							<li id="navM1">내 정보 변경</li>
+							<li id="navM2">포인트 내역 열람</li>
+							<li id="navM3">내 설문조사</li>
+							<li id="navM4">나비게이션 바 메뉴4</li>
+							<li id="navM5">나비게이션 바 메뉴5</li>
+							<li id="navM6">나비게이션 바 메뉴6</li>
+						</ul>
+					</div>
+				</div>
+
+				<div id=sectionMy>
+					<div>여기는 섹션.. ㄴㄴㅇ</div>
+				</div>
+			</div>
+		</div>
+
+		<div class=flex_item>
+			<jsp:include page="../include/footer.jsp" flush="true" />
+		</div>
+	</div>
 
 </body>
 </html>

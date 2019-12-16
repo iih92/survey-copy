@@ -8,4 +8,5 @@ public interface IBoardService {
 	public void surveySelect(Model model);
 	public void surveyModify(Model model);
 	public int surveyUpdate(Model model);
+	public void surveyAllSelect(Model model);
 }

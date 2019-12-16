@@ -106,10 +106,4 @@ public class MemberController {
 		return "MyPage/detail";
 	}
 	
-	@RequestMapping(value = "mainpage")
-	public String mainPage() {
-		return "Main/main";
-	}
-
-
 }

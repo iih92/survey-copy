@@ -53,4 +53,8 @@ public class BoardDAO {
 		return sqlsession.delete(namespace + ".surveyDelete", num);
 	}
 
+	public List<BoardDTO> surveySearch(String hashtag) {
+		return sqlsession.selectList(namespace + ".surveySearch",hashtag);
+	}
+
 }

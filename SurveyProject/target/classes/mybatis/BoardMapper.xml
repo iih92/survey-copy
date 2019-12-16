@@ -40,4 +40,10 @@
 		<delete id="surveyDelete" parameterType="int">
 			delete from board where num=#{num}
 		</delete>
+			
+		<!--  서베이 서치 -->
+		<select id="surveySearch" parameterType="String" resultType="Bdto">
+			SELECT * FROM BOARD where hashtag like '%' || #{hashtag} || '%'
+		</select>
+
 	</mapper>

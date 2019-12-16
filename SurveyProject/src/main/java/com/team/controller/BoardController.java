@@ -73,4 +73,11 @@ public class BoardController {
 		return "redirect:mainpage";
 	}
 
+	@RequestMapping(value="search")
+	public String serch(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.surveySearch(model);
+		return "board/search";
+	}
+	
 }

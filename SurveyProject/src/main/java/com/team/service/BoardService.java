@@ -110,4 +110,14 @@ public class BoardService implements IBoardService {
 		
 	}
 
+	@Override
+	public void surveySearch(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		String hashtag = request.getParameter("hashtag");
+		model.addAttribute("list",dao.surveySearch(hashtag));
+		
+	}
+
 }

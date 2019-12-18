@@ -29,3 +29,14 @@ create table vote(
   result varchar2(4000)
 );
 
+
+create table reply (
+  cNum number primary key not null,
+  num NUMBER not null,
+  cDate DATE default sysdate not null,
+  nick varchar2(4000) not null,
+  content varchar2(4000),
+  depth number default 0,
+  intent number default 0
+);
+create sequence reply_num;

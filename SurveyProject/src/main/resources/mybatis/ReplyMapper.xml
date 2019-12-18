@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="Reply">
+ 
+	<!-- 댓글 저장 -->
+	<insert id="replySave" parameterType="Rdto">
+		insert into reply(cNum,num,nick,content,intent) values(reply_num.nextval,#{num},#{nick},#{content},reply_num.currval)
+	</insert> 
+ 
+ 	<!-- 댓글 불러오기  -->
+	<select id="replyList" parameterType="int" resultType="Rdto">
+		select * from reply where num=#{num} order by intent asc, depth asc
+	</select>
+
+
+	<!--  대 댓글 저장 -->
+	<insert id="reReplySave" parameterType="Rdto">
+		insert into reply(cNum,num,nick,content,intent,depth) values(reply_num.nextval,#{num},#{nick},#{content},#{intent}, ( select max(depth) from reply where intent=#{intent}  ) +1     )
+	</insert> 
+</mapper>

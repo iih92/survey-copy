@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.service.IBoardService;
+import com.team.service.IReplyService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private IBoardService service;
-
+	@Autowired
+	private IReplyService rService;
 
 	@RequestMapping(value = "mainpage")
 	public String mainPage(Model model, HttpServletRequest request) {
@@ -47,6 +49,7 @@ public class BoardController {
 	public String surveySelect(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveySelect(model);
+		rService.replySelect(model);
 		return "board/boardDetail";
 	}
 

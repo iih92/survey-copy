@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.dao.BoardDAO;
 import com.team.dto.BoardDTO;
 import com.team.dto.VoteDTO;
@@ -151,7 +153,7 @@ public class BoardService implements IBoardService {
 	}
 
 	@Override
-	public void surveyResult(Model model) {
+	public String[] surveyResult(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		int num = Integer.parseInt(request.getParameter("num"));
@@ -164,7 +166,11 @@ public class BoardService implements IBoardService {
 			first = list.get(i).getResult().split("!");
 			for (int j = 0; j < first.length; j++) {
 				// 문제 문항 갯수만큼 배열 생성
-				if(mix == null) mix = new String[first.length];
+				if(mix == null) {
+					mix = new String[(first.length)+1];
+					// 참가 인원을 배열 마지막에 추가
+					mix[(first.length)] = Integer.toString(list.size());
+				}
 				// : 로 스플릿 하고 저장하기
 				String[] second = first[j].split(":");
 				for (int qa = 0; qa < second.length; qa++) {
@@ -184,6 +190,6 @@ public class BoardService implements IBoardService {
 				}
 			}
 		}
-		model.addAttribute("answer", mix);
+		return mix;
 	}
 }

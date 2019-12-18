@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.service.IBoardService;
@@ -89,10 +90,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "result")
-	public String result(Model model, HttpServletRequest request) {
+	public String resultpPage(Model model,HttpServletRequest request) {
 		model.addAttribute("request", request);
-		service.surveyResult(model);
+		model.addAttribute("num", request.getParameter("num"));
+		service.surveySelect(model);
 		return "board/result";
+	}
+	
+	@RequestMapping(value = "result.do")
+	@ResponseBody
+	public String[] result(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		String[] answer = service.surveyResult(model);
+		return answer;
 	}
 	
 }

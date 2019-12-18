@@ -12,5 +12,5 @@ public interface IBoardService {
 	public void surveyDelete(Model model);
 	public void surveySearch(Model model);
 	public int surveyVote(Model model);
-	public void surveyResult(Model model);
+	public String[] surveyResult(Model model);
 }

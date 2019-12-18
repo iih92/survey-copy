@@ -202,7 +202,7 @@ $(document).ready(function(){
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
 				<input type="button" class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
-				<input type="button" class=delButton onclick="location.href='boardDelet?num=${dto.num}'" value="삭제">
+				<input type="button" class=delButton onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
 			</c:when>
 			
 			<c:otherwise>

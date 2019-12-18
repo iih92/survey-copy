@@ -79,7 +79,8 @@
 						<i class="fa fa-bars" style="color: black"></i>
 					</button>
 					<a class="navbar-brand" style="height: 20px; width: 160px;"> 
-						<img src="resources/logo/logo-1.png" class="logo" alt=""> 
+						<img onclick="javascript:location.href='http://localhost:8989/survey';"
+                     	style="cursor:pointer;" src="resources/logo/logo-1.png" alt="" />
 					</a>
 				</div>
 				<!-- End Header Navigation -->

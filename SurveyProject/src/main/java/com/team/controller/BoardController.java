@@ -66,18 +66,33 @@ public class BoardController {
 		}
 	}
 	
-	@RequestMapping(value="boardDelet")
-	public String boardDelet(Model model, HttpServletRequest request) {
+	@RequestMapping(value="boardDelete")
+	public String boardDelete(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		service.surveyDelet(model);
+		service.surveyDelete(model);
 		return "redirect:mainpage";
 	}
 
 	@RequestMapping(value="search")
-	public String serch(Model model, HttpServletRequest request) {
+	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveySearch(model);
 		return "board/search";
+	}
+	
+	@RequestMapping(value="vote")
+	public String vote(Model model, HttpServletRequest request, RedirectAttributes redirect) {
+		model.addAttribute("request", request);
+		int num = service.surveyVote(model);
+		redirect.addAttribute("num", num);
+		return "redirect:result";
+	}
+	
+	@RequestMapping(value = "result")
+	public String result(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.surveyResult(model);
+		return "board/result";
 	}
 	
 }

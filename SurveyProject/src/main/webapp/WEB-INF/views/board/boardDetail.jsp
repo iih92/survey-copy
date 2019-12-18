@@ -131,35 +131,31 @@
 </head>
 <body>
 
-	<%@include file="../include/header.jsp" %>
-	
-	
+	<%@include file="../include/header.jsp" %>	
 	<fmt:formatDate var="deadline" value="${ dto.deadline }" pattern="yyyy-MM-dd"/>
-
-	<div class="main">
-	   <input type="hidden" id="code" value="${code}">   
-	   <div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
-	   <div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
-	   <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
-	   <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
-	   
+	<form action="vote">
+		<input type="hidden" name="num" value="${ dto.num }">
+		<div class="main">
+		   <input type="hidden" id="code" value="${code}">   
+		   <div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
+		   <div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
+		   <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
+		   <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
+		   <div id="question">
+		   </div>
+		</div>
 	
-	   <div id="question">
-	   </div>
-	</div>
-	
-	<c:choose>
-	
-	<c:when test="${dto.nick == loginUser }">
-		<input type=button class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
-		<input type=button class=delButton onclick="location.href='boardDelet?num=${dto.num}'" value="삭제">
-	</c:when>
-	
-	<c:otherwise>
-		<input type=button class=surveySave value="등록">
-	</c:otherwise>
-
-	</c:choose>
+		<c:choose>
+			<c:when test="${dto.nick == loginUser }">
+				<input type="button" class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
+				<input type="button" class=delButton onclick="location.href='boardDelet?num=${dto.num}'" value="삭제">
+			</c:when>
+			
+			<c:otherwise>
+				<input type="submit" class=surveySave value="등록">
+			</c:otherwise>
+		</c:choose>
+	</form>
 	
 	<%@include file="../include/footer.jsp" %>
 

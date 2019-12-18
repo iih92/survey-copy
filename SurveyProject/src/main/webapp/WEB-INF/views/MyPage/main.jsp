@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="resources/jquery-3.4.1.js"></script>
 <script src="resources/MyPage/mypage.js" type="text/javascript"></script>
-<link href="resources/MyPage/main.css" rel="stylesheet">
+<link href="resources/MyPage/mypage.css" rel="stylesheet">
 
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
    rel="stylesheet">

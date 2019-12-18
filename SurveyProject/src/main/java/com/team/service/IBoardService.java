@@ -9,6 +9,8 @@ public interface IBoardService {
 	public void surveyModify(Model model);
 	public int surveyUpdate(Model model);
 	public void surveyAllSelect(Model model);
-	public void surveyDelet(Model model);
+	public void surveyDelete(Model model);
 	public void surveySearch(Model model);
+	public int surveyVote(Model model);
+	public void surveyResult(Model model);
 }

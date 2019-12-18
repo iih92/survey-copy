@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	var divnum = 0;
 	var code = $('#code').val();
-	console.log(code);
 	var s1 = code.split(",");
 	for(i=0; i<s1.length; i++){
 		if(s1[i].substring(0,1) == 'q'){
@@ -13,12 +12,12 @@ $(document).ready(function(){
 			var s2 = s1[i].split(":");
 			if(s1[i].substring(0,1) == 'R'){
 				if(s2[1] != ""){ 
-					$("#div"+(divnum-1)).append("<input type='radio' name='R"+divnum+"' value="+s2[1]+">");
+					$("#div"+(divnum-1)).append("<input type='radio' name=R"+divnum+" value="+s2[1]+">");
 					$("#div"+(divnum-1)).append("<font>"+s2[1]+"<br>");				
 				}
 			} else if(s1[i].substring(0,1) == 'C'){
 				if(s2[1] != ""){ 
-					$("#div"+(divnum-1)).append("<input type='checkbox' name='C"+divnum+"'' 'value="+s2[1]+">");	
+					$("#div"+(divnum-1)).append("<input type='checkbox' name=C"+divnum+" value="+s2[1]+">");	
 					$("#div"+(divnum-1)).append("<font>"+s2[1]+"<br>");
 				}
 			} else if(s1[i].substring(0,1) == 'T'){

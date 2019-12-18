@@ -46,4 +46,12 @@
 			SELECT * FROM BOARD where hashtag like '%' || #{hashtag} || '%'
 		</select>
 
+		<insert id="surveyVote" parameterType="Vdto">
+			insert into vote(num,result) values(#{num}, #{result}) 
+		</insert>
+		
+		<select id="surveyResult" resultType="Vdto">
+			select * from vote where num = #{num}
+		</select>
+		
 	</mapper>

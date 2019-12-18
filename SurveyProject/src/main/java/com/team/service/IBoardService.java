@@ -2,6 +2,8 @@ package com.team.service;
 
 import org.springframework.ui.Model;
 
+import com.team.dto.PageCount;
+
 public interface IBoardService {
 	
 	public int surveySave(Model model);
@@ -13,4 +15,6 @@ public interface IBoardService {
 	public void surveySearch(Model model);
 	public int surveyVote(Model model);
 	public String[] surveyResult(Model model);
+	public void page_board_list(Model model);
+	public PageCount pagingNum(Model model);
 }

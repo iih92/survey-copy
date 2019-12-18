@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.dto.BoardDTO;
+import com.team.dto.PageCount;
 import com.team.dto.VoteDTO;
 
 @Repository
 public class BoardDAO {
-	
+
 	private static final String namespace = "Board";
-	
+
 	@Autowired
 	private SqlSession sqlsession;
-	
+
 	public int surveySave(BoardDTO dto) {	
 		int num = 0;
 		try {
@@ -48,7 +49,7 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace + ".surveyAllSelect");
 	}
 
-	
+
 	public Object surveyDelete(int num) {
 		return sqlsession.delete(namespace + ".surveyDelete", num);
 	}
@@ -63,7 +64,15 @@ public class BoardDAO {
 
 	public List<VoteDTO> surveyResult(int num) {
 		return sqlsession.selectList(namespace + ".surveyResult", num);
-		
+
+	}
+
+	/*Paging 메소드*/
+	public int getTotalPage() {
+		return sqlsession.selectOne(namespace+".board_getTotalPage");
+	}
+	public List<BoardDTO> page_board_list(PageCount pc) {
+		return sqlsession.selectList(namespace+".board_pagingList",pc);
 	}
 
 }

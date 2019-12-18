@@ -23,4 +23,8 @@ create table board(
 
 create SEQUENCE board_num;
 
+create table vote(
+  num number,
+  result varchar2(4000)
+);
 

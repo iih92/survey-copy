@@ -1,57 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<!-- Board 관련 sql문 작성 -->
-	<!-- namespace 변경 예정 -->
-	<mapper namespace="Board">
-	
-		<!-- 설문조사 폼 저장 -->
-		<insert id="surveySave" parameterType="Bdto">
-			insert into board(num,title,code,hashtag,deadline,point,nick) 
-			values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick})
-		</insert>
-		
-		<!-- 가장 최근 번호 가져오기 -->
-		<select id="currentNum" parameterType="Bdto" resultType="int">
-			SELECT * FROM (SELECT * FROM board ORDER BY ROWNUM DESC) WHERE ROWNUM = 1
-		</select>
-		
-		<!-- 설문조사 폼 가져오기 -->
-		<select id="surveySelect" resultType="Bdto">
-			select * from board where num=#{num}
-		</select>
-		
-		<!-- 조회수 올리기 -->
-		<update id="up">
-			update board set hit= hit+1 where num=#{num}
-		</update>
-		
-		<!-- 설문조사 수정 -->
-		<update id="surveyUpdate" parameterType="Bdto">
-			update board set title=#{title}, code=#{code}, hashtag=#{hashtag}, deadline=#{deadline} where num = #{num}
-		</update>
-		
-		<!-- 설문조사 (전체)가져오기 -->
-		<select id="surveyAllSelect" resultType="Bdto">
-			SELECT * FROM BOARD order by num desc
-		</select>
-		
-		<!-- 설문조사 삭제 -->
-		<delete id="surveyDelete" parameterType="int">
-			delete from board where num=#{num}
-		</delete>
-			
-		<!--  서베이 서치 -->
-		<select id="surveySearch" parameterType="String" resultType="Bdto">
-			SELECT * FROM BOARD where hashtag like '%' || #{hashtag} || '%'
-		</select>
+<!-- Board 관련 sql문 작성 -->
+<!-- namespace 변경 예정 -->
+<mapper namespace="Board">
 
-		<insert id="surveyVote" parameterType="Vdto">
-			insert into vote(num,result) values(#{num}, #{result}) 
-		</insert>
-		
-		<select id="surveyResult" resultType="Vdto">
-			select * from vote where num = #{num}
-		</select>
-		
-	</mapper>
+	<!-- 설문조사 폼 저장 -->
+	<insert id="surveySave" parameterType="Bdto">
+		insert into board(num,title,code,hashtag,deadline,point,nick)
+		values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick})
+	</insert>
+
+	<!-- 가장 최근 번호 가져오기 -->
+	<select id="currentNum" parameterType="Bdto" resultType="int">
+		SELECT * FROM (SELECT * FROM board ORDER BY ROWNUM DESC) WHERE ROWNUM = 1
+	</select>
+
+	<!-- 설문조사 폼 가져오기 -->
+	<select id="surveySelect" resultType="Bdto">
+		select * from board where num=#{num}
+	</select>
+
+	<!-- 조회수 올리기 -->
+	<update id="up">
+		update board set hit= hit+1 where num=#{num}
+	</update>
+
+	<!-- 설문조사 수정 -->
+	<update id="surveyUpdate" parameterType="Bdto">
+		update board set title=#{title}, code=#{code}, hashtag=#{hashtag},
+		deadline=#{deadline} where num = #{num}
+	</update>
+
+	<!-- 설문조사 (전체)가져오기 -->
+	<select id="surveyAllSelect" resultType="Bdto">
+		SELECT * FROM BOARD order by num desc
+	</select>
+
+	<!-- 설문조사 삭제 -->
+	<delete id="surveyDelete" parameterType="int">
+		delete from board where num=#{num}
+	</delete>
+
+	<!-- 서베이 서치 -->
+	<select id="surveySearch" parameterType="String"
+		resultType="Bdto">
+		SELECT * FROM BOARD where hashtag like '%' || #{hashtag} || '%'
+	</select>
+
+	<insert id="surveyVote" parameterType="Vdto">
+		insert into vote(num,result) values(#{num}, #{result})
+	</insert>
+
+	<select id="surveyResult" resultType="Vdto">
+		select * from vote where num = #{num}
+	</select>
+
+	<!-- 설문조사 전체 글수 가져오기 -->
+	<select id="board_getTotalPage" resultType="int">
+		select count(*) from board
+	</select>
+
+	<!-- 페이징 리스트 가져오기 -->
+	<select id="board_pagingList" parameterType="Pdto"
+		resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board order by num
+		desc)A)B where rn between #{startPage} and #{endPage}
+	</select>
+
+</mapper>

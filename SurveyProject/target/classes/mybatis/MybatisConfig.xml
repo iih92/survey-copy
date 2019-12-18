@@ -8,5 +8,6 @@
 			<typeAlias type="com.team.dto.BoardDTO" alias="Bdto"/>
 			<typeAlias type="com.team.dto.MemberDTO" alias="Mdto"/>
 			<typeAlias type="com.team.dto.VoteDTO" alias="Vdto"/>
+			<typeAlias type="com.team.dto.PageCount" alias="Pdto"/>
 		</typeAliases>
 	</configuration>

@@ -16,19 +16,21 @@ public class BoardController {
 
 	@Autowired
 	private IBoardService service;
-	
-	
+
+
 	@RequestMapping(value = "mainpage")
-	public String mainPage(Model model) {
-		service.surveyAllSelect(model);
+	public String mainPage(Model model, HttpServletRequest request) {
+		model.addAttribute("request",request);   
+		service.page_board_list(model);
+		service.pagingNum(model);
 		return "Main/main";
 	}
-	
+
 	@RequestMapping(value = "board")
 	public String board() {
 		return "board/board";
 	}
-	
+
 	@RequestMapping(value = "surveySave")
 	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
@@ -40,21 +42,21 @@ public class BoardController {
 			return "redirect:mainpage";		
 		}
 	}
-	
+
 	@RequestMapping(value = "boarddetail")
 	public String surveySelect(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveySelect(model);
 		return "board/boardDetail";
 	}
-	
+
 	@RequestMapping(value = "boardmodify")
 	public String surveyModify(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.surveyModify(model);
 		return "board/boardModify";
 	}
-	
+
 	@RequestMapping(value = "surveyUpdate")
 	public String surveyUpdate(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
@@ -66,7 +68,7 @@ public class BoardController {
 			return "redirect:mainpage";		
 		}
 	}
-	
+
 	@RequestMapping(value="boardDelete")
 	public String boardDelete(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -80,7 +82,7 @@ public class BoardController {
 		service.surveySearch(model);
 		return "board/search";
 	}
-	
+
 	@RequestMapping(value="vote")
 	public String vote(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
@@ -88,7 +90,7 @@ public class BoardController {
 		redirect.addAttribute("num", num);
 		return "redirect:result";
 	}
-	
+
 	@RequestMapping(value = "result")
 	public String resultpPage(Model model,HttpServletRequest request) {
 		model.addAttribute("request", request);
@@ -96,7 +98,7 @@ public class BoardController {
 		service.surveySelect(model);
 		return "board/result";
 	}
-	
+
 	@RequestMapping(value = "result.do")
 	@ResponseBody
 	public String[] result(Model model, HttpServletRequest request) {
@@ -104,5 +106,5 @@ public class BoardController {
 		String[] answer = service.surveyResult(model);
 		return answer;
 	}
-	
+
 }

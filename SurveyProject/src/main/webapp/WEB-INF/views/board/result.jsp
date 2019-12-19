@@ -13,7 +13,7 @@
 		// 데이터 값 가져옴
 	    $.ajax({
 	        type : "GET", //전송방식을 지정한다 (POST,GET)
-	        url : "result.do?num=${num}",
+	        url : "result.do?num=${dto.num}",
 	        success : function(data){
 	  			result(data);
 	        }

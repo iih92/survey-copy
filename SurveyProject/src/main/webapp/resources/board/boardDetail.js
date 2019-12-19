@@ -25,4 +25,33 @@ $(document).ready(function(){
 			}
 		}
 	}
+	$(".surveySave").click(function(){
+		var qu = divnum+1;
+		var flag = 1;
+		for (var i = 1; i < qu; i++) {
+			if($('input:radio[name=R'+i+']').length > 0){
+				if(!($('input:radio[name=R'+i+']').is(':checked'))){
+					alert(i + "번 문항에 응답해주세요.");
+					flag = 0;
+					break;
+				}
+			} else if($('input:checkbox[name=C'+i+']').length > 0){
+				if(!($('input:checkbox[name=C'+i+']').is(':checked'))){
+					alert(i + "번 문항에 응답해주세요.");
+					flag = 0;
+					break;
+				}
+			} else if($('textarea[name=T'+i+']').length > 0){
+				if($('textarea[name=T'+i+']').val().trim().length == 0){
+					alert(i + "번 문항에 응답해주세요.");
+					flag = 0;
+					break;
+				}
+			}
+		}	
+		if(flag){
+			console.log("1");
+			$("#voteForm").submit();
+		}
+	});
 });

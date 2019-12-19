@@ -53,12 +53,11 @@ $(document).ready(function(){
 		
 	});
 	
-	
 	/*---------------------------          ---------------------------- */
 	
 });
 
- 
+
 
 
 </script>
@@ -70,7 +69,7 @@ $(document).ready(function(){
 	     .main{
             width: 75%;
             height: 100%;
-			margin : 5% 10% 3% 10%;
+			margin : 5% 0% 3% 8%;
             background-color: whitesmoke;
             border-radius: 10px;
             box-shadow:0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
@@ -172,15 +171,46 @@ $(document).ready(function(){
 		}
 
 
-/* 리플라이 테이블 CSS */
+/* 댓글 테이블 CSS */
  .sReply table {
     width: 100%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
   }
+  
+.Rspan:hover{color: #353535;}
+
+
+/*댓글 등록 버튼*/
+.ReplyBt{
+	border: none;
+	width:40px;
+	height:70px;
+	vertical-align:middle;
+	background-color: #8C8C8C;
+	color: white;
+	border-radius: 4px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+}
+
+.ReplyBt:hover{background-color: #4C4C4C;}
+
+/*답글 등록 버튼*/
+.RereplyBt{
+	border: none;
+	vertical-align:middle;
+	background-color: #8C8C8C;
+	color: white;
+	border-radius: 3px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.RereplyBt:hover{background-color: #4C4C4C;}
+  
 </style>
 
-<script src="resources/board/boardDetail.js" ></script>
+<script src="resources/board/boardDetail.js"></script>
 
 </head>
 <body>
@@ -214,43 +244,47 @@ $(document).ready(function(){
 	
 	
 	<!-- 댓글 div 추가 -->
-	<div class=reply style="background-color:white;"> 
-		<div class=sReply style="border:1px solid yellow; ">
-		<table id="Rtable" style="border:1px solid blue; width:80%; margin-left:10%; ">
+	<div class=reply style="background-color:gainsboro; margin-top: 5%;"> 
+		<!-- 전체 댓글창 -->
+		<div class="sReply">
+		
+		<table id="Rtable" style="width:80%; margin-left:10%; ">
             
             <c:forEach var="dto" items="${replyList }">
-                      <!--  뎁스가 0 이상 (대댓글) 이라면 배경색을 라이트그레이로..  이걸 잘활용하면 가독성 높일수 있을듯..            -->
+             <!--  뎁스가 0 이상 (대댓글) 이라면 배경색을 라이트그레이로.. 이걸 잘활용하면 가독성 높일수 있을듯..            -->
             <tbody <c:if test="${dto.depth>0 }">style="background-color:lightgray;"</c:if> class="tbody">
             <tr>
                <td>
 				<c:if test="${ dto.depth > 0 }">┗</c:if>
 				
-				${ dto.nick}
+				<font style="color:#ff8b02; font-weight: 600; size: 20px">${dto.nick}</font>
                	
-               	</td>
-                <td>${ dto.getCDate() }</td>
                 
-                
-                
-                <td>
+                <td style="text-align: right; color: #747474">
                 	<c:if test="${ loginUser == dto.nick }">
                 	수정 | 삭제 |
                 	</c:if>
+                	
                 	<c:if test="${ dto.depth == 0 }">
-                	 <span class="Rspan" id="${dto.getCNum() }" onclick="reReply()">답글</span> 
+                	 <span class="Rspan" id="${dto.getCNum()}" onclick="reReply()">답글</span> 
                 	 </c:if>
+                	 
                 </td>
             </tr>
             <tr>
             	<td class="sReplytd" colspan=3 >
-            	<c:if test="${ dto.depth > 0 }">>> </c:if>
+            	<c:if test="${ dto.depth > 0 }">&nbsp;&nbsp;&nbsp;</c:if>
             	${ dto.content}
+            	
+            	<c:choose>
+            		<c:when test="${ dto.depth > 0 }"><br>&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #747474;">${ dto.getCDate() }</font></c:when>
+            		<c:otherwise><br><font style="color: #747474;">${dto.getCDate()}</font></c:otherwise>
+            	</c:choose>
             	
             	<hr>
             	
-            	</td>
+            	</td>	
             </tr> 
-            
             </tbody>
             
             <tr class="reReplyWrite" id="reReply${dto.getCNum()}">
@@ -261,8 +295,8 @@ $(document).ready(function(){
             	<input type="hidden" name="cnum" value="${dto.getCNum() }">
             	
             	<textarea style="resize:none; width:100%; height:50px;" name="reReplyWrite"></textarea>
-            	<input type="submit" value="등록">
-            	<span class="reReplyWriteCancel">취소</span>
+            	<input type="submit" class="RereplyBt" value="등록">
+            	<span class="reReplyWriteCancel" style="color: #747474; padding-top: 10%; ">취소</span>
             	<hr>
             	</form>
             	 </td>
@@ -275,12 +309,12 @@ $(document).ready(function(){
             </table>
 		</div>
 	
-		<div class=wReply style="border:1px solid red; ">
+		<div class=wReply style="margin-top: 2%;">
 		<form method=post action="replySave">
 			<input type="hidden" name="hnum" value="${dto.num}">
 			<textarea name=wReplyArea style="resize: none; margin-left:10%; width:80%; height:60px; vertical-align:middle;" placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. &#13;&#10;댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
 
-			<input type=submit value="등록" style="width:40px; height:60px; vertical-align:middle;">
+			<input type=submit class="ReplyBt" value="등록">
 		</form>
 		</div>
 	<br>

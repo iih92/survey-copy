@@ -14,15 +14,11 @@
 
 <script src="resources/jquery-3.4.1.js"></script>
 <script>
-
-function reReply(){
-	
-	console.log("reReply() function here");
-	
+function reReply(){	
+	console.log("reReply() function here");	
 }
 
 $(document).ready(function(){
-	
 	/*--------------- 답글 등록창을 띄우는 부분---------------- */
 	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
 	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
@@ -47,13 +43,11 @@ $(document).ready(function(){
 	});
 	
 	
-	/*------------답글 등록창의 취소부분 -----------------       */
-	$('.reReplyWriteCancel').click(function(e){
-		
-		$('.reReplyWrite').hide();
-		
+	/*------------답글 등록창의 취소부분 -----------------*/
+	$('.reReplyWriteCancel').click(function(e){	
+		$('.reReplyWrite').hide();	
 	});
-	
+	 
 	/*---------------------------  댓글 삭제       ---------------------------- */
 	$('.replyDelete').click(function(e){
 		
@@ -96,12 +90,9 @@ $(document).ready(function(){
 			$('.replyUpdatediv').show();
 		  $('.replyUpdateSeconddiv').hide();
 		  
-	});
+	}); 
 	
 });
-
-
-
 
 </script>
 
@@ -212,7 +203,23 @@ $(document).ready(function(){
 		font-weight: 500;
 		margin-left: 91%;		
 		}
-
+		
+	.resultButton{
+		border: none;
+		color: #fff;
+		/* padding: 1% 45% 1% 45%; */
+		text-align: right;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 30px;
+		cursor: pointer;
+		background-color: #01aef0;
+		border-radius: 4px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 500;
+		margin-left: 85%;	
+		margin-top: 2%;
+	}
 
 /* 댓글 테이블 CSS */
  .sReply table {
@@ -260,7 +267,7 @@ $(document).ready(function(){
 
 	<%@include file="../include/header.jsp" %>	
 	<fmt:formatDate var="deadline" value="${ dto.deadline }" pattern="yyyy-MM-dd"/>
-	<form action="vote">
+	<form action="vote" id="voteForm">
 		<input type="hidden" name="num" value="${ dto.num }">
 		<div class="main">
 		   <input type="hidden" id="code" value="${code}">   
@@ -274,12 +281,13 @@ $(document).ready(function(){
 	
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
-				<input type="button" class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
-				<input type="button" class=delButton onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
+				<input type="button" class="modify" onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
+				<input type="button" class="delButton" onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
+				<input type="button" class="resultButton" onclick="location.href='result?num=${dto.num}'" value="결과보기">
 			</c:when>
 			
 			<c:otherwise>
-				<input type="submit" class=surveySave value="등록">
+				<input type="button" class=surveySave value="등록">
 			</c:otherwise>
 		</c:choose>
 	</form>

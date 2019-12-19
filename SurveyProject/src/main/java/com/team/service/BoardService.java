@@ -122,7 +122,6 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String hashtag = request.getParameter("hashtag");
 		model.addAttribute("list",dao.surveySearch(hashtag));
-
 	}
 
 	@Override

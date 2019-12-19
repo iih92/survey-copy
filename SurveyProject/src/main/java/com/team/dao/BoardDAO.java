@@ -64,7 +64,6 @@ public class BoardDAO {
 
 	public List<VoteDTO> surveyResult(int num) {
 		return sqlsession.selectList(namespace + ".surveyResult", num);
-
 	}
 
 	/*Paging 메소드*/

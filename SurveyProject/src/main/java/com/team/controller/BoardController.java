@@ -87,17 +87,15 @@ public class BoardController {
 	}
 
 	@RequestMapping(value="vote")
-	public String vote(Model model, HttpServletRequest request, RedirectAttributes redirect) {
+	public String vote(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		int num = service.surveyVote(model);
-		redirect.addAttribute("num", num);
-		return "redirect:result";
+		service.surveyVote(model);
+		return "redirect:mainpage";
 	}
 
 	@RequestMapping(value = "result")
 	public String resultpPage(Model model,HttpServletRequest request) {
 		model.addAttribute("request", request);
-		model.addAttribute("num", request.getParameter("num"));
 		service.surveySelect(model);
 		return "board/result";
 	}

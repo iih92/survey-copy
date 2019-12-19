@@ -10,7 +10,8 @@
 
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
 <div id="test1" style="text-align:left; height:1000px;  ">
-	<script type="text/javascript">
+	<script src="resources/jquery-3.4.1.js"></script>
+	<script>
 	$(document).ready(function(){
 		$('#pw').keyup(function(){
 			$('#mesage').html('');

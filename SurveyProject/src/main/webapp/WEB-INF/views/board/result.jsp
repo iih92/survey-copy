@@ -134,11 +134,16 @@
 </script>
 </head>
 <body>
-
-<div id="answer">
+	<div>
+		<jsp:include page="../include/header.jsp"/>
+	</div>
+	<div id="answer">
 		<div id="info">
 			<h1>${dto.title }</h1>
 		</div>
+	</div>
+	<div>
+		<jsp:include page="../include/footer.jsp"/>
 	</div>
 </body>
 </html>

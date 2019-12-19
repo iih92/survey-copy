@@ -32,12 +32,12 @@
                </div>
 
                <div class="navbarUserInfo">
-                  <span class="nbarInfoSpan" id="nbIs1"><b>김 아무개</b></span> <span
+                  <span class="nbarInfoSpan" id="nbIs1"><b>${ loginUser }</b></span> <span
                      class="nbarInfoSpan" id="nbIs1">님</span>
                </div>
 
                <div class=navbarPoint>
-                  <span class="navbarpointSpan" id="nbps1"> You have <i>1000</i>
+                  <span class="navbarpointSpan" id="nbps1"> You have <i>${ userPoint }</i>
                      Points
                   </span>
                </div>

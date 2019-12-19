@@ -27,13 +27,19 @@
 	href="resources/login/css/main.css">
 <script>
 	$(document).ready(function(){ 
-	   var is_CookieId = getCookie("CookieId");
-	   if(is_CookieId==null){
-	      $("input:checkbox[id='ckb1']").prop("checked",false);
-	   } else{
-	      $("input:checkbox[id='ckb1']").prop("checked",true);
-	      $("#usernameC").val(is_CookieId);
-	   }   
+		var is_CookieId = getCookie("CookieId");
+	   	if(is_CookieId==null){
+	      	$("input:checkbox[id='ckb1']").prop("checked",false);
+	   	} else{
+	      	$("input:checkbox[id='ckb1']").prop("checked",true);
+	      	$("#usernameC").val(is_CookieId);
+	   	}  
+	   
+	   	$(".input100").keydown(function(key) {
+           if (key.keyCode == 13) {
+               login();
+           }
+		});
 	});
 	var cnt=0;
 	function login(){

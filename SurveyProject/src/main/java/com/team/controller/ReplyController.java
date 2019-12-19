@@ -1,5 +1,7 @@
 package com.team.controller;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +54,40 @@ public class ReplyController {
 		return "redirect:boarddetail";			
 		
 	}
+	@RequestMapping(value = "replyDelete")
+	public String replyDelete(Model model, HttpServletRequest request, RedirectAttributes redirect) {
+		model.addAttribute("request", request);
+		
+		service.replyDelete(model);
+		
+		// 해당 글 번호로이동.. 
+		redirect.addAttribute("num",request.getParameter("num"));
+		return "redirect:boarddetail";			
+		
+	}
+	
+
+	@RequestMapping(value = "replyUpdate")
+	public String replyUpdate(Model model, HttpServletRequest request, RedirectAttributes redirect) {
+		
+
+		Enumeration params = request.getParameterNames();
+		System.out.println("----------------------------");
+		while (params.hasMoreElements()){
+		    String name = (String)params.nextElement();
+		    System.out.println(name + " : " +request.getParameter(name));
+		}
+		System.out.println("----------------------------");
+ 
+		model.addAttribute("request", request);
+		
+		service.replyUpdate(model);
+		
+		
+		
+		redirect.addAttribute("num",request.getParameter("hnum"));
+		return "redirect:boarddetail";		
+	}
+	
+	
 }

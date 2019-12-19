@@ -10,4 +10,8 @@ public interface IReplyService {
 
 	public void reReplySave(Model model);
 
+	public void replyDelete(Model model);
+
+	public void replyUpdate(Model model);
+
 }

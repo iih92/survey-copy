@@ -17,7 +17,25 @@ public class MemberService implements IMemberService{
 
 	@Autowired
 	private MemberDAO dao;
+	
+	//[회원가입]
+	@Override
+	public void signUp(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
 
+		String nick = request.getParameter("nick");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dto.setId(id);
+		dto.setPw(pw);		
+		dao.singUp(dto);	
+	}
+	
+	//[로그인]
 	@Override
 	public String[] signIn(MemberDTO dto) {
 		// TODO Auto-generated method stub
@@ -41,40 +59,21 @@ public class MemberService implements IMemberService{
 	}
 	
 	//로그아웃
-
 	public void signOut(Model model) {}
 
-
-	//회원가입
-	@Override
-	public void signUp(Model model) {
-		Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest)map.get("request");
-
-		String nick = request.getParameter("nick");
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-
-		MemberDTO dto = new MemberDTO();
-		dto.setNick(nick);
-		dto.setId(id);
-		dto.setPw(pw);		
-		dao.singUp(dto);	
-	}
-
-	//아이디중복체크
+	//[아이디중복체크]
 	@Override
 	public int idCheck(String id) {
 		return dao.checkOverId(id);
 	}
 
-	//닉네임중복체크
+	//[닉네임중복체크]
 	@Override
 	public int nickCheck(String nick) {
 		return dao.checkOverNick(nick);
 	}
 
-
+	// [비밀번호 변경]
 	@Override
 	public void changePw(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -84,15 +83,20 @@ public class MemberService implements IMemberService{
 		MemberDTO dto = new MemberDTO();
 		dto.setPw(pw);
 		dto.setNick(nick);
-		System.out.println(dto.getNick());
-		System.out.println(dto.getPw());
 		dao.changePw(dto);
 	}
 
+	// [닉네임 변경]
 	@Override
 	public void changeNick(Model model) {
-		// TODO Auto-generated method stub
-
+	      Map<String, Object> map = model.asMap();
+	      HttpServletRequest request = (HttpServletRequest)map.get("request");
+	      String nick = request.getParameter("nick");
+	      String id = request.getParameter("id");
+	      MemberDTO dto = new MemberDTO();
+	      dto.setNick(nick);
+	      dto.setId(id);
+	      dao.changeNick(dto);
 	}
 
 }

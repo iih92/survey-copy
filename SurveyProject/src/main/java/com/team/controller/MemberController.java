@@ -25,20 +25,6 @@ public class MemberController {
 	@Autowired
 	private IMemberService service;
 
-	@RequestMapping(value = "changepw", method = RequestMethod.POST)
-	public String changePw(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		service.changePw(model);
-		return "Main/main";
-	}
-
-	@RequestMapping(value = "changeNick")
-	public String changeNick(Model model, HttpServletRequest request) {
-		model.addAttribute("request", request);
-		service.changeNick(model);
-		return "Main/main";
-	}
-
 	//[회원가입]
 	@RequestMapping("signUp")
 	public String registerSave(Model model, HttpServletRequest request) {
@@ -47,28 +33,10 @@ public class MemberController {
 		return "home/main";
 	}
 
-	//[아이디 중복체크]
-	@RequestMapping(value = "idCheck",  method = RequestMethod.POST)	
-	@ResponseBody
-	public int idcheck(@RequestBody String id) {
-		int count = 0;	
-		count = service.idCheck(id);
-		return count;
-	}
-
-	//[닉네임 중복체크]
-	@RequestMapping(value = "nickCheck",  method = RequestMethod.POST)	
-	@ResponseBody
-	public int nickcheck(@RequestBody String nick) {
-		int count = 0;	
-		count = service.nickCheck(nick);
-		return count;
-	}
-
-
+	//[로그인]
 	@RequestMapping(value="signIn", produces="application/json;charset=utf8")  
 	@ResponseBody
-	public String ajax_json02(MemberDTO dto,HttpSession session)throws JsonProcessingException {
+	public String signIn(MemberDTO dto,HttpSession session)throws JsonProcessingException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id",dto.getId());
 		String[] result = service.signIn(dto);
@@ -96,6 +64,39 @@ public class MemberController {
 		return "home/main";
 	}
 	
+	//[아이디 중복체크]
+	@RequestMapping(value = "idCheck",  method = RequestMethod.POST)	
+	@ResponseBody
+	public int idcheck(@RequestBody String id) {
+		int count = 0;	
+		count = service.idCheck(id);
+		return count;
+	}
+
+	//[닉네임 중복체크]
+	@RequestMapping(value = "nickCheck",  method = RequestMethod.POST)	
+	@ResponseBody
+	public int nickcheck(@RequestBody String nick) {
+		int count = 0;	
+		count = service.nickCheck(nick);
+		return count;
+	}
+	
+	//[비밀번호 변경]
+	@RequestMapping(value = "changepw", method = RequestMethod.POST)
+	public String changePw(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.changePw(model);
+		return "Main/main";
+	}
+
+	//[닉네임 변경]
+	@RequestMapping(value = "changeNick")
+	public String changeNick(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);
+		service.changeNick(model);
+		return "Main/main";
+	}
 
 	@RequestMapping(value = "mypage")
 	public String myPage() {
@@ -106,5 +107,5 @@ public class MemberController {
 	public String myDetail() {
 		return "MyPage/detail";
 	}
-	
+
 }

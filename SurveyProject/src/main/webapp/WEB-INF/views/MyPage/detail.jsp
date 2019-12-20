@@ -5,54 +5,9 @@
 <head>
 <meta charset="UTF-8">
 </head>
-
 <body>
-
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
 <div id="test1" style="text-align:left; height:1000px;  ">
-	<script src="resources/jquery-3.4.1.js"></script>
-	<script>
-	$(document).ready(function(){
-		$('#pw').keyup(function(){
-			$('#mesage').html('');
-		});
-		/* 비밀번호 & 재확인 비밀번호 일치 확인 */
-		$("#pw").keyup(function(){
-			var pw = $(this).val();
-			var pwChk = $("#pwChk").val();
-			if(!(pwChk === "")) {
-				if(pw === pwChk) {
-					$('#mesage').html('비밀번호 일치함<br><br>');
-					$('#mesage').attr('color', '#199894b3');
-					$('#btnPw').attr('disabled',false);
-				} else {
-					$('#mesage').html('비밀번호 일치하지 않음<br><br>');
-					$('#mesage').attr('color', '#f82a2aa3');
-					$('#btnPw').attr('disabled',true);
-				}
-			}
-		});
-
-		});
-
-		/* 비밀번호 & 재확인 비밀번호 일치  확인_반대 */
-		$('#pwChk').keyup(function(){
-			var pw = $("#pw").val();
-			var pwChk = $("#pwChk").val();
-			if(!(pw === "")) {
-				if(pw == pwChk) {
-					$('#mesage').html('비밀번호 일치함<br><br>');
-					$('#mesage').attr('color', '#199894b3');
-					$('#btnPw').attr('disabled',false);
-				} else {
-					$('#mesage').html('비밀번호 일치하지 않음<br><br>');
-					$('#mesage').attr('color', '#f82a2aa3');
-					$('#btnPw').attr('disabled',true);
-				}
-			}
-		});
-		</script>
-	<!-- 내 정보 변경 -->
 	<div class="title">
 		<font id="p">내정보 변경</font><br>
 		비밀번호와 닉네임을 수정 하실 수 있습니다.

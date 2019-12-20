@@ -1,24 +1,60 @@
-$(document).on('click','#navM1',function(){
-	$.ajax({
-		url: "mypage",
-		type: "GET",
-		success: function() {
-			$('#sectionMy').load("../survey/detail #test1");
-			for(var i=2;i<=6;i++){
-				$("#navM"+i).css("background-color","#efefef");
-				$("#navM"+i).css("font-weight","normal");
-			}
-			$("#navM1").css("background-color","white");
-			$("#navM1").css("font-weight","bold");
-		},
-		error:function(){
-			alert("문제가 발생했습니다"); 
-		}
-	});
-});
-
-/*------------------------------------------*/
 $(document).ready(function(){
+	$("#navM1").click(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$('#sectionMy').load("../survey/detail #test1", function(){
+					$('#pw').keyup(function(){
+						$('#mesage').html('');
+					});
+					/* 비밀번호 & 재확인 비밀번호 일치 확인 */
+					$("#pw").keyup(function(){
+						var pw = $(this).val();
+						var pwChk = $("#pwChk").val();
+						if(!(pwChk === "")) {
+							if(pw === pwChk) {
+								$('#mesage').html('비밀번호 일치함<br><br>');
+								$('#mesage').attr('color', '#199894b3');
+								$('#btnPw').attr('disabled',false);
+							} else {
+								$('#mesage').html('비밀번호 일치하지 않음<br><br>');
+								$('#mesage').attr('color', '#f82a2aa3');
+								$('#btnPw').attr('disabled',true);
+							}
+						}
+					});
+
+					/* 비밀번호 & 재확인 비밀번호 일치  확인_반대 */
+					$('#pwChk').keyup(function(){
+						var pw = $("#pw").val();
+						var pwChk = $("#pwChk").val();
+						if(!(pw === "")) {
+							if(pw == pwChk) {
+								$('#mesage').html('비밀번호 일치함<br><br>');
+								$('#mesage').attr('color', '#199894b3');
+								$('#btnPw').attr('disabled',false);
+							} else {
+								$('#mesage').html('비밀번호 일치하지 않음<br><br>');
+								$('#mesage').attr('color', '#f82a2aa3');
+								$('#btnPw').attr('disabled',true);
+							}
+						}
+					});
+				});
+				for(var i=2;i<=6;i++){
+					$("#navM"+i).css("background-color","#efefef");
+					$("#navM"+i).css("font-weight","normal");
+				}
+				$("#navM1").css("background-color","white");
+				$("#navM1").css("font-weight","bold");
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	});
+	
 	$("#navM2").click(function(){
 		$.ajax({
 			url: "mypage",

@@ -9,4 +9,5 @@ public class MemberDTO {
 	private String id;
 	private String pw;
 	private String nick;
+	private int point;
 }

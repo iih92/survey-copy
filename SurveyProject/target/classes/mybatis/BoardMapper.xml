@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Board 관련 sql문 작성 -->
-<!-- namespace 변경 예정 -->
 <mapper namespace="Board">
 
 	<!-- 설문조사 폼 저장 -->
@@ -67,5 +66,5 @@
 		select B.* from(select rownum rn, A.* from (select * from board order by num
 		desc)A)B where rn between #{startPage} and #{endPage}
 	</select>
-
+	
 </mapper>

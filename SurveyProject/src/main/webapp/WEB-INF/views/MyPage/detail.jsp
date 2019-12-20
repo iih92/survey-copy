@@ -19,7 +19,7 @@
 			<input name="id" value="${dto.id }" id="id" style="background-color: #f3f3f3;" readonly="readonly"><br>
 			<form action="changenick">
 				<li>변경할 닉네임</li>
-				<input type="text" name="nick" autocomplete="off">
+				<input type="text" name="nick" id="nickname" autocomplete="off">
 				<button type="submit" id="btnNick">수정</button>
 			</form>
 			<form action="changepw" method="post">

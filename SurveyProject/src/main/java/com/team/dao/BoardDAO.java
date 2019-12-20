@@ -73,5 +73,13 @@ public class BoardDAO {
 	public List<BoardDTO> page_board_list(PageCount pc) {
 		return sqlsession.selectList(namespace+".board_pagingList",pc);
 	}
+	
+	// 마감날짜 정렬, 조회수 정렬 
+	public List<BoardDTO> page_board_list_dead(PageCount pc) {
+		return sqlsession.selectList(namespace+".board_pagingList_deadline",pc);
+	}
+	public List<BoardDTO> page_board_list_hit(PageCount pc) {
+		return sqlsession.selectList(namespace+".board_pagingList_hit",pc);
+	}
 
 }

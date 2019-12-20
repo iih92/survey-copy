@@ -66,6 +66,18 @@
 		resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board order by num
 		desc)A)B where rn between #{startPage} and #{endPage}
+		 
+	</select>
+	<select id="board_pagingList_hit" parameterType="Pdto"
+		resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board order by hit
+		desc)A)B where rn between #{startPage} and #{endPage}
+		 
+	</select>
+	<select id="board_pagingList_deadline" parameterType="Pdto"
+		resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board order by deadline
+		asc)A)B where rn between #{startPage} and #{endPage}
 	</select>
 
 </mapper>

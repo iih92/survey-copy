@@ -13,7 +13,7 @@
    rel="stylesheet">
 <link
    href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap"
-   rel="stylesheet">
+   rel="stylesheet">   
 </head>
 
 <body>

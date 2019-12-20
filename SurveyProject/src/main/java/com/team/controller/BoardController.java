@@ -1,6 +1,9 @@
 package com.team.controller;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +24,32 @@ public class BoardController {
 	private IReplyService rService;
 
 	@RequestMapping(value = "mainpage")
-	public String mainPage(Model model, HttpServletRequest request) {
+	public String mainPage(Model model, HttpServletRequest request, HttpSession session) {
+		System.out.println("mainPage Controller 시작 ");
+		
+		System.out.println("mainPage Controller >> session.getAttribute(lineupsession) >> " + session.getAttribute("lineupSession"));
+		
 		model.addAttribute("request",request);   
 		service.page_board_list(model);
 		service.pagingNum(model);
+		 
+ 
+		System.out.println("mainPage Controller 끝 ");	
 		return "Main/main";
 	}
+	
+	@RequestMapping(value="lineupMain")
+	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
+		System.out.println("lineupMain 시작");
+
+		System.out.println("requst getParemer linpu >>"+request.getParameter("lineup"));
+		session.setAttribute("lineupSession", request.getParameter("lineup"));
+		
+		
+		System.out.println("lineupMain 끝"); 
+		return "redirect:mainpage";
+	}
+	
 
 	@RequestMapping(value = "board")
 	public String board() {
@@ -107,5 +130,11 @@ public class BoardController {
 		String[] answer = service.surveyResult(model);
 		return answer;
 	}
+	
+	
+	
+	
+	
+	
 
 }

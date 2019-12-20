@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -239,7 +240,37 @@ public class BoardService implements IBoardService {
 
 	@Override
 	public void page_board_list(Model model) {
-		model.addAttribute("list", dao.page_board_list(pagingNum(model)));
+
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		
+		HttpSession session = request.getSession(); 
+		
+		try {
+			if(session.getAttribute("lineupSession")==null) {
+				System.out.println("세션이 널이다.");
+				model.addAttribute("list", dao.page_board_list(pagingNum(model)));
+			}
+			else if(session.getAttribute("lineupSession").equals("1")) {
+				System.out.println("세션이 1이다.");
+				model.addAttribute("list", dao.page_board_list(pagingNum(model)));
+			}else if(session.getAttribute("lineupSession").equals("2")) {
+				System.out.println("세션이 2다.");
+	 			model.addAttribute("list", dao.page_board_list_dead((pagingNum(model))));
+			}else if(session.getAttribute("lineupSession").equals("3")) {
+				System.out.println("세션이 3이다.");
+				model.addAttribute("list", dao.page_board_list_hit((pagingNum(model))));
+			}
+			
+			
+		}catch(NullPointerException e) {
+			System.out.println("트라이캐치 >> 널포인터익셉션.");
+			
+		}
+
+
+ 
+		
 
 	}
 	/*-----------------------------------------------------------------------*/

@@ -205,7 +205,7 @@ public class BoardService implements IBoardService {
 		// start 값 가져오기
 		if(request.getParameter("start") == null ) start = 0;
 		else start = Integer.parseInt(request.getParameter("start"));
-
+		
 		// 맨처음 리뷰게시판 들어올때 
 		if(start == 0) start=1;      
 

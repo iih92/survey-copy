@@ -13,9 +13,7 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="resources/register/css/style.css">
-    <script>
-    	
-    	
+    <script>	
         /* 비밀번호 보이게 하거나 안보이게 하는 기능*/
     	$(document).ready(function(){
             $(".toggle-password").click(function(){
@@ -60,9 +58,7 @@
                     $(".confirm").text("비밀번호 불일치");
                 }
             }); 
-            
-            
-           
+ 
             /* 모든 칸에 입력을 해야 submit 버튼을 활성화 시킴 */
             $(':input').keyup(function(){
                 var nickname = $("#nickname").val();
@@ -82,9 +78,7 @@
             $('#checkfail').click(function() {
 				$('.hiddenC').attr("checked",false);
 			});
-           
-            
-  
+   
             /*아이디 중복 검사*/ 
             var id_check = false;
             
@@ -105,14 +99,14 @@
             		success : function(data){
             			console.log("0이면 중복 아님 : " + data);
             			
-            		if (data > 0){
+            			if (data > 0){
 	            			//아이디가 중복되는 문구
 	            			$("#id_check").text("사용중인 아이디입니다 :p");
 							$("#id_check").css("color", "red");
 							/* $('#id').val(" "); */
 							/* $("#submit").attr("disabled", true); */
             			
-            		}else{       
+            			}else{       
             				if(id.match(special_pattern)){
     	            			$("#id_check").text("특수문자/한글 쓸수 없습니다 :p");
     							$("#id_check").css("color", "red");
@@ -125,15 +119,14 @@
     							id_check = true;        					
             				}
 
-            		}//if 외부문
-            			
-            		}, error : function(){
+            			}//if 외부문	
+            		}, 
+            		error : function(){
             			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             			console.log("ajax실패")
             		}
             	});
             });
-            
 
             /*닉네임 중복 체크*/
 			var nick_check = false;
@@ -182,10 +175,6 @@
             		}
             	});
             });
-            
-            
-            
-            
         });
     </script>
 </head>

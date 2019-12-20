@@ -13,5 +13,6 @@ public interface IMemberService {
 	public void changeNick(Model model);	
 	public int idCheck(String id);
 	public int nickCheck(String nick);
-
+	public void addPoint(Model model);
+	public void userPoint(Model model);
 }

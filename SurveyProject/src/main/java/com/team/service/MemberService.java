@@ -99,4 +99,29 @@ public class MemberService implements IMemberService{
 	      dao.changeNick(dto);
 	}
 
+	// [포인트 적립]
+	@Override
+	public void addPoint(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("loginUser");
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dao.addPoint(dto);
+	}
+
+	// [포인트 가져오기] 
+	@Override
+	public void userPoint(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("loginUser");
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dto = dao.userPoint(dto);
+		session.setAttribute("userPoint", dto.getPoint());
+	}
+
 }

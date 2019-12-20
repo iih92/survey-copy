@@ -54,6 +54,9 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="100">
+<c:if test="${loginUser != null}">
+   <c:redirect url="mainpage"/>
+</c:if>
 	<!-- Preloader -->
 	<div id="loading">
 		<div id="loading-center">

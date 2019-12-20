@@ -222,7 +222,6 @@ $(document).ready(function(){
 							<li><button class="paging_bf"
 									onclick="location.href='mainpage?start=${start-1}'">&lt;</button></li>
 						</c:when>
-
 						<c:otherwise>
 							<li><button class="paging_bf" disabled="disabled">&lt;</button></li>
 						</c:otherwise>

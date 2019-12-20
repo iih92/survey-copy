@@ -47,6 +47,7 @@
 			answer = answer.sort();	// 정렬
 			answer.shift();	// 공백 제거
 			for (var j = 0; j < answer.length; j++) {	// 정렬하여 다른 값이 나오면 arr에 추가		
+				console.log(answer[j]);
 				arr3[j] = answer[j];
 				if(answer[j] == answer[j+1]) cnt++;
 				else {
@@ -81,7 +82,7 @@
 					}
 					divnum++;	
 				} else if(i == (data.length-1)){
-					$("#info").append("<h3>"+data[i]+"명 참여");
+					$("#info").append("<h3>"+result[3].length+"명 참여");
 				}
 			}
 	    }
@@ -132,6 +133,12 @@
 		}
 	});
 </script>
+
+<style>
+	#info {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<div>

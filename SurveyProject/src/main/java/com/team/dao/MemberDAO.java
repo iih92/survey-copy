@@ -36,7 +36,6 @@ public class MemberDAO {
 	
 	//[비밀번호 변경]
 	public void changePw(MemberDTO dto) {
-		System.out.println(dto.getNick() +"nick");
 		session.update(namespace + ".changePw", dto);
 	}
 	
@@ -45,4 +44,13 @@ public class MemberDAO {
 		session.update(namespace + ".changeNick", dto);
 	}
 	
+	//[포인트 저장]
+	public void addPoint(MemberDTO dto) {
+		session.update(namespace + ".addPoint", dto);
+	}
+	
+	//[포인트 가져오기]
+	public MemberDTO userPoint(MemberDTO dto) {
+		return session.selectOne(namespace+".userPoint", dto);	 
+	}
 }

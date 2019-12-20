@@ -99,5 +99,36 @@ public class ReplyService implements IReplyService{
 		
 		dao.reReplySave(dto);
 	}
+
+	@Override
+	public void replyDelete(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		
+		String cnum = request.getParameter("cnum");
+		System.out.println(cnum);
+		
+		dao.replyDelete(cnum);
+		
+		
+	}
+
+	@Override
+	public void replyUpdate(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		
+		ReplyDTO dto = new ReplyDTO();
+		
+		String cnum_string = request.getParameter("cnum");
+		int cnum = Integer.parseInt(cnum_string);
+		
+		dto.setCNum(cnum);
+		dto.setContent(request.getParameter("replyUpdate"));
+		
+		dao.replyUpdate(dto);
+	}
  
 }

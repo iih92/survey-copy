@@ -23,6 +23,7 @@ $(document).ready(function(){
 	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
 	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
 	$('.reReplyWrite').hide();
+	$('.replyUpdateSeconddiv').hide();
 	// 클래스 Rspan은 "답글" 에 달려있다. 
 	$('.Rspan').click(function(e){
 		
@@ -46,8 +47,50 @@ $(document).ready(function(){
 	$('.reReplyWriteCancel').click(function(e){	
 		$('.reReplyWrite').hide();	
 	});
-	
-	/*------------------------------------------------------- */
+	 
+	/*---------------------------  댓글 삭제       ---------------------------- */
+	$('.replyDelete').click(function(e){
+		
+		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 repleyDelete38 이런식으로 써져있습니다.. 
+		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
+		  										// 문자열을 잘라서 38만 가져올것입니다..
+		  var cnum_length = temp.length - 12; // 12는 repleyDelete 의 길이임..  
+		  										// 총 길이에서 replyDelete 만큼 빼면
+		  										// 숫자의 길이가 나온다
+		  var cnum = temp.substr(12,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
+
+		  
+		  location.href = 'replyDelete?num=${dto.num}&cnum='+cnum;
+		  // 이렇게 하면.. num 과 cnum 둘다 request.getPar 로 얻을수있다.. 그럼 삭제도 시킬수있음..
+	});
+	$('.replyUpdateSpan').click(function(e){
+		
+		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 replyUpdate38 이런식으로 써져있습니다.. 
+		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
+		  										// 문자열을 잘라서 38만 가져올것입니다..
+		  var cnum_length = temp.length - 11; // 12는 replyUpdate 의 길이임..  
+		  										// 총 길이에서 replyUpdate 만큼 빼면
+		  										// 숫자의 길이가 나온다
+		  var cnum = temp.substr(11,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
+
+
+
+		  var content = $('#replycontent'+cnum).text();
+		  
+		  $('.replyUpdatediv').show();
+		  $('.replyUpdateSeconddiv').hide();
+		  
+
+		  $('#replyUpdatediv'+cnum).hide();
+		  $('#replyUpdateSeconddiv'+cnum).show();
+		  
+	});
+	$('.replyUpdateCancel').click(function(e){
+		
+			$('.replyUpdatediv').show();
+		  $('.replyUpdateSeconddiv').hide();
+		  
+	}); 
 	
 });
 
@@ -270,7 +313,7 @@ $(document).ready(function(){
                 
                 <td style="text-align: right; color: #747474">
                 	<c:if test="${ loginUser == dto.nick }">
-                	수정 | 삭제 |
+                	<span class="replyUpdateSpan" id="replyUpdate${dto.getCNum() }">수정</span> | <span class="replyDelete" id="repleyDelete${dto.getCNum() }">삭제</span> |
                 	</c:if>
                 	
                 	<c:if test="${ dto.depth == 0 }">
@@ -280,15 +323,33 @@ $(document).ready(function(){
                 </td>
             </tr>
             <tr>
+            	 
             	<td class="sReplytd" colspan=3 >
             	<c:if test="${ dto.depth > 0 }">&nbsp;&nbsp;&nbsp;</c:if>
-            	${ dto.content}
-            	
-            	<c:choose>
-            		<c:when test="${ dto.depth > 0 }"><br>&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #747474;">${ dto.getCDate() }</font></c:when>
-            		<c:otherwise><br><font style="color: #747474;">${dto.getCDate()}</font></c:otherwise>
-            	</c:choose>
-            	
+            	 	<span class="replyUpdatediv" id="replyUpdatediv${dto.getCNum() }">
+         
+            			<span class="replycontent" id="replycontent${dto.getCNum() }" style="white-space: pre-line;">${ dto.content}</span>
+              
+			            <c:choose>
+			           		<c:when test="${ dto.depth > 0 }"><br>&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #747474;">${ dto.getCDate() }</font></c:when>
+			           		<c:otherwise><br><font style="color: #747474;">${dto.getCDate()}</font></c:otherwise>
+			           	</c:choose>
+            		</span>
+            		
+            		<div class="replyUpdateSeconddiv" id="replyUpdateSeconddiv${dto.getCNum() }">
+            		
+            		
+            			<form method=post action=replyUpdate>
+    	        			<input type="hidden" name="hnum" value="${dto.num }">
+	    		        	<input type="hidden" name="cnum" value="${dto.getCNum() }">
+            				<textarea name=replyUpdate style="resize: none;  width:85%; height:50px;">${dto.content}</textarea>
+            				<input type="submit" class="RereplyBt" value="등록">
+            				<span class="replyUpdateCancel" style="color: #747474; padding-top: 10%; ">취소</span>
+            			</form>
+            		
+            		
+            		</div>
+            		 
             	<hr>
             	
             	</td>	

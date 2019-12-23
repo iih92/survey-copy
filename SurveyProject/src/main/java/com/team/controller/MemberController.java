@@ -98,13 +98,14 @@ public class MemberController {
 		return "Main/main";
 	}
 
+	//[메인 페이지로 이동]
 	@RequestMapping(value = "mypage")
 	public String myPage() {
 		return "MyPage/main";
 	}
 	
 	@RequestMapping(value = "detail")
-	public String myDetail() {
+	public String detail() {
 		return "MyPage/detail";
 	}
 

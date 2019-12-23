@@ -12,7 +12,7 @@
 
 	<!-- 가장 최근 번호 가져오기 -->
 	<select id="currentNum" parameterType="Bdto" resultType="int">
-		SELECT * FROM (SELECT * FROM board ORDER BY ROWNUM DESC) WHERE ROWNUM = 1
+		SELECT * FROM (SELECT * FROM board ORDER BY NUM DESC) WHERE ROWNUM = 1
 	</select>
 
 	<!-- 설문조사 폼 가져오기 -->
@@ -65,6 +65,18 @@
 		resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board order by num
 		desc)A)B where rn between #{startPage} and #{endPage}
+		 
+	</select>
+	<select id="board_pagingList_hit" parameterType="Pdto"
+		resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board order by hit
+		desc)A)B where rn between #{startPage} and #{endPage}
+		 
+	</select>
+	<select id="board_pagingList_deadline" parameterType="Pdto"
+		resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board order by deadline
+		asc)A)B where rn between #{startPage} and #{endPage}
 	</select>
 	
 </mapper>

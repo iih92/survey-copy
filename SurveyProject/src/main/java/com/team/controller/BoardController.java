@@ -1,6 +1,7 @@
 package com.team.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +27,19 @@ public class BoardController {
 
 	//[로그인 후 메인페이지]
 	@RequestMapping(value = "mainpage")
-	public String mainPage(Model model, HttpServletRequest request) {
+	public String mainPage(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request);   
 		mService.userPoint(model);
 		bService.page_board_list(model);
-		bService.pagingNum(model);
+		bService.pagingNum(model); 
 		return "Main/main";
 	}
+	
+	@RequestMapping(value="lineupMain")
+	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
+		session.setAttribute("lineupSession", request.getParameter("lineup"));
+		return "redirect:mainpage";
+	}	
 
 	//[게시글 작성 페이지]
 	@RequestMapping(value = "board")

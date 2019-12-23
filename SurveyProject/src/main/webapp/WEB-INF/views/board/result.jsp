@@ -30,7 +30,7 @@
 				title[titlenum++] = qu[1];
 				$("#answer").append("<div id=div"+divnum+">");
 				$("#div"+divnum).append("<h3>"+"["+(divnum+1)+"]&nbsp;"+qu[1]);
-				$("#div"+divnum).append("<canvas id=canvas"+divnum+" width=600px height=400px>");
+				$("#div"+divnum).append("<canvas id=canvas"+divnum+" width=500px height=300px>");
 				divnum++;
 			} 
 		}
@@ -47,7 +47,6 @@
 			answer = answer.sort();	// 정렬
 			answer.shift();	// 공백 제거
 			for (var j = 0; j < answer.length; j++) {	// 정렬하여 다른 값이 나오면 arr에 추가		
-				console.log(answer[j]);
 				arr3[j] = answer[j];
 				if(answer[j] == answer[j+1]) cnt++;
 				else {
@@ -76,13 +75,13 @@
 				} else if(data[i].substring(0,1) == 'T') {
 					var result = splitData(data[i]);
 					var answer = result[3];
-					$("#canvas"+divnum).replaceWith("<div id=div"+divnum+">");
+					$("#canvas"+divnum).replaceWith("");
 					for (var j = 0; j < result[3].length; j++) {
 						$("#div"+divnum).append("<p>"+answer[j]);
 					}
 					divnum++;	
 				} else if(i == (data.length-1)){
-					$("#info").append("<h3>"+result[3].length+"명 참여");
+					$("#info").append("<h3 id=count>"+result[3].length+"명 참여");
 				}
 			}
 	    }
@@ -123,6 +122,7 @@
 			        scales: {
 			            yAxes: [{
 			                ticks: {   
+			                	stepSize: 1,
 			                	max: max+3,
 			                    beginAtZero:true
 			                }
@@ -135,8 +135,23 @@
 </script>
 
 <style>
+	#answer{
+		background: whitesmoke;
+	    width: 75%;
+	    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+	    padding: 5%;
+	    border-radius: 10px;
+	    margin: 5% 0% 3% 8%;
+	}
 	#info {
 		text-align: center;
+	}
+	
+	#count {
+		margin-left: 80%;
+	}
+	
+	#title {
 	}
 </style>
 </head>
@@ -146,7 +161,7 @@
 	</div>
 	<div id="answer">
 		<div id="info">
-			<h1>${dto.title }</h1>
+			<h1 id="title">${dto.title }</h1>
 		</div>
 	</div>
 	<div>

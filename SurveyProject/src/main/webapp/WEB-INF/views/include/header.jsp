@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
-
 <head>
 <script>
    $(document).ready(function() {
@@ -31,10 +30,7 @@
         });
 
    });
-
 </script>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="resources/include/header.css">
      <div class="headerdiv">       
         <!-- Start Top Search -->
@@ -70,8 +66,8 @@
                      </c:when>
                      <c:otherwise>
                      <div class="middle">
-                        <font style="color:#00ebfc"> ${loginUser}</font> 님의 포인트
-                        <font size="4px" style="color:#ffaa45">500P</font>
+                        <font style="color:#00ebfc">${ loginUser }</font> 님의 포인트
+                        <font size="4px" style="color:#ffaa45">${ userPoint }P</font>
                      </div>
                      <li class="link"><a href="mainpage" class="hmenu">Home</a></li>
                      <li class="link"><a href="mypage" class="hmenu">My Page</a></li>

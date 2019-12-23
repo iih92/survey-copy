@@ -33,4 +33,16 @@ public class ReplyDAO {
 		sqlsession.insert(namespace+".reReplySave",dto);
 	}
 
+
+	public void replyDelete(String cnum) {
+		// TODO Auto-generated method stub
+		sqlsession.delete(namespace+".replyDelete",cnum);
+	}
+
+
+	public void replyUpdate(ReplyDTO dto) {
+		// TODO Auto-generated method stub
+		sqlsession.update(namespace+".replyUpdate",dto);
+	}
+
 }

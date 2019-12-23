@@ -4,7 +4,8 @@ grant connect, dba, resource to survey;
 create table member(
   id varchar2(20),
   pw varchar2(20),
-  nick varchar2(20)
+  nick varchar2(20),
+  point number
 );
 
 insert into member values('1','1','1');

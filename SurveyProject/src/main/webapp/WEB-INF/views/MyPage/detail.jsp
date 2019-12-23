@@ -12,56 +12,10 @@
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
-
-<div id="test1" style="text-align:left; height:1000px;">
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('#pw').keyup(function(){
-			$('#mesage').html('');
-		});
-		/* 비밀번호 & 재확인 비밀번호 일치 확인 */
-		$("#pw").keyup(function(){
-			var pw = $(this).val();
-			var pwChk = $("#pwChk").val();
-			if(!(pwChk === "")) {
-				if(pw === pwChk) {
-					$('#mesage').html('비밀번호 일치함<br><br>');
-					$('#mesage').attr('color', '#199894b3');
-					$('#btnPw').attr('disabled',false);
-				} else {
-					$('#mesage').html('비밀번호 일치하지 않음<br><br>');
-					$('#mesage').attr('color', '#f82a2aa3');
-					$('#btnPw').attr('disabled',true);
-				}
-			}
-		});
-
-		});
-
-		/* 비밀번호 & 재확인 비밀번호 일치  확인_반대 */
-		$('#pwChk').keyup(function(){
-			var pw = $("#pw").val();
-			var pwChk = $("#pwChk").val();
-			if(!(pw === "")) {
-				if(pw == pwChk) {
-					$('#mesage').html('비밀번호 일치함<br><br>');
-					$('#mesage').attr('color', '#199894b3');
-					$('#btnPw').attr('disabled',false);
-				} else {
-					$('#mesage').html('비밀번호 일치하지 않음<br><br>');
-					$('#mesage').attr('color', '#f82a2aa3');
-					$('#btnPw').attr('disabled',true);
-				}
-			}
-		});
-		</script>
-	
-		
-	<!-- 내 정보 변경 -->
+<!-- 내 정보 변경 -->
+<div id="test1" style="text-align:left; height:1000px;  ">
 	<div class="title">
 		<font id="p">내정보 변경</font><br>
 		비밀번호와 닉네임을 수정 하실 수 있습니다.
@@ -73,7 +27,7 @@
 			<input name="id" value="${dto.id }" id="id" style="background-color: #f3f3f3;" readonly="readonly"><br>
 			<form action="changenick">
 				<li>변경할 닉네임</li>
-				<input type="text" name="nick" autocomplete="off">
+				<input type="text" name="nick" id="nickname" autocomplete="off">
 				<button type="submit" id="btnNick">수정</button>
 			</form>
 			<form action="changepw" method="post">
@@ -91,23 +45,21 @@
 
 <div id="test2" style="text-align:center;  	height:100%;">테스트2  예시</div>
 
-
 <!-- 내가 등록한 설문조사 -------------------------------------------------------------------------------->
 <div id="test3" style="text-align:center;   height:500px;">
-
-<table class="RegisterSurbey">
 	
-	<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
+	<table class="RegisterSurbey">
+		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 
 	<c:forEach var="dto" items="${list}">
-	<c:if test="${dto.nick eq loginUser}">
-		<tr onclick="location.href='result?num=${dto.num}'">
-		<td>${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
-		</tr>
-		
-	</c:if>
+		<c:if test="${dto.nick eq loginUser}">
+			<tr onclick="location.href='result?num=${dto.num}'">
+			<td>${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
+			</tr>	
+		</c:if>
 	</c:forEach>
-</table>
+	</table>
+	
 	<!-- 페이징 DIV ---------------------------------------------------------------------------------------->
 	<div class="paging">
 		<!-- param.start 값 지정 -->
@@ -117,22 +69,19 @@
 			</c:when>
 			<c:otherwise>
 				<c:set var="start" value="${param.start}" scope="session" />
-			</c:otherwise>
-		</c:choose>
-
+			</c:otherwise>		</c:choose>
 		<ul>
-			<!-- 이전버튼 -->
+		<!-- 이전버튼 -->
 			<c:choose>
 				<c:when test="${start > 1 }">
-					<li><button class="paging_bf"
-							onclick="location.href='mypage?start=${start-1}'">&lt;</button></li>
+					<li><button class="paging_bf" onclick="location.href='mypage?start=${start-1}'">&lt;</button></li>
 				</c:when>
-
 				<c:otherwise>
 					<li><button class="paging_bf" disabled="disabled">&lt;</button></li>
 				</c:otherwise>
 			</c:choose>
-			<!-- 전체 글수 를 계산하여 페이지수 보여주기 -->
+			
+			<!--mypage 를 계산하여 페이지수 보여주기 -->
 			<c:forEach begin="1" end="${pc.totEndPage}" var="cnt">
 				<c:choose>
 					<c:when test="${start == cnt}">
@@ -143,11 +92,11 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
+			
 			<!-- 다음 버튼 -->
 			<c:choose>
 				<c:when test="${start < pc.totEndPage }">
-					<li><button class="paging_af"
-							onclick="location.href='mypage?start=${start+1}'">&gt;</button></li>
+					<li><button class="paging_af" onclick="location.href='mypage?start=${start+1}'">&gt;</button></li>
 				</c:when>
 				<c:otherwise>
 					<li><button class="paging_af" disabled="disabled">&gt;</button></li>

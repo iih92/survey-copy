@@ -14,30 +14,43 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession session;
 
-	public void changePw(MemberDTO dto) {
-		System.out.println(dto.getNick() +"nick");
-		session.update(namespace + ".changePw", dto);
-	}
-
-	//회원가입	
+	//[회원가입]
 	public void singUp(MemberDTO dto) {
 		session.insert(namespace+".singUp",dto);	
 	}
 	
-	//아이디 중복체크
+	//[아이디 중복체크]
 	public int checkOverId(String id) {	
 		return session.selectOne(namespace+".checkOverId",id);
 	}
 	
-	//닉네임 중복체크
+	//[닉네임 중복체크]
 	public int checkOverNick(String nick) {
 		return session.selectOne(namespace+".checkOverNick",nick);
 	}
 
-	//로그인
+	//[로그인]
 	public MemberDTO signIn(String id,String pw) {
 		return session.selectOne(namespace+".signIn", id);		 
 	}
 	
-
+	//[비밀번호 변경]
+	public void changePw(MemberDTO dto) {
+		session.update(namespace + ".changePw", dto);
+	}
+	
+	//[닉네임 변경]
+	public void changeNick(MemberDTO dto) {
+		session.update(namespace + ".changeNick", dto);
+	}
+	
+	//[포인트 저장]
+	public void addPoint(MemberDTO dto) {
+		session.update(namespace + ".addPoint", dto);
+	}
+	
+	//[포인트 가져오기]
+	public MemberDTO userPoint(MemberDTO dto) {
+		return session.selectOne(namespace+".userPoint", dto);	 
+	}
 }

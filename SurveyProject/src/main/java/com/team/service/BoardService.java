@@ -26,6 +26,7 @@ public class BoardService implements IBoardService {
 	@Autowired
 	private BoardDAO dao;
 
+	//[게시글 저장]
 	@Override
 	public int surveySave(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -53,6 +54,7 @@ public class BoardService implements IBoardService {
 		return dao.surveySave(dto);
 	}
 
+	//[게시글 가져오기]
 	@Override
 	public void surveySelect(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -70,6 +72,7 @@ public class BoardService implements IBoardService {
 		model.addAttribute("voteUser", voteUser);
 	}
 
+	//[게시글 수정하기 위한 페이지 가져오기]
 	@Override
 	public void surveyModify(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -78,6 +81,7 @@ public class BoardService implements IBoardService {
 		model.addAttribute("dto", dao.surveyModify(num));
 	}
 
+	//[게시글 수정하기]
 	@Override
 	public int surveyUpdate(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -105,11 +109,13 @@ public class BoardService implements IBoardService {
 		return dto.getNum();
 	}
 
+	//[게시글 다 가져오기]
 	@Override
 	public void surveyAllSelect(Model model) {
 		model.addAttribute("list", dao.surveyAllSelect());
 	}
 
+	//[게시글 삭제]
 	@Override
 	public void surveyDelete(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -119,6 +125,7 @@ public class BoardService implements IBoardService {
 
 	}
 
+	//[게시글 검색]
 	@Override
 	public void surveySearch(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -129,6 +136,7 @@ public class BoardService implements IBoardService {
 
 	}
 
+	//[투표결과 저장하기]
 	@Override
 	public int surveyVote(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -163,6 +171,7 @@ public class BoardService implements IBoardService {
 		return num;
 	}
 
+	//[투표결과 가져오기]
 	@Override
 	public String[] surveyResult(Model model) {
 		Map<String,Object> map = model.asMap();
@@ -216,6 +225,7 @@ public class BoardService implements IBoardService {
 		// start 값 가져오기
 		if(request.getParameter("start") == null ) start = 0;
 		else start = Integer.parseInt(request.getParameter("start"));
+
 		// 맨처음 리뷰게시판 들어올때 
 		if(start == 0) start=1;      
 		// 페이지에 보여줄 게시글 갯수
@@ -240,11 +250,7 @@ public class BoardService implements IBoardService {
 	private int getTotalPage() {
 		return dao.getTotalPage();
 	}
-	
-	@Override
-	public void page_board_list(Model model) {
-		model.addAttribute("list", dao.page_board_list(pagingNum(model)));
-	}
+
 	
 	/*마이페이지_내가 등록한 설문조사 페이징*/
 	@Override
@@ -288,6 +294,24 @@ public class BoardService implements IBoardService {
 	@Override
 	public void page_board_list_nick(Model model) {
 		model.addAttribute("list", dao.page_board_list_nick(pagingNum_nick(model)));
+	}
+	
+	public void page_board_list(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");		
+		HttpSession session = request.getSession(); 
+		
+		try {
+			if(session.getAttribute("lineupSession") == null) {
+				model.addAttribute("list", dao.page_board_list(pagingNum(model)));
+			} else if(session.getAttribute("lineupSession").equals("1")) {
+				model.addAttribute("list", dao.page_board_list(pagingNum(model)));
+			} else if(session.getAttribute("lineupSession").equals("2")) {
+	 			model.addAttribute("list", dao.page_board_list_dead((pagingNum(model))));
+			} else if(session.getAttribute("lineupSession").equals("3")) {
+				model.addAttribute("list", dao.page_board_list_hit((pagingNum(model))));
+			}	
+		} catch(NullPointerException e) {}
 	}
 	/*---------------------------------------------------------------------------------*/
 	

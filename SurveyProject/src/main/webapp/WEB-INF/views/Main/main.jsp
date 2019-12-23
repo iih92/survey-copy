@@ -21,12 +21,49 @@
 
 <!-- 헤더 / 푸터 인식용 추가 -->
 <script src="resources/jquery-3.4.1.js"></script>
+<script>
+
+$(document).ready(function(){
+	$("#recentLineup").click(function(){
+		var form = document.createElement("form"); 
+		form.setAttribute("charset", "UTF-8");
+		form.setAttribute('method', 'post');
+		form.setAttribute('action', 'lineupMain');
+		var hiddenField = document.createElement('input');
+		hiddenField.setAttribute('type', 'hidden');
+		hiddenField.setAttribute('name', 'lineup');
+		hiddenField.setAttribute('value', '1');
+		form.appendChild(hiddenField);
+		document.body.appendChild(form);
+		form.submit();
+	    }); 
+	$("#deadLineup").click(function(){
+		$.post("lineupMain", {
+			lineup : "2"
+		},function(data){
+			console.log("dead here");
+			location.href="mainpage";
+            }); 
+	    }); 
+	$("#hitLineup").click(function(){
+		$.post("lineupMain", {
+			lineup : "3"
+		},function(data){
+			console.log("hit here");
+			location.href="mainpage";
+            }); 
+	    }); 
+	});
+
+</script>
 <link rel='stylesheet prefetch'
 	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
 <style type="text/css">
+	#hitLineup, #deadLineup, #recentLineup {
+		cursor: pointer;
+	}
 </style>
-
 
 </head>
 
@@ -115,9 +152,31 @@
 
 				<!-- new box mini 시작구역 ---------------------------------------------------------------------------->
 				<div class="new">
-					<h3>&nbsp;&nbsp;NEW SURVEY</h3>
+					<h3>&nbsp;&nbsp;NEW SURVEY
+					
+						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;color:black;">
+							정렬: 
+							<span id="recentLineup" 
+									<c:if test="${ lineupSession == '1' }">style=" font-weight:bold;" </c:if>
+							>최신 </span>
+							
+							<span style="color:#ff8b02;">|</span> 
+	
+							<span id="deadLineup" 		
+								<c:if test="${ lineupSession == '2' }">style=" font-weight:bold;" </c:if> 
+							>마감 임박</span>
+							
+							<span style="color:#ff8b02;">|</span> 
+							
+							<span id="hitLineup" 		
+								<c:if test="${ lineupSession == '3' }">style=" font-weight:bold;" </c:if>
+							>조회 수</span>  
+							
+							<span style="color:#ff8b02;">|</span> 
+						</span>
+					</h3>			
 				</div>
-
+ 				
 				<c:forEach var="dto" items="${ list }">
 					<div class="boxmini">
 						<a href="boarddetail?num=${dto.num }"> <!-- mouse over -->
@@ -136,7 +195,7 @@
 							</div>
 						</a>
 					</div>
-				</c:forEach>
+				</c:forEach> 
 				<!--  boxmini end-------------------------------------------------------------------------------->
 
 			</div>
@@ -162,7 +221,6 @@
 							<li><button class="paging_bf"
 									onclick="location.href='mainpage?start=${start-1}'">&lt;</button></li>
 						</c:when>
-
 						<c:otherwise>
 							<li><button class="paging_bf" disabled="disabled">&lt;</button></li>
 						</c:otherwise>

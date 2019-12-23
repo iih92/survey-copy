@@ -11,19 +11,13 @@
 <!-- 헤더 / 푸터 인식용 추가 -->
 <script src="resources/jquery-3.4.1.js"></script>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
-
-<script src="resources/jquery-3.4.1.js"></script>
-
 <script>
-
-function reReply(){
-	
-	console.log("reReply() function here");
-	
+function reReply(){	
+	console.log("reReply() function here");	
 }
 
 $(document).ready(function(){
-	
+
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
@@ -33,11 +27,12 @@ $(document).ready(function(){
 		 $("#surveySave").attr('disabled', true);
 		 $("#surveySave").css('background-color','gray');
 	}
-	
+
 	/*--------------- 답글 등록창을 띄우는 부분---------------- */
 	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
 	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
 	$('.reReplyWrite').hide();
+	$('.replyUpdateSeconddiv').hide();
 	// 클래스 Rspan은 "답글" 에 달려있다. 
 	$('.Rspan').click(function(e){
 		
@@ -55,25 +50,60 @@ $(document).ready(function(){
 			$('#reReply'+this_id).show();
 		}
 	});
-	
-	
-	/*------------답글 등록창의 취소부분 -----------------       */
-	$('.reReplyWriteCancel').click(function(e){
+
+	/*------------답글 등록창의 취소부분 -----------------*/
+	$('.reReplyWriteCancel').click(function(e){	
+		$('.reReplyWrite').hide();	
+	});
+	/*------------------------------------------------------- */
+ 
+	/*---------------------------  댓글 삭제       ---------------------------- */
+	$('.replyDelete').click(function(e){
 		
-		$('.reReplyWrite').hide();
-		
+		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 repleyDelete38 이런식으로 써져있습니다.. 
+		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
+		  										// 문자열을 잘라서 38만 가져올것입니다..
+		  var cnum_length = temp.length - 12; // 12는 repleyDelete 의 길이임..  
+		  										// 총 길이에서 replyDelete 만큼 빼면
+		  										// 숫자의 길이가 나온다
+		  var cnum = temp.substr(12,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
+		  
+		  location.href = 'replyDelete?num=${dto.num}&cnum='+cnum;
+		  // 이렇게 하면.. num 과 cnum 둘다 request.getPar 로 얻을수있다.. 그럼 삭제도 시킬수있음..
 	});
 	
-	/*------------------------------------------------------- */
+	$('.replyUpdateSpan').click(function(e){
+		
+		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 replyUpdate38 이런식으로 써져있습니다.. 
+		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
+		  										// 문자열을 잘라서 38만 가져올것입니다..
+		  var cnum_length = temp.length - 11; // 12는 replyUpdate 의 길이임..  
+		  										// 총 길이에서 replyUpdate 만큼 빼면
+		  										// 숫자의 길이가 나온다
+		  var cnum = temp.substr(11,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
 
+		  var content = $('#replycontent'+cnum).text();
+		  
+		  $('.replyUpdatediv').show();
+		  $('.replyUpdateSeconddiv').hide();
+		  $('#replyUpdatediv'+cnum).hide();
+		  $('#replyUpdateSeconddiv'+cnum).show();	  
+	});
+	
+	$('.replyUpdateCancel').click(function(e){
+		
+			$('.replyUpdatediv').show();
+		  $('.replyUpdateSeconddiv').hide();
+		  
+	}); 
 });
+
 </script>
 
 <style type="text/css">
+	body{ background-color: gainsboro;}
 
-		body{ background-color: gainsboro;}
-        
-	     .main{
+    .main{
             width: 75%;
             height: 100%;
 			margin : 5% 0% 3% 8%;
@@ -176,7 +206,23 @@ $(document).ready(function(){
 		font-weight: 500;
 		margin-left: 91%;		
 		}
-
+		
+	.resultButton{
+		border: none;
+		color: #fff;
+		/* padding: 1% 45% 1% 45%; */
+		text-align: right;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 30px;
+		cursor: pointer;
+		background-color: #01aef0;
+		border-radius: 4px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 500;
+		margin-left: 85%;	
+		margin-top: 2%;
+	}
 
 /* 댓글 테이블 CSS */
  .sReply table {
@@ -224,7 +270,7 @@ $(document).ready(function(){
 
 	<%@include file="../include/header.jsp" %>	
 	<fmt:formatDate var="deadline" value="${ dto.deadline }" pattern="yyyy-MM-dd"/>
-	<form action="vote">
+	<form action="vote" id="voteForm">
 		<input type="hidden" name="num" value="${ dto.num }">
 		<div class="main">
 		   <input type="hidden" id="code" value="${code}">   
@@ -238,8 +284,9 @@ $(document).ready(function(){
 	
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
-				<input type="button" class=modify onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
-				<input type="button" class=delButton onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
+				<input type="button" class="modify" onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
+				<input type="button" class="delButton" onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
+				<input type="button" class="resultButton" onclick="location.href='result?num=${dto.num}'" value="결과보기">
 			</c:when>
 			
 			<c:otherwise>
@@ -247,9 +294,7 @@ $(document).ready(function(){
 			</c:otherwise>
 		</c:choose>
 	</form>
-	
-	
-	
+
 	<!-- 댓글 div 추가 -->
 	<div class=reply style="background-color:gainsboro; margin-top: 5%;"> 
 		<!-- 전체 댓글창 -->
@@ -269,7 +314,7 @@ $(document).ready(function(){
                 
                 <td style="text-align: right; color: #747474">
                 	<c:if test="${ loginUser == dto.nick }">
-                	수정 | 삭제 |
+                	<span class="replyUpdateSpan" id="replyUpdate${dto.getCNum() }">수정</span> | <span class="replyDelete" id="repleyDelete${dto.getCNum() }">삭제</span> |
                 	</c:if>
                 	
                 	<c:if test="${ dto.depth == 0 }">
@@ -279,15 +324,33 @@ $(document).ready(function(){
                 </td>
             </tr>
             <tr>
+            	 
             	<td class="sReplytd" colspan=3 >
             	<c:if test="${ dto.depth > 0 }">&nbsp;&nbsp;&nbsp;</c:if>
-            	${ dto.content}
-            	
-            	<c:choose>
-            		<c:when test="${ dto.depth > 0 }"><br>&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #747474;">${ dto.getCDate() }</font></c:when>
-            		<c:otherwise><br><font style="color: #747474;">${dto.getCDate()}</font></c:otherwise>
-            	</c:choose>
-            	
+            	 	<span class="replyUpdatediv" id="replyUpdatediv${dto.getCNum() }">
+         
+            			<span class="replycontent" id="replycontent${dto.getCNum() }" style="white-space: pre-line;">${ dto.content}</span>
+              
+			            <c:choose>
+			           		<c:when test="${ dto.depth > 0 }"><br>&nbsp;&nbsp;&nbsp;&nbsp;<font style="color: #747474;">${ dto.getCDate() }</font></c:when>
+			           		<c:otherwise><br><font style="color: #747474;">${dto.getCDate()}</font></c:otherwise>
+			           	</c:choose>
+            		</span>
+            		
+            		<div class="replyUpdateSeconddiv" id="replyUpdateSeconddiv${dto.getCNum() }">
+            		
+            		
+            			<form method=post action=replyUpdate>
+    	        			<input type="hidden" name="hnum" value="${dto.num }">
+	    		        	<input type="hidden" name="cnum" value="${dto.getCNum() }">
+            				<textarea name=replyUpdate style="resize: none;  width:85%; height:50px;">${dto.content}</textarea>
+            				<input type="submit" class="RereplyBt" value="등록">
+            				<span class="replyUpdateCancel" style="color: #747474; padding-top: 10%; ">취소</span>
+            			</form>
+            		
+            		
+            		</div>
+            		 
             	<hr>
             	
             	</td>	
@@ -309,10 +372,7 @@ $(document).ready(function(){
             	 </td>
             </tr>
             </c:forEach>
-            
-            
-            
-            
+
             </table>
 		</div>
 	
@@ -326,10 +386,7 @@ $(document).ready(function(){
 		</div>
 	<br>
 	</div>
-	
-	
-	
-	
+
 	<%@include file="../include/footer.jsp" %>
 
 </body>

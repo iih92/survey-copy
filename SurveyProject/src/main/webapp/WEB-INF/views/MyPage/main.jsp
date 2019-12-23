@@ -10,6 +10,7 @@
 <script src="resources/MyPage/mypage.js" type="text/javascript"></script>
 <link href="resources/MyPage/mypage.css" rel="stylesheet">
 
+
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 </head>

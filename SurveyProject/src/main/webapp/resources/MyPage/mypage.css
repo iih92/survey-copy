@@ -131,7 +131,7 @@ hr {
 /*내 설문조사 css*/
 .RegisterSurbey{
 	width: 70%;
-	height: 100%;
+	height: auto;
 	margin: auto;
 	margin-top :2%;
 	border-collapse: collapse;
@@ -149,7 +149,7 @@ hr {
 }
 
 .RegisterSurbey td, th{
-	padding: 2.5%;
+	padding: 3%;
 }
 
 .RegisterSurbey th{

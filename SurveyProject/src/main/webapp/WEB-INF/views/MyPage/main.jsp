@@ -46,8 +46,8 @@
                   <ul>
                      <li id="navM1">내 정보 변경</li>
                      <li id="navM2">포인트 내역 열람</li>
-                     <li id="navM3">내 설문조사</li>
-                     <li id="navM4">최근 설문조사</li>
+                     <li id="navM3">나의 설문조사</li>
+                     <li id="navM4">최근 참여한 설문조사</li>
                      <li id="navM5">나비게이션 바 메뉴5</li>
                      <li id="navM6">나비게이션 바 메뉴6</li>
                   </ul>

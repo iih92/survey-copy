@@ -220,7 +220,8 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");	
 		//세션값 받아오기
 		HttpSession session = request.getSession();
-		String loginUser = (String) session.getAttribute("loginUser");		
+		String loginUser = (String) session.getAttribute("loginUser");
+		
 		int start = 0;
 		// start 값 가져오기
 		if(request.getParameter("start") == null ) start = 0;
@@ -260,7 +261,7 @@ public class BoardService implements IBoardService {
 		//세션값 받아오기
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");	
-		System.out.println("로그인 유저"  + loginUser);
+		
 		int start = 0;
 		// start 값 가져오기
 		if(request.getParameter("start") == null ) start = 0;
@@ -268,7 +269,7 @@ public class BoardService implements IBoardService {
 		// 맨처음 리뷰게시판 들어올때 
 		if(start == 0) start=1;      
 		// 페이지에 보여줄 게시글 갯수
-		int pageNum=8;
+		int pageNum=2;
 		// 전체 게시글 갯수 가져오기
 		int totalPage = getTotalPage_nick(loginUser);
 		// 전체 게시글 갯수 / 페이지 보여줄 게시글 갯수 + (나머지 값이 있으면 + 1) 마지막 페이지 번호를 정하는 식

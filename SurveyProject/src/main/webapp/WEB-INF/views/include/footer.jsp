@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="resources/include/footer.css">
 <div class="content"></div>
+
 <footer>
 	<div class="footer">
 		<div class="sentence">

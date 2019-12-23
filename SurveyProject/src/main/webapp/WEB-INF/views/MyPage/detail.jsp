@@ -53,7 +53,7 @@
 
 	<c:forEach var="dto" items="${list}">
 		<c:if test="${dto.nick eq loginUser}">
-			<tr onclick="location.href='result?num=${dto.num}'">
+			<tr onclick="location.href='boarddetail?num=${dto.num}'">
 			<td>${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
 			</tr>	
 		</c:if>
@@ -85,10 +85,10 @@
 			<c:forEach begin="1" end="${pc.totEndPage}" var="cnt">
 				<c:choose>
 					<c:when test="${start == cnt}">
-						<li><a href="mypage?start=${cnt}" class="focus">${cnt }</a></li>
+						<li><a href="mypage?start=${cnt}" class="focus">${cnt}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="mypage?start=${cnt}" class="nofocus">${cnt }</a></li>
+						<li><a href="mypage?start=${cnt}" class="nofocus">${cnt}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -113,20 +113,13 @@
 <!-- 최근 참여한 설문조사 -------------------------------------------------------------------------------------------->
 <div id="test4" style="text-align:center;   height:500px;">
 
-<div class="RegisterSurbey">
-<hr>	
-	<nav class="Registernav" >
-	<ul class="Registernav" > <li>설문조사 제목</li> <li>마감날짜</li> <li>조회수</li> <li>포인트</li> </ul>
-	</nav>
+<table class="RegisterSurbey">
+	<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 	
 	<c:forEach var="Tdto" items="${Tdto}">
-		<div class="box">
-		<nav class="Registernav" >
-		<ul> <li>${Tdto.title}</li> <li>${Tdto.deadline}</li> <li>${Tdto.hit}</li> <li>${Tdto.point}</li> </ul>
-		</nav>
-		</div>
+		<tr><td>${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
 	</c:forEach>
-</div>
+</table>
 
 </div>
 <!-- 최근 참여한 설문조사 끝------------------------------------------------------------------------------------------>

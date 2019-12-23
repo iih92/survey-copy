@@ -1,3 +1,4 @@
+document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
 	$("#navM1").click(function(){
 		$.ajax({
@@ -98,7 +99,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+
 	$("#navM2").click(function(){
 		$.ajax({
 			url: "mypage",
@@ -111,13 +112,66 @@ $(document).ready(function(){
 			}
 		});
 	}); 
-
+	
 	$("#navM3").click(function(){
 		$.ajax({
 			url: "mypage",
 			type: "GET",
 			success: function() {
-				$('#sectionMy').load("../survey/detail #test3");   
+				$('#sectionMy').load("../survey/detail #test3", function() {
+					$(".focus, .nofocus").click(function(){
+						$(".focus, .nofocus").css({
+							float: 'left',
+							padding: '4px',
+							'margin-right': '3px',
+							width: '35px',
+							color: '#474c4c',
+							font: '20px tahoma',
+							'font-weight': '500',
+							border: '1px solid #d2d2d2',
+							'text-align': 'center',
+							'text-decoration': 'none',
+							'border-radius': '50%',
+							'background-color': "white"
+						});
+						var cnt = $(this).attr('value');
+						var output = "";
+						$(this).css({
+							color: "white",
+							border: "1px solid #01aef0",
+							'background-color': "#01aef0",
+							float: "left",
+							padding: "4px",
+							'margin-right': '3px',
+							width: '35px',
+							font: '20px tahoma',
+							'font-weight': '500',
+							'text-align': 'center',
+							'text-decoration': 'none',	
+							'border-radius': '50%'
+						});
+						$.ajax({
+							url: "page.do?start="+cnt,
+							success: function(data) {
+								$(".RegisterSurbey").empty();
+								output += "<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>";
+								for (var i = 0; i < data.length; i++) {
+									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
+									console.log(deadline);
+									output += "<tr onclick=location.href='result?num="+data[i].num+"'>"
+									output += "<td>"+data[i].title+"</td>"
+									output += "<td>"+deadline+"</td>"
+									output += "<td>"+data[i].hit+"</td>"
+									output += "<td>"+data[i].point+"</td>"
+									output += "</tr>"
+								}
+								$(".RegisterSurbey").html(output);
+							}, error: function() {
+								alert("문제가 발생")
+							}
+						});
+					});
+				});   
 			},
 			error:function(){
 				alert("문제가 발생했습니다"); 
@@ -163,4 +217,165 @@ $(document).ready(function(){
 			}
 		});
 	});  
+	$("#navM1").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM1").css("background-color","white");
+				$("#navM1").css("font-weight","bold"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM1").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM1").css("background-color","#efefef");
+				$("#navM1").css("font-weight","normal"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM2").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM2").css("background-color","white");
+				$("#navM2").css("font-weight","bold"); 
+
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM2").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM2").css("background-color","#efefef");
+				$("#navM2").css("font-weight","normal"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM3").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM3").css("background-color","white");
+				$("#navM3").css("font-weight","bold"); 
+
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM3").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM3").css("background-color","#efefef");
+				$("#navM3").css("font-weight","normal"); 
+
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM4").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM4").css("background-color","white");
+				$("#navM4").css("font-weight","bold"); 
+
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM4").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM4").css("background-color","#efefef");
+				$("#navM4").css("font-weight","normal"); 
+
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM5").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM5").css("background-color","white");
+				$("#navM5").css("font-weight","bold"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM5").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM5").css("background-color","#efefef");
+				$("#navM5").css("font-weight","normal"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM6").mouseenter(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM6").css("background-color","white");
+				$("#navM6").css("font-weight","bold"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	}); 
+	$("#navM6").mouseleave(function(){
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$("#navM6").css("background-color","#efefef");
+				$("#navM6").css("font-weight","normal"); 
+			},
+			error:function(){
+				alert("문제가 발생했습니다"); 
+			}
+		});
+	});
 });

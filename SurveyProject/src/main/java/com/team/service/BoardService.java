@@ -1,11 +1,9 @@
 package com.team.service;
 
+
+
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.dao.BoardDAO;
 import com.team.dto.BoardDTO;
 import com.team.dto.PageCount;
+import com.team.dto.TakeSurvey;
 import com.team.dto.VoteDTO;
 
 @Service
@@ -63,10 +60,16 @@ public class BoardService implements IBoardService {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int num = Integer.parseInt(request.getParameter("num"));
+		
 		BoardDTO dto = dao.surveySelect(num);
 		String code = dto.getCode();
+		
+		/*설문 중복 참여 검사*/
+		String voteUser = dao.VoteSelect(num);
+		
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
+		model.addAttribute("voteUser", voteUser);
 	}
 
 	//[게시글 수정하기 위한 페이지 가져오기]
@@ -124,11 +127,12 @@ public class BoardService implements IBoardService {
 	//[게시글 검색]
 	@Override
 	public void surveySearch(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String hashtag = request.getParameter("hashtag");
 		model.addAttribute("list",dao.surveySearch(hashtag));
+		model.addAttribute("searchHash",hashtag);
+
 	}
 
 	//[투표결과 저장하기]
@@ -136,14 +140,20 @@ public class BoardService implements IBoardService {
 	public int surveyVote(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		//세션값 받아오기
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");	
+		
 		VoteDTO dto = new VoteDTO();
 		String result = "";
 		int num = Integer.parseInt(request.getParameter("num"));
 		Enumeration<Object> params = request.getParameterNames();
+		
 		while (params.hasMoreElements()){
 			String name = (String)params.nextElement();
 			if(name.equals("num")) {
 				dto.setNum(num);
+				dto.setNick(loginUser);
 			} else if(name.substring(0,1).equals("C")) {
 				String[] chbox = request.getParameterValues(name);
 				result += name + ":";
@@ -205,48 +215,85 @@ public class BoardService implements IBoardService {
 	/*페이징 처리--------------------------------------------------------------------*/
 	@Override
 	public PageCount pagingNum(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");	
+		//세션값 받아오기
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");		
 		int start = 0;
-
-		Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest)map.get("request");
-
 		// start 값 가져오기
 		if(request.getParameter("start") == null ) start = 0;
 		else start = Integer.parseInt(request.getParameter("start"));
-		
+
 		// 맨처음 리뷰게시판 들어올때 
 		if(start == 0) start=1;      
-
 		// 페이지에 보여줄 게시글 갯수
 		int pageNum=8;
-
 		// 전체 게시글 갯수 가져오기
 		int totalPage = getTotalPage();
-
 		// 전체 게시글 갯수 / 페이지 보여줄 게시글 갯수 + (나머지 값이 있으면 + 1) 마지막 페이지 번호를 정하는 식
 		int totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-
 		// 페이지 넘버를 눌렀을때 첫번째 상단에 보여줄 게시글 번호 
 		int startPage = (start - 1) * pageNum + 1;
-
 		// 페이지 넘버를 눌렀을 때 마지막에 보여줄 게시글 번호
 		int endPage = pageNum * start;
-
 		//PageCount dto에 변수 저장
 		PageCount pc = new PageCount();
 		pc.setTotEndPage(totEndPage);
 		pc.setStartPage(startPage);
 		pc.setEndPage(endPage);
-
 		model.addAttribute("pc", pc);
 		return pc;         
 	}
-
+	
 	private int getTotalPage() {
 		return dao.getTotalPage();
 	}
 
+	/*마이페이지_내가 등록한 설문조사 페이징*/
 	@Override
+	public PageCount pagingNum_nick(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");	
+		//세션값 받아오기
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");	
+		int start = 0;
+		// start 값 가져오기
+		if(request.getParameter("start") == null ) start = 0;
+		else start = Integer.parseInt(request.getParameter("start"));
+		// 맨처음 리뷰게시판 들어올때 
+		if(start == 0) start=1;      
+		// 페이지에 보여줄 게시글 갯수
+		int pageNum=8;
+		// 전체 게시글 갯수 가져오기
+		int totalPage = getTotalPage_nick(loginUser);
+		// 전체 게시글 갯수 / 페이지 보여줄 게시글 갯수 + (나머지 값이 있으면 + 1) 마지막 페이지 번호를 정하는 식
+		int totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
+		// 페이지 넘버를 눌렀을때 첫번째 상단에 보여줄 게시글 번호 
+		int startPage = (start - 1) * pageNum + 1;
+		// 페이지 넘버를 눌렀을 때 마지막에 보여줄 게시글 번호
+		int endPage = pageNum * start;
+		//PageCount dto에 변수 저장
+		PageCount pc = new PageCount();
+		pc.setTotEndPage(totEndPage);
+		pc.setStartPage(startPage);
+		pc.setEndPage(endPage);
+		pc.setNick(loginUser);
+		model.addAttribute("pc", pc);
+		return pc;         
+	}
+
+	private int getTotalPage_nick(String loginUser) {
+		return dao.getTotalPage_nick(loginUser);
+	}
+
+	@Override
+	public List<BoardDTO> page_board_list_nick(Model model) {
+		model.addAttribute("list", dao.page_board_list_nick(pagingNum_nick(model)));
+		return dao.page_board_list_nick(pagingNum_nick(model));
+	}
+	
 	public void page_board_list(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");		
@@ -264,5 +311,35 @@ public class BoardService implements IBoardService {
 			}	
 		} catch(NullPointerException e) {}
 	}
-	/*-----------------------------------------------------------------------*/
+	/*---------------------------------------------------------------------------------*/
+	
+	
+	/*참여한 설문조사 등록*/
+	@Override
+	public void takeSurbey(int num, Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		//세션값 받아오기
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");		
+		BoardDTO dto = dao.surveySelect(num);	
+		TakeSurvey Tdto = new TakeSurvey();
+		Tdto.setTitle(dto.getTitle());
+		Tdto.setPoint(dto.getPoint());
+		Tdto.setDeadline(dto.getDeadline());
+		Tdto.setHit(dto.getHit());
+		Tdto.setNick(loginUser);	
+		dao.takeSurbey(Tdto);
+	}
+	
+	/*참여한 설문조사 검색(최신순)*/
+	@Override
+	public void TakeSurbeySearch(Model model) {
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		//세션값 받아오기
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");		
+		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
+	}
 }

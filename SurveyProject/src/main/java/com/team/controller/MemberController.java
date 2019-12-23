@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.team.dto.MemberDTO;
+import com.team.service.IBoardService;
 import com.team.service.IMemberService;
 
 @Controller
@@ -24,6 +25,9 @@ public class MemberController {
 
 	@Autowired
 	private IMemberService service;
+	@Autowired
+	private IBoardService boardservice;
+	
 
 	//[회원가입]
 	@RequestMapping("signUp")
@@ -105,7 +109,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "detail")
-	public String detail() {
+	public String myDetail(Model model, HttpServletRequest request, HttpSession session) {
+		model.addAttribute("request",request);   
+		boardservice.page_board_list_nick(model);
+		boardservice.pagingNum_nick(model);		
+		boardservice.TakeSurbeySearch(model);
 		return "MyPage/detail";
 	}
 

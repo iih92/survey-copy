@@ -11,14 +11,23 @@
 <!-- 헤더 / 푸터 인식용 추가 -->
 <script src="resources/jquery-3.4.1.js"></script>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
-
-<script src="resources/jquery-3.4.1.js"></script>
 <script>
 function reReply(){	
 	console.log("reReply() function here");	
 }
 
 $(document).ready(function(){
+
+	/*참여한 설문조사 경고창*/
+	var loginUser = '${ loginUser }';
+	var voteUser = '${ voteUser }';
+	
+	if(loginUser == voteUser){
+		alert("참여한 설문조사 입니다.");
+		 $("#surveySave").attr('disabled', true);
+		 $("#surveySave").css('background-color','gray');
+	}
+
 	/*--------------- 답글 등록창을 띄우는 부분---------------- */
 	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
 	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
@@ -41,13 +50,13 @@ $(document).ready(function(){
 			$('#reReply'+this_id).show();
 		}
 	});
-	
-	
+
 	/*------------답글 등록창의 취소부분 -----------------*/
 	$('.reReplyWriteCancel').click(function(e){	
 		$('.reReplyWrite').hide();	
 	});
-	 
+	/*------------------------------------------------------- */
+ 
 	/*---------------------------  댓글 삭제       ---------------------------- */
 	$('.replyDelete').click(function(e){
 		
@@ -58,11 +67,11 @@ $(document).ready(function(){
 		  										// 총 길이에서 replyDelete 만큼 빼면
 		  										// 숫자의 길이가 나온다
 		  var cnum = temp.substr(12,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
-
 		  
 		  location.href = 'replyDelete?num=${dto.num}&cnum='+cnum;
 		  // 이렇게 하면.. num 과 cnum 둘다 request.getPar 로 얻을수있다.. 그럼 삭제도 시킬수있음..
 	});
+	
 	$('.replyUpdateSpan').click(function(e){
 		
 		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 replyUpdate38 이런식으로 써져있습니다.. 
@@ -73,34 +82,28 @@ $(document).ready(function(){
 		  										// 숫자의 길이가 나온다
 		  var cnum = temp.substr(11,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
 
-
-
 		  var content = $('#replycontent'+cnum).text();
 		  
 		  $('.replyUpdatediv').show();
 		  $('.replyUpdateSeconddiv').hide();
-		  
-
 		  $('#replyUpdatediv'+cnum).hide();
-		  $('#replyUpdateSeconddiv'+cnum).show();
-		  
+		  $('#replyUpdateSeconddiv'+cnum).show();	  
 	});
+	
 	$('.replyUpdateCancel').click(function(e){
 		
 			$('.replyUpdatediv').show();
 		  $('.replyUpdateSeconddiv').hide();
 		  
 	}); 
-	
 });
 
 </script>
 
 <style type="text/css">
+	body{ background-color: gainsboro;}
 
-		body{ background-color: gainsboro;}
-        
-	     .main{
+    .main{
             width: 75%;
             height: 100%;
 			margin : 5% 0% 3% 8%;
@@ -287,13 +290,11 @@ $(document).ready(function(){
 			</c:when>
 			
 			<c:otherwise>
-				<input type="button" class=surveySave value="등록">
+				<input type="submit" class="surveySave" id="surveySave" value="등록">
 			</c:otherwise>
 		</c:choose>
 	</form>
-	
-	
-	
+
 	<!-- 댓글 div 추가 -->
 	<div class=reply style="background-color:gainsboro; margin-top: 5%;"> 
 		<!-- 전체 댓글창 -->
@@ -371,10 +372,7 @@ $(document).ready(function(){
             	 </td>
             </tr>
             </c:forEach>
-            
-            
-            
-            
+
             </table>
 		</div>
 	
@@ -388,10 +386,7 @@ $(document).ready(function(){
 		</div>
 	<br>
 	</div>
-	
-	
-	
-	
+
 	<%@include file="../include/footer.jsp" %>
 
 </body>

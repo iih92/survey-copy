@@ -48,7 +48,7 @@
 	</select>
 
 	<insert id="surveyVote" parameterType="Vdto">
-		insert into vote(num,result) values(#{num}, #{result})
+		insert into vote(nick,num,result) values(#{nick},#{num}, #{result})
 	</insert>
 
 	<select id="surveyResult" resultType="Vdto">
@@ -59,20 +59,41 @@
 	<select id="board_getTotalPage" resultType="int">
 		select count(*) from board where deadline>=sysdate-1
 	</select>
+	
+	<select id="board_getTotalPage_nick"  parameterType="String" resultType="int">
+		select count(*) from board where nick=#{loginUser}
+	</select>
+	
+	<select id="board_pagingList_nick" parameterType="Pdto" resultType="Bdto">
+		select B.* from(select rownum rn, A.* from (select * from board where nick=#{nick} order by num 
+		desc)A)B where rn between #{startPage} and  #{endPage}
+	</select>
+	
+	<!-- 참여한 설문조사 등록 -->
+	<insert id="takeSurbey" parameterType="Tdto">
+		insert into TakeSurvey values(TakeSurvey_num.nextval,#{nick},#{title},#{deadline},#{hit},#{point})
+	</insert>
+	
+	<!-- 참여한 설문조사 검색(최신순) -->
+	<select id="TakeSurbeySearch" parameterType="String" resultType="Tdto">
+		select * from TAKESURVEY WHERE nick=#{loginUser} ORDER BY num DESC
+	</select>
+	
+	<select id="VoteSelect" parameterType="int" resultType="String">
+		select nick from VOTE where num=#{num}
+	</select>
 
 	<!-- 페이징 리스트 가져오기 -->
-	<select id="board_pagingList" parameterType="Pdto"
-		resultType="Bdto">
+	<select id="board_pagingList" parameterType="Pdto" resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by num
 		desc)A)B where rn between #{startPage} and #{endPage}
 	</select>
 	
-	<select id="board_pagingList_hit" parameterType="Pdto"
-		resultType="Bdto">
+	<select id="board_pagingList_hit" parameterType="Pdto" resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by hit
-		desc)A)B where rn between #{startPage} and #{endPage}	 
+		desc)A)B where rn between #{startPage} and #{endPage}
 	</select>
-	
+
 	<select id="board_pagingList_deadline" parameterType="Pdto"
 		resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by deadline

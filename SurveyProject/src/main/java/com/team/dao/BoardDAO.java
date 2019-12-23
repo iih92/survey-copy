@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team.dto.BoardDTO;
 import com.team.dto.PageCount;
+import com.team.dto.TakeSurvey;
 import com.team.dto.VoteDTO;
 
 @Repository
@@ -33,6 +34,11 @@ public class BoardDAO {
 		//[조회수 증가]
 		sqlsession.update(namespace + ".up", num);
 		return sqlsession.selectOne(namespace + ".surveySelect", num);
+	}
+	
+	/*설문조사 중복참여 검사*/
+	public String VoteSelect(int num) {
+		return sqlsession.selectOne(namespace + ".VoteSelect", num);
 	}
 
 	//[수정할 게시글 가져오기]
@@ -75,7 +81,7 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace + ".surveyResult", num);
 	}
 
-	/*Paging 메소드*/
+	/*Paging 메소드----------------------------------------------------------------*/
 	public int getTotalPage() {
 		return sqlsession.selectOne(namespace+".board_getTotalPage");
 	}
@@ -83,6 +89,25 @@ public class BoardDAO {
 	//[최신순으로 정렬하기]
 	public List<BoardDTO> page_board_list(PageCount pc) {
 		return sqlsession.selectList(namespace+".board_pagingList",pc);
+	}
+
+	/*마이페이지 - 페이징*/
+	public int getTotalPage_nick(String loginUser) {
+		return sqlsession.selectOne(namespace+".board_getTotalPage_nick", loginUser);
+	}
+	public List<BoardDTO> page_board_list_nick(PageCount pc) {
+		return sqlsession.selectList(namespace+".board_pagingList_nick",pc);
+	}
+	/*-----------------------------------------------------------------------------*/
+
+	/*참여 설문조사 등록*/
+	public void takeSurbey(TakeSurvey tdto) {
+		sqlsession.insert(namespace+".takeSurbey",tdto);	
+	}
+	
+	/*참여 설문조사 검색*/
+	public List<TakeSurvey> TakeSurbeySearch(String loginUser) {
+		return sqlsession.selectList(namespace+".TakeSurbeySearch",loginUser);
 	}
 	
 	//[마감 날짜로 정렬하기]

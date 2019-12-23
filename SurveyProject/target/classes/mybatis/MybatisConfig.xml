@@ -10,5 +10,6 @@
 			<typeAlias type="com.team.dto.VoteDTO" alias="Vdto"/>
 			<typeAlias type="com.team.dto.PageCount" alias="Pdto"/>
 			<typeAlias type="com.team.dto.ReplyDTO" alias="Rdto"/>
+			<typeAlias type="com.team.dto.TakeSurvey" alias="Tdto"/>
 		</typeAliases>
 	</configuration>

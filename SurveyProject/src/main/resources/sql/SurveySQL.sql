@@ -40,3 +40,21 @@ create table reply (
   intent number default 0
 );
 create sequence reply_num;
+
+/*등록한 설문조사 테이블*/
+create table TakeSurvey(
+  num NUMBER,
+  nick varchar2(4000),
+  title varchar2(4000),
+  deadline DATE,
+  hit number DEFAULT 0,
+  point number 
+);
+create SEQUENCE TakeSurvey_num;
+
+/*vote 테이블 수정*/
+create table vote(
+  nick varchar2(4000),
+  num number,
+  result varchar2(4000)
+);

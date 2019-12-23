@@ -85,12 +85,14 @@ public class BoardController {
 		service.surveySearch(model);
 		return "board/search";
 	}
-
+	
 	@RequestMapping(value="vote")
 	public String vote(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
 		int num = service.surveyVote(model);
 		redirect.addAttribute("num", num);
+		/*참여한 설문조사 저장하기*/
+		service.takeSurbey(num, model);
 		return "redirect:result";
 	}
 

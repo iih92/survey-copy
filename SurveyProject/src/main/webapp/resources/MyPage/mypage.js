@@ -19,6 +19,7 @@ $(document).on('click','#navM1',function(){
 
 /*------------------------------------------*/
 $(document).ready(function(){
+	
 	$("#navM2").click(function(){
 		$.ajax({
 			url: "mypage",
@@ -41,6 +42,7 @@ $(document).ready(function(){
 		});
 	}); 
 
+	
 	$("#navM3").click(function(){
 		$.ajax({
 			url: "mypage",
@@ -283,5 +285,5 @@ $(document).ready(function(){
 				alert("문제가 발생했습니다"); 
 			}
 		});
-	}); 
+	});
 });

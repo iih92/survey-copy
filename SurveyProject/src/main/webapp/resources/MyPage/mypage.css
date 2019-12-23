@@ -126,3 +126,104 @@ hr {
    border-style: inset;
    border-width: 1px;
 }
+
+
+/*내 설문조사 css*/
+.RegisterSurbey{
+	width: 70%;
+	height: 100%;
+	margin: auto;
+	margin-top :2%;
+	border-collapse: collapse;
+}
+
+.RegisterSurbey tr{
+	padding: 15px 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #818484;    
+    color:#474c4c;
+}
+
+.RegisterSurbey tr:hover{
+	background-color: #9c9c9c6b;
+}
+
+.RegisterSurbey td, th{
+	padding: 2.5%;
+}
+
+.RegisterSurbey th{
+	background-color:#818484; 
+	color:white;
+}
+
+
+
+
+
+/*페이징 css*/
+.paging ul {
+	margin-left: 40%;
+	margin-top: 2.5%;
+	list-style: none;
+	float: left;
+	display: inline;
+}
+
+.paging ul li {
+	float: left;
+}
+
+.paging ul li a:hover, ul li a:focus {
+	color: #fff;
+	border: 1px solid #01aef0;
+	background-color: #01aef0;
+}
+
+.paging_bf, .paging_af {
+	padding: 4px;
+	margin-right: 3px;
+	width: 35px;
+	color: #474c4c;
+	font: 20px tahoma;
+	font-weight: 500;
+	border: 1px solid #d2d2d2;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 50%;
+}
+
+.paging_bf:hover, .paging_bf:focus, .paging_af:hover, .paging_af:focus {
+	color: #fff;
+	border: 1px solid #adacac;
+	background-color: #adacac;
+}
+
+.focus {
+	color: white;
+	border: 1px solid #01aef0;
+	background-color: #01aef0;
+	float: left;
+	padding: 4px;
+	margin-right: 3px;
+	width: 35px;
+	font: 20px tahoma;
+	font-weight: 500;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 50%;
+}
+
+.nofocus {
+	float: left;
+	padding: 4px;
+	margin-right: 3px;
+	width: 35px;
+	color: #474c4c;
+	font: 20px tahoma;
+	font-weight: 500;
+	border: 1px solid #d2d2d2;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 50%;
+}

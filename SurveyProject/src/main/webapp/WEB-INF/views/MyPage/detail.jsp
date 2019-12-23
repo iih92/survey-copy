@@ -9,8 +9,10 @@
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
 <div id="test1" style="text-align:left; height:1000px;  ">
 	<div class="title">
-		<font id="p">내정보 변경</font><br>
+	<div>
+		<font id="p">내정보 변경</font><br><br>
 		비밀번호와 닉네임을 수정 하실 수 있습니다.
+	</div>
 	</div>
 	<hr>
 	<div class="content">

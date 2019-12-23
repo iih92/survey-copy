@@ -119,7 +119,6 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");	
 		int num = Integer.parseInt(request.getParameter("num"));
 		model.addAttribute("dto", dao.surveyDelete(num));
-
 	}
 
 	//[게시글 검색]

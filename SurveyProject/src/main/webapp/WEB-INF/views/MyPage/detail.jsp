@@ -46,11 +46,15 @@
 	</div>
 </div>
 
-<div id="test2" style="text-align:center;  	height:100%;">테스트2  예시</div>
+<div id="test2" style="text-align:center;">테스트2  예시</div>
 
 <!-- 내가 등록한 설문조사 -------------------------------------------------------------------------------->
+<<<<<<< HEAD
 <div id="test3" style="text-align:center;   height:500px;">
 	<input type="hidden" value="${pc.totEndPage}" id="endpage">
+=======
+<div id="test3" style="text-align:center;">
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 	
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
@@ -132,11 +136,47 @@
 	<!-- 페이징 끝 ---------------------------------------------------------------------------------------->
 
 </div>
+<<<<<<< HEAD
+=======
+<!----내가 등록한 설문조사 끝----------------------------------------------------------------------------------------->
+
+
+<!-- 최근 참여한 설문조사 -------------------------------------------------------------------------------------------->
+<div id="test4" style="text-align:center;">
+
+<div class="RegisterSurbey">
+<hr>	
+	<nav class="Registernav" >
+	<ul class="Registernav" > <li>설문조사 제목</li> <li>마감날짜</li> <li>조회수</li> <li>포인트</li> </ul>
+	</nav>
+	
+	<c:forEach var="Tdto" items="${Tdto}">
+		<div class="box">
+		<nav class="Registernav" >
+		<ul> <li>${Tdto.title}</li> <li>${Tdto.deadline}</li> <li>${Tdto.hit}</li> <li>${Tdto.point}</li> </ul>
+		</nav>
+		</div>
+	</c:forEach>
+</div>
+
+</div>
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 <!-- 최근 참여한 설문조사 끝------------------------------------------------------------------------------------------>
 
+<<<<<<< HEAD
 
 <div id="test5" style="text-align:center;   height:500px;">테스트5  예시</div>
 <div id="test6" style="text-align:center;   height:500px;">테스트6  예시</div>
+=======
+<div id="test5" style="text-align:center;">테스트5  예시</div>
+<div id="test6" style="text-align:center;">
+	<form >
+		<input type="password" name="pw">
+		<input type="button" id="" value="회원 탈퇴하기">	
+	</form>
+	
+</div>
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 
 </body>
 </html>

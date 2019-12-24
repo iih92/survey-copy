@@ -108,12 +108,15 @@ public class MemberController {
 		return "MyPage/main";
 	}
 	
+	//[mypage - detail]
 	@RequestMapping(value = "detail")
 	public String myDetail(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request);   
 		boardservice.page_board_list_nick(model);
-		boardservice.pagingNum_nick(model);		
+		boardservice.pagingNum(model,2);		
 		boardservice.TakeSurbeySearch(model);
+		boardservice.page_board_list_take(model);
+		boardservice.pagingNum(model,3);
 		return "MyPage/detail";
 	}
 

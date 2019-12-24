@@ -91,13 +91,20 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList",pc);
 	}
 
-	/*마이페이지 - 페이징*/
+	/*마이페이지 - 등록한 설문조사*/
 	public int getTotalPage_nick(String loginUser) {
-		System.out.println(loginUser);
 		return sqlsession.selectOne(namespace+".board_getTotalPage_nick", loginUser);
 	}
 	public List<BoardDTO> page_board_list_nick(PageCount pc) {
 		return sqlsession.selectList(namespace+".board_pagingList_nick",pc);
+	}
+	
+	/*마이페이지 - 최근 설문조사*/
+	public int getTotalPage_take(String loginUser) {
+		return sqlsession.selectOne(namespace+".getTotalPage_take", loginUser);
+	}
+	public List<TakeSurvey> page_board_list_take(PageCount pc) {
+		return sqlsession.selectList(namespace+".board_pagingList_take",pc);
 	}
 	/*-----------------------------------------------------------------------------*/
 
@@ -120,5 +127,6 @@ public class BoardDAO {
 	public List<BoardDTO> page_board_list_hit(PageCount pc) {
 		return sqlsession.selectList(namespace+".board_pagingList_hit",pc);
 	}
+
 
 }

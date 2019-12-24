@@ -55,7 +55,7 @@
             </div>
 
             <div id=sectionMy>
-               <div>여기는 섹션.. ㄴㄴㅇ</div>
+
             </div>
          </div>
       </div>

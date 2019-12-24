@@ -172,7 +172,7 @@ hr {
 	float: left;
 }
 
-.paging ul li a:hover, ul li a:focus {
+.paging ul li a:hover, ul li a:focus  {
 	color: #fff;
 	border: 1px solid #01aef0;
 	background-color: #01aef0;

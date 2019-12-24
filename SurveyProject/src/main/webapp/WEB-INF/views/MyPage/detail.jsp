@@ -7,6 +7,7 @@
 
 <script src="resources/jquery-3.4.1.js"></script>
 <script src="resources/MyPage/mypage.js" type="text/javascript"></script>
+<script src="resources/MyPage/moment.js"></script>
 <link href="resources/MyPage/mypage.css" rel="stylesheet">
 
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -17,8 +18,10 @@
 <!-- 내 정보 변경 -->
 <div id="test1" style="text-align:left; height:1000px;  ">
 	<div class="title">
-		<font id="p">내정보 변경</font><br>
+	<div>
+		<font id="p">내정보 변경</font><br><br>
 		비밀번호와 닉네임을 수정 하실 수 있습니다.
+	</div>
 	</div>
 	<hr>
 	<div class="content">
@@ -47,6 +50,7 @@
 
 <!-- 내가 등록한 설문조사 -------------------------------------------------------------------------------->
 <div id="test3" style="text-align:center;   height:500px;">
+	<input type="hidden" value="${pc.totEndPage}" id="endpage">
 	
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
@@ -61,57 +65,40 @@
 	</table>
 	
 	<!-- 페이징 DIV ---------------------------------------------------------------------------------------->
-	<div class="paging">
-		<!-- param.start 값 지정 -->
-		<c:choose>
-			<c:when test="${param.start == null }">
-				<c:set var="start" value="1" scope="session" />
-			</c:when>
-			<c:otherwise>
-				<c:set var="start" value="${param.start}" scope="session" />
-			</c:otherwise>		</c:choose>
+	<div class="paging">	
 		<ul>
 		<!-- 이전버튼 -->
-			<c:choose>
-				<c:when test="${start > 1 }">
-					<li><button class="paging_bf" onclick="location.href='mypage?start=${start-1}'">&lt;</button></li>
-				</c:when>
-				<c:otherwise>
-					<li><button class="paging_bf" disabled="disabled">&lt;</button></li>
-				</c:otherwise>
-			</c:choose>
-			
+		<li><button class="paging_bf" disabled="true">&lt;</button></li>
+
 			<!--mypage 를 계산하여 페이지수 보여주기 -->
 			<c:forEach begin="1" end="${pc.totEndPage}" var="cnt">
 				<c:choose>
-					<c:when test="${start == cnt}">
-						<li><a href="mypage?start=${cnt}" class="focus">${cnt}</a></li>
+					<c:when test="${1 == cnt}">
+						<li><a id="num${cnt}" value="${cnt}" class="focus">${cnt }</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="mypage?start=${cnt}" class="nofocus">${cnt}</a></li>
+						<li><a id="num${cnt}" value="${cnt}" class="nofocus">${cnt }</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			
-			<!-- 다음 버튼 -->
-			<c:choose>
-				<c:when test="${start < pc.totEndPage }">
-					<li><button class="paging_af" onclick="location.href='mypage?start=${start+1}'">&gt;</button></li>
-				</c:when>
-				<c:otherwise>
-					<li><button class="paging_af" disabled="disabled">&gt;</button></li>
-				</c:otherwise>
-			</c:choose>
+		<!-- 다음 버튼 -->
+		<li><button class="paging_af" value=2>&gt;</button></li>
 		</ul>
 	</div>
 	<!-- 페이징 끝 ---------------------------------------------------------------------------------------->
-
+	
 </div>
 <!----내가 등록한 설문조사 끝----------------------------------------------------------------------------------------->
 
 
+
+
+
+
 <!-- 최근 참여한 설문조사 -------------------------------------------------------------------------------------------->
 <div id="test4" style="text-align:center;   height:500px;">
+<input type="hidden" value="${pc.totEndPage}" id="endpage">
 
 <table class="RegisterSurbey">
 	<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
@@ -120,11 +107,32 @@
 		<tr><td>${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
 	</c:forEach>
 </table>
+	<!-- 페이징 DIV ---------------------------------------------------------------------------------------->
+	<div class="paging">	
+		<ul>
+		<!-- 이전버튼 -->
+		<li><button class="paging_bf" disabled="true">&lt;</button></li>
+
+			<!--mypage 를 계산하여 페이지수 보여주기 -->
+			<c:forEach begin="1" end="${pc.totEndPage}" var="cnt">
+				<c:choose>
+					<c:when test="${1 == cnt}">
+						<li><a id="num${cnt}" value="${cnt}" class="focus">${cnt}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a id="num${cnt}" value="${cnt}" class="nofocus">${cnt}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+		<!-- 다음 버튼 -->
+		<li><button class="paging_af" value=2>&gt;</button></li>
+		</ul>
+	</div>
+	<!-- 페이징 끝 ---------------------------------------------------------------------------------------->
 
 </div>
 <!-- 최근 참여한 설문조사 끝------------------------------------------------------------------------------------------>
-
-
 
 
 <div id="test5" style="text-align:center;   height:500px;">테스트5  예시</div>

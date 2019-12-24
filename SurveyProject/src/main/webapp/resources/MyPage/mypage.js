@@ -1,3 +1,4 @@
+document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
 	$("#navM1").click(function(){
 		$.ajax({
@@ -111,33 +112,200 @@ $(document).ready(function(){
 			}
 		});
 	}); 
-
 	
+	
+	/*나의 설문조사 페이징*/
 	$("#navM3").click(function(){
 		$.ajax({
 			url: "mypage",
 			type: "GET",
 			success: function() {
-				$('#sectionMy').load("../survey/detail #test3");   
+				$('#sectionMy').load("../survey/detail #test3", function() {
+					$(".focus, .nofocus, .paging_bf, .paging_af" ).click(function(){
+						
+						var endpage = $("#endpage").attr('value');
+						console.log('마지막 페이지 :'+ endpage);
+						
+						var cnt = $(this).attr('value');
+						console.log('현재 페이지 :'+ cnt);
+						
+						$(".paging_bf").attr('value', cnt-1);
+						$(".paging_af").attr('value', parseInt(cnt)+1);
+						
+						$(".focus, .nofocus").css({
+							float: 'left',
+							padding: '4px',
+							'margin-right': '3px',
+							width: '35px',
+							color: '#474c4c',
+							font: '20px tahoma',
+							'font-weight': '500',
+							border: '1px solid #d2d2d2',
+							'text-align': 'center',
+							'text-decoration': 'none',
+							'border-radius': '50%',
+							'background-color': "white"
+						});
+						
+						$("#num"+cnt).css({
+							color: "white",
+							border: "1px solid #01aef0",
+							'background-color': "#01aef0",
+							float: "left",
+							padding: "4px",
+							'margin-right': '3px',
+							width: '35px',
+							font: '20px tahoma',
+							'font-weight': '500',
+							'text-align': 'center',
+							'text-decoration': 'none',	
+							'border-radius': '50%'
+						});			
+
+						/*이전 버튼 제한*/
+						if(cnt<=1){
+							$(".paging_bf").attr('disabled',true);
+						} else{
+							console.log("start");
+							$(".paging_bf").attr('disabled',false);	
+						}
+						/*다음 버튼 제한*/
+						if(cnt == endpage){
+							$(".paging_af").attr('disabled',true);
+						} else{
+							$(".paging_af").attr('disabled',false);
+							console.log("end");
+						}
+
+						
+						var output = "";
+						
+						$.ajax({
+							url: "page.do?start="+cnt,
+							success: function(data) {
+								$(".RegisterSurbey").empty();
+								output += "<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>";
+								for (var i = 0; i < data.length; i++) {
+									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
+//									console.log(data[i]);
+									output += "<tr onclick=location.href='result?num="+data[i].num+"'>"
+									output += "<td>"+data[i].title+"</td>"
+									output += "<td>"+deadline+"</td>"
+									output += "<td>"+data[i].hit+"</td>"
+									output += "<td>"+data[i].point+"</td>"
+									output += "</tr>"
+								}
+								$(".RegisterSurbey").html(output);
+							}, error: function() {
+								alert("문제가 발생")
+							}
+						});
+					});
+
+				});   
 			},
 			error:function(){
 				alert("문제가 발생했습니다"); 
 			}
 		});
 	});
+	/*페이징---------------------끝*/
 	
 	$("#navM4").click(function(){
 		$.ajax({
 			url: "mypage",
 			type: "GET",
 			success: function() {
-				$('#sectionMy').load("../survey/detail #test4");   
+				$('#sectionMy').load("../survey/detail #test4", function() {
+					$(".focus, .nofocus, .paging_bf, .paging_af" ).click(function(){
+						
+						var endpage = $("#endpage").attr('value');
+						console.log('마지막 페이지 :'+ endpage);
+						
+						var cnt = $(this).attr('value');
+						console.log('현재 페이지 :'+ cnt);
+						
+						$(".paging_bf").attr('value', cnt-1);
+						$(".paging_af").attr('value', parseInt(cnt)+1);
+						
+						$(".focus, .nofocus").css({
+							float: 'left',
+							padding: '4px',
+							'margin-right': '3px',
+							width: '35px',
+							color: '#474c4c',
+							font: '20px tahoma',
+							'font-weight': '500',
+							border: '1px solid #d2d2d2',
+							'text-align': 'center',
+							'text-decoration': 'none',
+							'border-radius': '50%',
+							'background-color': "white"
+						});
+						
+						$("#num"+cnt).css({
+							color: "white",
+							border: "1px solid #01aef0",
+							'background-color': "#01aef0",
+							float: "left",
+							padding: "4px",
+							'margin-right': '3px',
+							width: '35px',
+							font: '20px tahoma',
+							'font-weight': '500',
+							'text-align': 'center',
+							'text-decoration': 'none',	
+							'border-radius': '50%'
+						});			
+
+						/*이전 버튼 제한*/
+						if(cnt<=1){
+							$(".paging_bf").attr('disabled',true);
+						} else{
+							console.log("start");
+							$(".paging_bf").attr('disabled',false);	
+						}
+						/*다음 버튼 제한*/
+						if(cnt == endpage){
+							$(".paging_af").attr('disabled',true);
+						} else{
+							$(".paging_af").attr('disabled',false);
+							console.log("end");
+						}
+
+						
+						var output = "";
+						
+						$.ajax({
+							url: "page2.do?start="+cnt,
+							success: function(data) {
+								$(".RegisterSurbey").empty();
+								output += "<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>";
+								for (var i = 0; i < data.length; i++) {
+									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
+//									console.log(data[i]);
+									output += "<tr>"
+									output += "<td>"+data[i].title+"</td>"
+									output += "<td>"+deadline+"</td>"
+									output += "<td>"+data[i].hit+"</td>"
+									output += "<td>"+data[i].point+"</td>"
+									output += "</tr>"
+								}
+								$(".RegisterSurbey").html(output);
+							}, error: function() {
+								alert("문제가 발생")
+							}
+						});
+					});
+
+				});   
 			},
 			error:function(){
 				alert("문제가 발생했습니다"); 
 			}
 		});
-	}); 
+	});
+	/*페이징---------------------끝*/ 
 	
 	$("#navM5").click(function(){
 		$.ajax({

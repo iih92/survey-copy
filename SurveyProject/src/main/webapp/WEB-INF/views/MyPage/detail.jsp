@@ -46,10 +46,10 @@
 	</div>
 </div>
 
-<div id="test2" style="text-align:center;  	height:100%;">테스트2  예시</div>
+<div id="test2" style="text-align:center;">테스트2  예시</div>
 
 <!-- 내가 등록한 설문조사 -------------------------------------------------------------------------------->
-<div id="test3" style="text-align:center;   height:500px;">
+<div id="test3" style="text-align:center;">
 	
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
@@ -114,7 +114,7 @@
 
 
 <!-- 최근 참여한 설문조사 -------------------------------------------------------------------------------------------->
-<div id="test4" style="text-align:center;   height:500px;">
+<div id="test4" style="text-align:center;">
 
 <div class="RegisterSurbey">
 <hr>	
@@ -134,11 +134,14 @@
 </div>
 <!-- 최근 참여한 설문조사 끝------------------------------------------------------------------------------------------>
 
-
-
-
-<div id="test5" style="text-align:center;   height:500px;">테스트5  예시</div>
-<div id="test6" style="text-align:center;   height:500px;">테스트6  예시</div>
+<div id="test5" style="text-align:center;">테스트5  예시</div>
+<div id="test6" style="text-align:center;">
+	<form >
+		<input type="password" name="pw">
+		<input type="button" id="" value="회원 탈퇴하기">	
+	</form>
+	
+</div>
 
 </body>
 </html>

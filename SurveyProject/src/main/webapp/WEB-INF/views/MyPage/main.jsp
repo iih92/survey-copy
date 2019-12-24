@@ -49,13 +49,13 @@
                      <li id="navM3">내 설문조사</li>
                      <li id="navM4">최근 설문조사</li>
                      <li id="navM5">나비게이션 바 메뉴5</li>
-                     <li id="navM6">나비게이션 바 메뉴6</li>
+                     <li id="navM6">회원 탈퇴</li>
                   </ul>
                </div>
             </div>
 
-            <div id=sectionMy>
-
+            <div id=sectionMy style="height:1000px;">
+				MyPage
             </div>
          </div>
       </div>

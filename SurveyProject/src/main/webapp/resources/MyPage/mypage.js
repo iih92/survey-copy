@@ -1,6 +1,10 @@
 document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
+	$(".content").remove();
 	$("#navM1").click(function(){
+		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -101,6 +105,9 @@ $(document).ready(function(){
 	});
 
 	$("#navM2").click(function(){
+		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -114,6 +121,9 @@ $(document).ready(function(){
 	}); 
 	
 	$("#navM3").click(function(){
+		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -180,6 +190,9 @@ $(document).ready(function(){
 	});
 	
 	$("#navM4").click(function(){
+		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("font-weight","normal"); 
+		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -193,6 +206,9 @@ $(document).ready(function(){
 	}); 
 	
 	$("#navM5").click(function(){
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("font-weight","normal"); 
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -206,176 +222,31 @@ $(document).ready(function(){
 	});
 	
 	$("#navM6").click(function(){
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("font-weight","normal"); 
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("background-color","#efefef");
+		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
 			success: function() {
-				$('#sectionMy').load("../survey/detail #test6");   
+				$('#sectionMy').load("../survey/detail #test6", function(){
+					
+				});   
 			},
 			error:function(){
 				alert("문제가 발생했습니다"); 
 			}
 		});
 	});  
-	$("#navM1").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM1").css("background-color","white");
-				$("#navM1").css("font-weight","bold"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
+	
+	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseenter(function(){
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 	}); 
-	$("#navM1").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM1").css("background-color","#efefef");
-				$("#navM1").css("font-weight","normal"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM2").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM2").css("background-color","white");
-				$("#navM2").css("font-weight","bold"); 
-
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM2").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM2").css("background-color","#efefef");
-				$("#navM2").css("font-weight","normal"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM3").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM3").css("background-color","white");
-				$("#navM3").css("font-weight","bold"); 
-
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM3").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM3").css("background-color","#efefef");
-				$("#navM3").css("font-weight","normal"); 
-
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM4").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM4").css("background-color","white");
-				$("#navM4").css("font-weight","bold"); 
-
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM4").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM4").css("background-color","#efefef");
-				$("#navM4").css("font-weight","normal"); 
-
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM5").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM5").css("background-color","white");
-				$("#navM5").css("font-weight","bold"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM5").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM5").css("background-color","#efefef");
-				$("#navM5").css("font-weight","normal"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM6").mouseenter(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM6").css("background-color","white");
-				$("#navM6").css("font-weight","bold"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
-	}); 
-	$("#navM6").mouseleave(function(){
-		$.ajax({
-			url: "mypage",
-			type: "GET",
-			success: function() {
-				$("#navM6").css("background-color","#efefef");
-				$("#navM6").css("font-weight","normal"); 
-			},
-			error:function(){
-				alert("문제가 발생했습니다"); 
-			}
-		});
+	
+	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseleave(function(){
+		$(this).css("background-color","#efefef");
+		$(this).css("font-weight","normal"); 
 	});
+
 });

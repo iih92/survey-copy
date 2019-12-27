@@ -65,7 +65,7 @@ public class BoardService implements IBoardService {
 		String code = dto.getCode();
 		
 		/*설문 중복 참여 검사*/
-		String voteUser = dao.VoteSelect(num);
+		List<String> voteUser = dao.VoteSelect(num);
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
@@ -212,7 +212,6 @@ public class BoardService implements IBoardService {
 		return mix;
 	}
 
-	
 	/*페이징 처리--------------------------------------------------------------------*/
 	
 	/*페이징 수 계산하기*/
@@ -238,29 +237,24 @@ public class BoardService implements IBoardService {
 		int totalPage = 0;
 		
 		switch (daoNum) {
-		case 1:
-			totalPage = getTotalPage();
-			break;
-		case 2:
-			totalPage = getTotalPage_nick(loginUser);
-			break;
-		case 3:
-			totalPage = getTotalPage_take(loginUser);
-			break;
+			case 1:
+				totalPage = getTotalPage();
+				break;
+			case 2:
+				totalPage = getTotalPage_nick(loginUser);
+				break;
+			case 3:
+				totalPage = getTotalPage_take(loginUser);
+				break;
 		}
-		
 
-		
 		// 전체 게시글 갯수 / 페이지 보여줄 게시글 갯수 + (나머지 값이 있으면 + 1) 마지막 페이지 번호를 정하는 식
 		int totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-
 		// 페이지 넘버를 눌렀을때 첫번째 상단에 보여줄 게시글 번호 
 		int startPage = (start - 1) * pageNum + 1;
-
 		// 페이지 넘버를 눌렀을 때 마지막에 보여줄 게시글 번호
 		int endPage = pageNum * start;
 
-		
 		//PageCount dto에 변수 저장
 		PageCount pc = new PageCount();
 		pc.setTotEndPage(totEndPage);
@@ -282,6 +276,7 @@ public class BoardService implements IBoardService {
 		model.addAttribute("list", dao.page_board_list_nick(pagingNum(model,2)));
 		return dao.page_board_list_nick(pagingNum(model,2));
 	}
+	
 	/*페이징 된대로 가져오기_take*/
 	@Override
 	public List<TakeSurvey> page_board_list_take(Model model) {
@@ -289,8 +284,6 @@ public class BoardService implements IBoardService {
 		return dao.page_board_list_take(pagingNum(model,3));
 		
 	}
-
-	
 	
 	/*페이징 된대로 가져오기_main 및 각각 정렬기능*/
 	public void page_board_list(Model model) {
@@ -311,7 +304,6 @@ public class BoardService implements IBoardService {
 		} catch(NullPointerException e) {}
 	}
 	/*---------------------------------------------------------------------------------*/
-	
 	
 	//[참여한 설문조사 등록]
 	@Override
@@ -342,6 +334,15 @@ public class BoardService implements IBoardService {
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
 
-
-
+	//[엑셀로 만들기 위한 데이터 받기]
+	public String[] surveyQuestion(Model model) {
+		String[] result = new String[2];
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int num = Integer.parseInt(request.getParameter("num"));
+		BoardDTO dto = dao.surveySelect(num);
+		result[0] = dto.getTitle();
+		result[1] = dto.getCode();
+		return result;
+	}
 }

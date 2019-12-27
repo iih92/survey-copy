@@ -37,8 +37,8 @@ public class BoardDAO {
 	}
 	
 	/*설문조사 중복참여 검사*/
-	public String VoteSelect(int num) {
-		return sqlsession.selectOne(namespace + ".VoteSelect", num);
+	public List<String> VoteSelect(int num) {
+		return sqlsession.selectList(namespace + ".VoteSelect", num);
 	}
 
 	//[수정할 게시글 가져오기]

@@ -53,4 +53,12 @@ public class MemberDAO {
 	public MemberDTO userPoint(MemberDTO dto) {
 		return session.selectOne(namespace+".userPoint", dto);	 
 	}
+
+	public MemberDTO info(MemberDTO dto) {
+		return session.selectOne(namespace + ".info", dto);	 
+	}
+
+	public void leave(MemberDTO dto) {
+		session.delete(namespace + ".leave", dto);	
+	}
 }

@@ -6,7 +6,7 @@
 
 	<!-- 회원 가입 -->
 	<insert id="singUp" parameterType="Mdto">
-		insert into member
+		insert into member (id,pw,nick)
 		values(#{id},#{pw},#{nick})
 	</insert>
 
@@ -49,5 +49,15 @@
 	<select id="userPoint" parameterType="Mdto" resultType="Mdto">
 		select point from member where nick=#{nick}
 	</select>
+	
+	<!-- 사용자 정보 가져오기 -->
+	<select id="info" parameterType="Mdto" resultType="Mdto">
+		select * from member where nick=#{nick}
+	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="leave" parameterType="Mdto">
+		delete member where nick=#{nick}
+	</delete>
 	
 </mapper>

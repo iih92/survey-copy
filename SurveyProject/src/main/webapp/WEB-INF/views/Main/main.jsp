@@ -154,26 +154,24 @@ $(document).ready(function(){
 				<div class="new">
 					<h3>&nbsp;&nbsp;NEW SURVEY
 					
-						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;color:black;">
-							정렬: 
-							<span id="recentLineup" 
-									<c:if test="${ lineupSession == '1' }">style=" font-weight:bold;" </c:if>
-							>최신 </span>
+						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;">
+							<span id="recentLineup"
+									<c:if test="${ lineupSession == '1' }"> style="color:#ff8b02" </c:if>
+							>최신순</span>
 							
 							<span style="color:#ff8b02;">|</span> 
-	
-							<span id="deadLineup" 		
-								<c:if test="${ lineupSession == '2' }">style=" font-weight:bold;" </c:if> 
-							>마감 임박</span>
+
+							<span id="deadLineup"
+								<c:if test="${ lineupSession == '2' }">style="color:#ff8b02" </c:if> 
+							>마감순</span>
 							
 							<span style="color:#ff8b02;">|</span> 
 							
-							<span id="hitLineup" 		
-								<c:if test="${ lineupSession == '3' }">style=" font-weight:bold;" </c:if>
-							>조회 수</span>  
-							
-							<span style="color:#ff8b02;">|</span> 
+							<span id="hitLineup"
+								<c:if test="${ lineupSession == '3' }">style="color:#ff8b02" </c:if>
+							>조회순</span>  
 						</span>
+						
 					</h3>			
 				</div>
  				
@@ -186,7 +184,7 @@ $(document).ready(function(){
 									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h2>
 							</div> <!-- icon div -->
 							<div class="box_image">
-								<img src="resources/main/images/mini_icon1.png" alt="" />
+								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
 							</div> <!-- inner div -->
 							<div class="inner">
 								<h3>${ dto.title }</h3>

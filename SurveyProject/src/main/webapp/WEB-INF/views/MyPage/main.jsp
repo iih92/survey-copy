@@ -29,26 +29,31 @@
                      class=nbarTitleSpan id="nbts2"> <i class="fas fa-times"></i>
                   </span>
                </div>
-
-               <div class="navbarUserInfo">
-                  <span class="nbarInfoSpan" id="nbIs1"><b>${ loginUser }</b></span> <span
-                     class="nbarInfoSpan" id="nbIs1">님</span>
-               </div>
-
-               <div class=navbarPoint>
-                  <span class="navbarpointSpan" id="nbps1"> You have <i>${userPoint}</i>
-                     Points
+				
+				<!-- 나의 정보 칸 -->
+				<div style="background-color: #d4d4d4; padding-top: 25px;">
+				<!-- 닉네임  -->
+               	<div class="navbarUserInfo">
+               		<div><img src="resources/MyPage/image/myicon-01.png" id="myicon"></div>
+                  <span class="nbarInfoSpan" id="nbIs1" style="font-size: 20px;"><b>${loginUser}</b>님</span> 
+               	</div>
+				<!-- 포인트 -->
+               	<div class=navbarPoint>
+                  <span class="navbarpointSpan" id="nbps1"> <font style="color: #242728">SURVEY POINT</font><br>
+                  <font style="font-size: 35px; font-weight:bold; color: #01aef0;">${userPoint}P</font>  
                   </span>
+               	</div>
+               <hr id="navbarHr"> 
                </div>
-
-               <hr id="navbarHr">
+               
+               <!-- 메뉴칸 -->
                <div class="navbarMenu">
                   <ul>
                      <li id="navM1">내 정보 변경</li>
                      <li id="navM2">포인트 내역 열람</li>
                      <li id="navM3">나의 설문조사</li>
                      <li id="navM4">최근 참여한 설문조사</li>
-                     <li id="navM5">나비게이션 바 메뉴5</li>
+                     <li id="navM5">문의하기</li>
                      <li id="navM6">회원 탈퇴</li>
                   </ul>
                </div>

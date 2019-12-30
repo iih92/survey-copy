@@ -209,19 +209,19 @@ $(document).ready(function(){
 		
 	.resultButton{
 		border: none;
-		color: #fff;
-		/* padding: 1% 45% 1% 45%; */
-		text-align: right;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 30px;
-		cursor: pointer;
-		background-color: #01aef0;
-		border-radius: 4px;
-		font-family: 'Noto Sans KR', sans-serif;
-		font-weight: 500;
-		margin-left: 85%;	
-		margin-top: 2%;
+	    color: #fff;
+	    padding: 0px 25px 0px 25px;
+	    text-align: right;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 30px;
+	    cursor: pointer;
+	    background-color: #01aef0;
+	    border-radius: 4px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-weight: 500;
+	    margin-left: 85%;
+	    margin-top: 1%;
 	}
 
 /* 댓글 테이블 CSS */

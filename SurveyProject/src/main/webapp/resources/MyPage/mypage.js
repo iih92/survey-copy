@@ -165,7 +165,7 @@ $(document).ready(function(){
 							float: 'left',
 							padding: '4px',
 							'margin-right': '3px',
-							width: '35px',
+							width: '25px',
 							color: '#474c4c',
 							font: '20px tahoma',
 							'font-weight': '500',
@@ -183,7 +183,7 @@ $(document).ready(function(){
 							float: "left",
 							padding: "4px",
 							'margin-right': '3px',
-							width: '35px',
+							width: '25px',
 							font: '20px tahoma',
 							'font-weight': '500',
 							'text-align': 'center',
@@ -264,7 +264,7 @@ $(document).ready(function(){
 							float: 'left',
 							padding: '4px',
 							'margin-right': '3px',
-							width: '35px',
+							width: '25px',
 							color: '#474c4c',
 							font: '20px tahoma',
 							'font-weight': '500',
@@ -282,7 +282,7 @@ $(document).ready(function(){
 							float: "left",
 							padding: "4px",
 							'margin-right': '3px',
-							width: '35px',
+							width: '25px',
 							font: '20px tahoma',
 							'font-weight': '500',
 							'text-align': 'center',
@@ -382,5 +382,8 @@ $(document).ready(function(){
 		$(this).css("background-color","#efefef");
 		$(this).css("font-weight","normal"); 
 	});
+	
+
+	
 
 });

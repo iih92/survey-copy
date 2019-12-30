@@ -15,6 +15,7 @@ public class BoardDTO {
 	private String code;
 	private String hashtag;
 	private String nick;
+	private String boardIcon;
 	private Date deadline;
 	private Date createDate;
 	

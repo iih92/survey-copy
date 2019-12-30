@@ -6,8 +6,8 @@
 
 	<!-- 설문조사 폼 저장 -->
 	<insert id="surveySave" parameterType="Bdto">
-		insert into board(num,title,code,hashtag,deadline,point,nick)
-		values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick})
+		insert into board(num,title,code,hashtag,deadline,point,nick,boardIcon)
+		values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick},#{boardIcon})
 	</insert>
 
 	<!-- 가장 최근 번호 가져오기 -->

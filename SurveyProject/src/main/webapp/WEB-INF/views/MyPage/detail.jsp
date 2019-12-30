@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <script src="resources/MyPage/mypage.js" type="text/javascript"></script>
 <script src="resources/MyPage/moment.js"></script>
 <link href="resources/MyPage/mypage.css" rel="stylesheet">
-
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gothic+A1|Nanum+Gothic|Noto+Sans+KR&display=swap|Bebas+Neue&display=swap" rel="stylesheet">
 </head>
@@ -45,7 +45,46 @@
    </div>
 </div>
 
-<div id="test2" style="text-align:center;">테스트2  예시</div>
+<div id="test2" style="text-align:center;">  
+
+<table  id="pointHistoryTable" class="RegisterSurbey" >
+		<tr><th>적립일시</th>   <th>내역</th> <th>포인트</th> </tr>
+			<tbody id="pointTbody"> 
+ <c:forEach var="dto" items="${pointHistory}" varStatus="status2">
+ 
+   <c:if test="${not doneLoop}">
+			<tr> <td>
+ 		
+ 		
+ 			<c:forEach var="dateSecond" items="${dateSecond }" varStatus="status1">
+			
+			<c:if test="${ status1.count eq status2.count }">
+ 
+				${dateSecond} 
+			
+			</c:if>
+			 
+			</c:forEach>
+			
+		 
+		
+			</td>         <td>${dto.title}   
+			</td>     <td><span style="color:orange;">+</span>${dto.point}</td> </tr>
+				<c:if test="${status2.count == 5}">
+     <c:set var="doneLoop" value="true"/>
+   </c:if>
+ </c:if>
+ 		 
+</c:forEach>
+	 
+	</tbody>
+</table>
+
+	 <button class="mypleft"> 왼쪽 </button> 
+	 <button class="mypright"> 오른쪽 </button> 
+	 
+
+</div>
 
 <!-- 내가 등록한 설문조사 -------------------------------------------------------------------------------->
 <div id="test3" style="text-align:center;">
@@ -62,6 +101,7 @@
 			</tr>	
 		</c:if>
 	</c:forEach>
+
 	</table>
 	
 	<!-- 페이징 DIV ---------------------------------------------------------------------------------------->

@@ -117,6 +117,7 @@ public class MemberController {
 		boardservice.TakeSurbeySearch(model);
 		boardservice.page_board_list_take(model);
 		boardservice.pagingNum(model,3);
+		boardservice.pointHistory(model);
 		return "MyPage/detail";
 	}
 

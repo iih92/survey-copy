@@ -128,5 +128,16 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList_hit",pc);
 	}
 
+	//포인트 히스토리(적립된 날짜순 정렬)
+	public List<TakeSurvey> pointHistory(String loginUser) {
+		// TODO Auto-generated method stub 
+		return sqlsession.selectList(namespace+".pointHistory",loginUser);
+	}
+	public List<String> dateSecond(String loginUser){
+		
+		return sqlsession.selectList(namespace+".dateSecond",loginUser);
+	}
+
+ 
 
 }

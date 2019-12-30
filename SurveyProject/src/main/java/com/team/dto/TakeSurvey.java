@@ -11,4 +11,5 @@ public class TakeSurvey {
 	private Date deadline;
 	private String title;
 	private String nick;
+	private Date dt;
 }

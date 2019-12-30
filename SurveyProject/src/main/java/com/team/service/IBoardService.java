@@ -30,4 +30,9 @@ public interface IBoardService {
 	public void takeSurbey(int num, Model model);
 	public void TakeSurbeySearch(Model model);
 	
+	//포인트내역
+	public void pointHistory(Model model);
+	public List<String> ajax_getDatesecond(Model model);
+	public List<TakeSurvey> ajax_pointHistory(Model model);
+	
 }

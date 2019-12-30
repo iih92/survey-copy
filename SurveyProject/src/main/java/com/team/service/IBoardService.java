@@ -18,16 +18,20 @@ public interface IBoardService {
 	public void surveyDelete(Model model);
 	public void surveySearch(Model model);
 	public int surveyVote(Model model);
+	public String[] surveyQuestion(Model model);
 	public String[] surveyResult(Model model);
 	/*페이징*/
 	public void page_board_list(Model model);
 	public PageCount pagingNum(Model model, int daonum);
 	public List<BoardDTO> page_board_list_nick(Model model);
 	public List<TakeSurvey> page_board_list_take(Model model);
-	
-
 	/*참여한 설문조사*/
 	public void takeSurbey(int num, Model model);
 	public void TakeSurbeySearch(Model model);
+	
+	//포인트내역
+	public void pointHistory(Model model);
+	public List<String> ajax_getDatesecond(Model model);
+	public List<TakeSurvey> ajax_pointHistory(Model model);
 	
 }

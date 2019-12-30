@@ -15,4 +15,6 @@ public interface IMemberService {
 	public int nickCheck(String nick);
 	public void addPoint(Model model);
 	public void userPoint(Model model);
+	public MemberDTO info(Model model);
+	public void leave(Model model);
 }

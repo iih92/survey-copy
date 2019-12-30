@@ -37,8 +37,8 @@ public class BoardDAO {
 	}
 	
 	/*설문조사 중복참여 검사*/
-	public String VoteSelect(int num) {
-		return sqlsession.selectOne(namespace + ".VoteSelect", num);
+	public List<String> VoteSelect(int num) {
+		return sqlsession.selectList(namespace + ".VoteSelect", num);
 	}
 
 	//[수정할 게시글 가져오기]
@@ -128,5 +128,16 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList_hit",pc);
 	}
 
+	//포인트 히스토리(적립된 날짜순 정렬)
+	public List<TakeSurvey> pointHistory(String loginUser) {
+		// TODO Auto-generated method stub 
+		return sqlsession.selectList(namespace+".pointHistory",loginUser);
+	}
+	public List<String> dateSecond(String loginUser){
+		
+		return sqlsession.selectList(namespace+".dateSecond",loginUser);
+	}
+
+ 
 
 }

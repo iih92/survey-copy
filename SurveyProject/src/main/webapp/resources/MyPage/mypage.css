@@ -230,6 +230,7 @@ hr {
 
 
 
+
 /*메일 폼*/
 .mailpage{
 	width: 70%;
@@ -273,3 +274,30 @@ hr {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 500;
 }
+
+#leave{
+	border: none;
+    color: #fff;
+    text-align: right;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #01aef0;
+    border-radius: 4px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    margin-top: 1%;
+}
+
+#leavepw{
+	margin-top: 10%;
+    padding: .5em .3em;
+    border: none;
+    background-color: #d5d5d596;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+

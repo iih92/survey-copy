@@ -10,6 +10,27 @@
 
 <script>
 	$(document).ready(function(){	
+		var xlsResult = new Array();
+		var xlsCnt = new Array();
+		var xlsNum = 0;
+		var xlsPer = 0;
+		$("#excel").click(function(){
+			$.ajax({
+		        type : "GET", //전송방식을 지정한다 (POST,GET)
+		        url : "makeExcel.do?num=${dto.num}",
+		        data : {
+		        	"xlsResult" : xlsResult, 
+		        	"xlsCnt" : xlsCnt,
+		        	"xlsPer" : xlsPer
+		        },
+		        success : function(){
+		        },
+		        error:function(){
+		             alert("문제가 발생했습니다"); 
+		        }
+		    });
+		})
+		
 		// 데이터 값 가져옴
 	    $.ajax({
 	        type : "GET", //전송방식을 지정한다 (POST,GET)
@@ -34,6 +55,13 @@
 				divnum++;
 			} 
 		}
+		$("#answer").append("<div id=div"+divnum+">");
+		$("#div"+divnum).append("<button id='excel'>엑셀 파일로 다운로드</button>");
+		
+		function xlsResultParsing(){
+			xlsResult[xlsNum] = "!";
+			xlsCnt[xlsNum++] = "!";
+		}
 		
 		// 데이터 split
 		function splitData(data){
@@ -50,6 +78,8 @@
 				arr3[j] = answer[j];
 				if(answer[j] == answer[j+1]) cnt++;
 				else {
+					xlsResult[xlsNum] = answer[j];
+					xlsCnt[xlsNum++] = cnt;
 					arr1[arrCnt] = answer[j]
 					arr2[arrCnt++] = cnt;
 					cnt = 1;
@@ -65,14 +95,17 @@
 	    	var arr = new Array();    	
 	    	for (var i = 0; i < data.length; i++) {
 				if(data[i].substring(0,1) == 'R') {
+					xlsResultParsing();
 					var result = splitData(data[i]);
 					createChart(title[i],result[0],result[1],result[2],divnum);
 					divnum++;
 				} else if(data[i].substring(0,1) == 'C') {
+					xlsResultParsing();
 					var result = splitData(data[i]);
 					createChart(title[i],result[0],result[1],result[2],divnum);
 					divnum++;		
 				} else if(data[i].substring(0,1) == 'T') {
+					xlsResultParsing();
 					var result = splitData(data[i]);
 					var answer = result[3];
 					$("#canvas"+divnum).replaceWith("");
@@ -81,6 +114,7 @@
 					}
 					divnum++;	
 				} else if(i == (data.length-1)){
+					xlsPer = result[3].length;
 					$("#info").append("<h3 id=count>"+result[3].length+"명 참여");
 				}
 			}
@@ -151,7 +185,20 @@
 		margin-left: 80%;
 	}
 	
-	#title {
+	#excel { 
+		border: none;
+	    color: #fff;
+	    text-align: right;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 30px;
+	    cursor: pointer;
+	    background-color: #01aef0;
+	    border-radius: 4px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-weight: 500;
+	    margin-left: 69%;
+	    margin-top: 5%;
 	}
 </style>
 </head>

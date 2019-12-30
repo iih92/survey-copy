@@ -1,13 +1,14 @@
 package com.team.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -153,8 +154,48 @@ public class BoardController {
 	@RequestMapping(value = "page2.do")
 	@ResponseBody
 	public List<TakeSurvey> page2(Model model, HttpServletRequest request) {
-		System.out.println("page2.do 실행되나--------------------------------");
 		model.addAttribute("request", request);	
 		return bService.page_board_list_take(model);
 	}
+	
+	@RequestMapping(value = "page3.do")
+	@ResponseBody
+	public Map<Integer, Object> page3(Model model, HttpServletRequest request) {
+		System.out.println("page3.do 실행되나--------------------------------");
+		model.addAttribute("request", request);	
+		List<String> list1 = bService.ajax_getDatesecond(model);
+		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);
+		
+		String str = list2.get(0).getTitle();	
+		System.out.println(str);
+			
+		Map<Integer, Object> map1 = new HashMap();
+		map1.put(1, list1);
+		map1.put(2, list2);
+		
+		System.out.println(map1.get(1)); 
+		System.out.println(map1.get(2)); 
+		return map1; 
+	}
+	
+	@RequestMapping(value = "page4.do")
+	@ResponseBody
+	public Map<Integer, Object> page4(Model model, HttpServletRequest request) {
+		System.out.println("page4.do 실행되나--------------------------------");
+		model.addAttribute("request", request);	
+		
+		List<String> list1 = bService.ajax_getDatesecond(model);
+		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);
+		
+		String str = list2.get(0).getTitle();
+		System.out.println(str);
+
+		Map<Integer, Object> map1 = new HashMap();
+		map1.put(1, list1);
+		map1.put(2, list2);
+		
+		System.out.println(map1.get(1)); 
+		return map1;
+	}
+	
 }

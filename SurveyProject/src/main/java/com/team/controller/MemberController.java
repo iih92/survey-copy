@@ -32,7 +32,7 @@ public class MemberController {
 	private IBoardService boardservice;
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 
 	//[회원가입]
 	@RequestMapping("signUp")
@@ -123,9 +123,11 @@ public class MemberController {
 		
 		boardservice.page_board_list_take(model);
 		boardservice.pagingNum(model,3);
+		boardservice.pointHistory(model);
 		return "MyPage/detail";
 	}
 	
+
 	//[mailSending 코드]
 	  @RequestMapping(value = "/mail/mailSending")
 	  public String mailSending(HttpServletRequest request) {
@@ -152,5 +154,30 @@ public class MemberController {
 	   
 	    return "redirect:/mypage";
 	  }
+
+	//[마이페이지 회원 탈퇴]
+	@RequestMapping(value = "leave.do")
+	@ResponseBody
+	public MemberDTO page2(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);	
+		return service.info(model);
+	}
+	
+	//[회원 탈퇴]
+	@RequestMapping(value = "leave")
+	public String leave(Model model, HttpServletRequest request, HttpSession session) {
+		model.addAttribute("request", request);	
+		service.leave(model);
+		return "redirect:/";
+	}
+	
+	//[해당 회원 정보 가져오기]
+	@RequestMapping(value = "info.do")
+	@ResponseBody
+	public MemberDTO info(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);	
+		return service.info(model);
+	}
+
 
 }

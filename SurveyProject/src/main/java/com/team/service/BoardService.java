@@ -66,7 +66,7 @@ public class BoardService implements IBoardService {
 		String code = dto.getCode();
 		
 		/*설문 중복 참여 검사*/
-		String voteUser = dao.VoteSelect(num);
+		List<String> voteUser = dao.VoteSelect(num);
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
@@ -213,7 +213,6 @@ public class BoardService implements IBoardService {
 		return mix;
 	}
 
-	
 	/*페이징 처리--------------------------------------------------------------------*/
 	
 	/*페이징 수 계산하기*/
@@ -240,6 +239,7 @@ public class BoardService implements IBoardService {
 		int startPage = 0;
 		int endPage = 0;
 		
+
 		if(daoNum == 1) {
 			totalPage = getTotalPage();
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
@@ -296,6 +296,7 @@ public class BoardService implements IBoardService {
 		model.addAttribute("list", dao.page_board_list_nick(pagingNum(model,2)));
 		return dao.page_board_list_nick(pagingNum(model,2));
 	}
+	
 	/*페이징 된대로 가져오기_take*/
 	@Override
 	public List<TakeSurvey> page_board_list_take(Model model) {
@@ -303,8 +304,6 @@ public class BoardService implements IBoardService {
 		return dao.page_board_list_take(pagingNum(model,3));
 		
 	}
-
-	
 	
 	/*페이징 된대로 가져오기_main 및 각각 정렬기능*/
 	public void page_board_list(Model model) {
@@ -325,7 +324,6 @@ public class BoardService implements IBoardService {
 		} catch(NullPointerException e) {}
 	}
 	/*---------------------------------------------------------------------------------*/
-	
 	
 	//[참여한 설문조사 등록]
 	@Override
@@ -355,7 +353,44 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
+ 
+	
+	// 포인트 내역 열람 눌렀을때 가져오는 목록
+	@Override
+	public void pointHistory(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");		 
+		model.addAttribute("pointHistory",dao.pointHistory(loginUser));
+		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 	
+	}
 
+	@Override
+	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
+	HttpServletRequest request = (HttpServletRequest)map.get("request");
+	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+		return dao.dateSecond(loginUser);
+	}
+	
+	@Override
+	public List<TakeSurvey> ajax_pointHistory(Model model) {Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+		return dao.pointHistory(loginUser);
+	}
 
-
+	//[엑셀로 만들기 위한 데이터 받기]
+	public String[] surveyQuestion(Model model) {
+		String[] result = new String[2];
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		int num = Integer.parseInt(request.getParameter("num"));
+		BoardDTO dto = dao.surveySelect(num);
+		result[0] = dto.getTitle();
+		result[1] = dto.getCode();
+		return result;
+	} 
+	
 }

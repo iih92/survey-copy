@@ -13,15 +13,15 @@
 		var xlsResult = new Array();
 		var xlsCnt = new Array();
 		var xlsNum = 0;
+		var xlsPer = 0;
 		$("#excel").click(function(){
-			console.log(xlsResult);
-			console.log(xlsCnt);
 			$.ajax({
 		        type : "GET", //전송방식을 지정한다 (POST,GET)
 		        url : "makeExcel.do?num=${dto.num}",
 		        data : {
 		        	"xlsResult" : xlsResult, 
-		        	"xlsCnt" : xlsCnt
+		        	"xlsCnt" : xlsCnt,
+		        	"xlsPer" : xlsPer
 		        },
 		        success : function(){
 		        },
@@ -55,6 +55,8 @@
 				divnum++;
 			} 
 		}
+		$("#answer").append("<div id=div"+divnum+">");
+		$("#div"+divnum).append("<button id='excel'>엑셀 파일로 다운로드</button>");
 		
 		function xlsResultParsing(){
 			xlsResult[xlsNum] = "!";
@@ -112,6 +114,7 @@
 					}
 					divnum++;	
 				} else if(i == (data.length-1)){
+					xlsPer = result[3].length;
 					$("#info").append("<h3 id=count>"+result[3].length+"명 참여");
 				}
 			}
@@ -182,7 +185,20 @@
 		margin-left: 80%;
 	}
 	
-	#title {
+	#excel { 
+		border: none;
+	    color: #fff;
+	    text-align: right;
+	    text-decoration: none;
+	    display: inline-block;
+	    font-size: 30px;
+	    cursor: pointer;
+	    background-color: #01aef0;
+	    border-radius: 4px;
+	    font-family: 'Noto Sans KR', sans-serif;
+	    font-weight: 500;
+	    margin-left: 69%;
+	    margin-top: 5%;
 	}
 </style>
 </head>
@@ -195,7 +211,6 @@
 			<h1 id="title">${dto.title }</h1>
 		</div>
 	</div>
-	<button id="excel">다운</button>
 	<div>
 		<jsp:include page="../include/footer.jsp"/>
 	</div>

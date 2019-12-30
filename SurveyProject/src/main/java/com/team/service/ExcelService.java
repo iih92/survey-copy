@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelService {
 	
-	public static void makeExcel(String fileName, String[] xlsResult, String[] xlsCnt, String question) throws Exception{
+	public static void makeExcel(String fileName, String[] xlsResult, String[] xlsCnt, String xlsPer, String question) throws Exception{
 
 		/*-------------엑셀 파일 생성 --------------*/
 		Workbook workbook = null;
@@ -54,10 +54,11 @@ public class ExcelService {
 		int colIndex1 = 0;	// 행 
 		int colIndex2 = 0;	// 행 
 		int excelname = 0; // 처음 고정값을 넣기 위해 사용한 변수	
-		int j = 0;
-	
+		int quCnt = 0;
+
 		for (int i = -1; i < answer.size(); i++) {
 			Row row = sheet.createRow(rowIndex++);
+			
 			if(excelname == 0){ // 처음에 고정값 
 				colIndex1++;
 				Cell cell0 = row.createCell(0);
@@ -65,27 +66,29 @@ public class ExcelService {
 				Cell cell1 = row.createCell(1);
 				cell1.setCellValue("결과");
 				excelname++;
-			}
-			else {
+			} else {
+				colIndex1++;
 				if(answer.get(i).toString().equals("!")) {
 					colIndex2 = colIndex1;
+					row = sheet.createRow(rowIndex++);
 					Cell cell0 = row.createCell(0);
-					cell0.setCellValue(qu1.get(j++).toString());									
+					cell0.setCellValue(qu1.get(quCnt++).toString());
+					i++;
 				}
-				else {
-					Cell cell1 = row.createCell(1);
-					cell1.setCellValue(answer.get(i).toString());
-					Cell cell2 = row.createCell(2);
-					cell2.setCellValue(answerCnt.get(i).toString()+"개");
-					System.out.println(colIndex1);
-					System.out.println(colIndex2);
-					sheet.addMergedRegion(new CellRangeAddress(colIndex2,colIndex1,0,1)); //열시작, 열종료, 행시작, 행종료 (자바배열과 같이 0부터 시작)
-				}
-				colIndex1++;
-				
+
+				Cell cell1 = row.createCell(1);
+				cell1.setCellValue(answer.get(i).toString());
+				Cell cell2 = row.createCell(2);
+				cell2.setCellValue(answerCnt.get(i).toString()+"개");
+
 			}
 		}
-
+		Row row = sheet.createRow(rowIndex+2);
+		Cell cell1 = row.createCell(0);
+		cell1.setCellValue("참가인원");
+		Cell cell2 = row.createCell(1);
+		cell2.setCellValue(xlsPer+"명");
+		
 		//lets write the excel data to file now
 		FileOutputStream fos = new FileOutputStream(fileName);
 		workbook.write(fos);

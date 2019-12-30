@@ -50,7 +50,7 @@
    </div>
 </div>
 
-
+<!------------------------------포인트 내역 ------------------------------------------>
 <div id="test2" style="text-align:center;">  
 	<table  id="pointHistoryTable" class="RegisterSurbey" >
 		<tr><th>적립일시</th>   <th>내역</th> <th>포인트</th></tr>
@@ -76,7 +76,8 @@
 		</tbody>
 	</table>
 	<button class="mypleft"> 왼쪽 </button> 
-	<button class="mypright"> 오른쪽 </button> 
+	<button class="mypright" 
+	<c:if test='${ fn:length(dateSecond) <= 5 }'> disabled </c:if>> 오른쪽 </button> 
 </div>
 
 

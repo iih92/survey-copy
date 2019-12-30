@@ -186,7 +186,7 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td>"+data[2][i].point+"</td>";
+										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
 										console.log(output);
@@ -240,7 +240,7 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td>"+data[2][i].point+"</td>";
+										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
 										console.log(output);
@@ -339,8 +339,7 @@ $(document).ready(function(){
 							$(".paging_af").attr('disabled',false);
 							console.log("end");
 						}
-
-						
+		
 						var output = "";
 						
 						$.ajax({

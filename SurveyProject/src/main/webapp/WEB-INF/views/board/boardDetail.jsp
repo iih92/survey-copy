@@ -11,6 +11,7 @@
 <!-- 헤더 / 푸터 인식용 추가 -->
 <script src="resources/jquery-3.4.1.js"></script>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
 <script>
 function reReply(){	
 	console.log("reReply() function here");	
@@ -21,7 +22,7 @@ $(document).ready(function(){
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
-	console.log(voteUser);
+
 	for (var i = 0; i < voteUser.length; i++) {
 		if(loginUser == voteUser[i]){
 			alert("참여한 설문조사 입니다.");
@@ -101,7 +102,6 @@ $(document).ready(function(){
 });
 
 </script>
-
 <style type="text/css">
 	body{ background-color: gainsboro;}
 
@@ -390,6 +390,5 @@ $(document).ready(function(){
 	</div>
 
 	<%@include file="../include/footer.jsp" %>
-
 </body>
 </html>

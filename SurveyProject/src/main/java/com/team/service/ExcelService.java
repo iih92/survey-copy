@@ -2,24 +2,22 @@ package com.team.service;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelService {
 	
-	public static void makeExcel(String fileName, String[] result, String question) throws Exception{
-		
+	public static void makeExcel(String fileName, String[] xlsResult, String[] xlsCnt, String question) throws Exception{
+
+		/*-------------엑셀 파일 생성 --------------*/
 		Workbook workbook = null;
 		if(fileName.endsWith("xlsx")) workbook = new XSSFWorkbook();
 		else if(fileName.endsWith("xls")) workbook = new HSSFWorkbook();
@@ -35,29 +33,33 @@ public class ExcelService {
 		}
 		
 		/*--------------답변 가져오기 ------------*/
-		List<String> re = new ArrayList<String>(); 
-
-	
-		for(String r1 : result) {
-			String[] r2 = r1.split(":");
-			try {
-				re.add(r2[1]);	// 결과 값 저장
-			} catch(Exception e){
-				re.add(r2[0]);	// 참가 인원수 저장
-			}
+		List<String> answer = new ArrayList<String>(); 
+		List<String> answerCnt = new ArrayList<String>(); 
+		for (int i = 0; i < xlsResult.length; i++) {
+			answer.add(xlsResult[i]);
+			answerCnt.add(xlsCnt[i]);
 		}
 		
 		/*--------셀 스타일 -------*/
 		Sheet sheet = workbook.createSheet("설문조사 결과");
+		CellStyle styleOfBoardFillFontBlackBold16 = workbook.createCellStyle();
+		//정렬
+		styleOfBoardFillFontBlackBold16.setAlignment(CellStyle.ALIGN_CENTER); //가운데 정렬
+		styleOfBoardFillFontBlackBold16.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //높이 가운데 정렬
 		sheet.setColumnWidth(0, 10000);
 		sheet.setColumnWidth(1, 10000);
 
-		int rowIndex = 0;
-		int excelname=0; // 처음 고정값을 넣기 위해 사용한 변수	
-		
-		for (int i = -1; i < re.size()-1; i++) {
+		/*-------- 데이터 넣기 -------*/
+		int rowIndex = 0;	// 열
+		int colIndex1 = 0;	// 행 
+		int colIndex2 = 0;	// 행 
+		int excelname = 0; // 처음 고정값을 넣기 위해 사용한 변수	
+		int j = 0;
+	
+		for (int i = -1; i < answer.size(); i++) {
 			Row row = sheet.createRow(rowIndex++);
 			if(excelname == 0){ // 처음에 고정값 
+				colIndex1++;
 				Cell cell0 = row.createCell(0);
 				cell0.setCellValue("질문");
 				Cell cell1 = row.createCell(1);
@@ -65,17 +67,24 @@ public class ExcelService {
 				excelname++;
 			}
 			else {
-				Cell cell0 = row.createCell(0);
-				cell0.setCellValue(qu1.get(i).toString());				
-				Cell cell1 = row.createCell(1);
-				cell1.setCellValue(re.get(i).toString());
+				if(answer.get(i).toString().equals("!")) {
+					colIndex2 = colIndex1;
+					Cell cell0 = row.createCell(0);
+					cell0.setCellValue(qu1.get(j++).toString());									
+				}
+				else {
+					Cell cell1 = row.createCell(1);
+					cell1.setCellValue(answer.get(i).toString());
+					Cell cell2 = row.createCell(2);
+					cell2.setCellValue(answerCnt.get(i).toString()+"개");
+					System.out.println(colIndex1);
+					System.out.println(colIndex2);
+					sheet.addMergedRegion(new CellRangeAddress(colIndex2,colIndex1,0,1)); //열시작, 열종료, 행시작, 행종료 (자바배열과 같이 0부터 시작)
+				}
+				colIndex1++;
+				
 			}
 		}
-		Row row = sheet.createRow(rowIndex++);
-		Cell cell0 = row.createCell(0);
-		cell0.setCellValue("총 참가 인원");				
-		Cell cell1 = row.createCell(1);
-		cell1.setCellValue(re.get(re.size()-1).toString());
 
 		//lets write the excel data to file now
 		FileOutputStream fos = new FileOutputStream(fileName);

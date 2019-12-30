@@ -333,7 +333,36 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
+ 
+	
+	// 포인트 내역 열람 눌렀을때 가져오는 목록
+	@Override
+	public void pointHistory(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");		 
+		model.addAttribute("pointHistory",dao.pointHistory(loginUser));
+		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 
+		
+	}
 
+	@Override
+	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
+	HttpServletRequest request = (HttpServletRequest)map.get("request");
+	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+		return dao.dateSecond(loginUser);
+	}
+	@Override
+	public List<TakeSurvey> ajax_pointHistory(Model model) {Map<String,Object> map = model.asMap();
+	HttpServletRequest request = (HttpServletRequest)map.get("request");
+	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+	return dao.pointHistory(loginUser);
+	}
+
+
+ 
 	//[엑셀로 만들기 위한 데이터 받기]
 	public String[] surveyQuestion(Model model) {
 		String[] result = new String[2];
@@ -344,5 +373,5 @@ public class BoardService implements IBoardService {
 		result[0] = dto.getTitle();
 		result[1] = dto.getCode();
 		return result;
-	}
+	} 
 }

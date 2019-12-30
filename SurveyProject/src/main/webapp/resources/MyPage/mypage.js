@@ -142,10 +142,132 @@ $(document).ready(function(){
 			url: "mypage",
 			type: "GET",
 			success: function() {
-				$('#sectionMy').load("../survey/detail #test2");   
+				$('#sectionMy').load("../survey/detail #test2", function() {
+						
+					cnt = 0;
+					if(cnt<=0){
+						$(".mypleft").attr('disabled',true);
+					}
+					
+						$('.mypleft').click(function(){
+								
+							$(".mypright").attr('disabled',false);
+							console.log(--cnt);
+							var output="";
+							
+							$.ajax({
+								url: "page3.do?start="+cnt,
+								success: function(data) {
+									//$(".RegisterSurbey").empty(); 
+									
+								//	console.log("ajax 안으로 들어왔다"); 
+								//	console.log(data.length); 
+								//	for(var i=0;i<data.length;i++){
+								//		console.log(data[i].title);
+								//	}
+									//$(".RegisterSurbey").html(output);
+									
+									var pagingCntF= cnt * 5;
+									var pagingCntL= cnt * 5 + 5;
+									console.log(pagingCntF);
+									console.log(pagingCntL);
+									
+									var pagingLength = pagingCntL;
+									if( cnt <= 0 ){ 
+										pagingLength = 5;
+										pagingCntF = 0;
+									}
+									
+									
+									for(var i = pagingCntF ; i<pagingLength; i++){
+										console.log(data[2][i].title);
+										console.log(data[1][i]);
+										
+										output += "<tr>";
+										output += "<td>"+data[1][i]+"</td>";
+										output += "<td>"+data[2][i].title+"</td>";
+										output += "<td>"+data[2][i].point+"</td>";
+										output += "</tr>";
+										
+										console.log(output);
+										
+									}
+									$("#pointTbody").html(output);
+									
+									if(cnt<=0){
+										$(".mypleft").attr('disabled',true);
+									}
+									
+								}, error: function() {
+									alert("문제가 발생")
+								}
+							});
+							
+ 
+							
+					}); 	
+						$('.mypright').click(function(){
+							$(".mypleft").attr('disabled',false);
+
+							$('#pointTbody').empty();
+							
+							var output="";
+							
+							console.log(++cnt);
+							$.ajax({
+								url: "page4.do?start="+cnt,
+								success: function(data) {
+									//$(".RegisterSurbey").empty(); 
+									
+									console.log(data[2].length);
+									
+									var pagingCntF= cnt * 5;
+									var pagingCntL= cnt * 5 + 5;
+									console.log(pagingCntF);
+									console.log(pagingCntL);
+									
+									var pagingLength = pagingCntL;
+									if( pagingLength >= data[2].length ){
+										pagingLength = data[2].length;
+										$(".mypright").attr('disabled',true);
+									}
+									
+									
+									for(var i = pagingCntF ; i<pagingLength; i++){
+										console.log(data[2][i].title);
+										console.log(data[1][i]);
+										
+										output += "<tr>";
+										output += "<td>"+data[1][i]+"</td>";
+										output += "<td>"+data[2][i].title+"</td>";
+										output += "<td>"+data[2][i].point+"</td>";
+										output += "</tr>";
+										
+										console.log(output);
+										
+									}
+									$("#pointTbody").html(output);
+									
+								//	console.log("ajax 안으로 들어왔다");  
+								//	console.log(data[2]);
+								//	console.log(data[1]);
+								//	console.log( data[2][1] );
+								//	
+									//$(".RegisterSurbey").html(output);
+								}, error: function() {
+									alert("문제가 발생")
+								}
+							});
+							
+							
+							
+						}); 	
+				 
+				
+			});   
 			},
 			error:function(){
-				alert("문제가 발생했습니다"); 
+				alert("문제가 발생했습ㅇㅇ니다"); 
 			}
 		});
 	}); 

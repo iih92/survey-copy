@@ -59,3 +59,6 @@ create table vote(
   num number,
   result varchar2(4000)
 );
+
+/* TakeSurvey에 날짜 추가 */
+alter table TakeSurvey add dt date default sysdate not null;

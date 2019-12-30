@@ -153,8 +153,14 @@
 </div>
 
 <div id="test5" style="text-align:center;">테스트5  예시</div>
+<!------------- 회원 탈퇴---------------------------------------------------------------------------->
 <div id="test6" style="text-align:center;">
-	<input type="password" name="pw" id="pw">
+	<p>
+	<span class="input">
+		<input type="password" id="leavepw" name="pw" placeholder="비밀번호를 입력해주세요">
+		<span></span>	
+	</span>
+	</p>
 	<input type="button" id="leave" value="회원 탈퇴하기">	
 </div>
 </body>

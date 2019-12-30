@@ -27,7 +27,6 @@ public class MemberController {
 	private IMemberService service;
 	@Autowired
 	private IBoardService boardservice;
-	
 
 	//[회원가입]
 	@RequestMapping("signUp")
@@ -119,6 +118,30 @@ public class MemberController {
 		boardservice.pagingNum(model,3);
 		boardservice.pointHistory(model);
 		return "MyPage/detail";
+	}
+	
+	//[마이페이지 회원 탈퇴]
+	@RequestMapping(value = "leave.do")
+	@ResponseBody
+	public MemberDTO page2(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);	
+		return service.info(model);
+	}
+	
+	//[회원 탈퇴]
+	@RequestMapping(value = "leave")
+	public String leave(Model model, HttpServletRequest request, HttpSession session) {
+		model.addAttribute("request", request);	
+		service.leave(model);
+		return "redirect:/";
+	}
+	
+	//[해당 회원 정보 가져오기]
+	@RequestMapping(value = "info.do")
+	@ResponseBody
+	public MemberDTO info(Model model, HttpServletRequest request) {
+		model.addAttribute("request", request);	
+		return service.info(model);
 	}
 
 }

@@ -10,6 +10,20 @@
 
 <script>
 	$(document).ready(function(){	
+		
+		$("#excel").click(function(){
+			$.ajax({
+		        type : "GET", //전송방식을 지정한다 (POST,GET)
+		        url : "makeExcel.do?num=${dto.num}",
+		        success : function(){
+		  			
+		        },
+		        error:function(){
+		             alert("문제가 발생했습니다"); 
+		        }
+		    });
+		})
+		
 		// 데이터 값 가져옴
 	    $.ajax({
 	        type : "GET", //전송방식을 지정한다 (POST,GET)
@@ -164,6 +178,7 @@
 			<h1 id="title">${dto.title }</h1>
 		</div>
 	</div>
+	<button id="excel">다운</button>
 	<div>
 		<jsp:include page="../include/footer.jsp"/>
 	</div>

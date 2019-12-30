@@ -155,7 +155,6 @@ public class BoardController {
 	@RequestMapping(value = "page2.do")
 	@ResponseBody
 	public List<TakeSurvey> page2(Model model, HttpServletRequest request) {
-		System.out.println("page2.do 실행되나--------------------------------");
 		model.addAttribute("request", request);	
 		return bService.page_board_list_take(model);
 	}

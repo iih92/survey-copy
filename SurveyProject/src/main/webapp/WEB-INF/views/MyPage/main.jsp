@@ -56,7 +56,9 @@
             </div>
 
             <div id=sectionMy style="height:1000px;">
-				MyPage
+				<script>
+					
+				</script>
             </div>
          </div>
       </div>

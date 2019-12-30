@@ -100,11 +100,13 @@
 		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by num
 		desc)A)B where rn between #{startPage} and #{endPage}
 	</select>
+	
 	<!-- 페이징 리스트 가져오기(조회수) -->
 	<select id="board_pagingList_hit" parameterType="Pdto" resultType="Bdto">
 		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by hit
 		desc)A)B where rn between #{startPage} and #{endPage}
 	</select>
+	
 	<!-- 페이징 리스트 가져오기(마감순) -->
 	<select id="board_pagingList_deadline" parameterType="Pdto"
 		resultType="Bdto">

@@ -21,11 +21,13 @@ $(document).ready(function(){
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
-	
-	if(loginUser == voteUser){
-		alert("참여한 설문조사 입니다.");
-		 $("#surveySave").attr('disabled', true);
-		 $("#surveySave").css('background-color','gray');
+	console.log(voteUser);
+	for (var i = 0; i < voteUser.length; i++) {
+		if(loginUser == voteUser[i]){
+			alert("참여한 설문조사 입니다.");
+			 $("#surveySave").attr('disabled', true);
+			 $("#surveySave").css('background-color','gray');
+		}	
 	}
 
 	/*--------------- 답글 등록창을 띄우는 부분---------------- */

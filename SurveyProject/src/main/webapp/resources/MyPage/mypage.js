@@ -1,111 +1,63 @@
 document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
-	$(".content").remove();
+	/*-----------footer 공간 제거-----------*/
+	$(".content").remove();	
+	
 	$("#navM1").click(function(){
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
 		$(this).off('mouseleave');
-	      $.ajax({
-	          url: "mypage",
-	          type: "GET",
-	          success: function() {
-	             $('#sectionMy').load("../survey/detail #test1", function() {
-	                $('#pw').keyup(function() {
-	                   $('#mesage').html('');
-	                });
-	                /* 비번 7자리 이상 입력 확인 */
-	                $("#pw").blur(function() {
-	                   var pw = $(this).val();
-	                   if(pw != "") {
-	                      if(pw.length < 7) {
-	                           $("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-	                           $('#mesage').attr('color', 'red');
-	                         $('#btnPw').attr('disabled',true);
-	                       } else {
-	                           $("#mesage").html("");
-	                       }
-	                   }
-	                   
-	                /* 비번 & 재비번 일치 확인 */
-	                $("#pw").keyup(function() {
-	                   var pw = $(this).val();
-	                   var pwChk = $("#pwChk").val();
-	                   if(!(pwChk === "")) {
-	                      if(pw.length < 7) {
-	                           $("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-	                           $('#mesage').attr('color', 'red');
-	                         $('#btnPw').attr('disabled',true);
-	                       } else if(pw === pwChk) {
-	                         $('#mesage').html('비밀번호 일치합니다.');
-	                         $('#mesage').attr('color', '#199894b3');
-	                         $('#btnPw').attr('disabled',false);
-	                      } else {
-	                         $('#mesage').html('비밀번호 일치하지 않습니다.');
-	                         $('#mesage').attr('color', '#f82a2aa3');
-	                         $('#btnPw').attr('disabled',true);
-	                      }
-	                   }
-	                });
-
-	                /* 재비번 & 비번 일치 확인  */
-	                $('#pwChk').keyup(function() {
-	                   var pw = $("#pw").val();
-	                   var pwChk = $("#pwChk").val();
-	                   if(!(pw === "")) {
-	                      if(pw.length < 7) {
-	                           $("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-	                           $('#mesage').attr('color', 'red');
-	                         $('#btnPw').attr('disabled',true);
-	                       } else if(pw === pwChk) {
-	                         $('#mesage').html('비밀번호 일치합니다.');
-	                         $('#mesage').attr('color', '#199894b3');
-	                         $('#btnPw').attr('disabled',false);
-	                      } else {
-	                         $('#mesage').html('비밀번호 일치하지 않습니다.');
-	                         $('#mesage').attr('color', '#f82a2aa3');
-	                         $('#btnPw').attr('disabled',true);
-	                      }
-	                   } else {
-	                      $("#mesage").html("");
-	                   }
-	                });
-	                });
-	                $("#mesage").html("");
-	        
+		
+		$.ajax({
+			url: "mypage",
+			type: "GET",
+			success: function() {
+				$('#sectionMy').load("../survey/detail #test1", function(){		
+					
+					/* 사용자 아이디 보여주기 */
+					$.ajax({
+						url: "info.do",
+						type: "GET",
+						success: function(data) {
+							id = data.id;
+							$("#id").val(id);
+						},
+						error:function(){
+				             alert("문제가 발생했습니다"); 
+				        }
+					});
+					
 	                /* 닉네임 중복 확인  */
 	                var nick_check = false;
 	                $("#nickname").blur(function() {
-	                   var nick = $('#nickname').val().replace(/ /gi, '');
-	                     var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-	                      console.log("사용자 닉네임: " + nick);
-	                      $.ajax({
-	                         async: true,
-	                         url : 'nickCheck',
-	                         type : 'POST',
-	                         data : nick,
-	                         dataType : "json",
-	                         contentType: "application/json; charset=UTF-8",
-	                         success : function(data) {
-	                            console.log("0이면 중복 아님 : " + data);
-	                            if (data > 0) {
-	                               //닉네임 중복 확인
-	                               console.log("중복" + data);
-	                               $("#nick_check").text("사용중인 닉네임입니다.");
-	                             $("#nick_check").css("color", "#f82a2aa3");
-	                             $('#btnNick').attr('disabled',true);
+	                	var nick = $('#nickname').val().replace(/ /gi, '');
+	                	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+	                	$.ajax({
+	                		async: true,
+	                		url : 'nickCheck',
+	                		type : 'POST',
+	                		data : nick,
+	                		dataType : "json",
+	                		contentType: "application/json; charset=UTF-8",
+	                		success : function(data) {
+	                			if (data > 0) {
+	                				$("#nick_check").text("사용중인 닉네임입니다.");
+	                				$("#nick_check").css("color", "#f82a2aa3");
+	                				$('#btnNick').attr('disabled',true);
 	                            } else {
-	                               //특수문자 불가 확인
-	                               if(nick.match(special_pattern)) {
-	                                  $("#nick_check").text("특수문자 사용할 수 없습니다.");
-	                                $("#nick_check").css("color", "#f82a2aa3");
-	                                $('#btnNick').attr('disabled',true);
+	                            	//특수문자 불가 확인
+	                            	if(nick.match(special_pattern)) {
+	                            		$("#nick_check").text("특수문자 사용할 수 없습니다.");
+	                            		$("#nick_check").css("color", "#f82a2aa3");
+	                            		$('#btnNick').attr('disabled',true);
 	                               } else {
-	                                  //닉네임 가능 확인
-	                                  $("#nick_check").text("사용가능한 닉네임 입니다.");
-	                                $("#nick_check").css("color", "#199894b3");
-	                                $('#btnNick').attr('disabled',false);
-	                                $('#nick').val(nick);
-	                                nick_check = true;
+	                            	   //닉네임 가능 확인
+	                            	   $("#nick_check").text("사용가능한 닉네임 입니다.");
+	                            	   $("#nick_check").css("color", "#199894b3");
+	                            	   $('#btnNick').attr('disabled',false);
+	                            	   $('#nick').val(nick);
+	                            	   nick_check = true;
 	                               }
 	                            }//if 외부문
 	                         },
@@ -113,19 +65,78 @@ $(document).ready(function(){
 	                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	                            console.log("ajax실패")
 	                         }
-	                      });
+	                	});
 	                });   //nick 종료
+					
+					$('#pw').keyup(function(){
+						$('#mesage').html('');
+					});
+					
+	                /* 비번 7자리 이상 입력 확인 */
+	                $("#pw").blur(function() {
+	                	var pw = $(this).val();
+	                	if(pw != "") {
+	                		if(pw.length < 7) {
+	                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
+	                			$('#mesage').attr('color', 'red');
+	                			$('#btnPw').attr('disabled',true);
+	                		}
+	                	}  
+		                /* 비번 & 재비번 일치 확인 */
+		                $("#pw").keyup(function(){
+		                	var pw = $(this).val();
+		                	var pwChk = $("#pwChk").val();
+		                	if(!(pwChk === "")) {
+		                		if(pw.length < 7) {
+		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
+		                			$('#mesage').attr('color', 'red');
+		                			$('#btnPw').attr('disabled',true);
+		                       } else if(pw === pwChk) {
+		                    	   	$('#mesage').html('비밀번호 일치합니다.');
+		                    	   	$('#mesage').attr('color', '#199894b3');
+		                    	   	$('#btnPw').attr('disabled',false);
+		                      } else {
+		                    	  	$('#mesage').html('비밀번호 일치하지 않습니다.');
+		                    	  	$('#mesage').attr('color', '#f82a2aa3');
+		                    	  	$('#btnPw').attr('disabled',true);
+		                      }
+		                   }
+		               });
+
+		                /* 재비번 & 비번 일치 확인  */
+		                $('#pwChk').keyup(function() {
+		                	var pw = $("#pw").val();
+		                	var pwChk = $("#pwChk").val();
+		                	if(!(pw === "")) {
+		                		if(pw.length < 7) {
+		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
+		                			$('#mesage').attr('color', 'red');
+		                			$('#btnPw').attr('disabled',true);
+		                       } else if(pw === pwChk) {
+		                    	   $('#mesage').html('비밀번호 일치합니다.');
+		                    	   $('#mesage').attr('color', '#199894b3');
+		                    	   $('#btnPw').attr('disabled',false);
+		                      } else {
+		                    	  $('#mesage').html('비밀번호 일치하지 않습니다.');
+		                    	  $('#mesage').attr('color', '#f82a2aa3');
+		                    	  $('#btnPw').attr('disabled',true);
+		                      }
+		                   }
+		                });
+	                });
+	                $("#mesage").html("");
 	             });   //sectionMy 종료
 	          },
 	          error:function(){
 	             alert("문제가 발생했습니다"); 
 	          }
-	       });
-	    });
+		});
+	});
 
 	$("#navM2").click(function(){
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
 		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
@@ -266,6 +277,7 @@ $(document).ready(function(){
 	$("#navM3").click(function(){
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
 		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
@@ -365,6 +377,7 @@ $(document).ready(function(){
 	$("#navM4").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
 		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
@@ -464,6 +477,7 @@ $(document).ready(function(){
 	$("#navM5").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
 		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
@@ -477,6 +491,8 @@ $(document).ready(function(){
 		});
 	});
 	
+	/*---------------------- 회원 탈퇴 --------------------*/ 
+	var pwChk = "";
 	$("#navM6").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("background-color","#efefef");
@@ -486,7 +502,15 @@ $(document).ready(function(){
 			type: "GET",
 			success: function() {
 				$('#sectionMy').load("../survey/detail #test6", function(){
-					
+					$('#pw').keyup(function(key){
+						pwChk = $(this).val();
+						if (key.keyCode == 13) {
+							leave();
+				        }
+					});
+					$('#leave').click(function(){
+						leave();
+					});
 				});   
 			},
 			error:function(){
@@ -495,6 +519,26 @@ $(document).ready(function(){
 		});
 	});  
 	
+	function leave(){
+		$.ajax({
+    		url : 'leave.do',
+    		type : 'POST',
+    		success : function(data) {
+    			if(data.pw == pwChk){
+    				var result = confirm('정말 회원 탈퇴를 하시겠습니까?'); 
+    				if(result) { 
+        				location.href = "leave";
+    				} else { }	
+    			} else {
+    				alert("비밀번호가 틀렸습니다.");
+    			}
+             },
+             error : function(){}
+    	});
+	}
+	/*---------------------- 회원 탈퇴 끝--------------------*/ 
+	
+	/*--------------------- 메뉴 선택 마우스 이벤트 ----------------------------------*/
 	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseenter(function(){
 		$(this).css("background-color","white");
 		$(this).css("font-weight","bold"); 

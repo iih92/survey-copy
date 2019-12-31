@@ -1,7 +1,8 @@
 document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
 	/*-----------footer 공간 제거-----------*/
-	$(".content").remove();	
+	$(".content").remove();
+	// 내 정보 변경 
 	function change(){	
 		$.ajax({
 			url: "mypage",
@@ -17,9 +18,7 @@ $(document).ready(function(){
 							id = data.id;
 							$("#id").val(id);
 						},
-						error:function(){
-				             alert("문제가 발생했습니다"); 
-				        }
+						error:function(){}
 					});
 					
 	                /* 닉네임 중복 확인  */
@@ -55,10 +54,7 @@ $(document).ready(function(){
 	                               }
 	                            }//if 외부문
 	                         },
-	                         error : function(){
-	                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	                            console.log("ajax실패")
-	                         }
+	                         error : function(){}
 	                	});
 	                });   //nick 종료
 					
@@ -126,20 +122,27 @@ $(document).ready(function(){
 	          }
 		});
 	}
-	change();
+	change();	// 첫화면
+	$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+	$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+	$("#navM1").css("background-color","white");
+	$("#navM1").css("font-weight","bold"); 
+	
 	$("#navM1").click(function(){
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		change();
 	});
 
 	$("#navM2").click(function(){
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -200,12 +203,8 @@ $(document).ready(function(){
 										$(".mypleft").attr('disabled',true);
 									}
 									
-								}, error: function() {
-									alert("문제가 발생")
-								}
+								}, error: function() {}
 							});
-							
- 
 							
 					}); 	
 						$('.mypright').click(function(){
@@ -279,8 +278,9 @@ $(document).ready(function(){
 	$("#navM3").click(function(){
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -378,8 +378,9 @@ $(document).ready(function(){
 	$("#navM4").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -478,8 +479,9 @@ $(document).ready(function(){
 	$("#navM5").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -497,7 +499,8 @@ $(document).ready(function(){
 	$("#navM6").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("background-color","#efefef");
-		$(this).off('mouseleave');
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -541,16 +544,11 @@ $(document).ready(function(){
 	
 	/*--------------------- 메뉴 선택 마우스 이벤트 ----------------------------------*/
 	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseenter(function(){
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").css("background-color","#efefef");
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").css("font-weight","normal");  
 		$(this).css("background-color","white");
 		$(this).css("font-weight","bold"); 
 	}); 
-	
-	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseleave(function(){
-		$(this).css("background-color","#efefef");
-		$(this).css("font-weight","normal"); 
-	});
-	
-
-	
+ 
 
 });

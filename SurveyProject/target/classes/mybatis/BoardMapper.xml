@@ -42,7 +42,7 @@
 	</delete>
 	
 	<delete id="takesurveyDelete" parameterType="int">
-		delete from TAKESURVEY where num=#{num}
+		delete from TAKESURVEY where bnum=#{bnum}
 	</delete>
 	
 	<delete id="voteDelete" parameterType="int">
@@ -92,7 +92,8 @@
 	
 	<!-- 참여한 설문조사 등록 -->
 	<insert id="takeSurbey" parameterType="Tdto">
-		insert into TakeSurvey(num,nick,title,deadline,hit,point) values(#{num},#{nick},#{title},#{deadline},#{hit},#{point})
+		insert into TakeSurvey(num,nick,title,deadline,hit,point,bnum) 
+		values(TAKESURVEY_NUM.nextval,#{nick},#{title},#{deadline},#{hit},#{point},#{bnum})
 	</insert>
 	<!-- 참여한 설문조사 검색(최신순) -->
 	<select id="TakeSurbeySearch" parameterType="String" resultType="Tdto">

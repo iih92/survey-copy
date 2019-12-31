@@ -15,6 +15,7 @@ import com.team.dto.VoteDTO;
 public class BoardDAO {
 
 	private static final String namespace = "Board";
+	private static final String namespaceReply = "Reply";
 
 	@Autowired
 	private SqlSession sqlsession;
@@ -63,6 +64,9 @@ public class BoardDAO {
 
 	//[게시글 삭제하기]
 	public Object surveyDelete(int num) {
+		sqlsession.delete(namespace + ".voteDelete", num);
+		sqlsession.delete(namespace + ".takesurveyDelete", num);
+		sqlsession.delete(namespaceReply + ".replyAllDelete", num);
 		return sqlsession.delete(namespace + ".surveyDelete", num);
 	}
 
@@ -95,16 +99,17 @@ public class BoardDAO {
 	public int getTotalPage_nick(String loginUser) {
 		return sqlsession.selectOne(namespace+".board_getTotalPage_nick", loginUser);
 	}
-	public List<BoardDTO> page_board_list_nick(PageCount pc) {
-		return sqlsession.selectList(namespace+".board_pagingList_nick",pc);
+	public List<BoardDTO> page_board_list_nick(PageCount pc2) {
+		return sqlsession.selectList(namespace+".board_pagingList_nick",pc2);
 	}
 	
 	/*마이페이지 - 최근 설문조사*/
 	public int getTotalPage_take(String loginUser) {
 		return sqlsession.selectOne(namespace+".getTotalPage_take", loginUser);
 	}
-	public List<TakeSurvey> page_board_list_take(PageCount pc) {
-		return sqlsession.selectList(namespace+".board_pagingList_take",pc);
+	
+	public List<TakeSurvey> page_board_list_take(PageCount pc3) {
+		return sqlsession.selectList(namespace+".board_pagingList_take",pc3);
 	}
 	/*-----------------------------------------------------------------------------*/
 
@@ -130,14 +135,16 @@ public class BoardDAO {
 
 	//포인트 히스토리(적립된 날짜순 정렬)
 	public List<TakeSurvey> pointHistory(String loginUser) {
-		// TODO Auto-generated method stub 
 		return sqlsession.selectList(namespace+".pointHistory",loginUser);
 	}
-	public List<String> dateSecond(String loginUser){
-		
+	
+	public List<String> dateSecond(String loginUser) {	
 		return sqlsession.selectList(namespace+".dateSecond",loginUser);
 	}
-
- 
-
+	
+	//[best 설문조사]
+	public List<BoardDTO> bestServey(){
+		return sqlsession.selectList(namespace + ".bestServey");
+	}
+	
 }

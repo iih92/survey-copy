@@ -20,11 +20,14 @@ public interface IBoardService {
 	public int surveyVote(Model model);
 	public String[] surveyQuestion(Model model);
 	public String[] surveyResult(Model model);
+	public void bestServey(Model model);
+	
 	/*페이징*/
 	public void page_board_list(Model model);
 	public PageCount pagingNum(Model model, int daonum);
 	public List<BoardDTO> page_board_list_nick(Model model);
 	public List<TakeSurvey> page_board_list_take(Model model);
+	
 	/*참여한 설문조사*/
 	public void takeSurbey(int num, Model model);
 	public void TakeSurbeySearch(Model model);

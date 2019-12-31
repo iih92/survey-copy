@@ -23,14 +23,13 @@ public class ExcelController {
 	@ResponseBody
 	public void makeExcel(Model model,HttpServletRequest request, 
 			@RequestParam(value="xlsResult[]") String[] xlsResult,
-			@RequestParam(value="xlsCnt[]") String[] xlsCnt) throws Exception{
-
+			@RequestParam(value="xlsCnt[]") String[] xlsCnt,
+			@RequestParam(value="xlsPer") String xlsPer) throws Exception{
 		model.addAttribute("request",request);
-		String[] result = bservice.surveyResult(model);
 		String[] info = bservice.surveyQuestion(model);
 		String title = info[0];
 		String question = info[1];
-		ExcelService.makeExcel(title + ".xls", xlsResult, xlsCnt, question);
+		ExcelService.makeExcel(title + ".xls", xlsResult, xlsCnt, xlsPer, question);
 
 	}
 }

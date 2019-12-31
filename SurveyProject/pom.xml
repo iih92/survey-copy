@@ -143,6 +143,7 @@
 			<version>1.18.10</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- AOP -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -169,26 +170,39 @@
         	<artifactId>jackson-databind</artifactId>
          	<version>2.9.5</version>
       	</dependency>
+
+      <dependency>
+         <groupId>net.sf.json-lib</groupId>
+         <artifactId>json-lib</artifactId>
+         <version>2.4</version>
+         <classifier>jdk15</classifier>
+      </dependency>
       
-      	<dependency>
-      	   <groupId>net.sf.json-lib</groupId>
-      	   <artifactId>json-lib</artifactId>
-        	 <version>2.4</version>
-     	    <classifier>jdk15</classifier>
-     	 </dependency> 
-	
-		<!-- 엑셀 제어(xls) maven setting -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.12</version>
-		</dependency>
-		<!-- 엑셀 제어(xlsx) maven setting-->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
-		</dependency>
+     <!-- Java Mail API -->
+	 <dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.3</version>
+	 </dependency> 
+	 
+	 <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+
+	<!-- 엑셀 제어(xls) maven setting -->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.12</version>
+	</dependency>
+	<!-- 엑셀 제어(xlsx) maven setting-->
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi-ooxml</artifactId>
+		<version>3.9</version>
+	</dependency>
 
 	</dependencies>
 		

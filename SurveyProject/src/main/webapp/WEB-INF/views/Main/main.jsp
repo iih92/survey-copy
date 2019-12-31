@@ -84,67 +84,25 @@ $(document).ready(function(){
 				</div>
 
 				<!-- box(1) -->
-				<div class="box">
-					<a href="#"> <!-- mouse over -->
-						<div class="over">
-							<img src="resources/main/images/coin.png" alt="" />
-							<h1
-								style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
-						</div> <!-- icon div -->
-						<div class="box_image">
-							<img src="resources/main/images/icon-1.jpg" alt="" />
-						</div> <!-- inner div -->
-						<div class="inner">
-							<h3>자바 수업 평가 설문조사</h3>
-
-							<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-							<font> 마감 날짜 : 2019.12.03 </font>
-						</div>
-					</a>
-				</div>
-				<!-- box(1) end -->
-
-				<!-- box(2) -->
-				<div class="box">
-					<a href="#"> <!-- mouse over -->
-						<div class="over">
-							<img src="resources/main/images/coin.png" alt="" />
-							<h1
-								style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
-						</div> <!-- icon div -->
-						<div class="box_image">
-							<img src="resources/main/images/icon-1.jpg" alt="" />
-						</div> <!-- inner div -->
-						<div class="inner">
-							<h3>자바 수업 평가 설문조사</h3>
-
-							<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-							<font> 마감 날짜 : 2019.12.03 </font>
-						</div>
-					</a>
-				</div>
-				<!-- box(2) end -->
-
-				<!-- box(3) -->
-				<div class="box">
-					<a href="#"> <!-- mouse over -->
-						<div class="over">
-							<img src="resources/main/images/coin.png" alt="" />
-							<h1
-								style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
-						</div> <!-- icon div -->
-						<div class="box_image">
-							<img src="resources/main/images/icon-1.jpg" alt="" />
-						</div> <!-- inner div -->
-						<div class="inner">
-							<h3>자바 수업 평가 설문조사</h3>
-
-							<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-							<font> 마감 날짜 : 2019.12.03 </font>
-						</div>
-					</a>
-				</div>
-				<!-- box(3) end -->
+				<c:forEach var="dto" items="${ bestSurvey }">
+					<div class="box">
+						<a href="boarddetail?num=${dto.num }"><!-- mouse over -->
+							<div class="over">
+								<img src="resources/main/images/coin.png" alt="" />
+								<h1
+									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h1>
+							</div> <!-- icon div -->
+							<div class="box_image">
+								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
+							</div> <!-- inner div -->
+							<div class="inner">
+								<h3>${ dto.title }</h3>
+								<p>${ dto.hashtag }</p>
+								<font> 마감 날짜 : ${ dto.deadline } </font>
+							</div>
+						</a>
+					</div>
+				</c:forEach> 
 
 				<div>
 					<hr class="main" width="1920px" , size="4" , color="#9e9e9e">
@@ -154,26 +112,24 @@ $(document).ready(function(){
 				<div class="new">
 					<h3>&nbsp;&nbsp;NEW SURVEY
 					
-						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;color:black;">
-							정렬: 
-							<span id="recentLineup" 
-									<c:if test="${ lineupSession == '1' }">style=" font-weight:bold;" </c:if>
-							>최신 </span>
+						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;">
+							<span id="recentLineup"
+									<c:if test="${ lineupSession == '1' }"> style="color:#ff8b02" </c:if>
+							>최신순</span>
 							
 							<span style="color:#ff8b02;">|</span> 
-	
-							<span id="deadLineup" 		
-								<c:if test="${ lineupSession == '2' }">style=" font-weight:bold;" </c:if> 
-							>마감 임박</span>
+
+							<span id="deadLineup"
+								<c:if test="${ lineupSession == '2' }">style="color:#ff8b02" </c:if> 
+							>마감순</span>
 							
 							<span style="color:#ff8b02;">|</span> 
 							
-							<span id="hitLineup" 		
-								<c:if test="${ lineupSession == '3' }">style=" font-weight:bold;" </c:if>
-							>조회 수</span>  
-							
-							<span style="color:#ff8b02;">|</span> 
+							<span id="hitLineup"
+								<c:if test="${ lineupSession == '3' }">style="color:#ff8b02" </c:if>
+							>조회순</span>  
 						</span>
+						
 					</h3>			
 				</div>
  				
@@ -182,11 +138,10 @@ $(document).ready(function(){
 						<a href="boarddetail?num=${dto.num }"> <!-- mouse over -->
 							<div class="over">
 								<img src="resources/main/images/coin.png" alt="" />
-								<h2
-									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h2>
+								<h2 style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h2>
 							</div> <!-- icon div -->
 							<div class="box_image">
-								<img src="resources/main/images/mini_icon1.png" alt="" />
+								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
 							</div> <!-- inner div -->
 							<div class="inner">
 								<h3>${ dto.title }</h3>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,13 +62,29 @@
 		<!-- 옆에 버튼 만들어주는 div end -->
 		<form id="surveyForm" action="surveySave" method="post">
 			<div id="form" class="main">
+			
 				<!--제목-->
 				<div class="title">
+					<!-- 아이콘 -->
+					<img src="resources/board/images/mini_icon1.png" id="boder_icon"><br>
+					<input type="button" id="icon_Change" value="이미지 변경">
+				
+					<input type="hidden" value="resources/board/images/mini_icon1.png" name="boardIcon" id="board_icon_input">
+					
+					<!-- 아이콘 수정 -->
+				    <div id="border_icon_Change">
+				    	<img src="resources/board/images/mini_icon1.png" style="margin: 3%; width: 25%;" id="board_icon01">
+					    <img src="resources/board/images/mini_icon2.png" style="margin: 3%; width: 25%;" id="board_icon02">
+					    <img src="resources/board/images/mini_icon3.png" style="margin: 3%; width: 25%;" id="board_icon03">
+					    <img src="resources/board/images/mini_icon4.png" style="margin: 3%; width: 25%;" id="board_icon04">
+					    <img src="resources/board/images/mini_icon5.png" style="margin: 3%; width: 25%;" id="board_icon05">
+					    <img src="resources/board/images/mini_icon6.png" style="margin: 3%; width: 25%;" id="board_icon06">				    
+				    </div>
+
 					<input type="hidden" value="${loginUser}" name="nick">
             		<input type="text" class="title_input" placeholder="나만의 설문 만들기" name="title">
             		<input type="text"  name="hashtag" class="hash_input" id="hash" placeholder="#해시태그">
             		<div class="dedline">마감날짜 : <input id="deadline" type="date" name="deadline"></div>    
-
         		</div>
 			</div>
 			<input type="button" id="save" value="설문등록">

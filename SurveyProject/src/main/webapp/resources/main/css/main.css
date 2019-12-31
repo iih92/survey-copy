@@ -122,6 +122,12 @@
 	margin-bottom: 2%
 }
 
+.new span{
+	color: #1a1a1a;
+	font-weight: bolder;
+    font-size: 15px;
+}
+
 /* Box css */
 .box {
 	border-radius: 4px;
@@ -290,12 +296,14 @@
 }
 
 /*페이징 css*/
+.paging{
+	text-align: center;
+}
 .paging ul {
-	margin-left: 40%;
 	margin-top: 2.5%;
 	list-style: none;
-	float: left;
-	display: inline;
+	float: center;
+	display: inline-block;
 }
 
 .paging ul li {

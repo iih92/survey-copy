@@ -247,6 +247,38 @@ $(document).ready(function(){
 		}
 	}).on("keyup", function() {
 		$(this).val($(this).val().replace(replaceChar, ""));
-	});	
+	});		
+	
+	/*나의 이미지 변경하기*/
+	$("#border_icon_Change").hide();
+	$("#icon_Change").click(function() {
+		$("#border_icon_Change").toggle('1000');
+	});
+	
+	
+	$("#board_icon01").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon1.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon1.png');
+	});
+	$("#board_icon02").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon2.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon2.png');
+	});
+	$("#board_icon03").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon3.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon3.png');
+	});
+	$("#board_icon04").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon4.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon4.png');
+	});
+	$("#board_icon05").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon5.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon5.png');
+	});
+	$("#board_icon06").click(function() {
+		$("#boder_icon").attr('src','resources/board/images/mini_icon6.png');
+		$("#board_icon_input").val('resources/board/images/mini_icon6.png');
+	});
 	
 });  

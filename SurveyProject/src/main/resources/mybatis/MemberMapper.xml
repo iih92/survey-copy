@@ -5,8 +5,8 @@
 <mapper namespace="Member">
 
 	<!-- 회원 가입 -->
-	<insert id="singUp" parameterType="Mdto"> 
-		insert into member(id,pw,nick)
+	<insert id="singUp" parameterType="Mdto">
+		insert into member (id,pw,nick)
 		values(#{id},#{pw},#{nick})
 	</insert>
 

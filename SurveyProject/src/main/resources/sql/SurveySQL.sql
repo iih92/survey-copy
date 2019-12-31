@@ -62,3 +62,9 @@ create table vote(
 
 /* TakeSurvey에 날짜 추가 */
 alter table TakeSurvey add dt date default sysdate not null;
+
+/*BOARD에 사진아이콘 추가*/
+alter table BOARD add boardicon VARCHAR2(400);
+
+/* TakeSurvey에 게시판 번호 추가 */
+alter table TakeSurvey add bnum number;

@@ -1,7 +1,5 @@
 package com.team.service;
 
-
-
 import java.sql.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -38,6 +36,7 @@ public class BoardService implements IBoardService {
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtag"));
 		dto.setNick(request.getParameter("nick"));
+		dto.setBoardIcon(request.getParameter("boardIcon"));
 		dto.setPoint(500);
 		String code="";
 
@@ -91,6 +90,7 @@ public class BoardService implements IBoardService {
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtag"));
 		dto.setNum(Integer.parseInt(request.getParameter("num")));
+		dto.setBoardIcon(request.getParameter("boardIcon"));
 		String code="";
 
 		// request 객체 안에있는 모든 값을 조회할수 있는 역할
@@ -231,38 +231,57 @@ public class BoardService implements IBoardService {
 		// 맨처음 리뷰게시판 들어올때 
 		if(start == 0) start=1;      
 		// 페이지에 보여줄 게시글 갯수
-		int pageNum=5;
+		int pageNum=8;
 		
-		// 전체 게시글 갯수 가져오기
 		int totalPage = 0;
+		int totEndPage = 0;
+		int startPage = 0;
+		int endPage = 0;
 		
-		switch (daoNum) {
-			case 1:
-				totalPage = getTotalPage();
-				break;
-			case 2:
-				totalPage = getTotalPage_nick(loginUser);
-				break;
-			case 3:
-				totalPage = getTotalPage_take(loginUser);
-				break;
+
+		if(daoNum == 1) {
+			totalPage = getTotalPage();
+			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
+			startPage = (start - 1) * pageNum + 1;
+			endPage = pageNum * start;
+			
+			PageCount pc = new PageCount();
+			pc.setTotEndPage(totEndPage);
+			pc.setStartPage(startPage);
+			pc.setEndPage(endPage);
+			pc.setNick(loginUser);
+			model.addAttribute("pc", pc);
+			return pc; 
+			
+		}else if(daoNum == 2) {
+			totalPage = getTotalPage_nick(loginUser);
+			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
+			startPage = (start - 1) * pageNum + 1;
+			endPage = pageNum * start;
+			
+			PageCount pc2 = new PageCount();
+			pc2.setTotEndPage(totEndPage);
+			pc2.setStartPage(startPage);
+			pc2.setEndPage(endPage);
+			pc2.setNick(loginUser);
+			model.addAttribute("pc2", pc2);		
+			return pc2; 
+			
+		}else{
+			totalPage = getTotalPage_take(loginUser);
+			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
+			startPage = (start - 1) * pageNum + 1;
+			endPage = pageNum * start;
+			
+			PageCount pc3 = new PageCount();
+			pc3.setTotEndPage(totEndPage);
+			pc3.setStartPage(startPage);
+			pc3.setEndPage(endPage);
+			pc3.setNick(loginUser);
+			model.addAttribute("pc3", pc3);	
+			return pc3; 
 		}
 
-		// 전체 게시글 갯수 / 페이지 보여줄 게시글 갯수 + (나머지 값이 있으면 + 1) 마지막 페이지 번호를 정하는 식
-		int totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-		// 페이지 넘버를 눌렀을때 첫번째 상단에 보여줄 게시글 번호 
-		int startPage = (start - 1) * pageNum + 1;
-		// 페이지 넘버를 눌렀을 때 마지막에 보여줄 게시글 번호
-		int endPage = pageNum * start;
-
-		//PageCount dto에 변수 저장
-		PageCount pc = new PageCount();
-		pc.setTotEndPage(totEndPage);
-		pc.setStartPage(startPage);
-		pc.setEndPage(endPage);
-		pc.setNick(loginUser);
-		model.addAttribute("pc", pc);
-		return pc;         
 	}
 	
 	/*페이징 전체 행수 가져오기*/
@@ -315,6 +334,7 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		BoardDTO dto = dao.surveySelect(num);	
 		TakeSurvey Tdto = new TakeSurvey();
+		Tdto.setBnum(num);
 		Tdto.setTitle(dto.getTitle());
 		Tdto.setPoint(dto.getPoint());
 		Tdto.setDeadline(dto.getDeadline());
@@ -333,7 +353,6 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
- 
 	
 	// 포인트 내역 열람 눌렀을때 가져오는 목록
 	@Override
@@ -343,8 +362,8 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");		 
-		model.addAttribute("pointHistory",dao.pointHistory(loginUser));
-		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 
+		model.addAttribute("pointHistory",dao.pointHistory(loginUser)); 
+		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 	 
 	}
 	@Override
 	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
@@ -353,16 +372,13 @@ public class BoardService implements IBoardService {
 	String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.dateSecond(loginUser);
 	}
+	
 	@Override
 	public List<TakeSurvey> ajax_pointHistory(Model model) {Map<String,Object> map = model.asMap();
-	HttpServletRequest request = (HttpServletRequest)map.get("request");
-	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
-	return dao.pointHistory(loginUser);
-	}
- 
-
-
- 
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+		return dao.pointHistory(loginUser);
+	} 
 	//[엑셀로 만들기 위한 데이터 받기]
 	public String[] surveyQuestion(Model model) {
 		String[] result = new String[2];
@@ -373,5 +389,12 @@ public class BoardService implements IBoardService {
 		result[0] = dto.getTitle();
 		result[1] = dto.getCode();
 		return result;
+	}
+
+	//[best 설문조사]
+	@Override
+	public void bestServey(Model model) {
+		model.addAttribute("bestSurvey",dao.bestServey());	
 	} 
+	
 }

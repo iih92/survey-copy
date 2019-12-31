@@ -133,7 +133,7 @@
 	
 	<!-- best 설문조사 -->
 	<select id="bestServey" resultType="Bdto">
-		SELECT * FROM (SELECT * FROM board ORDER BY point desc, hit desc) WHERE ROWNUM <![CDATA[<=]]> 3
+		SELECT * FROM ((SELECT * FROM board where deadline >= sysdate-1) ORDER BY point desc, hit DESC) WHERE ROWNUM <![CDATA[<=]]> 3
 	</select>
 	
 </mapper>

@@ -54,10 +54,12 @@ public class MemberDAO {
 		return session.selectOne(namespace+".userPoint", dto);	 
 	}
 
+	//[회원 정보 가져오기]
 	public MemberDTO info(MemberDTO dto) {
 		return session.selectOne(namespace + ".info", dto);	 
 	}
 
+	//[회원 탈퇴]
 	public void leave(MemberDTO dto) {
 		session.delete(namespace + ".leave", dto);	
 	}

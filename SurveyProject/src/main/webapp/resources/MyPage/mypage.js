@@ -48,7 +48,7 @@ $(document).ready(function(){
 	                               } else {
 	                            	   //닉네임 가능 확인
 	                            	   $("#nick_check").text("사용가능한 닉네임 입니다.");
-	                            	   $("#nick_check").css("color", "#199894b3");
+	                            	   $("#nick_check").css("color", "#01aef0");
 	                            	   $('#btnNick').attr('disabled',false);
 	                            	   $('#nick').val(nick);
 	                            	   nick_check = true;
@@ -72,7 +72,7 @@ $(document).ready(function(){
 	                	if(pw != "") {
 	                		if(pw.length < 7) {
 	                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-	                			$('#mesage').attr('color', 'red');
+	                			$('#mesage').attr('color', '#f82a2aa3');
 	                			$('#btnPw').attr('disabled',true);
 	                		}
 	                	}  
@@ -83,11 +83,11 @@ $(document).ready(function(){
 		                	if(!(pwChk === "")) {
 		                		if(pw.length < 7) {
 		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-		                			$('#mesage').attr('color', 'red');
+		                			$('#mesage').attr('color', '#f82a2aa3');
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   	$('#mesage').html('비밀번호 일치합니다.');
-		                    	   	$('#mesage').attr('color', '#199894b3');
+		                    	   	$('#mesage').attr('color', '#01aef0');
 		                    	   	$('#btnPw').attr('disabled',false);
 		                      } else {
 		                    	  	$('#mesage').html('비밀번호 일치하지 않습니다.');
@@ -104,11 +104,11 @@ $(document).ready(function(){
 		                	if(!(pw === "")) {
 		                		if(pw.length < 7) {
 		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-		                			$('#mesage').attr('color', 'red');
+		                			$('#mesage').attr('color', '#f82a2aa3');
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   $('#mesage').html('비밀번호 일치합니다.');
-		                    	   $('#mesage').attr('color', '#199894b3');
+		                    	   $('#mesage').attr('color', '#01aef0');
 		                    	   $('#btnPw').attr('disabled',false);
 		                      } else {
 		                    	  $('#mesage').html('비밀번호 일치하지 않습니다.');

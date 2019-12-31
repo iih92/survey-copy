@@ -24,29 +24,33 @@
       <font id="p">내정보 변경</font><br><br>
       	비밀번호와 닉네임을 수정 하실 수 있습니다.
    </div>
-   <hr>
    
    <div class="content">
+   <hr>
       <ul>
          <li>아이디</li>
-         <input type="text" name="id" id="id" style="background-color: #f3f3f3;" readonly="readonly" ><br>
+         <input type="text" name="id" id="id" style="background-color: #f3f3f3; margin-right:20%; font-size: 20px;" readonly="readonly" ><br>
          
          <form action="changenick" method="post">
             <li>변경할 닉네임</li>
             <input type="text" name="nick" id="nickname" autocomplete="off">
             <button type="submit" disabled="true" id="btnNick">수정</button>
-            <font id="nick_check" size="2"></font>
+            <h4 id="nick_check" size="2" style="text-align: left;"></h4>
          </form>
+         
          <form action="changepw" method="post">
             <input type="hidden" name="nick" value="1">
             <li>변경할 비밀번호</li>
-            <input type="password" name="pw" id="pw" autocomplete="off"><br>
+            <input type="password" name="pw" id="pw" autocomplete="off"  style="margin-right:20%;"><br>
+            
             <li>변경할 비밀번호 재입력</li>
             <input type="password" name="pwChk" id="pwChk" autocomplete="off">
             <button type="submit" disabled="true" id="btnPw">수정</button>
-            <font id="mesage" size="2"></font>
+            <h4 id="mesage" size="2"></h4>
          </form>
+         
       </ul>
+     <hr>
    </div>
 </div>
 

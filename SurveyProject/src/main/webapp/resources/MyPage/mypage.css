@@ -70,41 +70,40 @@ font-family:'Noto Sans KR',sans-serif;
    color: #474c4c;
    width: 100%;
    line-height: 0.5;
-   margin-top: 10px;
+   margin-top: 2%;
    padding: 5px;
    position: relative;
 }
 #p {
-    font-size: 30px;
-   color: #373737;
-   line-height: 1;
-    font-weight: 900;
+    font-size: 40px;
+    color: #01aef0;
+    line-height: 1.5;
+    font-weight: 1000;
 }
 .content{
-   font-family: 'Ubuntu-Regular', sans-serif;
    font-size: 16px;
    color: #474c4c; 
    font-weight: 700;
-   width: 100%;
+   width: 70%;
    padding: 5px;
+   margin: 0 auto;
    border: 1px solid transparent;
 }
 .content ul {
     list-style: none;
-    display: block;
-   float: left;
+    display: inline-block;
     padding: 0px;
 }
 .content li {
-   float: left;
-   width: 200px;
    height: 30px;
    text-align: left;
+   margin-bottom: 2%;
+   margin-top: 5%;
 }
 .content input {
    width: 200px;
-   height: 30px;
-   border: 1px solid #ebebeb;
+   height: 40px;
+   border: 1px solid #cccccc;
    background: transparent;
    box-sizing: border-box;
 }
@@ -128,6 +127,15 @@ hr {
    border-width: 1px;
 }
 
+#btnNick, #btnPw{
+	border: none;
+	color: #fff;
+	font-size: 18px;
+	background-color: #797979;
+	border-radius: 4px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+}
 
 /*내 설문조사 css*/
 .RegisterSurbey{
@@ -281,13 +289,14 @@ hr {
     text-align: right;
     text-decoration: none;
     display: inline-block;
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
     background-color: #01aef0;
     border-radius: 4px;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
     margin-top: 1%;
+    padding: 0.5% 3% 0.5% 3%;
 }
 
 #leavepw{
@@ -298,6 +307,7 @@ hr {
     font-size: 20px;
     font-weight: 600;
     text-align: center;
+    border-radius: 4px;
 }
 
 

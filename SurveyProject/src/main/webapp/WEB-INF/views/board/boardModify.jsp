@@ -64,9 +64,25 @@
 		</div>
 		<!-- 옆에 버튼 만들어주는 div end -->
 		<form id="surveyForm" action="surveyUpdate" method="post">
-			<div id="form" class="main">
+			<div id="form" class="main">		
 				<!--제목-->
 				<div class="title">
+					<!-- 아이콘 -->
+					<img src="${ dto.boardIcon }" id="boder_icon"><br>
+					<input type="button" id="icon_Change" value="이미지 변경">
+				
+					<input type="hidden" value="resources/board/images/mini_icon1.png" name="boardIcon" id="board_icon_input">
+					
+					<!-- 아이콘 수정 -->
+				    <div id="border_icon_Change">
+				    	<img src="resources/board/images/mini_icon1.png" style="margin: 3%; width: 25%;" id="board_icon01">
+					    <img src="resources/board/images/mini_icon2.png" style="margin: 3%; width: 25%;" id="board_icon02">
+					    <img src="resources/board/images/mini_icon3.png" style="margin: 3%; width: 25%;" id="board_icon03">
+					    <img src="resources/board/images/mini_icon4.png" style="margin: 3%; width: 25%;" id="board_icon04">
+					    <img src="resources/board/images/mini_icon5.png" style="margin: 3%; width: 25%;" id="board_icon05">
+					    <img src="resources/board/images/mini_icon6.png" style="margin: 3%; width: 25%;" id="board_icon06">				    
+				    </div>
+				
 					<input type="hidden" name="num" value="${ dto.num }">
 					<input type="text" class="title_input" value="${dto.title }"
 						name="title"> <input type="text" name="hashtag"

@@ -18,7 +18,8 @@ function reReply(){
 }
 
 $(document).ready(function(){
-
+	var deadline = '${ dto.deadline }';
+	
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
@@ -30,7 +31,26 @@ $(document).ready(function(){
 			 $("#surveySave").css('background-color','gray');
 		}	
 	}
+	
+	/*-------------오늘 날짜---------------*/
+	var dt = new Date();
+    var Year = dt.getFullYear();        
+    var Month = "" + (dt.getMonth()+1);
+    var Day = "" + (dt.getDate()-1);            
+    if(Month.length < 2) Month = "0" + Month;
+    if(Day.length < 2) Day = "0" + Day;  
+    var Today = Year.toString() + "-" + Month + "-" + Day;
+    /*-------------오늘 날짜---------------*/
+	if(deadline <= Today) {
+		alert("마감일자가 지난 설문조사입니다.");
+		$('#surveySave').attr("disabled", true);
+		$("#surveySave").css('background-color','gray');
+	} else {
+		$('#surveySave').attr("disabled", false);
+	}
+});
 
+$(document).ready(function(){
 	/*--------------- 답글 등록창을 띄우는 부분---------------- */
 	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
 	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
@@ -94,11 +114,10 @@ $(document).ready(function(){
 	});
 	
 	$('.replyUpdateCancel').click(function(e){
-		
-			$('.replyUpdatediv').show();
-		  $('.replyUpdateSeconddiv').hide();
-		  
+		$('.replyUpdatediv').show();
+		$('.replyUpdateSeconddiv').hide();
 	}); 
+	
 });
 
 </script>
@@ -177,7 +196,7 @@ $(document).ready(function(){
 		}
 		
 		/*삭제 버튼*/
-		.delButton{
+	.delButton{
 		border: none;
 		color: #fff;
 		/* padding: 1% 45% 1% 45%; */
@@ -292,7 +311,7 @@ $(document).ready(function(){
 			</c:when>
 			
 			<c:otherwise>
-				<input type="submit" class="surveySave" id="surveySave" value="등록">
+				<input type="button" class="surveySave" id="surveySave" value="등록">
 			</c:otherwise>
 		</c:choose>
 	</form>

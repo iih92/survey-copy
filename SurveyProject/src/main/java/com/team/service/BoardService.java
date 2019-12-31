@@ -1,7 +1,5 @@
 package com.team.service;
 
-
-
 import java.sql.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -92,6 +90,7 @@ public class BoardService implements IBoardService {
 		dto.setTitle(request.getParameter("title"));
 		dto.setHashtag(request.getParameter("hashtag"));
 		dto.setNum(Integer.parseInt(request.getParameter("num")));
+		dto.setBoardIcon(request.getParameter("boardIcon"));
 		String code="";
 
 		// request 객체 안에있는 모든 값을 조회할수 있는 역할
@@ -335,6 +334,7 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		BoardDTO dto = dao.surveySelect(num);	
 		TakeSurvey Tdto = new TakeSurvey();
+		Tdto.setNum(num);
 		Tdto.setTitle(dto.getTitle());
 		Tdto.setPoint(dto.getPoint());
 		Tdto.setDeadline(dto.getDeadline());
@@ -353,7 +353,6 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
- 
 	
 	// 포인트 내역 열람 눌렀을때 가져오는 목록
 	@Override
@@ -391,6 +390,12 @@ public class BoardService implements IBoardService {
 		result[0] = dto.getTitle();
 		result[1] = dto.getCode();
 		return result;
+	}
+
+	//[best 설문조사]
+	@Override
+	public void bestServey(Model model) {
+		model.addAttribute("bestSurvey",dao.bestServey());	
 	} 
 	
 }

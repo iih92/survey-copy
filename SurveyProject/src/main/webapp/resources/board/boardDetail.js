@@ -25,7 +25,8 @@ $(document).ready(function(){
 			}
 		}
 	}
-	$(".surveySave").click(function(){
+	
+	$("#surveySave").click(function(){
 		var qu = divnum+1;
 		var flag = 1;
 		for (var i = 1; i < qu; i++) {
@@ -50,7 +51,6 @@ $(document).ready(function(){
 			}
 		}	
 		if(flag){
-			console.log("1");
 			$("#voteForm").submit();
 		}
 	});

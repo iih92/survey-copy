@@ -38,6 +38,7 @@ public class BoardController {
 		mService.userPoint(model);
 		bService.page_board_list(model);
 		bService.pagingNum(model,1); 
+		bService.bestServey(model);
 		return "Main/main";
 	}
 	

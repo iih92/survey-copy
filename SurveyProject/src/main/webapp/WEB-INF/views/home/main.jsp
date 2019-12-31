@@ -82,7 +82,7 @@
 						<i class="fa fa-bars" style="color: black"></i>
 					</button>
 					<a class="navbar-brand" style="height: 20px; width: 160px;"> 
-						<img onclick="javascript:location.href='http://localhost:8989/survey';"
+						<img onclick="javascript:location.href='/survey/';"
                      	style="cursor:pointer;" src="resources/logo/logo-1.png" alt="" />
 					</a>
 				</div>

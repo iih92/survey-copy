@@ -17,12 +17,6 @@
 <body>
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
 
-<!------------------------------마이페이지 첫 화면------------------------------------------>
-<div id="comfirm">
-	<input type="password" name="pw" id="pw">
-	<button type="button" id="check">확인</button>
-</div>
-
 <!------------------------------1. 내 정보 변경 ------------------------------------------>
 <div id="test1" style="text-align:left;  ">
    <div class="title">

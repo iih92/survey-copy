@@ -2,13 +2,7 @@ document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
 	/*-----------footer 공간 제거-----------*/
 	$(".content").remove();	
-	
-	$("#navM1").click(function(){
-		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
-		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
-		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
-		
+	function change(){	
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -102,7 +96,7 @@ $(document).ready(function(){
 		                      }
 		                   }
 		               });
-
+	
 		                /* 재비번 & 비번 일치 확인  */
 		                $('#pwChk').keyup(function() {
 		                	var pw = $("#pw").val();
@@ -131,6 +125,14 @@ $(document).ready(function(){
 	             alert("문제가 발생했습니다"); 
 	          }
 		});
+	}
+	change();
+	$("#navM1").click(function(){
+		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		// 다른 mouseleave 이벤트 on 시켜야함
+		$(this).off('mouseleave');
+		change();
 	});
 
 	$("#navM2").click(function(){

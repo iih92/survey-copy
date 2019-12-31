@@ -40,6 +40,14 @@
 	<delete id="surveyDelete" parameterType="int">
 		delete from board where num=#{num}
 	</delete>
+	
+	<delete id="takesurveyDelete" parameterType="int">
+		delete from TAKESURVEY where num=#{num}
+	</delete>
+	
+	<delete id="voteDelete" parameterType="int">
+		delete from vote where num=#{num}
+	</delete>
 
 	<!-- 서베이 서치 -->
 	<select id="surveySearch" parameterType="String"
@@ -84,7 +92,7 @@
 	
 	<!-- 참여한 설문조사 등록 -->
 	<insert id="takeSurbey" parameterType="Tdto">
-		insert into TakeSurvey(num,nick,title,deadline,hit,point)  values(TakeSurvey_num.nextval,#{nick},#{title},#{deadline},#{hit},#{point})
+		insert into TakeSurvey(num,nick,title,deadline,hit,point) values(#{num},#{nick},#{title},#{deadline},#{hit},#{point})
 	</insert>
 	<!-- 참여한 설문조사 검색(최신순) -->
 	<select id="TakeSurbeySearch" parameterType="String" resultType="Tdto">

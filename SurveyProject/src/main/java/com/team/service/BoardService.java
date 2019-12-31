@@ -334,6 +334,7 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		BoardDTO dto = dao.surveySelect(num);	
 		TakeSurvey Tdto = new TakeSurvey();
+		Tdto.setNum(num);
 		Tdto.setTitle(dto.getTitle());
 		Tdto.setPoint(dto.getPoint());
 		Tdto.setDeadline(dto.getDeadline());
@@ -352,7 +353,6 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
- 
 	
 	// 포인트 내역 열람 눌렀을때 가져오는 목록
 	@Override

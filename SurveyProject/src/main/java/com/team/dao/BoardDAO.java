@@ -15,6 +15,7 @@ import com.team.dto.VoteDTO;
 public class BoardDAO {
 
 	private static final String namespace = "Board";
+	private static final String namespaceReply = "Reply";
 
 	@Autowired
 	private SqlSession sqlsession;
@@ -63,6 +64,9 @@ public class BoardDAO {
 
 	//[게시글 삭제하기]
 	public Object surveyDelete(int num) {
+		sqlsession.delete(namespace + ".voteDelete", num);
+		sqlsession.delete(namespace + ".takesurveyDelete", num);
+		sqlsession.delete(namespaceReply + ".replyAllDelete", num);
 		return sqlsession.delete(namespace + ".surveyDelete", num);
 	}
 

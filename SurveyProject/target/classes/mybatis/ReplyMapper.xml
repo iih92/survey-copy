@@ -13,7 +13,6 @@
 		select * from reply where num=#{num} order by intent asc, depth asc
 	</select>
 
-
 	<!--  대 댓글 저장 -->
 	<insert id="reReplySave" parameterType="Rdto">
 		insert into reply(cNum,num,nick,content,intent,depth) values(reply_num.nextval,#{num},#{nick},#{content},#{intent}, ( select max(depth) from reply where intent=#{intent}  ) +1     )
@@ -23,10 +22,15 @@
 	<delete id="replyDelete" parameterType="String">
 		delete from reply where cnum=#{cnum}
 	</delete>
-	
-	
+
 	<!-- 댓글내용 수정! -->
 	<update id="replyUpdate" parameterType="Rdto">
 		update reply set content=#{content} where cnum= #{cNum}
 	</update>
+	
+	<!-- 전체 댓글 삭제 -->
+	<delete id="replyAllDelete" parameterType="int">
+		delete from reply where num=#{num}
+	</delete>
+	
 </mapper>

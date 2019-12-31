@@ -44,9 +44,14 @@ public class MemberDAO {
 		session.update(namespace + ".changeNick", dto);
 	}
 	
-	//[포인트 저장]
+	//[포인트 추가]
 	public void addPoint(MemberDTO dto) {
 		session.update(namespace + ".addPoint", dto);
+	}
+	
+	//[포인트 차감]
+	public void MinusPoint(MemberDTO dto) {
+		session.update(namespace + ".MinusPoint", dto);
 	}
 	
 	//[포인트 가져오기]
@@ -63,4 +68,6 @@ public class MemberDAO {
 	public void leave(MemberDTO dto) {
 		session.delete(namespace + ".leave", dto);	
 	}
+
+
 }

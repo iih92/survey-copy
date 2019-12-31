@@ -104,12 +104,38 @@ public class MemberService implements IMemberService{
 	public void addPoint(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		//세션값(닉네임)
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("loginUser");
+		//포인트
+		String P = request.getParameter("point");
+		int point = Integer.parseInt(P);
+
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);
+		dto.setPoint(point);
+		
 		dao.addPoint(dto);
 	}
+	
+	//[포인트 차감]
+	@Override
+	public void MinusPoint(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("loginUser");
+		//포인트
+		String P = request.getParameter("point");
+		int point = (Integer.parseInt(P)*100)+1000;
+		System.out.println(point);
+		
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dto.setPoint(point);
+		dao.MinusPoint(dto);
+	}
+
 
 	// [포인트 가져오기] 
 	@Override
@@ -149,5 +175,6 @@ public class MemberService implements IMemberService{
 		dao.leave(dto);
 		session.invalidate();
 	}
+
 
 }

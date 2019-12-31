@@ -223,7 +223,17 @@ $(document).ready(function(){
 		} else if(hashtag == "") {
 			alert("해쉬태그를 하나 이상 넣어주세요");	
 		} else {
-			$("#surveyForm").submit();			
+			
+			if(userPointCheck != 0){
+				var result = confirm('"'+ selectPoint + "'" +'포인트가 차감됩니다. 등록하시겠습니까?');
+				if(result){
+				    $("#surveyForm").submit();
+				}else{
+				}	
+			}else{
+				alert("포인트가 모자릅니다! 설문조사를 참여하여 포인트를 획득하세요 :D");
+			}
+	
 		}
 	});
 
@@ -280,5 +290,26 @@ $(document).ready(function(){
 		$("#boder_icon").attr('src','resources/board/images/mini_icon6.png');
 		$("#board_icon_input").val('resources/board/images/mini_icon6.png');
 	});
+	
+
+	/*------------------------------------ 포인트 관련 -----------------------------------------------*/
+	var userPoint = $("#userPoint").attr('value');
+	var userPointCheck = 1;
+	var selectPoint = 0;
+	
+	$("#point").change(function() {
+	     $("#point option:selected").each(function() {
+	    	 selectPoint =($(this).val()*100)+1000;
+	    	 
+	    	 if(selectPoint <= userPoint){
+	    		 $("#h4").text('"'+selectPoint+'"'+'포인트가 차감됩니다!!');
+	    	 }else{
+	    		 $("#h4").text('"'+(selectPoint-userPoint)+'"'+'포인트가 모자릅니다!');
+	    		 userPointCheck = 0;
+	    	 }
+	     });
+	});
+
+	
 	
 });  

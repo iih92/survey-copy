@@ -37,7 +37,11 @@ public class BoardService implements IBoardService {
 		dto.setHashtag(request.getParameter("hashtag"));
 		dto.setNick(request.getParameter("nick"));
 		dto.setBoardIcon(request.getParameter("boardIcon"));
-		dto.setPoint(500);
+		
+		String P = request.getParameter("point");
+		int point =  Integer.parseInt(P) * 100;
+		dto.setPoint(point);
+		
 		String code="";
 
 		// request 객체 안에있는 모든 값을 조회할수 있는 역할

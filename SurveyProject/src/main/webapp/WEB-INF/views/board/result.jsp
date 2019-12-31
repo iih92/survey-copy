@@ -56,11 +56,7 @@
 				divnum++;
 			} 
 		}
-<<<<<<< HEAD
-	
-=======
-		
->>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
+
 		function xlsResultParsing(){
 			xlsResult[xlsNum] = "!";
 			xlsCnt[xlsNum++] = "!";

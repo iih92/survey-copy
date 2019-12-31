@@ -84,7 +84,20 @@
 					<input type="hidden" value="${loginUser}" name="nick">
             		<input type="text" class="title_input" placeholder="나만의 설문 만들기" name="title">
             		<input type="text"  name="hashtag" class="hash_input" id="hash" placeholder="#해시태그">
-            		<div class="dedline">마감날짜 : <input id="deadline" type="date" name="deadline"></div>    
+            		
+            		<div class="dedline">마감날짜 : <input id="deadline" type="date" name="deadline"></div> 
+            		   
+            		<input type="hidden" value="${userPoint}" id="userPoint">   
+            		<div class="point">포인트 : <SELECT  id="point" name="point" size=1>
+										        <OPTION VALUE=1>100</OPTION> <OPTION VALUE=2>200</OPTION>
+										        <OPTION VALUE=3>300</OPTION> <OPTION VALUE=4>400</OPTION>
+										        <OPTION VALUE=5>500</OPTION> <OPTION VALUE=6>600</OPTION>
+										        <OPTION VALUE=7>700</OPTION> <OPTION VALUE=8>800</OPTION>
+										        <OPTION VALUE=9>900</OPTION> <OPTION VALUE=10>1000</OPTION>
+										        </SELECT>
+						<h4 id="h4" style="color: red;"></h4>
+						
+					</div>    
         		</div>
 			</div>
 			<input type="button" id="save" value="설문등록">

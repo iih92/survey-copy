@@ -66,7 +66,7 @@ $(document).ready(function(){
 		
 		//아이디가 비어있지않다면,
 		if((this_id != '') && (this_id != null)){
-			console.log("this_id >>>> " + this_id);
+			console.log("this_id 	>> " + this_id);
 			$('.reReplyWrite').hide();
 			
 			//답글등록할수있는 창을 띄워준다. 그 답글등록창들은 id를 갖고있는데, reReply + this_id(cNum,intent) 이다.
@@ -299,6 +299,8 @@ $(document).ready(function(){
 		   <div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
 		   <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
 		   <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
+		   <input type="hidden" name="point" value="${ dto.point }">
+		   <h3 style="text-align: right; margin:0px">포인트 : ${ dto.point }</h3>
 		   <div id="question">
 		   </div>
 		</div>

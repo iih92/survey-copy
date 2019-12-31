@@ -58,13 +58,18 @@ public class BoardController {
 	@RequestMapping(value = "surveySave")
 	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
+		/*포인트 차감*/
+		mService.MinusPoint(model);
+		mService.userPoint(model);
 		int num = bService.surveySave(model);
+
 		if(num != 0) {
 			redirect.addAttribute("num",num);
 			return "redirect:boarddetail";			
 		} else {
 			return "redirect:mainpage";		
 		}
+
 	}
 
 	//[게시글 보기]

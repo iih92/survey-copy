@@ -42,7 +42,12 @@
 	
 	<!-- 포인트 적립 -->
 	<update id="addPoint" parameterType="Mdto">
-		update member set point=point+500 where nick=#{nick}
+		update member set point=point+#{point} where nick=#{nick}
+	</update>
+	
+	<!-- 포인트 차감 -->
+	<update id="MinusPoint" parameterType="Mdto">
+		update member set point=point-#{point} where nick=#{nick}
 	</update>
 
 	<!-- 사용자 포인트 가져오기 -->

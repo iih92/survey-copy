@@ -1,8 +1,11 @@
 package com.team.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
 import com.team.dto.MemberDTO;
+import com.team.dto.TakeSurvey;
 
 public interface IMemberService {
 
@@ -17,4 +20,5 @@ public interface IMemberService {
 	public void userPoint(Model model);
 	public MemberDTO info(Model model);
 	public void leave(Model model);
+ 
 }

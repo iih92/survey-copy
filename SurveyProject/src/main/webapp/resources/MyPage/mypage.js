@@ -152,8 +152,7 @@ $(document).ready(function(){
 						$('.mypleft').click(function(){
 								
 							$(".mypright").attr('disabled',false);
-							console.log(--cnt);
-							var output="";
+					 		var output="";
 							
 							$.ajax({
 								url: "page3.do?start="+cnt,
@@ -169,9 +168,7 @@ $(document).ready(function(){
 									
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
-									console.log(pagingCntF);
-									console.log(pagingCntL);
-									
+							 		
 									var pagingLength = pagingCntL;
 									if( cnt <= 0 ){ 
 										pagingLength = 5;
@@ -180,17 +177,14 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-										console.log(data[2][i].title);
-										console.log(data[1][i]);
-										
+									 		
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td>"+data[2][i].point+"</td>";
+										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
-										console.log(output);
-										
+									 	
 									}
 									$("#pointTbody").html(output);
 									
@@ -213,19 +207,15 @@ $(document).ready(function(){
 							
 							var output="";
 							
-							console.log(++cnt);
 							$.ajax({
 								url: "page4.do?start="+cnt,
 								success: function(data) {
 									//$(".RegisterSurbey").empty(); 
 									
-									console.log(data[2].length);
-									
+								 	
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
-									console.log(pagingCntF);
-									console.log(pagingCntL);
-									
+								 	
 									var pagingLength = pagingCntL;
 									if( pagingLength >= data[2].length ){
 										pagingLength = data[2].length;
@@ -234,18 +224,16 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-										console.log(data[2][i].title);
-										console.log(data[1][i]);
-										
+								 	
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td>"+data[2][i].point+"</td>";
+										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
-										console.log(output);
-										
+								 			
 									}
+					
 									$("#pointTbody").html(output);
 									
 								//	console.log("ajax 안으로 들어왔다");  

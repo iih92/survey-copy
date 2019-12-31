@@ -345,13 +345,12 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		 
 		model.addAttribute("pointHistory",dao.pointHistory(loginUser));
 		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 
-		
 	}
-
 	@Override
 	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest)map.get("request");
-	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+	HttpSession session = request.getSession();
+	String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.dateSecond(loginUser);
 	}
 	@Override
@@ -360,6 +359,7 @@ public class BoardService implements IBoardService {
 	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
 	return dao.pointHistory(loginUser);
 	}
+ 
 
 
  

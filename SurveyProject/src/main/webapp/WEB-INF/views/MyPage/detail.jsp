@@ -75,8 +75,13 @@
 			</c:forEach> 
 		</tbody>
 	</table>
-	<button class="mypleft"> 왼쪽 </button> 
-	<button class="mypright"> 오른쪽 </button> 
+	<br>
+	<button class="mypleft"> &lt; </button> 
+	<button class="mypright" 
+	
+	<c:if test='${ fn:length(dateSecond) <= 5 }'> disabled  </c:if>
+	> &gt;</button> 
+	 
 </div>
 
 

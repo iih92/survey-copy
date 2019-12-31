@@ -60,4 +60,5 @@
 		delete member where nick=#{nick}
 	</delete>
 	
+ 
 </mapper>

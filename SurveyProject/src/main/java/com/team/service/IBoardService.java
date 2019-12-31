@@ -15,7 +15,7 @@ public interface IBoardService {
 	public void surveyModify(Model model);
 	public int surveyUpdate(Model model);
 	public void surveyAllSelect(Model model);
-	public void surveyDelete(Model model);
+	public void surveyDelete(Model model);	
 	public void surveySearch(Model model);
 	public int surveyVote(Model model);
 	public String[] surveyQuestion(Model model);
@@ -31,7 +31,6 @@ public interface IBoardService {
 	
 	//포인트내역
 	public void pointHistory(Model model);
-	public List<String> ajax_getDatesecond(Model model);
 	public List<TakeSurvey> ajax_pointHistory(Model model);
-	
+	public List<String> ajax_getDatesecond(Model model); 
 }

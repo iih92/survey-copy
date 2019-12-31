@@ -1,5 +1,6 @@
 package com.team.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 
 import com.team.dao.MemberDAO;
 import com.team.dto.MemberDTO;
+import com.team.dto.TakeSurvey;
 
 @Service
 public class MemberService implements IMemberService{
@@ -149,5 +151,7 @@ public class MemberService implements IMemberService{
 		dao.leave(dto);
 		session.invalidate();
 	}
+
+	
 
 }

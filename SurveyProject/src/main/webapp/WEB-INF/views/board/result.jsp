@@ -15,6 +15,7 @@
 		var xlsNum = 0;
 		var xlsPer = 0;
 		$("#excel").click(function(){
+			console.log("1");
 			$.ajax({
 		        type : "GET", //전송방식을 지정한다 (POST,GET)
 		        url : "makeExcel.do?num=${dto.num}",
@@ -55,7 +56,11 @@
 				divnum++;
 			} 
 		}
+<<<<<<< HEAD
 	
+=======
+		
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 		function xlsResultParsing(){
 			xlsResult[xlsNum] = "!";
 			xlsCnt[xlsNum++] = "!";

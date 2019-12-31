@@ -28,7 +28,7 @@
 	<!-- 설문조사 수정 -->
 	<update id="surveyUpdate" parameterType="Bdto">
 		update board set title=#{title}, code=#{code}, hashtag=#{hashtag},
-		deadline=#{deadline} where num = #{num}
+		deadline=#{deadline}, boardIcon=#{boardIcon} where num = #{num}
 	</update>
 
 	<!-- 설문조사 (전체)가져오기 -->
@@ -114,14 +114,18 @@
 		asc)A)B where rn between #{startPage} and #{endPage}
 	</select>
 	
-	
-		<!-- 포인트 히스토리 -->
+	<!-- 포인트 히스토리 -->
 	<select id="pointHistory" parameterType="String" resultType="Tdto">
 		select * from TakeSurvey where nick=#{loginUser} order by dt desc
 	</select>
 	
 	<select id="dateSecond" parameterType="String" resultType="String">
 		select to_char(dt,'yyyy-mm-dd hh24:mi:ss') from TakeSurvey  where nick=#{loginUser} order by dt desc
+	</select>
+	
+	<!-- best 설문조사 -->
+	<select id="bestServey" resultType="Bdto">
+		SELECT * FROM (SELECT * FROM board ORDER BY point desc, hit desc) WHERE ROWNUM <![CDATA[<=]]> 3
 	</select>
 	
 </mapper>

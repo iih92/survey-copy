@@ -247,8 +247,7 @@ $(document).ready(function(){
 		}
 	}).on("keyup", function() {
 		$(this).val($(this).val().replace(replaceChar, ""));
-	});	
-	
+	});		
 	
 	/*나의 이미지 변경하기*/
 	$("#border_icon_Change").hide();
@@ -281,10 +280,5 @@ $(document).ready(function(){
 		$("#boder_icon").attr('src','resources/board/images/mini_icon6.png');
 		$("#board_icon_input").val('resources/board/images/mini_icon6.png');
 	});
-	
-	
-	
-	
-	
 	
 });  

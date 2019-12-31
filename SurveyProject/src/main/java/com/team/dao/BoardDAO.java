@@ -103,6 +103,7 @@ public class BoardDAO {
 	public int getTotalPage_take(String loginUser) {
 		return sqlsession.selectOne(namespace+".getTotalPage_take", loginUser);
 	}
+	
 	public List<TakeSurvey> page_board_list_take(PageCount pc3) {
 		return sqlsession.selectList(namespace+".board_pagingList_take",pc3);
 	}
@@ -130,14 +131,16 @@ public class BoardDAO {
 
 	//포인트 히스토리(적립된 날짜순 정렬)
 	public List<TakeSurvey> pointHistory(String loginUser) {
-		// TODO Auto-generated method stub 
 		return sqlsession.selectList(namespace+".pointHistory",loginUser);
 	}
-	public List<String> dateSecond(String loginUser){
-		
+	
+	public List<String> dateSecond(String loginUser) {	
 		return sqlsession.selectList(namespace+".dateSecond",loginUser);
 	}
-
- 
-
+	
+	//[best 설문조사]
+	public List<BoardDTO> bestServey(){
+		return sqlsession.selectList(namespace + ".bestServey");
+	}
+	
 }

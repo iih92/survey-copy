@@ -24,16 +24,19 @@
 </div>
 
 <!------------------------------1. 내 정보 변경 ------------------------------------------>
-<div id="test1" style="text-align:left;  ">
+<div id="test1" style="text-align:center;">
+
    <div class="title">
       <font id="p">내정보 변경</font><br><br>
-      비밀번호와 닉네임을 수정 하실 수 있습니다.
+      	비밀번호와 닉네임을 수정 하실 수 있습니다.
    </div>
    <hr>
+   
    <div class="content">
       <ul>
          <li>아이디</li>
          <input type="text" name="id" id="id" style="background-color: #f3f3f3;" readonly="readonly" ><br>
+         
          <form action="changenick" method="post">
             <li>변경할 닉네임</li>
             <input type="text" name="nick" id="nickname" autocomplete="off">

@@ -55,9 +55,7 @@
 				divnum++;
 			} 
 		}
-		$("#answer").append("<div id=div"+divnum+">");
-		$("#div"+divnum).append("<button id='excel'>엑셀 파일로 다운로드</button>");
-		
+	
 		function xlsResultParsing(){
 			xlsResult[xlsNum] = "!";
 			xlsCnt[xlsNum++] = "!";
@@ -211,6 +209,7 @@
 			<h1 id="title">${dto.title }</h1>
 		</div>
 	</div>
+	<button id='excel'>엑셀 파일로 다운로드</button>
 	<div>
 		<jsp:include page="../include/footer.jsp"/>
 	</div>

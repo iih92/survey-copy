@@ -5,7 +5,7 @@ create table member(
   id varchar2(20),
   pw varchar2(20),
   nick varchar2(20),
-  point number
+  point number DEFAULT 0
 );
 
 insert into member values('1','1','1');
@@ -53,12 +53,8 @@ create table TakeSurvey(
 );
 create SEQUENCE TakeSurvey_num;
 
-/*vote 테이블 수정*/
-create table vote(
-  nick varchar2(4000),
-  num number,
-  result varchar2(4000)
-);
+/*vote 테이블 추가*/
+alter table vote add nick varchar2(4000);
 
 /* TakeSurvey에 날짜 추가 */
 alter table TakeSurvey add dt date default sysdate not null;

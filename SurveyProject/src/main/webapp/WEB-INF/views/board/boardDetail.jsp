@@ -19,25 +19,7 @@ function reReply(){
 
 $(document).ready(function(){
 	var deadline = '${ dto.deadline }';
-	
-<<<<<<< HEAD
-	/*참여한 설문조사 경고창*/
-	var loginUser = '${ loginUser }';
-	console.log(loginUser);
-	var voteUser = '${ voteUser }';
-	console.log(voteUser);
 
-	for (var i = 0; i < voteUser.length; i++) {
-		console.log(voteUser[i])
-		if(loginUser == voteUser[i]){
-			alert("참여한 설문조사 입니다.");
-			 $("#surveySave").attr('disabled', true);
-			 $("#surveySave").css('background-color','gray');
-		}	
-	}
-	
-=======
->>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 	/*-------------오늘 날짜---------------*/
 	var dt = new Date();
     var Year = dt.getFullYear();        
@@ -58,10 +40,8 @@ $(document).ready(function(){
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
-	var loginUser = '${ loginUser }';
-	var voteUser = '${ voteUser }';
 	var voteLenth = voteUser.length-1;	
-	console.log(voteLenth)
+	console.log(voteLenth)	
 	console.log(voteUser)
 	voteUser = voteUser.substring(1,voteLenth);
 	console.log(voteUser)
@@ -153,7 +133,6 @@ $(document).ready(function(){
 
 <!-- SNS공유_카카오 -->
 <script type='text/javascript'>
-	var pageTitle=$(document).find("title").text();
    	Kakao.init('adac06a41bdbb4a6e0e72a9d7512a12d');
    	function sendLink() {
    		Kakao.Link.sendDefault ({
@@ -169,7 +148,7 @@ $(document).ready(function(){
       	});
    	}
    
-   <!-- SNS공유_링크 -->
+    <!-- SNS공유 링크 -->
    window.copyURL = function(){
       prompt("[Ctrl + c]를 눌러 URL을 복사하세요:", window.location);
    }
@@ -385,13 +364,9 @@ $(document).ready(function(){
          	<div id="question">
          	</div>
      	 </div>
-<<<<<<< HEAD
+
 		<!-- 공유관련 End -->	
-	
-=======
-		<!-- 공유관련 End -->
-	
->>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
+
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
 				<input type="button" class="modify" onclick="location.href='boardmodify?num=${dto.num}'" value="수정">

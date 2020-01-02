@@ -297,6 +297,13 @@ $(document).ready(function(){
 	var userPointCheck = 1;
 	var selectPoint = 1100;
 	
+	 if(selectPoint <= userPoint){
+		 $("#h4").text('"'+selectPoint+'"'+'포인트가 차감됩니다!!');
+	 }else{
+		 $("#h4").text('"'+(selectPoint-userPoint)+'"'+'포인트가 모자릅니다!');
+		 userPointCheck = 0;
+	 }
+	 
 	$("#point").change(function() {
 	     $("#point option:selected").each(function() {
 	    	 selectPoint =($(this).val()*100)+1000;

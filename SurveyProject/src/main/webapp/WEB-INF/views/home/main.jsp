@@ -155,64 +155,30 @@
 		<!-- 추가 main-->
 		<div id="main">
 			<div class="inner">
+			
 				<!-- Boxes -->
 				<div class="thumbnails">
-					<!-- box(1) -->
-					<div class="box">
-						<a href="#"> <!-- mouse over -->
-							<div class="over">
-								<img src="resources/home/images/coin.png" alt="" />
-								<h1
-									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
-							</div> <!-- icon div -->
-							<div class="box_image">
-								<img src="resources/home/images/icon-1.jpg" alt="" />
-							</div> <!-- inner div -->
-							<div class="inner">
-								<h3>자바 수업 평가 설문조사</h3>
-								<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-								<font> 마감 날짜 : 2019.12.03 </font>
-							</div>
-						</a>
-					</div>
 
-					<!-- box(2) -->
+				<!-- box-->
+				<c:forEach var="dto" items="${ bestSurvey }">
 					<div class="box">
-						<a href="#"> <!-- mouse over -->
+						<a href="boarddetail?num=${dto.num }"><!-- mouse over -->
 							<div class="over">
-								<img src="resources/home/images/coin.png" alt="" />
+								<img src="resources/main/images/coin.png" alt="" />
 								<h1
-									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
+									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h1>
 							</div> <!-- icon div -->
 							<div class="box_image">
-								<img src="resources/home/images/icon-1.jpg" alt="" />
+								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
 							</div> <!-- inner div -->
 							<div class="inner">
-								<h3>자바 수업 평가 설문조사</h3>
-								<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-								<font> 마감 날짜 : 2019.12.03 </font>
+								<h3>${ dto.title }</h3>
+								<p>${ dto.hashtag }</p>
+								<font> 마감 날짜 : ${ dto.deadline } </font>
 							</div>
 						</a>
 					</div>
-					
-					<!-- box(3) -->
-					<div class="box">
-						<a href="#"> <!-- mouse over -->
-							<div class="over">
-								<img src="resources/home/images/coin.png" alt="" />
-								<h1
-									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">500P</h1>
-							</div> <!-- icon div -->
-							<div class="box_image">
-								<img src="resources/home/images/icon-1.jpg" alt="" />
-							</div> <!-- inner div -->
-							<div class="inner">
-								<h3>자바 수업 평가 설문조사</h3>
-								<p>#자바 #수업 #설문조사 #개발자 #스프링 #체크 #컴공과 #한국대학교</p>
-								<font> 마감 날짜 : 2019.12.03 </font>
-							</div>
-						</a>
-					</div>
+				</c:forEach> 
 					
 				</div>
 			</div>

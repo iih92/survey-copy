@@ -72,7 +72,7 @@ public class MemberController {
 	@RequestMapping(value = "signOut")
 	public String signOutProc(Model model, HttpServletRequest request, HttpSession session) {		
 		session.invalidate();		
-		return "home/main";
+		return "redirect:/";
 	}
 	
 	//[아이디 중복체크]
@@ -109,7 +109,7 @@ public class MemberController {
 		return "Main/main";
 	}
 
-	//[메인 페이지로 이동]
+	//[나의 페이지로 이동]
 	@RequestMapping(value = "mypage")
 	public String myPage() {
 		return "MyPage/main";

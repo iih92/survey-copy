@@ -22,9 +22,12 @@ $(document).ready(function(){
 	
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
+	console.log(loginUser);
 	var voteUser = '${ voteUser }';
+	console.log(voteUser);
 
 	for (var i = 0; i < voteUser.length; i++) {
+		console.log(voteUser[i])
 		if(loginUser == voteUser[i]){
 			alert("참여한 설문조사 입니다.");
 			 $("#surveySave").attr('disabled', true);
@@ -119,34 +122,61 @@ $(document).ready(function(){
 	}); 
 	
 });
+</script>
+
+<!-- 공유하기 -->
+<script src="//developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!-- SNS공유_카카오 -->
+<script type='text/javascript'>
+	var pageTitle=$(document).find("title").text();
+   	Kakao.init('adac06a41bdbb4a6e0e72a9d7512a12d');
+   	function sendLink() {
+   		Kakao.Link.sendDefault ({
+	      	objectType: 'feed',
+	      	content: {
+	        	title: '${dto.title}',
+	        	description: '${dto.hashtag}',
+	         	imageUrl: 'http://k.kakaocdn.net/dn/boqemg/btqALoLRkPA/9dBhuJYDLxkhgA1JjAi9H1/kakaolink40_original.png',
+	         	link: {
+	            	webUrl: window.location.href
+	         	}
+	      	},
+      	});
+   	}
+   
+   <!-- SNS공유_링크 -->
+   window.copyURL = function(){
+      prompt("[Ctrl + c]를 눌러 URL을 복사하세요:", window.location);
+   }
 
 </script>
+
 <style type="text/css">
 	body{ background-color: gainsboro;}
 
-    .main{
-            width: 75%;
-            height: 100%;
-			margin : 5% 0% 3% 8%;
-            background-color: whitesmoke;
-            border-radius: 10px;
-            box-shadow:0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
-            display: flex;
-            flex-flow: column;
-            padding: 5%;
-                      
-        }
+	.main{
+   		width: 75%;
+    	height: 100%;
+    	margin : 5% 0% 3% 8%;
+		background-color: whitesmoke;
+      	border-radius: 10px;
+       	box-shadow:0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
+       	display: flex;
+       	flex-flow: column;
+       	padding: 5%;
+  	}
         
-        /*제목 css*/
-        .title{
-        	padding: .4em .2em;
-            background-color: #D5D5D5;
-            border-radius: 3px;
-            text-align: center;       	
-        }       
+	/*제목 css*/
+	.title{
+		padding: .4em .2em;
+		background-color: #D5D5D5;
+		border-radius: 3px;
+		text-align: center;       	
+	}       
         
-        /*체크박스 크키 css*/
-		input[type=checkbox] {
+	/*체크박스 크키 css*/
+	input[type=checkbox] {
 		-ms-transform: scale(1.6);
 		-moz-transform: scale(1.6);
 		-webkit-transform: scale(1.6);
@@ -155,10 +185,10 @@ $(document).ready(function(){
 		margin-right: 2.2%;
 		margin-left: 1%;
 		margin-bottom: 1.5%;
-		}
+	}
 
-		/*radio 크키 css*/
-		input[type=radio] {
+	/*radio 크키 css*/
+	input[type=radio] {
 		-ms-transform: scale(1.6);
 		-moz-transform: scale(1.6);
 		-webkit-transform: scale(1.6);
@@ -167,19 +197,18 @@ $(document).ready(function(){
 		margin-right: 2.2%;
 		margin-left: 1%;
 		margin-bottom: 1.5%;
-		}
+	}
 		
 		
-		/*textarea 크키 css*/
-		textarea{
+	/*textarea 크키 css*/
+	textarea {
         padding:.5em .3em;
         width: 80%;
         margin-top: 0%;
-            
-        }
+	}
         
-        /*수정 버튼*/
-        .modify {
+	/*수정 버튼*/
+	.modify {
 		border: none;
 		color: #fff;
 		/* padding: 1% 45% 1% 45%; */
@@ -193,9 +222,9 @@ $(document).ready(function(){
 		font-family: 'Noto Sans KR', sans-serif;
 		font-weight: 500;
 		margin-left: 85%;		
-		}
+	}
 		
-		/*삭제 버튼*/
+	/*삭제 버튼*/
 	.delButton{
 		border: none;
 		color: #fff;
@@ -210,10 +239,10 @@ $(document).ready(function(){
 		font-family: 'Noto Sans KR', sans-serif;
 		font-weight: 500;
 		margin-left: 1%;	
-		}
+	}
 		
-		/*등록 버튼*/
-        .surveySave {
+	/*등록 버튼*/
+	.surveySave {
 		border: none;
 		color: #fff;
 		text-align: right;
@@ -226,7 +255,7 @@ $(document).ready(function(){
 		font-family: 'Noto Sans KR', sans-serif;
 		font-weight: 500;
 		margin-left: 91%;		
-		}
+	}
 		
 	.resultButton{
 		border: none;
@@ -245,43 +274,49 @@ $(document).ready(function(){
 	    margin-top: 1%;
 	}
 
-/* 댓글 테이블 CSS */
- .sReply table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  
-.Rspan:hover{color: #353535;}
+	/* 댓글 테이블 CSS */
+	.sReply table {
+	    width: 100%;
+	    border-top: 1px solid #444444;
+	    border-collapse: collapse;
+	 }
+	  
+	.Rspan:hover{color: #353535;}
 
 
-/*댓글 등록 버튼*/
-.ReplyBt{
-	border: none;
-	width:40px;
-	height:70px;
-	vertical-align:middle;
-	background-color: #8C8C8C;
-	color: white;
-	border-radius: 4px;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-weight: 500;
-}
+	/*댓글 등록 버튼*/
+	.ReplyBt{
+		border: none;
+		width:40px;
+		height:70px;
+		vertical-align:middle;
+		background-color: #8C8C8C;
+		color: white;
+		border-radius: 4px;
+		font-family: 'Noto Sans KR', sans-serif;
+		font-weight: 500;
+	}
 
-.ReplyBt:hover{background-color: #4C4C4C;}
+	.ReplyBt:hover{background-color: #4C4C4C;}
 
-/*답글 등록 버튼*/
-.RereplyBt{
-	border: none;
-	vertical-align:middle;
-	background-color: #8C8C8C;
-	color: white;
-	border-radius: 3px;
-	font-family: 'Noto Sans KR', sans-serif;
-}
+	/*답글 등록 버튼*/
+	.RereplyBt{
+		border: none;
+		vertical-align:middle;
+		background-color: #8C8C8C;
+		color: white;
+		border-radius: 3px;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
 
-.RereplyBt:hover{background-color: #4C4C4C;}
-  
+	.RereplyBt:hover{background-color: #4C4C4C;}
+	
+	/*조회, SNS공유_nav*/
+	.sub{
+		height: 100%;
+		margin: 1%;
+		position: static;
+	}
 </style>
 
 <script src="resources/board/boardDetail.js"></script>
@@ -294,16 +329,35 @@ $(document).ready(function(){
 	<form action="vote" id="voteForm">
 		<input type="hidden" name="num" value="${ dto.num }">
 		<div class="main">
-		   <input type="hidden" id="code" value="${code}">   
-		   <div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
-		   <div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
-		   <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
-		   <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
-		   <input type="hidden" name="point" value="${ dto.point }">
-		   <h3 style="text-align: right; margin:0px">포인트 : ${ dto.point }</h3>
-		   <div id="question">
-		   </div>
-		</div>
+		   	<input type="hidden" id="code" value="${code}">   
+		   	<div style="text-align: center;" class="title"> <h1>${ dto.title }</h1> </div>
+		   	<div style="text-align: center; color:#a0a0a0; size:20px"> <h3>${ dto.hashtag }</h3> </div>
+		   	<!-- 조회, SNS공유_nav -->
+         	<div class="sub">
+	            <div style="float: left; width: 89%; margin-right: 2px;">
+	               <h3 style="text-align: right; margin:0px">조회수 : ${dto.hit }</h3>
+	               <h3 style="text-align: right; margin:0px">마감 날짜 : ${ dto.deadline }</h3>
+	               	<input type="hidden" name="point" value="${ dto.point }">
+		  			<h3 style="text-align: right; margin:0px">포인트 : ${ dto.point }</h3>
+	            </div>
+	            
+	            <!-- SNS공유 -->
+	            <div style="float: right; width: 10%;">
+	               <!-- 공유_카카오 -->
+	               <a id="kakao-link-btn" href="javascript:sendLink()">
+	                  <img src="resources/board/images/katalk.png" style="width: 44px; height: 44px;" alt="카카오톡 공유" />
+	               </a>
+	               <!-- 공유_링크 -->
+	               <a href="javascript:copyURL()">
+	                  <img src="resources/board/images/link.png" style="width: 44px; height: 44px;" alt="링크복사" />
+	               </a>
+	            </div>
+        	</div>
+      
+         	<div id="question">
+         	</div>
+     	 </div>
+		<!-- 공유관련 End -->	
 	
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">

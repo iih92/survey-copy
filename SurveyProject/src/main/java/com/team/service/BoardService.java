@@ -338,7 +338,7 @@ public class BoardService implements IBoardService {
 		String loginUser = (String) session.getAttribute("loginUser");		
 		BoardDTO dto = dao.surveySelect(num);	
 		TakeSurvey Tdto = new TakeSurvey();
-		Tdto.setNum(num);
+		Tdto.setBnum(num);
 		Tdto.setTitle(dto.getTitle());
 		Tdto.setPoint(dto.getPoint());
 		Tdto.setDeadline(dto.getDeadline());
@@ -366,14 +366,14 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");		 
-		model.addAttribute("pointHistory",dao.pointHistory(loginUser));
-		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 	
+		model.addAttribute("pointHistory",dao.pointHistory(loginUser)); 
+		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 	 
 	}
-
 	@Override
 	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest)map.get("request");
-	HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
+	HttpSession session = request.getSession();
+	String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.dateSecond(loginUser);
 	}
 	
@@ -382,8 +382,7 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.pointHistory(loginUser);
-	}
-
+	} 
 	//[엑셀로 만들기 위한 데이터 받기]
 	public String[] surveyQuestion(Model model) {
 		String[] result = new String[2];

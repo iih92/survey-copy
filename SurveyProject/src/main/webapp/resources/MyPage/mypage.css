@@ -206,6 +206,26 @@ hr {
 	border: 1px solid #adacac;
 	background-color: #adacac;
 }
+.mypleft, .mypright {
+	padding: 4px;
+	margin-right: 3px;
+	width: 35px;
+	color: #474c4c;
+	font: 20px tahoma;
+	font-weight: 500;
+	border: 1px solid #d2d2d2;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 50%;
+}
+
+.mypleft:hover, .mypleft:focus, .mypright:hover, .mypright:focus {
+	color: #fff;
+	border: 1px solid #adacac;
+	background-color: #adacac;
+}
+
+
 
 .focus {
 	color: white;

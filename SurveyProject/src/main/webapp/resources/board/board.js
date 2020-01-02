@@ -295,7 +295,7 @@ $(document).ready(function(){
 	/*------------------------------------ 포인트 관련 -----------------------------------------------*/
 	var userPoint = $("#userPoint").attr('value');
 	var userPointCheck = 1;
-	var selectPoint = 0;
+	var selectPoint = 1100;
 	
 	$("#point").change(function() {
 	     $("#point option:selected").each(function() {

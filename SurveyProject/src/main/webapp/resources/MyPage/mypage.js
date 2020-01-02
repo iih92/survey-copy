@@ -1,7 +1,8 @@
 document.write("<script src='resources/MyPage/moment.js'></script>");
 $(document).ready(function(){
 	/*-----------footer 공간 제거-----------*/
-	$(".content").remove();	
+	$(".content").remove();
+	// 내 정보 변경 
 	function change(){	
 		$.ajax({
 			url: "mypage",
@@ -17,9 +18,7 @@ $(document).ready(function(){
 							id = data.id;
 							$("#id").val(id);
 						},
-						error:function(){
-				             alert("문제가 발생했습니다"); 
-				        }
+						error:function(){}
 					});
 					
 	                /* 닉네임 중복 확인  */
@@ -55,10 +54,7 @@ $(document).ready(function(){
 	                               }
 	                            }//if 외부문
 	                         },
-	                         error : function(){
-	                            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	                            console.log("ajax실패")
-	                         }
+	                         error : function(){}
 	                	});
 	                });   //nick 종료
 					
@@ -126,20 +122,27 @@ $(document).ready(function(){
 	          }
 		});
 	}
-	change();
+	change();	// 첫화면
+	$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
+	$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+	$("#navM1").css("background-color","white");
+	$("#navM1").css("font-weight","bold"); 
+	
 	$("#navM1").click(function(){
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM2, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		change();
 	});
 
 	$("#navM2").click(function(){
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -153,9 +156,9 @@ $(document).ready(function(){
 					
 						$('.mypleft').click(function(){
 								
+							--cnt;
 							$(".mypright").attr('disabled',false);
-							console.log(--cnt);
-							var output="";
+					 		var output="";
 							
 							$.ajax({
 								url: "page3.do?start="+cnt,
@@ -171,9 +174,7 @@ $(document).ready(function(){
 									
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
-									console.log(pagingCntF);
-									console.log(pagingCntL);
-									
+							 		
 									var pagingLength = pagingCntL;
 									if( cnt <= 0 ){ 
 										pagingLength = 5;
@@ -182,17 +183,14 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-										console.log(data[2][i].title);
-										console.log(data[1][i]);
-										
+									 		
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
 										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
-										console.log(output);
-										
+									 	
 									}
 									$("#pointTbody").html(output);
 									
@@ -200,34 +198,26 @@ $(document).ready(function(){
 										$(".mypleft").attr('disabled',true);
 									}
 									
-								}, error: function() {
-									alert("문제가 발생")
-								}
+								}, error: function() {}
 							});
-							
- 
 							
 					}); 	
 						$('.mypright').click(function(){
 							$(".mypleft").attr('disabled',false);
-
+							++cnt;
 							$('#pointTbody').empty();
 							
 							var output="";
 							
-							console.log(++cnt);
 							$.ajax({
 								url: "page4.do?start="+cnt,
 								success: function(data) {
 									//$(".RegisterSurbey").empty(); 
 									
-									console.log(data[2].length);
-									
+								 	
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
-									console.log(pagingCntF);
-									console.log(pagingCntL);
-									
+								 	
 									var pagingLength = pagingCntL;
 									if( pagingLength >= data[2].length ){
 										pagingLength = data[2].length;
@@ -236,18 +226,16 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-										console.log(data[2][i].title);
-										console.log(data[1][i]);
-										
+								 	
 										output += "<tr>";
 										output += "<td>"+data[1][i]+"</td>";
 										output += "<td>"+data[2][i].title+"</td>";
 										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
 										output += "</tr>";
 										
-										console.log(output);
-										
+								 			
 									}
+					
 									$("#pointTbody").html(output);
 									
 								//	console.log("ajax 안으로 들어왔다");  
@@ -279,8 +267,9 @@ $(document).ready(function(){
 	$("#navM3").click(function(){
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -378,8 +367,9 @@ $(document).ready(function(){
 	$("#navM4").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM5, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -478,8 +468,9 @@ $(document).ready(function(){
 	$("#navM5").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM6").css("background-color","#efefef");
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		// 다른 mouseleave 이벤트 on 시켜야함
-		$(this).off('mouseleave');
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -497,7 +488,8 @@ $(document).ready(function(){
 	$("#navM6").click(function(){
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("font-weight","normal"); 
 		$("#navM1, #navM2, #navM3 ,#navM4, #navM5").css("background-color","#efefef");
-		$(this).off('mouseleave');
+		$(this).css("background-color","white");
+		$(this).css("font-weight","bold"); 
 		$.ajax({
 			url: "mypage",
 			type: "GET",
@@ -541,16 +533,11 @@ $(document).ready(function(){
 	
 	/*--------------------- 메뉴 선택 마우스 이벤트 ----------------------------------*/
 	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseenter(function(){
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").css("background-color","#efefef");
+		$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").css("font-weight","normal");  
 		$(this).css("background-color","white");
 		$(this).css("font-weight","bold"); 
 	}); 
-	
-	$("#navM1, #navM2, #navM3 ,#navM4, #navM5, #navM6").mouseleave(function(){
-		$(this).css("background-color","#efefef");
-		$(this).css("font-weight","normal"); 
-	});
-	
-
-	
+ 
 
 });

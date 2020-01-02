@@ -1,10 +1,13 @@
 package com.team.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.dto.MemberDTO;
+import com.team.dto.TakeSurvey;
 
 @Repository
 public class MemberDAO {
@@ -68,6 +71,5 @@ public class MemberDAO {
 	public void leave(MemberDTO dto) {
 		session.delete(namespace + ".leave", dto);	
 	}
-
 
 }

@@ -20,6 +20,7 @@ function reReply(){
 $(document).ready(function(){
 	var deadline = '${ dto.deadline }';
 	
+<<<<<<< HEAD
 	/*참여한 설문조사 경고창*/
 	var loginUser = '${ loginUser }';
 	console.log(loginUser);
@@ -35,6 +36,8 @@ $(document).ready(function(){
 		}	
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 	/*-------------오늘 날짜---------------*/
 	var dt = new Date();
     var Year = dt.getFullYear();        
@@ -46,11 +49,32 @@ $(document).ready(function(){
     /*-------------오늘 날짜---------------*/
 	if(deadline <= Today) {
 		alert("마감일자가 지난 설문조사입니다.");
-		$('#surveySave').attr("disabled", true);
+		$('#surveySave').prop('disabled', true);
 		$("#surveySave").css('background-color','gray');
 	} else {
-		$('#surveySave').attr("disabled", false);
+		$('#surveySave').prop("disabled", false);
 	}
+	
+	/*참여한 설문조사 경고창*/
+	var loginUser = '${ loginUser }';
+	var voteUser = '${ voteUser }';
+	var loginUser = '${ loginUser }';
+	var voteUser = '${ voteUser }';
+	var voteLenth = voteUser.length-1;	
+	console.log(voteLenth)
+	console.log(voteUser)
+	voteUser = voteUser.substring(1,voteLenth);
+	console.log(voteUser)
+	var vote = voteUser.split(", ");
+	console.log(vote);
+	for (var i = 0; i < vote.length; i++) {
+		if(vote[i] == loginUser){
+			alert("참여한 설문조사 입니다.");
+			 $("#surveySave").prop('disabled', true);
+			 $("#surveySave").css('background-color','gray');
+		}
+	}
+	
 });
 
 $(document).ready(function(){
@@ -242,7 +266,7 @@ $(document).ready(function(){
 	}
 		
 	/*등록 버튼*/
-	.surveySave {
+	#surveySave {
 		border: none;
 		color: #fff;
 		text-align: right;
@@ -256,6 +280,10 @@ $(document).ready(function(){
 		font-weight: 500;
 		margin-left: 91%;		
 	}
+		
+	#surveySave:disabled {
+		cursor: default;
+	}	
 		
 	.resultButton{
 		border: none;
@@ -357,8 +385,13 @@ $(document).ready(function(){
          	<div id="question">
          	</div>
      	 </div>
+<<<<<<< HEAD
 		<!-- 공유관련 End -->	
 	
+=======
+		<!-- 공유관련 End -->
+	
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
 				<input type="button" class="modify" onclick="location.href='boardmodify?num=${dto.num}'" value="수정">

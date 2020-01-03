@@ -36,4 +36,5 @@ public interface IBoardService {
 	public void pointHistory(Model model);
 	public List<TakeSurvey> ajax_pointHistory(Model model);
 	public List<String> ajax_getDatesecond(Model model); 
+	
 }

@@ -25,7 +25,6 @@ public class BoardController {
 	@Autowired
 	private IMemberService mService;
 	
-
 	//[로그인 후 메인페이지]
 	@RequestMapping(value = "mainpage")
 	public String mainPage(Model model, HttpServletRequest request, HttpSession session) {
@@ -158,6 +157,5 @@ public class BoardController {
 		model.addAttribute("request", request);	
 		return bService.page_board_list_take(model);
 	}
-	
 
 }

@@ -31,7 +31,7 @@
          <li>아이디</li>
          <input type="text" name="id" id="id" style="background-color: #f3f3f3; margin-right:20%; font-size: 20px;" readonly="readonly" ><br>
          
-         <form action="changenick" method="post">
+         <form action="changeNick" method="post">
             <li>변경할 닉네임</li>
             <input type="hidden" name="id" class="id">
             <input type="text" name="nick" id="nickname" autocomplete="off">

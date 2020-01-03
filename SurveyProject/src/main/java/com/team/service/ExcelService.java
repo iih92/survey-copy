@@ -15,7 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelService {
 	
-	//[]
+	//[엑셀 파일 만들기]
 	public static void makeExcel(String fileName, String[] xlsResult, String[] xlsCnt, String xlsPer, String question) throws Exception{
 		
 		/*-------------엑셀 파일 생성 --------------*/

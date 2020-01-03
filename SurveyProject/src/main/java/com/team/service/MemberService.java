@@ -18,7 +18,7 @@ public class MemberService implements IMemberService{
 	@Autowired
 	private MemberDAO dao;
 	
-	// [회원가입]
+	//[회원가입]
 	@Override
 	public void signUp(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -35,7 +35,7 @@ public class MemberService implements IMemberService{
 		dao.singUp(dto);	
 	}
 	
-	// [로그인]
+	//[로그인]
 	@Override
 	public String[] signIn(MemberDTO dto) {
 		String[] result = new String[2];
@@ -57,22 +57,22 @@ public class MemberService implements IMemberService{
 		return result;
 	}
 	
-	// [로그아웃]
+	//[로그아웃]
 	public void signOut(Model model) {}
 
-	// [아이디중복체크]
+	//[아이디중복체크]
 	@Override
 	public int idCheck(String id) {
 		return dao.checkOverId(id);
 	}
 
-	// [닉네임중복체크]
+	//[닉네임중복체크]
 	@Override
 	public int nickCheck(String nick) {
 		return dao.checkOverNick(nick);
 	}
 
-	// [비밀번호 변경]
+	//[비밀번호 변경]
 	@Override
 	public void changePw(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -85,24 +85,24 @@ public class MemberService implements IMemberService{
 		dao.changePw(dto);
 	}
 
-	// [닉네임 변경]
+	//[닉네임 변경]
 	@Override
 	public void changeNick(Model model) {
-	      Map<String, Object> map = model.asMap();
-	      HttpServletRequest request = (HttpServletRequest)map.get("request");
-	      String nick = request.getParameter("nick");
-	      String id = request.getParameter("id");
-	      MemberDTO dto = new MemberDTO();
-	      dto.setNick(nick);
-	      dto.setId(id);
-	      dao.changeNick(dto);
-	      
-	      /*변경된 닉네임 세션설정하기*/
-	      HttpSession session = request.getSession();
-	      session.setAttribute("loginUser", dto.getNick());
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		String nick = request.getParameter("nick");
+		String id = request.getParameter("id");
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dto.setId(id);
+		dao.changeNick(dto);
+	     
+		/*변경된 닉네임 세션설정하기*/
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", dto.getNick());
 	}
 
-	// [포인트 적립]
+	//[포인트 적립]
 	@Override
 	public void addPoint(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -117,7 +117,6 @@ public class MemberService implements IMemberService{
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);
 		dto.setPoint(point);
-		
 		dao.addPoint(dto);
 	}
 	
@@ -138,8 +137,7 @@ public class MemberService implements IMemberService{
 		dao.MinusPoint(dto);
 	}
 
-
-	// [포인트 가져오기] 
+	//[포인트 가져오기] 
 	@Override
 	public void userPoint(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -152,7 +150,7 @@ public class MemberService implements IMemberService{
 		session.setAttribute("userPoint", dto.getPoint());
 	}
 
-	// [닉네임으로 정보 가져오기]
+	//[닉네임으로 정보 가져오기]
 	@Override
 	public MemberDTO info(Model model) {
 		Map<String, Object> map = model.asMap();
@@ -165,7 +163,7 @@ public class MemberService implements IMemberService{
 		return dao.info(dto);
 	}
 
-	// [회원 탈퇴]
+	//[회원 탈퇴]
 	@Override
 	public void leave(Model model) {
 		Map<String, Object> map = model.asMap();

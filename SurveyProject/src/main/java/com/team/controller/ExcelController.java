@@ -17,7 +17,7 @@ import com.team.service.IBoardService;
 public class ExcelController {
 
 	@Autowired
-	private IBoardService bservice;
+	private IBoardService bService;
 	
 	//[]
 	@RequestMapping(value="makeExcel.do", method=RequestMethod.GET)
@@ -27,9 +27,10 @@ public class ExcelController {
 			@RequestParam(value="xlsCnt[]") String[] xlsCnt,
 			@RequestParam(value="xlsPer") String xlsPer) throws Exception{
 		model.addAttribute("request",request);
-		String[] info = bservice.surveyQuestion(model);
+		String[] info = bService.surveyQuestion(model);
 		String title = info[0];
 		String question = info[1];
 		ExcelService.makeExcel(title + ".xls", xlsResult, xlsCnt, xlsPer, question);
 	}
+	
 }

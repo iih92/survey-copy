@@ -18,5 +18,4 @@ public interface IMemberService {
 	public void leave(Model model);
 	public void MinusPoint(Model model);
 
-
 }

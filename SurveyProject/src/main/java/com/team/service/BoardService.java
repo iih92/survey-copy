@@ -133,7 +133,6 @@ public class BoardService implements IBoardService {
 		String hashtag = request.getParameter("hashtag");
 		model.addAttribute("list",dao.surveySearch(hashtag));
 		model.addAttribute("searchHash",hashtag);
-
 	}
 
 	//[투표결과 저장하기]
@@ -155,8 +154,8 @@ public class BoardService implements IBoardService {
 			if(name.equals("num")) {
 				dto.setNum(num);
 				dto.setNick(loginUser);
-			}else if(name.equals("point")){			
-			}else if(name.substring(0,1).equals("C")) {
+			} else if(name.equals("point")) {			
+			} else if(name.substring(0,1).equals("C")) {
 				String[] chbox = request.getParameterValues(name);
 				result += name + ":";
 				for (int i = 0; i < chbox.length; i++) {
@@ -214,8 +213,7 @@ public class BoardService implements IBoardService {
 		return mix;
 	}
 
-	
-	//[페이징 처리--------------------------------------------------------------------]
+	/*---------------------------Paging 메소드-----------------------------*/
 	
 	//[페이징 수 계산하기]
 	@Override
@@ -253,7 +251,7 @@ public class BoardService implements IBoardService {
 			model.addAttribute("pc", pc);
 			return pc; 
 			
-		}else if(daoNum == 2) {
+		} else if(daoNum == 2) {
 			totalPage = getTotalPage_nick(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
 			startPage = (start - 1) * pageNum + 1;
@@ -267,7 +265,7 @@ public class BoardService implements IBoardService {
 			model.addAttribute("pc2", pc2);		
 			return pc2; 
 			
-		}else{
+		} else {
 			totalPage = getTotalPage_take(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
 			startPage = (start - 1) * pageNum + 1;
@@ -306,8 +304,7 @@ public class BoardService implements IBoardService {
 	public void page_board_list(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");		
-		HttpSession session = request.getSession(); 
-		
+		HttpSession session = request.getSession(); 	
 		try {
 			if(session.getAttribute("lineupSession") == null) {
 				model.addAttribute("list", dao.page_board_list(pagingNum(model,1)));
@@ -321,7 +318,7 @@ public class BoardService implements IBoardService {
 		} catch(NullPointerException e) {}
 	}
 	
-	//[------------------------------------------------------------------------------------]
+	/*---------------------------Paging 메소드-----------------------------*/
 	
 	//[참여한 설문조사 등록]
 	@Override

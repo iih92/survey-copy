@@ -19,4 +19,5 @@ public class MainController {
 		bService.bestServey(model);
 		return "home/main";
 	}
+	
 }

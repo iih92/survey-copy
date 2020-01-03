@@ -14,8 +14,9 @@ import com.team.dto.ReplyDTO;
 
 @Service
 public class ReplyService implements IReplyService{
+	
 	@Autowired
-	ReplyDAO dao;
+	private ReplyDAO dao;
 	
 	//[댓글 저장]
 	@Override
@@ -76,7 +77,6 @@ public class ReplyService implements IReplyService{
 	public void replyDelete(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");	
-		
 		String cnum = request.getParameter("cnum");	
 		dao.replyDelete(cnum);		
 	}

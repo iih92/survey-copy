@@ -14,7 +14,7 @@ import com.team.service.IReplyService;
 public class ReplyController {
 
 	@Autowired
-	private IReplyService service;
+	private IReplyService rService;
 
 	//[댓글]
 	@RequestMapping(value = "replySave")
@@ -23,7 +23,7 @@ public class ReplyController {
 
 		//댓글 저장하기      // 댓글 텍스트 에어리어가 널이 아니거나, ""와 다르다면 ==> 저장하러 갑시다 널이거나 ""면 그냥 패스..
 		if(request.getParameter("wReplyArea") != null && request.getParameter("wReplyArea").equals("") != true) {
-			service.replySave(model);
+			rService.replySave(model);
 		}	
 		redirect.addAttribute("num",request.getParameter("hnum"));
 		return "redirect:boarddetail";			
@@ -36,7 +36,7 @@ public class ReplyController {
 
 		//대댓글 저장하기      // 대댓글 텍스트 에어리어가 널이 아니거나, ""와 다르다면 ==> 저장하러 갑시다 널이거나 ""면 그냥 패스..
 		if(request.getParameter("reReplyWrite") != null && request.getParameter("reReplyWrite").equals("") != true) {
-			service.reReplySave(model);
+			rService.reReplySave(model);
 		} else {
 			System.out.println("대댓글 텍스트에 글이 없습니다");
 		}
@@ -48,8 +48,8 @@ public class ReplyController {
 	@RequestMapping(value = "replyDelete")
 	public String replyDelete(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);	
-		service.replyDelete(model);	
-		// 해당 글 번호로이동.. 
+		rService.replyDelete(model);	
+		// 해당 글 번호로이동 
 		redirect.addAttribute("num",request.getParameter("num"));
 		return "redirect:boarddetail";			
 	}
@@ -58,7 +58,7 @@ public class ReplyController {
 	@RequestMapping(value = "replyUpdate")
 	public String replyUpdate(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
-		service.replyUpdate(model);
+		rService.replyUpdate(model);
 		redirect.addAttribute("num",request.getParameter("hnum"));
 		return "redirect:boarddetail";		
 	}

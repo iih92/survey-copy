@@ -29,19 +29,18 @@ import com.team.service.IMemberService;
 public class MemberController {
 
 	@Autowired
-	private IMemberService service;
+	private IMemberService mService;
 	@Autowired
-	private IBoardService boardservice;
+	private IBoardService bService;
 	@Autowired
 	private JavaMailSender mailSender;
-
 
 	//[회원가입]
 	@RequestMapping("signUp")
 	public String registerSave(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		service.signUp(model);
-		return "home/main";
+		mService.signUp(model);
+		return "redirect:/";
 	}
 
 	//[로그인]
@@ -50,7 +49,7 @@ public class MemberController {
 	public String signIn(MemberDTO dto,HttpSession session)throws JsonProcessingException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id",dto.getId());
-		String[] result = service.signIn(dto);
+		String[] result = mService.signIn(dto);
 
 		if(result[0].equals("1")) {
 			/*비밀번호 일치 , 세션생성*/
@@ -80,7 +79,7 @@ public class MemberController {
 	@ResponseBody
 	public int idcheck(@RequestBody String id) {
 		int count = 0;	
-		count = service.idCheck(id);
+		count = mService.idCheck(id);
 		return count;
 	}
 
@@ -89,7 +88,7 @@ public class MemberController {
 	@ResponseBody
 	public int nickcheck(@RequestBody String nick) {
 		int count = 0;	
-		count = service.nickCheck(nick);
+		count = mService.nickCheck(nick);
 		return count;
 	}
 	
@@ -97,7 +96,7 @@ public class MemberController {
 	@RequestMapping(value = "changepw", method = RequestMethod.POST)
 	public String changePw(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		service.changePw(model);
+		mService.changePw(model);
 		return "MyPage/main";
 	}
 
@@ -105,7 +104,7 @@ public class MemberController {
 	@RequestMapping(value = "changeNick")
 	public String changeNick(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
-		service.changeNick(model);
+		mService.changeNick(model);
 		return "MyPage/main";
 	}
 
@@ -120,19 +119,19 @@ public class MemberController {
 	public String myDetail(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request); 
 		/*페이징 - 나의 등록한 설문조사*/
-		boardservice.TakeSurbeySearch(model);
-		boardservice.page_board_list_nick(model);
-		boardservice.pagingNum(model,2);
+		bService.TakeSurbeySearch(model);
+		bService.page_board_list_nick(model);
+		bService.pagingNum(model,2);
 		/*페이징 - 최근한 설문조사*/
-		boardservice.page_board_list_take(model);
-		boardservice.pagingNum(model,3);
-		boardservice.pointHistory(model);
+		bService.page_board_list_take(model);
+		bService.pagingNum(model,3);
+		bService.pointHistory(model);
 		return "MyPage/detail";
 	}
 	
 	//[문의하기 - mailSending 코드]
-	  @RequestMapping(value = "/mail/mailSending")
-	  public String mailSending(HttpServletRequest request) {
+	@RequestMapping(value = "/mail/mailSending")
+	public String mailSending(HttpServletRequest request) {
 		  
 	    String setfrom = "heyhihello.jj@gmail.com";         
 	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
@@ -142,34 +141,29 @@ public class MemberController {
 	   
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
-	      MimeMessageHelper messageHelper 
-	                        = new MimeMessageHelper(message, true, "UTF-8");
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	      messageHelper.setFrom(reply);    // 보내는사람 생략하거나 하면 정상작동을 안함
 	      messageHelper.setTo(tomail);     // 받는사람 이메일
 	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 	      messageHelper.setText(content + "[회신 받을 이메일 : " + reply + "]");  // 메일 내용
-	     
 	      mailSender.send(message);
-	    } catch(Exception e){
-	      System.out.println(e);
-	    }
-	   
+	    } catch(Exception e){ System.out.println(e); }
 	    return "redirect:/mypage";
-	  }
+	}
 
 	//[마이페이지 회원 탈퇴]
 	@RequestMapping(value = "leave.do")
 	@ResponseBody
 	public MemberDTO page2(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	
-		return service.info(model);
+		return mService.info(model);
 	}
 	
 	//[회원 탈퇴]
 	@RequestMapping(value = "leave")
 	public String leave(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request", request);	
-		service.leave(model);
+		mService.leave(model);
 		return "redirect:/";
 	}
 	
@@ -178,19 +172,17 @@ public class MemberController {
 	@ResponseBody
 	public MemberDTO info(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	
-		return service.info(model);
+		return mService.info(model);
 	} 
 
 	//[]
 	@RequestMapping(value = "page3.do")
 	@ResponseBody
-	public Map<Integer, Object> page3(Model model, HttpServletRequest request) {
-		
+	public Map<Integer, Object> page3(Model model, HttpServletRequest request) {		
 		model.addAttribute("request", request);	
-		List<String> list1 = boardservice.ajax_getDatesecond(model);
-		List<TakeSurvey> list2 = boardservice.ajax_pointHistory(model);		
-		String str = list2.get(0).getTitle();		
-		Map<Integer, Object> map1 = new HashMap();
+		List<String> list1 = bService.ajax_getDatesecond(model);
+		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);			
+		Map<Integer, Object> map1 = new HashMap<>();
 		map1.put(1, list1);
 		map1.put(2, list2);
 		return map1; 
@@ -201,10 +193,9 @@ public class MemberController {
 	@ResponseBody
 	public Map<Integer, Object> page4(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	
-		List<String> list1 = boardservice.ajax_getDatesecond(model);
-		List<TakeSurvey> list2 = boardservice.ajax_pointHistory(model);
-		String str = list2.get(0).getTitle();
-		Map<Integer, Object> map1 = new HashMap();
+		List<String> list1 = bService.ajax_getDatesecond(model);
+		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);
+		Map<Integer, Object> map1 = new HashMap<>();
 		map1.put(1, list1);
 		map1.put(2, list2);
 		return map1;

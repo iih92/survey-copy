@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ReplyDTO {
+	
 	private int cNum;
 	private int num; 
 	private Date cDate;
@@ -14,4 +15,5 @@ public class ReplyDTO {
 	private String content;
 	private int depth;
 	private int intent;
+	
 }	

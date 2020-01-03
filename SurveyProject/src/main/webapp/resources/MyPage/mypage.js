@@ -50,6 +50,7 @@ $(document).ready(function(){
 	                            	   $("#nick_check").text("사용가능한 닉네임 입니다.");
 	                            	   $("#nick_check").css("color", "#01aef0");
 	                            	   $('#btnNick').attr('disabled',false);
+	                            	   $('#btnNick').css('background-color','#01aef0')
 	                            	   $('#nick').val(nick);
 	                            	   nick_check = true;
 	                               }
@@ -84,8 +85,9 @@ $(document).ready(function(){
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   	$('#mesage').html('비밀번호 일치합니다.');
-		                    	   	$('#mesage').attr('color', '#01aef0');
+		                    	   	$('#mesage').css('color', '#01aef0');
 		                    	   	$('#btnPw').attr('disabled',false);
+		                    	   	$('#btnPw').css('background-color','#01aef0')
 		                      } else {
 		                    	  	$('#mesage').html('비밀번호 일치하지 않습니다.');
 		                    	  	$('#mesage').attr('color', '#f82a2aa3');
@@ -105,8 +107,9 @@ $(document).ready(function(){
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   $('#mesage').html('비밀번호 일치합니다.');
-		                    	   $('#mesage').attr('color', '#01aef0');
+		                    	   $('#mesage').css('color', '#01aef0');
 		                    	   $('#btnPw').attr('disabled',false);
+		                    	   $('#btnPw').css('background-color','#01aef0')
 		                      } else {
 		                    	  $('#mesage').html('비밀번호 일치하지 않습니다.');
 		                    	  $('#mesage').attr('color', '#f82a2aa3');

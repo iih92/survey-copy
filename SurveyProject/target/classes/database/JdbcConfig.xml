@@ -8,7 +8,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 
 		<!-- 서버 IP 설정 --> 
-		<property name="url" value="jdbc:oracle:thin:@192.168.101.128:1521:xe" /> 
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.32:1521:xe" /> 
 
 		<!-- DB 아이디, 비번 -->
 		<property name="username" value="survey" />

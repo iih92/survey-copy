@@ -47,7 +47,7 @@
             <li>변경할 비밀번호 재입력</li>
             <input type="password" name="pwChk" id="pwChk" autocomplete="off">
             <button type="submit" disabled="true" id="btnPw">수정</button>
-            <h4 id="mesage" size="2"></h4>
+            <h4 id="mesage" size="2" style="text-align: left;"></h4>
          </form>
          
       </ul>

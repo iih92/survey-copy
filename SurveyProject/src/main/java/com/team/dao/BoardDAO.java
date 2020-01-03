@@ -149,5 +149,9 @@ public class BoardDAO {
 	public List<BoardDTO> bestServey(){
 		return sqlsession.selectList(namespaceBoard + ".bestServey");
 	}
-	
+	public List<TakeSurvey> pointlog_last(String loginUser) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespaceBoard+".pointlog",loginUser);
+	}
+
 }

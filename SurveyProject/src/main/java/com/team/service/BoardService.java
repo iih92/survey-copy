@@ -396,5 +396,21 @@ public class BoardService implements IBoardService {
 	public void bestServey(Model model) {
 		model.addAttribute("bestSurvey",dao.bestServey());	
 	} 
-	
+	//포인트내역 마지막
+	@Override
+	public void pointlog_last(Model model) {
+		// TODO Auto-generated method stub
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");	
+		model.addAttribute("pointLog",dao.pointlog_last(loginUser));
+	} 
+	public List<TakeSurvey> pointlog_last_ajax(Model model){
+		Map<String,Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("loginUser");	
+		return dao.pointlog_last(loginUser);
+	}
 }

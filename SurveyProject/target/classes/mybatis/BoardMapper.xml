@@ -141,4 +141,14 @@
 		SELECT * FROM ((SELECT * FROM board where deadline >= sysdate-1) ORDER BY point desc, hit DESC) WHERE ROWNUM <![CDATA[<=]]> 3
 	</select> 
 	
+	
+	<!-- 포인트 내역 (증가 감소 전부 나옴) -->
+	<select id="pointlog" parameterType="String" resultType="Tdto">
+
+	select title,nick,dt,to_char(dt,'yyyy-mm-dd hh24:mi:ss') as to_char,point from TakeSurvey where nick=#{loginUser} 
+	union all 
+	select title,nick,createdate as dt,to_char(createdate,'yyyy-mm-dd hh24:mi:ss') as to_char,(point+1000)*-1 from board where nick=#{loginUser}
+	order by dt desc
+	
+	</select> 
 </mapper>

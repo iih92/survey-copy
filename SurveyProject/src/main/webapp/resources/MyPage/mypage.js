@@ -167,6 +167,14 @@ $(document).ready(function(){
 							$.ajax({
 								url: "page3.do?start="+cnt,
 								success: function(data) {
+									//$(".RegisterSurbey").empty(); 
+									
+								//	console.log("ajax 안으로 들어왔다"); 
+								//	console.log(data.length); 
+								//	for(var i=0;i<data.length;i++){
+								//		console.log(data[i].title);
+								//	}
+									//$(".RegisterSurbey").html(output);
 									
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
@@ -181,9 +189,9 @@ $(document).ready(function(){
 									for(var i = pagingCntF ; i<pagingLength; i++){
 									 		
 										output += "<tr>";
-										output += "<td>"+data[1][i]+"</td>";
-										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
+										output += "<td>"+data[i].to_char+"</td>";
+										output += "<td>"+data[i].title+"</td>";
+										output += "<td> "+data[i].point+"</td>";
 										output += "</tr>";
 										
 									 	
@@ -215,8 +223,8 @@ $(document).ready(function(){
 									var pagingCntL= cnt * 5 + 5;
 								 	
 									var pagingLength = pagingCntL;
-									if( pagingLength >= data[2].length ){
-										pagingLength = data[2].length;
+									if( pagingLength >= data.length ){
+										pagingLength = data.length;
 										$(".mypright").attr('disabled',true);
 									}
 									
@@ -224,16 +232,22 @@ $(document).ready(function(){
 									for(var i = pagingCntF ; i<pagingLength; i++){
 								 	
 										output += "<tr>";
-										output += "<td>"+data[1][i]+"</td>";
-										output += "<td>"+data[2][i].title+"</td>";
-										output += "<td><span style='color:orange;'>+</span>"+data[2][i].point+"</td>";
+										output += "<td>"+data[i].to_char+"</td>";
+										output += "<td>"+data[i].title+"</td>";
+										output += "<td> "+data[i].point+"</td>";
 										output += "</tr>";
 										
 								 			
 									}
 					
 									$("#pointTbody").html(output);
-
+									
+								//	console.log("ajax 안으로 들어왔다");  
+								//	console.log(data[2]);
+								//	console.log(data[1]);
+								//	console.log( data[2][1] );
+								//	
+									//$(".RegisterSurbey").html(output);
 								}, error: function() {
 									alert("문제가 발생")
 								}

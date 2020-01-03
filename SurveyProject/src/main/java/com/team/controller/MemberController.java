@@ -126,6 +126,8 @@ public class MemberController {
 		bService.page_board_list_take(model);
 		bService.pagingNum(model,3);
 		bService.pointHistory(model);
+		
+		bService.pointlog_last(model);
 		return "MyPage/detail";
 	}
 	
@@ -175,30 +177,25 @@ public class MemberController {
 		return mService.info(model);
 	} 
 
-	//[]
 	@RequestMapping(value = "page3.do")
 	@ResponseBody
-	public Map<Integer, Object> page3(Model model, HttpServletRequest request) {		
+	public List<TakeSurvey> page3(Model model, HttpServletRequest request) {
+		System.out.println("page3.do 실행되나--------------------------------");
+ 
 		model.addAttribute("request", request);	
-		List<String> list1 = bService.ajax_getDatesecond(model);
-		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);			
-		Map<Integer, Object> map1 = new HashMap<>();
-		map1.put(1, list1);
-		map1.put(2, list2);
-		return map1; 
+		 
+		return bService.pointlog_last_ajax(model);
 	}
 	
-	//[]
 	@RequestMapping(value = "page4.do")
 	@ResponseBody
-	public Map<Integer, Object> page4(Model model, HttpServletRequest request) {
+	public List<TakeSurvey> page4(Model model, HttpServletRequest request) {
+		System.out.println("page4.do 실행되나--------------------------------");
 		model.addAttribute("request", request);	
-		List<String> list1 = bService.ajax_getDatesecond(model);
-		List<TakeSurvey> list2 = bService.ajax_pointHistory(model);
-		Map<Integer, Object> map1 = new HashMap<>();
-		map1.put(1, list1);
-		map1.put(2, list2);
-		return map1;
+		 
+		return bService.pointlog_last_ajax(model);
 	} 
+
+
 	
 }

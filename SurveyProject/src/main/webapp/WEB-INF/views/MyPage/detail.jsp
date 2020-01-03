@@ -33,13 +33,14 @@
          
          <form action="changenick" method="post">
             <li>변경할 닉네임</li>
+            <input type="hidden" name="id" class="id">
             <input type="text" name="nick" id="nickname" autocomplete="off">
             <button type="submit" disabled="true" id="btnNick">수정</button>
             <h4 id="nick_check" size="2" style="text-align: left;"></h4>
          </form>
          
          <form action="changepw" method="post">
-            <input type="hidden" name="nick" value="1">
+            <input type="hidden" name="nick" value="${loginUser}">
             <li>변경할 비밀번호</li>
             <input type="password" name="pw" id="pw" autocomplete="off"  style="margin-right:20%;"><br>
             

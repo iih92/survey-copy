@@ -11,23 +11,24 @@ import org.springframework.ui.Model;
 
 import com.team.dao.ReplyDAO;
 import com.team.dto.ReplyDTO;
+
 @Service
 public class ReplyService implements IReplyService{
 	@Autowired
 	ReplyDAO dao;
 	
+	//[댓글 저장]
 	@Override
 	public void replySave(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		//텍스트 에어리어에 담긴 내용을 가져옴.. 
+		/*텍스트 에어리어에 담긴 내용을 가져옴*/
 		String content = request.getParameter("wReplyArea");
-		//현재 접속한 닉네임 가져옴.. 
+		/*현재 접속한 닉네임 가져옴*/
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("loginUser");
-		//현재 설문조사 글번호 가져옴..
+		/*현재 설문조사 글번호 가져옴*/
 		String hnum = request.getParameter("hnum");
 		int num = Integer.parseInt(hnum);
 		ReplyDTO dto = new ReplyDTO();
@@ -35,12 +36,11 @@ public class ReplyService implements IReplyService{
 		dto.setContent(content);
 		dto.setNick(nick);
 		dao.replySave(dto);
-
 	}
-
+	
+	//[댓글 가져오기]
 	@Override
 	public void replySelect(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String hnum = request.getParameter("num");
@@ -48,9 +48,9 @@ public class ReplyService implements IReplyService{
 		model.addAttribute("replyList",dao.replyList(num));
 	}
 
+	//[대댓글 저장]
 	@Override
 	public void reReplySave(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
@@ -59,7 +59,7 @@ public class ReplyService implements IReplyService{
 		String tcnum = request.getParameter("cnum");
 		int cnum = Integer.parseInt(tcnum); // 댓글번호
 		String content = request.getParameter("reReplyWrite"); // 대댓글 내용 		
-		//현재 접속한 닉네임 가져옴.. 
+		/*현재 접속한 닉네임 가져옴*/
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("loginUser");
 		
@@ -71,19 +71,19 @@ public class ReplyService implements IReplyService{
 		dao.reReplySave(dto);
 	}
 
+	//[댓글 삭제]
 	@Override
 	public void replyDelete(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");	
 		
 		String cnum = request.getParameter("cnum");	
 		dao.replyDelete(cnum);		
 	}
-
+	
+	//[댓글 수정]
 	@Override
 	public void replyUpdate(Model model) {
-		// TODO Auto-generated method stub
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		

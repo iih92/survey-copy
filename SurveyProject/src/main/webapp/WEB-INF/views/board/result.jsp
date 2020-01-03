@@ -15,9 +15,8 @@
 		var xlsNum = 0;
 		var xlsPer = 0;
 		$("#excel").click(function(){
-			console.log("1");
 			$.ajax({
-		        type : "GET", //전송방식을 지정한다 (POST,GET)
+		        type : "GET", 
 		        url : "makeExcel.do?num=${dto.num}",
 		        data : {
 		        	"xlsResult" : xlsResult, 
@@ -34,7 +33,7 @@
 		
 		// 데이터 값 가져옴
 	    $.ajax({
-	        type : "GET", //전송방식을 지정한다 (POST,GET)
+	        type : "GET", 
 	        url : "result.do?num=${dto.num}",
 	        success : function(data){
 	  			result(data);

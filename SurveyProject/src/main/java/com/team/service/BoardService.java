@@ -44,7 +44,7 @@ public class BoardService implements IBoardService {
 		
 		String code="";
 
-		// request 객체 안에있는 모든 값을 조회할수 있는 역할
+		/*request 객체 안에있는 모든 값을 조회할수 있는 역할*/
 		Enumeration<Object> params = request.getParameterNames();
 		while (params.hasMoreElements()){
 			String name = (String)params.nextElement();
@@ -62,14 +62,11 @@ public class BoardService implements IBoardService {
 	public void surveySelect(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		int num = Integer.parseInt(request.getParameter("num"));
-		
+		int num = Integer.parseInt(request.getParameter("num"));	
 		BoardDTO dto = dao.surveySelect(num);
-		String code = dto.getCode();
-		
+		String code = dto.getCode();	
 		/*설문 중복 참여 검사*/
 		List<String> voteUser = dao.VoteSelect(num);
-		
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
 		model.addAttribute("voteUser", voteUser);
@@ -97,7 +94,7 @@ public class BoardService implements IBoardService {
 		dto.setBoardIcon(request.getParameter("boardIcon"));
 		String code="";
 
-		// request 객체 안에있는 모든 값을 조회할수 있는 역할
+		/*request 객체 안에있는 모든 값을 조회할수 있는 역할*/
 		Enumeration<Object> params = request.getParameterNames();
 		while (params.hasMoreElements()){
 			String name = (String)params.nextElement();
@@ -144,7 +141,7 @@ public class BoardService implements IBoardService {
 	public int surveyVote(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		//세션값 받아오기
+		/*세션값 받아오기*/
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");	
 		
@@ -158,7 +155,8 @@ public class BoardService implements IBoardService {
 			if(name.equals("num")) {
 				dto.setNum(num);
 				dto.setNick(loginUser);
-			} else if(name.substring(0,1).equals("C")) {
+			}else if(name.equals("point")){			
+			}else if(name.substring(0,1).equals("C")) {
 				String[] chbox = request.getParameterValues(name);
 				result += name + ":";
 				for (int i = 0; i < chbox.length; i++) {
@@ -181,31 +179,31 @@ public class BoardService implements IBoardService {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		int num = Integer.parseInt(request.getParameter("num"));
 		List<VoteDTO> list = dao.surveyResult(num);
-		// 전체 설문조사 결과 저장용 배열
+		/* 전체 설문조사 결과 저장용 배열 */
 		String[] mix = null;
-		// !로 스플릿 하고 저장하기 위한 변수
+		/* !로 스플릿 하고 저장하기 위한 변수 */
 		String[] first= {};
 		for (int i = 0; i < list.size(); i++) {
 			first = list.get(i).getResult().split("!");
 			for (int j = 0; j < first.length; j++) {
-				// 문제 문항 갯수만큼 배열 생성
+				/* 문제 문항 갯수만큼 배열 생성 */
 				if(mix == null) {
 					mix = new String[(first.length)+1];
-					// 참가 인원을 배열 마지막에 추가
+					/* 참가 인원을 배열 마지막에 추가 */
 					mix[(first.length)] = Integer.toString(list.size());
 				}
-				// : 로 스플릿 하고 저장하기
+				/* : 로 스플릿 하고 저장하기 */
 				String[] second = first[j].split(":");
 				for (int qa = 0; qa < second.length; qa++) {
 					if(i > 0) {
-						// 두 번째 for문 부턴 전에 있던 값이랑 같이 저장
+						/* 두 번째 for문 부턴 전에 있던 값이랑 같이 저장 */
 						int an = 0;
 						if(second[qa].equals(second[an])) {
 							mix[j] = mix[j]+second[qa+1];
 							an=an+2;
 						}
 					} else {
-						// 첫 for문엔 그냥 값 저장
+						/* 첫 for문엔 그냥 값 저장 */
 						if(qa%2 == 0) {
 							mix[j] = second[qa] + ":" + second[qa+1];
 						}			
@@ -216,33 +214,31 @@ public class BoardService implements IBoardService {
 		return mix;
 	}
 
-	/*페이징 처리--------------------------------------------------------------------*/
 	
-	/*페이징 수 계산하기*/
+	//[페이징 처리--------------------------------------------------------------------]
+	
+	//[페이징 수 계산하기]
 	@Override
 	public PageCount pagingNum(Model model, int daoNum) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");	
-		//세션값 받아오기
+		/*세션값 받아오기*/
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");
 		
 		int start = 0;
-		// start 값 가져오기
+		/* start 값 가져오기 */
 		if(request.getParameter("start") == null ) start = 0;
 		else start = Integer.parseInt(request.getParameter("start"));
-
-		// 맨처음 리뷰게시판 들어올때 
+		/* 맨처음 리뷰게시판 들어올때 */
 		if(start == 0) start=1;      
-		// 페이지에 보여줄 게시글 갯수
-		int pageNum=8;
-		
+		/* 페이지에 보여줄 게시글 갯수 */
+		int pageNum=8;	
 		int totalPage = 0;
 		int totEndPage = 0;
 		int startPage = 0;
 		int endPage = 0;
 		
-
 		if(daoNum == 1) {
 			totalPage = getTotalPage();
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
@@ -285,30 +281,28 @@ public class BoardService implements IBoardService {
 			model.addAttribute("pc3", pc3);	
 			return pc3; 
 		}
-
 	}
 	
-	/*페이징 전체 행수 가져오기*/
+	//[페이징 전체 행수 가져오기]
 	private int getTotalPage() { return dao.getTotalPage(); }
 	private int getTotalPage_nick(String loginUser) { return dao.getTotalPage_nick(loginUser); }
 	private int getTotalPage_take(String loginUser) { return dao.getTotalPage_take(loginUser); }
 	
-	/*페이징 된대로 가져오기_nick*/
+	//[페이징 된대로 가져오기_내가 등록한 설문조사]
 	@Override
 	public List<BoardDTO> page_board_list_nick(Model model) {
 		model.addAttribute("list", dao.page_board_list_nick(pagingNum(model,2)));
 		return dao.page_board_list_nick(pagingNum(model,2));
 	}
 	
-	/*페이징 된대로 가져오기_take*/
+	//[페이징 된대로 가져오기_최근 한 설문조사]
 	@Override
 	public List<TakeSurvey> page_board_list_take(Model model) {
 		model.addAttribute("Tdto", dao.page_board_list_take(pagingNum(model,3)));
-		return dao.page_board_list_take(pagingNum(model,3));
-		
+		return dao.page_board_list_take(pagingNum(model,3));	
 	}
 	
-	/*페이징 된대로 가져오기_main 및 각각 정렬기능*/
+	//[페이징 된대로 가져오기_main 및 각각 정렬기능]
 	public void page_board_list(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");		
@@ -326,14 +320,15 @@ public class BoardService implements IBoardService {
 			}	
 		} catch(NullPointerException e) {}
 	}
-	/*---------------------------------------------------------------------------------*/
+	
+	//[------------------------------------------------------------------------------------]
 	
 	//[참여한 설문조사 등록]
 	@Override
 	public void takeSurbey(int num, Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		//세션값 받아오기
+		/*세션값 받아오기*/
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");		
 		BoardDTO dto = dao.surveySelect(num);	
@@ -358,7 +353,7 @@ public class BoardService implements IBoardService {
 		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
 	}
 	
-	// 포인트 내역 열람 눌렀을때 가져오는 목록
+	//[포인트 내역 가져오기]
 	@Override
 	public void pointHistory(Model model) {
 		// TODO Auto-generated method stub
@@ -369,6 +364,8 @@ public class BoardService implements IBoardService {
 		model.addAttribute("pointHistory",dao.pointHistory(loginUser)); 
 		model.addAttribute("dateSecond",dao.dateSecond(loginUser)); 	 
 	}
+	
+	//[]
 	@Override
 	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest)map.get("request");
@@ -377,12 +374,14 @@ public class BoardService implements IBoardService {
 		return dao.dateSecond(loginUser);
 	}
 	
+	//[]
 	@Override
 	public List<TakeSurvey> ajax_pointHistory(Model model) {Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.pointHistory(loginUser);
-	} 
+	}
+	
 	//[엑셀로 만들기 위한 데이터 받기]
 	public String[] surveyQuestion(Model model) {
 		String[] result = new String[2];
@@ -395,7 +394,7 @@ public class BoardService implements IBoardService {
 		return result;
 	}
 
-	//[best 설문조사]
+	//[best 설문조사 가져오기]
 	@Override
 	public void bestServey(Model model) {
 		model.addAttribute("bestSurvey",dao.bestServey());	

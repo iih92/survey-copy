@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,6 @@
 <!-- 헤더 / 푸터 인식용 추가 -->
 <script src="resources/jquery-3.4.1.js"></script>
 <script>
-
 $(document).ready(function(){
 	$("#recentLineup").click(function(){
 		var form = document.createElement("form"); 
@@ -41,7 +41,6 @@ $(document).ready(function(){
 		$.post("lineupMain", {
 			lineup : "2"
 		},function(data){
-			console.log("dead here");
 			location.href="mainpage";
             }); 
 	    }); 
@@ -49,13 +48,13 @@ $(document).ready(function(){
 		$.post("lineupMain", {
 			lineup : "3"
 		},function(data){
-			console.log("hit here");
 			location.href="mainpage";
             }); 
 	    }); 
 	});
 
 </script>
+
 <link rel='stylesheet prefetch'
 	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
@@ -63,6 +62,8 @@ $(document).ready(function(){
 	#hitLineup, #deadLineup, #recentLineup {
 		cursor: pointer;
 	}
+	
+	
 </style>
 
 </head>
@@ -89,9 +90,19 @@ $(document).ready(function(){
 						<a href="boarddetail?num=${dto.num }"><!-- mouse over -->
 							<div class="over">
 								<img src="resources/main/images/coin.png" alt="" />
-								<h1
-									style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h1>
-							</div> <!-- icon div -->
+								<h1 style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h1>
+								<c:set var="tag" value="${dto.hashtag}" />
+								<c:set var="#" value="#"/>									
+								<c:set var="tagArr" value="${fn:split(tag,'#')}"></c:set>
+								<div class="hashDiv">
+								<c:forEach var="val" items="${tagArr}" varStatus="status">
+									<a href="search?hashtag=${val}" class="hashtagLink">#${val}</a>
+									<c:if test="${(status.count mod 6) == 0}"> <br> </c:if>
+								</c:forEach>
+								</div>
+							</div>
+							
+							<!-- icon div -->
 							<div class="box_image">
 								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
 							</div> <!-- inner div -->
@@ -111,7 +122,8 @@ $(document).ready(function(){
 				<!-- new box mini 시작구역 ---------------------------------------------------------------------------->
 				<div class="new">
 					<h3>&nbsp;&nbsp;NEW SURVEY
-					
+						
+						<!-- 정렬 구간 -->
 						<span id="lineUp" class="lineUp" style="font-weight:normal; font-size:10pt; float:right;">
 							<span id="recentLineup"
 									<c:if test="${ lineupSession == '1' }"> style="color:#ff8b02" </c:if>
@@ -133,16 +145,29 @@ $(document).ready(function(){
 					</h3>			
 				</div>
  				
+ 				<!-- box 구간 -->
 				<c:forEach var="dto" items="${ list }">
 					<div class="boxmini">
-						<a href="boarddetail?num=${dto.num }"> <!-- mouse over -->
+						<a href="boarddetail?num=${dto.num }">
+						
+							<!-- mouse over -->
 							<div class="over">
 								<img src="resources/main/images/coin.png" alt="" />
 								<h2 style="font-family: 'Bebas Neue', sans-serif; font-weight: 1000; color: #ff8b02">${ dto.point }P</h2>
-							</div> <!-- icon div -->
+									<c:set var="tag" value="${dto.hashtag}" />
+									<c:set var="#" value="#"/>									
+									<c:set var="tagArr" value="${fn:split(tag,'#')}"></c:set>
+									<c:forEach var="val" items="${tagArr}" varStatus="status">
+										<a href="search?hashtag=${val}" class="hashtagLink">#${val}</a>
+										<c:if test="${(status.count mod 5) == 0}"> <br> </c:if>
+									</c:forEach>
+							</div>
+							
+							<!-- icon div -->
 							<div class="box_image">
 								<img src="${dto.boardIcon}" style="width: 150px; height:  150px;" />
-							</div> <!-- inner div -->
+							</div>
+							<!-- inner div -->
 							<div class="inner">
 								<h3>${ dto.title }</h3>
 								<p>${ dto.hashtag }</p>

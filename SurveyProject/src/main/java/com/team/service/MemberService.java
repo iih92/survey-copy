@@ -1,6 +1,5 @@
 package com.team.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 
 import com.team.dao.MemberDAO;
 import com.team.dto.MemberDTO;
-import com.team.dto.TakeSurvey;
 
 @Service
 public class MemberService implements IMemberService{
@@ -40,18 +38,17 @@ public class MemberService implements IMemberService{
 	// [로그인]
 	@Override
 	public String[] signIn(MemberDTO dto) {
-		// TODO Auto-generated method stub
 		String[] result = new String[2];
 		MemberDTO mdto = new MemberDTO();
 		mdto = dao.signIn(dto.getId(), dto.getPw());
 
 		try {
 			if(dto.getPw().equals(mdto.getPw())) {
-				//비밀번호 일치
+				/*비밀번호 일치*/
 				result[0]="1";
 				result[1]=mdto.getNick();
 			} else {
-				//비밀번호 불일치 
+				/*비밀번호 불일치*/
 				result[0]="2";
 			}
 		} catch (Exception e) {
@@ -99,6 +96,10 @@ public class MemberService implements IMemberService{
 	      dto.setNick(nick);
 	      dto.setId(id);
 	      dao.changeNick(dto);
+	      
+	      /*변경된 닉네임 세션설정하기*/
+	      HttpSession session = request.getSession();
+	      session.setAttribute("loginUser", dto.getNick());
 	}
 
 	// [포인트 적립]
@@ -106,10 +107,10 @@ public class MemberService implements IMemberService{
 	public void addPoint(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		//세션값(닉네임)
+		/*세션값(닉네임)*/
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("loginUser");
-		//포인트
+		/*포인트*/
 		String P = request.getParameter("point");
 		int point = Integer.parseInt(P);
 
@@ -127,10 +128,9 @@ public class MemberService implements IMemberService{
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();
 		String nick = (String) session.getAttribute("loginUser");
-		//포인트
+		/*포인트*/
 		String P = request.getParameter("point");
 		int point = (Integer.parseInt(P)*100)+1000;
-		System.out.println(point);
 		
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);

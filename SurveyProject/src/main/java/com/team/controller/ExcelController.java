@@ -19,6 +19,7 @@ public class ExcelController {
 	@Autowired
 	private IBoardService bservice;
 	
+	//[]
 	@RequestMapping(value="makeExcel.do", method=RequestMethod.GET)
 	@ResponseBody
 	public void makeExcel(Model model,HttpServletRequest request, 
@@ -30,6 +31,5 @@ public class ExcelController {
 		String title = info[0];
 		String question = info[1];
 		ExcelService.makeExcel(title + ".xls", xlsResult, xlsCnt, xlsPer, question);
-
 	}
 }

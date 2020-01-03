@@ -111,7 +111,6 @@ $(document).ready(function(){
 	// 체크박스 항목 삭제 버튼
 	$(document).on('click','#delinnerCheck',function(){
 		var group = $(this).attr("name");
-		console.log(group);
 		$("input").remove("#check"+group);
 		$("input").remove("#delinnerCheck."+group);
 		$("span").remove("#spanC"+group);

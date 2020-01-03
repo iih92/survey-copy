@@ -1778,7 +1778,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
         Auth.setRefreshToken = function (token) {
-          console.log('unsupported operation: setRefreshToken()');
         };
 
 
@@ -1792,7 +1791,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
         Auth.getRefreshToken = function () {
-          console.log('unsupported operation: getRefreshToken()');
           return '';
         };
 
@@ -2847,7 +2845,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               settings.callback();
             }
           }
-          if (settings.callback && _k.UA.browser.msie) console.log("method 'callback' does not support the Internet Explorer environment.");
+          if (settings.callback && _k.UA.browser.msie) 
           var timer = setInterval(function () {
             if (popup.closed) {
               clearInterval(timer);

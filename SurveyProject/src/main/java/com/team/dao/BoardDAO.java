@@ -32,12 +32,12 @@ public class BoardDAO {
 
 	//[지정 게시글 가져오기]
 	public BoardDTO surveySelect(int num) {
-		//[조회수 증가]
+		/*조회수 증가*/
 		sqlsession.update(namespace + ".up", num);
 		return sqlsession.selectOne(namespace + ".surveySelect", num);
 	}
 	
-	/*설문조사 중복참여 검사*/
+	//[설문조사 중복참여 검사]
 	public List<String> VoteSelect(int num) {
 		return sqlsession.selectList(namespace + ".VoteSelect", num);
 	}
@@ -85,7 +85,10 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace + ".surveyResult", num);
 	}
 
-	/*Paging 메소드----------------------------------------------------------------*/
+	
+	//[Paging 메소드----------------------------------------------------------------]
+	
+	//[전체 페이지 가져오기]
 	public int getTotalPage() {
 		return sqlsession.selectOne(namespace+".board_getTotalPage");
 	}
@@ -95,7 +98,7 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList",pc);
 	}
 
-	/*마이페이지 - 등록한 설문조사*/
+	//[마이페이지 - 등록한 설문조사]
 	public int getTotalPage_nick(String loginUser) {
 		return sqlsession.selectOne(namespace+".board_getTotalPage_nick", loginUser);
 	}
@@ -103,22 +106,23 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList_nick",pc2);
 	}
 	
-	/*마이페이지 - 최근 설문조사*/
+	//[마이페이지 - 최근 설문조사]
 	public int getTotalPage_take(String loginUser) {
 		return sqlsession.selectOne(namespace+".getTotalPage_take", loginUser);
 	}
-	
 	public List<TakeSurvey> page_board_list_take(PageCount pc3) {
 		return sqlsession.selectList(namespace+".board_pagingList_take",pc3);
 	}
-	/*-----------------------------------------------------------------------------*/
+	
+	//[-------------------------------------------------------------------------------]
 
-	/*참여 설문조사 등록*/
+	
+	//[참여 설문조사 등록]
 	public void takeSurbey(TakeSurvey tdto) {
 		sqlsession.insert(namespace+".takeSurbey",tdto);	
 	}
 	
-	/*참여 설문조사 검색*/
+	//[참여 설문조사 가져오기]
 	public List<TakeSurvey> TakeSurbeySearch(String loginUser) {
 		return sqlsession.selectList(namespace+".TakeSurbeySearch",loginUser);
 	}
@@ -133,7 +137,7 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".board_pagingList_hit",pc);
 	}
 
-	//포인트 히스토리(적립된 날짜순 정렬)
+	//[포인트 히스토리(적립된 날짜순 정렬)]
 	public List<TakeSurvey> pointHistory(String loginUser) {
 		return sqlsession.selectList(namespace+".pointHistory",loginUser);
 	}
@@ -142,7 +146,7 @@ public class BoardDAO {
 		return sqlsession.selectList(namespace+".dateSecond",loginUser);
 	}
 	
-	//[best 설문조사]
+	//[best 설문조사 가져오기]
 	public List<BoardDTO> bestServey(){
 		return sqlsession.selectList(namespace + ".bestServey");
 	}

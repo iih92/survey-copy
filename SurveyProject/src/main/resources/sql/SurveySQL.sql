@@ -1,6 +1,7 @@
 create user survey IDENTIFIED by 1234;
 grant connect, dba, resource to survey;
 
+/*사용자 테이블*/
 create table member(
   id varchar2(20),
   pw varchar2(20),
@@ -10,6 +11,7 @@ create table member(
 
 insert into member values('1','1','1');
 
+/*게시판(설문조사) 테이블*/
 create table board(
   num NUMBER,
   title varchar2(4000),
@@ -21,16 +23,15 @@ create table board(
   point number,
   nick varchar2(4000)
 );
-
 create SEQUENCE board_num;
 
-
+/*설문조사 투표 결과 테이블*/
 create table vote(
   num number,
   result varchar2(4000)
 );
 
-
+/*댓글 테이블*/
 create table reply (
   cNum number primary key not null,
   num NUMBER not null,

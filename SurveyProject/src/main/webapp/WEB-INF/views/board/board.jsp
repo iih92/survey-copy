@@ -21,8 +21,9 @@
 <script src="resources/board/board.js"></script>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>설문조사 만들기</title>
 </head>
+
 <body>
 	<%@include file="../include/header.jsp" %>
 	<!-- 옆에 버튼 만들어주는 div start -->
@@ -60,9 +61,11 @@
 			</div>
 		</div>
 		<!-- 옆에 버튼 만들어주는 div end -->
+		
+		<!-- 설문조사 폼 만들기 div start -->
 		<form id="surveyForm" action="surveySave" method="post">
 			<div id="form" class="main">
-			
+
 				<!--제목-->
 				<div class="title">
 					<!-- 아이콘 -->
@@ -102,7 +105,9 @@
 			</div>
 			<input type="button" id="save" value="설문등록">
 		</form>
+		<!-- 설문조사 폼 만들기 div end -->
 	</div>
+	
 	<%@include file="../include/footer.jsp" %>
 </body>
 </html>

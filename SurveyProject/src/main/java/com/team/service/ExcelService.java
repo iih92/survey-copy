@@ -15,14 +15,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelService {
 	
+	//[]
 	public static void makeExcel(String fileName, String[] xlsResult, String[] xlsCnt, String xlsPer, String question) throws Exception{
-
+		
 		/*-------------엑셀 파일 생성 --------------*/
 		Workbook workbook = null;
 		if(fileName.endsWith("xlsx")) workbook = new XSSFWorkbook();
 		else if(fileName.endsWith("xls")) workbook = new HSSFWorkbook();
 		else throw new Exception("invalid file name, should be xls or xlsx");
-		
 		/*-----------문항 가져오기-------------*/
 		String[] qu = question.split(",");
 		List<String> qu1 = new ArrayList<String>(); 
@@ -31,7 +31,6 @@ public class ExcelService {
 				qu1.add((qu[i].split(":"))[1]);
 			}
 		}
-		
 		/*--------------답변 가져오기 ------------*/
 		List<String> answer = new ArrayList<String>(); 
 		List<String> answerCnt = new ArrayList<String>(); 
@@ -39,7 +38,6 @@ public class ExcelService {
 			answer.add(xlsResult[i]);
 			answerCnt.add(xlsCnt[i]);
 		}
-		
 		/*--------셀 스타일 -------*/
 		Sheet sheet = workbook.createSheet("설문조사 결과");
 		CellStyle styleOfBoardFillFontBlackBold16 = workbook.createCellStyle();
@@ -48,7 +46,6 @@ public class ExcelService {
 		styleOfBoardFillFontBlackBold16.setVerticalAlignment(CellStyle.VERTICAL_CENTER); //높이 가운데 정렬
 		sheet.setColumnWidth(0, 10000);
 		sheet.setColumnWidth(1, 10000);
-
 		/*-------- 데이터 넣기 -------*/
 		int rowIndex = 0;	// 열
 		int colIndex1 = 0;	// 행 

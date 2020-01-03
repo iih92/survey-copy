@@ -15,33 +15,28 @@ public class ReplyDAO {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	
+	//[댓글 저장]
 	public void replySave(ReplyDTO dto) {
-		// TODO Auto-generated method stub 
 		sqlsession.insert(namespace+".replySave",dto); 
 	}
 
-
+	//[댓글 가져오기]
 	public List<ReplyDTO> replyList(int num) {
-		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".replyList",num);
 	}
 
-
+	//[대댓글 저장]
 	public void reReplySave(ReplyDTO dto) {
-		// TODO Auto-generated method stub
 		sqlsession.insert(namespace+".reReplySave",dto);
 	}
-
-
+	
+	//[댓글 삭제]
 	public void replyDelete(String cnum) {
-		// TODO Auto-generated method stub
 		sqlsession.delete(namespace+".replyDelete",cnum);
 	}
-
-
+	
+	//[댓글 수정]
 	public void replyUpdate(ReplyDTO dto) {
-		// TODO Auto-generated method stub
 		sqlsession.update(namespace+".replyUpdate",dto);
 	}
 

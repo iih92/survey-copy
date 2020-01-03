@@ -53,14 +53,14 @@ public class MemberController {
 		String[] result = service.signIn(dto);
 
 		if(result[0].equals("1")) {
-			//비밀번호 일치 , 세션생성
+			/*비밀번호 일치 , 세션생성*/
 			session.setAttribute("loginUser", result[1]);
 			map.put("rs",result[0]);
 		} else if(result[0].equals("2")) {
-			//비밀번호 불일치
+			/*비밀번호 불일치*/
 			map.put("rs",result[0]);
 		} else {
-			//아이디가 없다
+			/*아이디가 없다*/
 			map.put("rs",result[0]); 
 		}
 		ObjectMapper mapper = new ObjectMapper();
@@ -98,7 +98,7 @@ public class MemberController {
 	public String changePw(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.changePw(model);
-		return "Main/main";
+		return "MyPage/main";
 	}
 
 	//[닉네임 변경]
@@ -106,7 +106,7 @@ public class MemberController {
 	public String changeNick(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		service.changeNick(model);
-		return "Main/main";
+		return "MyPage/main";
 	}
 
 	//[나의 페이지로 이동]
@@ -115,25 +115,25 @@ public class MemberController {
 		return "MyPage/main";
 	}
 	
-	//[mypage - detail]
+	//[나의페이지 - detail]
 	@RequestMapping(value = "detail")
 	public String myDetail(Model model, HttpServletRequest request, HttpSession session) {
-		model.addAttribute("request",request);   	
+		model.addAttribute("request",request); 
+		/*페이징 - 나의 등록한 설문조사*/
 		boardservice.TakeSurbeySearch(model);
 		boardservice.page_board_list_nick(model);
 		boardservice.pagingNum(model,2);
-		
+		/*페이징 - 최근한 설문조사*/
 		boardservice.page_board_list_take(model);
 		boardservice.pagingNum(model,3);
 		boardservice.pointHistory(model);
 		return "MyPage/detail";
 	}
 	
-
-	//[mailSending 코드]
+	//[문의하기 - mailSending 코드]
 	  @RequestMapping(value = "/mail/mailSending")
 	  public String mailSending(HttpServletRequest request) {
-	   
+		  
 	    String setfrom = "heyhihello.jj@gmail.com";         
 	    String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
 	    String title   = request.getParameter("title");      // 제목
@@ -144,7 +144,7 @@ public class MemberController {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper 
 	                        = new MimeMessageHelper(message, true, "UTF-8");
-	      messageHelper.setFrom(reply);  // 보내는사람 생략하거나 하면 정상작동을 안함
+	      messageHelper.setFrom(reply);    // 보내는사람 생략하거나 하면 정상작동을 안함
 	      messageHelper.setTo(tomail);     // 받는사람 이메일
 	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 	      messageHelper.setText(content + "[회신 받을 이메일 : " + reply + "]");  // 메일 내용
@@ -180,45 +180,34 @@ public class MemberController {
 		model.addAttribute("request", request);	
 		return service.info(model);
 	} 
-	
-	
+
+	//[]
 	@RequestMapping(value = "page3.do")
 	@ResponseBody
 	public Map<Integer, Object> page3(Model model, HttpServletRequest request) {
-		System.out.println("page3.do 실행되나--------------------------------");
+		
 		model.addAttribute("request", request);	
 		List<String> list1 = boardservice.ajax_getDatesecond(model);
-		List<TakeSurvey> list2 = boardservice.ajax_pointHistory(model);
-		
-		String str = list2.get(0).getTitle();	
-		System.out.println(str);
-			
+		List<TakeSurvey> list2 = boardservice.ajax_pointHistory(model);		
+		String str = list2.get(0).getTitle();		
 		Map<Integer, Object> map1 = new HashMap();
 		map1.put(1, list1);
 		map1.put(2, list2);
-		
-		System.out.println(map1.get(1)); 
-		System.out.println(map1.get(2)); 
 		return map1; 
 	}
 	
+	//[]
 	@RequestMapping(value = "page4.do")
 	@ResponseBody
 	public Map<Integer, Object> page4(Model model, HttpServletRequest request) {
-		System.out.println("page4.do 실행되나--------------------------------");
 		model.addAttribute("request", request);	
-		
 		List<String> list1 = boardservice.ajax_getDatesecond(model);
 		List<TakeSurvey> list2 = boardservice.ajax_pointHistory(model);
-		
 		String str = list2.get(0).getTitle();
-		System.out.println(str);
-
 		Map<Integer, Object> map1 = new HashMap();
 		map1.put(1, list1);
 		map1.put(2, list2);
-		
-		System.out.println(map1.get(1)); 
 		return map1;
 	} 
+	
 }

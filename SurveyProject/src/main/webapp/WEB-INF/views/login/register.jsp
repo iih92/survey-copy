@@ -67,10 +67,8 @@
                 var repassword = $('#re_password').val();
                 if(nickname === "" || id === "" || password === "" || repassword === "" || (password.length < 7) || !(password === repassword) || (id_check === false)|| (nick_check === false)){
                     $("#submit").attr('disabled', true); 
-                    console.log("버튼 활성화 : 실패");
                 } else {
                     $("#submit").attr('disabled', false);
-                    console.log("버튼 활성화 : 성공");
                 } 
             });
             
@@ -86,8 +84,7 @@
             	var id = $('#id').val().replace(/ /gi, '');
             	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?^(가-힣)]/gi;
             	var pattern = /[^(가-힣)]/;
-            	console.log("사용자 id : " + id);
-
+         
             	$.ajax({
             		async: true,
             		url : 'idCheck',
@@ -97,20 +94,19 @@
             		contentType: "application/json; charset=UTF-8",
             		
             		success : function(data){
-            			console.log("0이면 중복 아님 : " + data);
+
             			
             			if (data > 0){
 	            			//아이디가 중복되는 문구
 	            			$("#id_check").text("사용중인 아이디입니다 :p");
 							$("#id_check").css("color", "red");
-							/* $('#id').val(" "); */
-							/* $("#submit").attr("disabled", true); */
+
             			
             			}else{       
             				if(id.match(special_pattern)){
     	            			$("#id_check").text("특수문자/한글 쓸수 없습니다 :p");
     							$("#id_check").css("color", "red");
-    							/* $('#id').val(" "); */
+ 
             				}else{
                 				//아이디가 중복안되는 문구 (아이디 성공)
     	            			$("#id_check").text("사용가능한 아이디 입니다 :D");
@@ -123,7 +119,7 @@
             		}, 
             		error : function(){
             			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            			console.log("ajax실패")
+
             		}
             	});
             });
@@ -134,7 +130,7 @@
             $("#nickname").blur(function() {       	
             	var nick = $('#nickname').val().replace(/ /gi, '');
             	var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-            	console.log("사용자 닉네임 : " + nick);
+
 
             	$.ajax({
             		async: true,
@@ -145,7 +141,6 @@
             		contentType: "application/json; charset=UTF-8",
             		
             		success : function(data){
-            			console.log("0이면 중복 아님 : " + data);
             			
             		if (data > 0){
 	            			//아이디가 중복되는 문구
@@ -171,7 +166,7 @@
             			
             		}, error : function(){
             			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            			console.log("ajax실패")
+
             		}
             	});
             });

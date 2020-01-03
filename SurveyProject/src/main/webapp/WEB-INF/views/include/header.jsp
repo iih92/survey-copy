@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="searchGroup">
                     <span class="seacrhIcon"><i class="fa fa-search"></i></span>
-                    <input type="text" class="searchInput" placeholder="Search">
+                    <input type="text" class="searchInput" placeholder="#해시태그를 검색하세요 :D">
                     <span class="searchclose"><i class="fa fa-times"></i></span>
                 </div>
             </div>

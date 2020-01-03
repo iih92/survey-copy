@@ -23,11 +23,12 @@
 <script src="resources/board/boardModify.js"></script>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>설문지 수정</title>
 </head>
 <body>
 	<%@include file="../include/header.jsp"%>
-	<input type="hidden" id="code" value="${dto.code}">   
+	<input type="hidden" id="code" value="${dto.code}">  
+	 
 	<!-- 옆에 버튼 만들어주는 div start -->
 	<div class="container">
 		<div class="row">

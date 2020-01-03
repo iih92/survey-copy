@@ -1871,12 +1871,10 @@
             }
 
             if (data) {
-                // moment.duration._locale = moment._locale = data;
                 globalLocale = data;
             }
             else {
                 if ((typeof console !==  'undefined') && console.warn) {
-                    //warn user if arguments are passed but the locale could not be set
                     console.warn('Locale ' + key +  ' not found. Did you forget to load it?');
                 }
             }
@@ -2426,8 +2424,7 @@
         for (i = 0; i < tokens.length; i++) {
             token = tokens[i];
             parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
-            // console.log('token', token, 'parsedInput', parsedInput,
-            //         'regex', getParseRegexForToken(token, config));
+
             if (parsedInput) {
                 skipped = string.substr(0, string.indexOf(parsedInput));
                 if (skipped.length > 0) {

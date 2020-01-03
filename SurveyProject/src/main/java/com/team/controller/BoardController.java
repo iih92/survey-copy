@@ -1,19 +1,14 @@
 package com.team.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.team.dto.BoardDTO;
 import com.team.dto.TakeSurvey;
 import com.team.service.IBoardService;
@@ -42,6 +37,7 @@ public class BoardController {
 		return "Main/main";
 	}
 	
+	//[]
 	@RequestMapping(value="lineupMain")
 	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
 		session.setAttribute("lineupSession", request.getParameter("lineup"));
@@ -58,7 +54,7 @@ public class BoardController {
 	@RequestMapping(value = "surveySave")
 	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
-		/*포인트 차감*/
+		/*포인트 차감 및 포인트 가져오기*/
 		mService.MinusPoint(model);
 		mService.userPoint(model);
 		int num = bService.surveySave(model);
@@ -128,7 +124,6 @@ public class BoardController {
 		mService.addPoint(model);
 		mService.userPoint(model);
 		return "redirect:mainpage";
-
 	}
 
 	//[설문조사 결과 페이지]
@@ -165,5 +160,4 @@ public class BoardController {
 	}
 	
 
-	
 }

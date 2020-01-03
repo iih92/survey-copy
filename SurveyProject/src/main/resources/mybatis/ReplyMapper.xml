@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
+<!-- 댓글 관련 sql문 작성 --> 
 <mapper namespace="Reply">
  
 	<!-- 댓글 저장 -->
@@ -23,7 +24,7 @@
 		delete from reply where cnum=#{cnum}
 	</delete>
 
-	<!-- 댓글내용 수정! -->
+	<!-- 댓글내용 수정-->
 	<update id="replyUpdate" parameterType="Rdto">
 		update reply set content=#{content} where cnum= #{cNum}
 	</update>

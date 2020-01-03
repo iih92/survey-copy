@@ -13,14 +13,10 @@
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 
 <script>
-function reReply(){	
-	console.log("reReply() function here");	
-}
-
 $(document).ready(function(){
 	var deadline = '${ dto.deadline }';
 
-	/*-------------오늘 날짜---------------*/
+	/*-------------마감 날짜 검사---------------*/
 	var dt = new Date();
     var Year = dt.getFullYear();        
     var Month = "" + (dt.getMonth()+1);
@@ -28,7 +24,8 @@ $(document).ready(function(){
     if(Month.length < 2) Month = "0" + Month;
     if(Day.length < 2) Day = "0" + Day;  
     var Today = Year.toString() + "-" + Month + "-" + Day;
-    /*-------------오늘 날짜---------------*/
+    
+
 	if(deadline <= Today) {
 		alert("마감일자가 지난 설문조사입니다.");
 		$('#surveySave').prop('disabled', true);
@@ -37,16 +34,13 @@ $(document).ready(function(){
 		$('#surveySave').prop("disabled", false);
 	}
 	
-	/*참여한 설문조사 경고창*/
+	/*-------------참여 설문 조사 검사---------------*/
 	var loginUser = '${ loginUser }';
 	var voteUser = '${ voteUser }';
 	var voteLenth = voteUser.length-1;	
-	console.log(voteLenth)	
-	console.log(voteUser)
 	voteUser = voteUser.substring(1,voteLenth);
-	console.log(voteUser)
 	var vote = voteUser.split(", ");
-	console.log(vote);
+
 	for (var i = 0; i < vote.length; i++) {
 		if(vote[i] == loginUser){
 			alert("참여한 설문조사 입니다.");
@@ -57,23 +51,24 @@ $(document).ready(function(){
 	
 });
 
-$(document).ready(function(){
-	/*--------------- 답글 등록창을 띄우는 부분---------------- */
-	//기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
-	//모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식으로 할거임.. 
+$(document).ready(function(){	
+	/*------------ 답글 등록창을 띄우는 부분--------*/
+	
+	/* 기본적으로 답글 등록창은 다 hide로 숨겨져있다. 
+	     모든댓글마다 다 존재한다. "답글"을 누르면 그 댓글의 답글등록창만 띄워주는식 */ 
+	    
 	$('.reReplyWrite').hide();
 	$('.replyUpdateSeconddiv').hide();
-	// 클래스 Rspan은 "답글" 에 달려있다. 
-	$('.Rspan').click(function(e){
-		
-		console.log(".Rspan 클릭");
-		//그 "답글"의 아이디를 얻어서 this_id에 저장.
-		//아이디는 해당 댓글 DB의 cNum 이고, cNum은 intent와 같다. (cNum은 기본키이므로 유일하게 존재할수있음.. 테이블에 기본키설정은 안해놨다)  
+	
+	$('.Rspan').click(function(e){		
+
+		/* 그 "답글"의 아이디를 얻어서 this_id에 저장.
+		    아이디는 해당 댓글 DB의 cNum 이고, cNum은 intent와 같다.
+		  (cNum은 기본키이므로 유일하게 존재함 -테이블에 기본키설정은 안해놨다) */ 
 		var this_id = e.target.getAttribute('id');
 		
 		//아이디가 비어있지않다면,
 		if((this_id != '') && (this_id != null)){
-			console.log("this_id 	>> " + this_id);
 			$('.reReplyWrite').hide();
 			
 			//답글등록할수있는 창을 띄워준다. 그 답글등록창들은 id를 갖고있는데, reReply + this_id(cNum,intent) 이다.
@@ -85,33 +80,30 @@ $(document).ready(function(){
 	$('.reReplyWriteCancel').click(function(e){	
 		$('.reReplyWrite').hide();	
 	});
-	/*------------------------------------------------------- */
  
-	/*---------------------------  댓글 삭제       ---------------------------- */
+	/*------------------ 댓글 삭제  -----------------*/
 	$('.replyDelete').click(function(e){
 		
-		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 repleyDelete38 이런식으로 써져있습니다.. 
-		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
-		  										// 문자열을 잘라서 38만 가져올것입니다..
-		  var cnum_length = temp.length - 12; // 12는 repleyDelete 의 길이임..  
-		  										// 총 길이에서 replyDelete 만큼 빼면
-		  										// 숫자의 길이가 나온다
-		  var cnum = temp.substr(12,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
+		  var temp = e.target.getAttribute('id');
+		  /* 클릭한 해당 태그의 id는 repleyDelete38 이런식으로 써져있습니다.. 
+		  	 ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 문자열을 잘라서 38만 가져올것입니다.. */
+		  	 
+		  var cnum_length = temp.length - 12; 
+		  /* 12는 repleyDelete 의 길이임.. 총 길이에서 replyDelete 만큼 빼면 숫자의 길이가 나온다 */
+		  
+		  var cnum = temp.substr(12,cnum_length);
+		  /* substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다 */
 		  
 		  location.href = 'replyDelete?num=${dto.num}&cnum='+cnum;
-		  // 이렇게 하면.. num 과 cnum 둘다 request.getPar 로 얻을수있다.. 그럼 삭제도 시킬수있음..
+		  /*이렇게 하면.. num 과 cnum 둘다 request.getPar 로 얻을수있다.. 그럼 삭제도 시킬수있음..*/
 	});
 	
+	/*-------------- 답글 수정 -----------------*/
 	$('.replyUpdateSpan').click(function(e){
 		
-		  var temp = e.target.getAttribute('id'); // 클릭한 해당 태그의 id는 replyUpdate38 이런식으로 써져있습니다.. 
-		  										// ***** 삭제하려면 id 뒤에 38만 얻어와야하기때문에 
-		  										// 문자열을 잘라서 38만 가져올것입니다..
-		  var cnum_length = temp.length - 11; // 12는 replyUpdate 의 길이임..  
-		  										// 총 길이에서 replyUpdate 만큼 빼면
-		  										// 숫자의 길이가 나온다
-		  var cnum = temp.substr(11,cnum_length); // substr 을 이렇게 쓰면 끝에 숫자만 얻어올수가있다! 
-
+		  var temp = e.target.getAttribute('id'); 
+		  var cnum_length = temp.length - 11; 
+		  var cnum = temp.substr(11,cnum_length);
 		  var content = $('#replycontent'+cnum).text();
 		  
 		  $('.replyUpdatediv').show();
@@ -120,6 +112,7 @@ $(document).ready(function(){
 		  $('#replyUpdateSeconddiv'+cnum).show();	  
 	});
 	
+	/*------------답글 수정 취소 -----------------*/
 	$('.replyUpdateCancel').click(function(e){
 		$('.replyUpdatediv').show();
 		$('.replyUpdateSeconddiv').hide();
@@ -128,7 +121,7 @@ $(document).ready(function(){
 });
 </script>
 
-<!-- 공유하기 -->
+<!-- 카카오톡 공유하기 -->
 <script src="//developers.kakao.com/sdk/js/kakao.js"></script>
 
 <!-- SNS공유_카카오 -->
@@ -152,9 +145,9 @@ $(document).ready(function(){
    window.copyURL = function(){
       prompt("[Ctrl + c]를 눌러 URL을 복사하세요:", window.location);
    }
-
 </script>
 
+<!-- 스타일 css -->
 <style type="text/css">
 	body{ background-color: gainsboro;}
 
@@ -202,7 +195,6 @@ $(document).ready(function(){
 		margin-bottom: 1.5%;
 	}
 		
-		
 	/*textarea 크키 css*/
 	textarea {
         padding:.5em .3em;
@@ -214,7 +206,6 @@ $(document).ready(function(){
 	.modify {
 		border: none;
 		color: #fff;
-		/* padding: 1% 45% 1% 45%; */
 		text-align: right;
 		text-decoration: none;
 		display: inline-block;
@@ -231,7 +222,6 @@ $(document).ready(function(){
 	.delButton{
 		border: none;
 		color: #fff;
-		/* padding: 1% 45% 1% 45%; */
 		text-align: right;
 		text-decoration: none;
 		display: inline-block;
@@ -263,7 +253,8 @@ $(document).ready(function(){
 	#surveySave:disabled {
 		cursor: default;
 	}	
-		
+	
+	/*결과 버튼*/	
 	.resultButton{
 		border: none;
 	    color: #fff;
@@ -290,7 +281,6 @@ $(document).ready(function(){
 	  
 	.Rspan:hover{color: #353535;}
 
-
 	/*댓글 등록 버튼*/
 	.ReplyBt{
 		border: none;
@@ -315,7 +305,6 @@ $(document).ready(function(){
 		border-radius: 3px;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
-
 	.RereplyBt:hover{background-color: #4C4C4C;}
 	
 	/*조회, SNS공유_nav*/
@@ -324,11 +313,13 @@ $(document).ready(function(){
 		margin: 1%;
 		position: static;
 	}
+	
 </style>
 
+<!-- 스크립트 연결 -->
 <script src="resources/board/boardDetail.js"></script>
-
 </head>
+
 <body>
 
 	<%@include file="../include/header.jsp" %>	

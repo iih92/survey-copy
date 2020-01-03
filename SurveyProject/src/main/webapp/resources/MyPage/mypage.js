@@ -17,6 +17,7 @@ $(document).ready(function(){
 						success: function(data) {
 							id = data.id;
 							$("#id").val(id);
+							$(".id").val(id);
 						},
 						error:function(){}
 					});
@@ -163,14 +164,6 @@ $(document).ready(function(){
 							$.ajax({
 								url: "page3.do?start="+cnt,
 								success: function(data) {
-									//$(".RegisterSurbey").empty(); 
-									
-								//	console.log("ajax 안으로 들어왔다"); 
-								//	console.log(data.length); 
-								//	for(var i=0;i<data.length;i++){
-								//		console.log(data[i].title);
-								//	}
-									//$(".RegisterSurbey").html(output);
 									
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
@@ -237,13 +230,7 @@ $(document).ready(function(){
 									}
 					
 									$("#pointTbody").html(output);
-									
-								//	console.log("ajax 안으로 들어왔다");  
-								//	console.log(data[2]);
-								//	console.log(data[1]);
-								//	console.log( data[2][1] );
-								//	
-									//$(".RegisterSurbey").html(output);
+
 								}, error: function() {
 									alert("문제가 발생")
 								}
@@ -278,10 +265,8 @@ $(document).ready(function(){
 					$(".focus, .nofocus, .paging_bf, .paging_af" ).click(function(){
 						
 						var endpage = $("#endpage").attr('value');
-						console.log('마지막 페이지 :'+ endpage);
 						
 						var cnt = $(this).attr('value');
-						console.log('현재 페이지 :'+ cnt);
 						
 						$(".paging_bf").attr('value', cnt-1);
 						$(".paging_af").attr('value', parseInt(cnt)+1);
@@ -320,7 +305,6 @@ $(document).ready(function(){
 						if(cnt<=1){
 							$(".paging_bf").attr('disabled',true);
 						} else{
-							console.log("start");
 							$(".paging_bf").attr('disabled',false);	
 						}
 						/*다음 버튼 제한*/
@@ -328,7 +312,6 @@ $(document).ready(function(){
 							$(".paging_af").attr('disabled',true);
 						} else{
 							$(".paging_af").attr('disabled',false);
-							console.log("end");
 						}
 		
 						var output = "";
@@ -340,7 +323,6 @@ $(document).ready(function(){
 								output += "<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>";
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
-//									console.log(data[i]);
 									output += "<tr onclick=location.href='result?num="+data[i].num+"'>"
 									output += "<td>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"
@@ -378,10 +360,8 @@ $(document).ready(function(){
 					$(".focus, .nofocus, .paging_bf, .paging_af" ).click(function(){
 						
 						var endpage = $("#endpage").attr('value');
-						console.log('마지막 페이지 :'+ endpage);
 						
 						var cnt = $(this).attr('value');
-						console.log('현재 페이지 :'+ cnt);
 						
 						$(".paging_bf").attr('value', cnt-1);
 						$(".paging_af").attr('value', parseInt(cnt)+1);
@@ -420,7 +400,6 @@ $(document).ready(function(){
 						if(cnt<=1){
 							$(".paging_bf").attr('disabled',true);
 						} else{
-							console.log("start");
 							$(".paging_bf").attr('disabled',false);	
 						}
 						/*다음 버튼 제한*/
@@ -428,7 +407,6 @@ $(document).ready(function(){
 							$(".paging_af").attr('disabled',true);
 						} else{
 							$(".paging_af").attr('disabled',false);
-							console.log("end");
 						}
 
 						
@@ -441,7 +419,6 @@ $(document).ready(function(){
 								output += "<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>";
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
-//									console.log(data[i]);
 									output += "<tr>"
 									output += "<td>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"

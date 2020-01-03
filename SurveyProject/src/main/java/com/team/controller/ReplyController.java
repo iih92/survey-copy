@@ -10,13 +10,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.service.IReplyService; 
 
-
 @Controller
 public class ReplyController {
 
 	@Autowired
 	private IReplyService service;
 
+	//[댓글]
 	@RequestMapping(value = "replySave")
 	public String replySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
@@ -27,9 +27,9 @@ public class ReplyController {
 		}	
 		redirect.addAttribute("num",request.getParameter("hnum"));
 		return "redirect:boarddetail";			
-
 	}
 	
+	//[대댓글 저장]
 	@RequestMapping(value = "reReplySave")
 	public String reReplySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
@@ -38,13 +38,13 @@ public class ReplyController {
 		if(request.getParameter("reReplyWrite") != null && request.getParameter("reReplyWrite").equals("") != true) {
 			service.reReplySave(model);
 		} else {
-			System.out.println("대댓글 텍스트 에어리어에 아무내용이 없는경우");
+			System.out.println("대댓글 텍스트에 글이 없습니다");
 		}
 		redirect.addAttribute("num",request.getParameter("hnum"));
 		return "redirect:boarddetail";			
-
 	}
 	
+	//[댓글 삭제]
 	@RequestMapping(value = "replyDelete")
 	public String replyDelete(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);	
@@ -54,6 +54,7 @@ public class ReplyController {
 		return "redirect:boarddetail";			
 	}
 
+	//[댓글 수정]
 	@RequestMapping(value = "replyUpdate")
 	public String replyUpdate(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);

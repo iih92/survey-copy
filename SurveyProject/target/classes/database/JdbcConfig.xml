@@ -4,14 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- dataSource 객체 생성  -->
-	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-
+	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<!-- 서버 IP 설정 --> 
-		<property name="url" value="jdbc:oracle:thin:@192.168.0.32:1521:xe" />  
-		<!-- DB 아이디, 비번 -->
+		<property name="url" value="jdbc:mysql://27.96.131.220:3306/survey" /> 
+		<!-- DB 아이디, 비번 (추후 변경 예정)-->
 		<property name="username" value="survey" />
-		<property name="password" value="1234" />
+		<property name="password" value="Aa1234567@" />
 	</bean>
 
 	<!-- mybatis와 DB 연결을 해준다. -->

@@ -6,7 +6,12 @@
  
 	<!-- 댓글 저장 -->
 	<insert id="replySave" parameterType="Rdto">
-		insert into reply(cNum,num,nick,content,intent) values(reply_num.nextval,#{num},#{nick},#{content},reply_num.currval)
+		insert into reply(num,nick,content,intent) 
+		values(#{num},#{nick},#{content}, 
+		(SELECT AUTO_INCREMENT
+		FROM information_schema.TABLES
+		WHERE TABLE_SCHEMA = "survey"
+		AND TABLE_NAME = "reply"))
 	</insert> 
  
  	<!-- 댓글 불러오기  -->
@@ -14,9 +19,11 @@
 		select * from reply where num=#{num} order by intent asc, depth asc
 	</select>
 
-	<!--  대 댓글 저장 -->
+	<!-- 대 댓글 저장 -->
 	<insert id="reReplySave" parameterType="Rdto">
-		insert into reply(cNum,num,nick,content,intent,depth) values(reply_num.nextval,#{num},#{nick},#{content},#{intent}, ( select max(depth) from reply where intent=#{intent}  ) +1     )
+		insert into reply(num,nick,content,intent,depth) 
+		values(#{num},#{nick},#{content},#{intent}, 
+		(select * from (select max(depth) from reply where intent=#{intent})tmp)+1)
 	</insert> 
 	
 	<!--  댓글 삭제  -->
@@ -24,7 +31,7 @@
 		delete from reply where cnum=#{cnum}
 	</delete>
 
-	<!-- 댓글내용 수정-->
+	<!-- 댓글내용 수정! -->
 	<update id="replyUpdate" parameterType="Rdto">
 		update reply set content=#{content} where cnum= #{cNum}
 	</update>

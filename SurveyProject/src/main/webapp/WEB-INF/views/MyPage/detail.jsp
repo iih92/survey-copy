@@ -63,7 +63,7 @@
 	 			<c:forEach var="dto" items="${pointLog}" varStatus="status2">
 	   			<c:if test="${not doneLoop}">
 					<tr>
-						<td>${dto.to_char }</td>
+						<td>${dto.dt }</td>
 						<td>${dto.title}</td>    
 						<td>${dto.point}</td> 
 					</tr>
@@ -140,7 +140,6 @@
 <div id="test4" style="text-align:center;">
 <input type="hidden" value="${pc3.totEndPage}" id="endpage">
 
-
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 		<c:forEach var="Tdto" items="${Tdto}">
@@ -171,7 +170,6 @@
 	<!-- 페이징 끝 -->
 </div>
 <!-- 최근 참여한 설문 끝 -------------------------------------------------------------------------------------->
-
 
 <!-- 4. 문의하기 ---------------------------------------------------------------------------------------------->
 <div id="test5" style="text-align:center;">
@@ -214,8 +212,6 @@
 
 </div>
 <!-- 문의하기 끝 ------------------------------------------------------------------------------------------>
-
-
 
 <!------------- 5. 회원 탈퇴---------------------------------------------------------------------------->
 <div id="test6" style="text-align:center;">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 <script>
+	function downloadExel(){
+		location.href = 'downLoadExel.do?num=${dto.num}&title=${dto.title}';
+	};
 	$(document).ready(function(){	
+		var voteUser = '${ voteUser }';
+		var voteLenth = voteUser.length-1;	
+		voteUser = voteUser.substring(1,voteLenth);
+		var vote = voteUser.split(", ");
+		
 		var xlsResult = new Array();
 		var xlsCnt = new Array();
 		var xlsNum = 0;
@@ -24,6 +33,7 @@
 		        	"xlsPer" : xlsPer
 		        },
 		        success : function(){
+		        	downloadExel();
 		        },
 		        error:function(){
 		             alert("문제가 발생했습니다"); 
@@ -112,8 +122,8 @@
 					}
 					divnum++;	
 				} else if(i == (data.length-1)){
-					xlsPer = result[3].length;
-					$("#info").append("<h3 id=count>"+result[3].length+"명 참여");
+					xlsPer = vote.length;
+					$("#info").append("<h3 id=count>"+xlsPer+"명 참여");
 				}
 			}
 	    }

@@ -65,7 +65,7 @@
 					<tr>
 						<td>${dto.dt }</td>
 						<td>${dto.title}</td>    
-						<td>${dto.point}</td> 
+						<td style="color:#ff8b02;font-weight: 1000;">${dto.point}</td> 
 					</tr>
 					<c:if test="${status2.count == 5}">
 		     			<c:set var="doneLoop" value="true"/>
@@ -90,7 +90,7 @@
 		<c:forEach var="dto" items="${list}">
 			<c:if test="${dto.nick eq loginUser}">
 				<tr onclick="location.href='boarddetail?num=${dto.num}'">
-				<td>${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
+				<td style="color:#ff8b02;font-weight: 1000;" >${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
 				</tr>	
 			</c:if>
 		</c:forEach>
@@ -143,7 +143,7 @@
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 		<c:forEach var="Tdto" items="${Tdto}">
-			<tr><td>${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
+			<tr><td style="color:#ff8b02;font-weight: 1000;" >${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
 		</c:forEach>
 	</table>
 	

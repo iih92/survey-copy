@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>설문조사 결과</title>
 <script src="resources/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
@@ -123,7 +123,7 @@
 					divnum++;	
 				} else if(i == (data.length-1)){
 					xlsPer = vote.length;
-					$("#info").append("<h3 id=count>"+xlsPer+"명 참여");
+					$("#info").append("<h3 id=count>[참여인원 :"+xlsPer+"명]");
 				}
 			}
 	    }
@@ -177,11 +177,23 @@
 </script>
 
 <style>
+
+	body {
+    background-color: gainsboro;
+	}
+	
+	#title{
+	    color: white;
+	    background-color: gray;
+	    padding: 1%;
+	}
+
 	#answer{
 		background: whitesmoke;
 	    width: 75%;
 	    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.3), 0 10px 10px 0 rgba(0, 0, 0, 0.15);
 	    padding: 5%;
+	    padding-top: 2%;
 	    border-radius: 10px;
 	    margin: 5% 0% 3% 8%;
 	}
@@ -190,7 +202,9 @@
 	}
 	
 	#count {
-		margin-left: 80%;
+	    margin-left: 80%;
+	    text-align: right;
+	    padding: 0% 1% 6% 0%;
 	}
 	
 	#excel { 
@@ -205,8 +219,12 @@
 	    border-radius: 4px;
 	    font-family: 'Noto Sans KR', sans-serif;
 	    font-weight: 500;
-	    margin-left: 69%;
-	    margin-top: 5%;
+ 		padding: 0.5% 34% 0.5% 34%;
+ 		margin: 0% 0% 0% 9%;
+	}
+	
+	#excel:hover {
+	background-color: #00ebfc;
 	}
 </style>
 </head>
@@ -216,7 +234,7 @@
 	</div>
 	<div id="answer">
 		<div id="info">
-			<h1 id="title">${dto.title }</h1>
+			<h1 id="title">${dto.title}</h1>
 		</div>
 	</div>
 	<button id='excel'>엑셀 파일로 다운로드</button>

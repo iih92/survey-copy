@@ -6,13 +6,13 @@
 
 	<!-- 설문조사 폼 저장 -->
 	<insert id="surveySave" parameterType="Bdto">
-		insert into board(num,title,code,hashtag,deadline,point,nick,boardIcon)
-		values(board_num.nextval,#{title},#{code},#{hashtag},#{deadline},#{point},#{nick},#{boardIcon})
+		insert into board(title,code,hashtag,deadline,point,nick,boardIcon)
+		values(#{title},#{code},#{hashtag},#{deadline},#{point},#{nick},#{boardIcon})
 	</insert>
 
 	<!-- 가장 최근 번호 가져오기 -->
 	<select id="currentNum" parameterType="Bdto" resultType="int">
-		SELECT * FROM (SELECT * FROM board ORDER BY NUM DESC) WHERE ROWNUM = 1
+		SELECT * FROM board ORDER BY NUM DESC limit 1
 	</select>
 
 	<!-- 설문조사 폼 가져오기 -->
@@ -42,7 +42,7 @@
 	</delete>
 	
 	<delete id="takesurveyDelete" parameterType="int">
-		delete from TAKESURVEY where bnum=#{bnum}
+		delete from TakeSurvey where bnum=#{bnum}
 	</delete>
 	
 	<delete id="voteDelete" parameterType="int">
@@ -50,24 +50,23 @@
 	</delete>
 
 	<!-- 설문조사 검색 -->
-	<select id="surveySearch" parameterType="String"
-		resultType="Bdto">
-		SELECT * FROM BOARD where hashtag like '%' || #{hashtag} || '%'
+	<select id="surveySearch" parameterType="String" resultType="Bdto">
+		SELECT * FROM board where hashtag like CONCAT('%',#{hashtag},'%')
 	</select>
-	
+
 	<!-- 설문조사 투표 -->
 	<insert id="surveyVote" parameterType="Vdto">
 		insert into vote(nick,num,result) values(#{nick},#{num}, #{result})
 	</insert>
-	
-	<!-- 설문조사 결과 가져오기 -->
+
+	<!-- 설문조사 결과 -->
 	<select id="surveyResult" resultType="Vdto">
 		select * from vote where num = #{num}
 	</select>
 
 	<!-- 설문조사 전체 글수 가져오기 -->
 	<select id="board_getTotalPage" resultType="int">
-		select count(*) from board where deadline>=sysdate-1
+		select count(*) from board where deadline>=date_add(now(), interval -1 day)
 	</select>
 	
 	<!-- 내가 등록한 설문(전체 글수) -->
@@ -82,63 +81,63 @@
 	
 	<!-- 페이징 리스트 가져오기 (나의 등록) -->
 	<select id="board_pagingList_nick" parameterType="Pdto" resultType="Bdto">
-		select B.* from(select rownum rn, A.* from (select * from board where nick=#{nick} order by num 
-		desc)A)B where rn between #{startPage} and  #{endPage}
+		select * from board where deadline>=date_add(now(), interval -1 day) order by deadline limit #{startPage}, #{endPage}
 	</select>
 	
 	<!-- 페이징 리스트 가져오기 (최신 참여 설문) -->
 	<select id="board_pagingList_take" parameterType="Pdto" resultType="Tdto">
-		select B.* from(select rownum rn, A.* from (select * from TakeSurvey where nick=#{nick} order by num 
-		desc)A)B where rn between #{startPage} and  #{endPage}
+		select * from TakeSurvey where nick=#{nick} order by num desc limit #{startPage}, #{endPage}
 	</select>
 	
 	<!-- 참여한 설문조사 등록 -->
 	<insert id="takeSurbey" parameterType="Tdto">
-		insert into TakeSurvey(num,nick,title,deadline,hit,point,bnum) 
-		values(TAKESURVEY_NUM.nextval,#{nick},#{title},#{deadline},#{hit},#{point},#{bnum})
+		insert into TakeSurvey(nick,title,deadline,hit,point,bnum) 
+		values(#{nick},#{title},#{deadline},#{hit},#{point},#{bnum})
 	</insert>
 	
-	<!-- 참여한 설문조사 가져오기(최신순) -->
+	<!-- 참여한 설문조사 검색(최신순) -->
 	<select id="TakeSurbeySearch" parameterType="String" resultType="Tdto">
-		select * from TAKESURVEY WHERE nick=#{loginUser} ORDER BY num DESC
+		select * from TakeSurvey WHERE nick=#{loginUser} ORDER BY num DESC
 	</select>
 	
-	<!--  -->
+	<!-- 설문조사에 참여한 사람 가져오기 -->
 	<select id="VoteSelect" parameterType="int" resultType="String">
-		select nick from VOTE where num=#{num}
+		select nick from vote where num=#{num}
 	</select>
 
 	<!-- 페이징 리스트 가져오기(최신순) -->
 	<select id="board_pagingList" parameterType="Pdto" resultType="Bdto">
-		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by num
-		desc)A)B where rn between #{startPage} and #{endPage}
+		select * from board where deadline>=date_add(now(), interval -1 day) order by num desc limit #{startPage}, #{endPage}
 	</select>
 	
 	<!-- 페이징 리스트 가져오기(조회수) -->
 	<select id="board_pagingList_hit" parameterType="Pdto" resultType="Bdto">
-		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by hit
-		desc)A)B where rn between #{startPage} and #{endPage}
+		select * from board where deadline>=date_add(now(), interval -1 day) order by hit desc limit #{startPage}, #{endPage}
 	</select>
 	
 	<!-- 페이징 리스트 가져오기(마감순) -->
-	<select id="board_pagingList_deadline" parameterType="Pdto"
-		resultType="Bdto">
-		select B.* from(select rownum rn, A.* from (select * from board where deadline>=sysdate-1 order by deadline
-		asc)A)B where rn between #{startPage} and #{endPage}
+	<select id="board_pagingList_deadline" parameterType="Pdto" resultType="Bdto">
+		select * from board where deadline>=date_add(now(), interval -1 day) order by deadline asc limit #{startPage}, #{endPage}
 	</select>
   
-	<!-- 포인트 히스토리 가져오기 --> 
+	<!-- 포인트 히스토리 --> 
 	<select id="pointHistory" parameterType="String" resultType="Tdto">
 		select * from TakeSurvey where nick=#{loginUser} order by dt desc
 	</select>
 	
 	<select id="dateSecond" parameterType="String" resultType="String">
-		select to_char(dt,'yyyy-mm-dd hh24:mi:ss') from TakeSurvey  where nick=#{loginUser} order by dt desc
+		select dt from TakeSurvey  where nick=#{loginUser} order by dt desc
 	</select>
  
-	<!-- best 설문조사 가져오기 -->
+	<!-- best 설문조사 -->
 	<select id="bestServey" resultType="Bdto">
-		SELECT * FROM ((SELECT * FROM board where deadline >= sysdate-1) ORDER BY point desc, hit DESC) WHERE ROWNUM <![CDATA[<=]]> 3
+		SELECT * FROM board where deadline >= date_add(now(), interval -1 day) ORDER BY point desc, hit DESC limit 3
+	</select> 
+	
+	<!-- 포인트 내역 (증가 감소 전부 나옴) -->
+	<select id="pointlog" parameterType="String" resultType="Tdto">
+		select * from (select title,nick, dt, point from TakeSurvey where nick= #{ loginUser }
+		union all select title,nick, createDate, ((point+1000)*-1) from board where nick=#{ loginUser })tmp order by dt desc;
 	</select> 
 	
 </mapper>

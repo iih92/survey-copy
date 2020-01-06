@@ -126,7 +126,7 @@ $(document).ready(function(){
 
 <!-- SNS공유_카카오 -->
 <script type='text/javascript'>
-   	Kakao.init('adac06a41bdbb4a6e0e72a9d7512a12d');
+   	Kakao.init('314b19d09edde74165abe03c8f9bf43b');
    	function sendLink() {
    		Kakao.Link.sendDefault ({
 	      	objectType: 'feed',

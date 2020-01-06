@@ -60,18 +60,12 @@
 	<table  id="pointHistoryTable" class="RegisterSurbey" >
 		<tr><th>적립일시</th>   <th>내역</th> <th>포인트</th></tr>
 			<tbody id="pointTbody"> 
-	 			<c:forEach var="dto" items="${pointHistory}" varStatus="status2">
+	 			<c:forEach var="dto" items="${pointLog}" varStatus="status2">
 	   			<c:if test="${not doneLoop}">
 					<tr>
-						<td>
-							<c:forEach var="dateSecond" items="${dateSecond }" varStatus="status1">
-								<c:if test="${ status1.count eq status2.count }">
-									${dateSecond} 
-								</c:if>
-							</c:forEach>
-						</td>         
+						<td>${dto.dt }</td>
 						<td>${dto.title}</td>    
-						<td><span style="color:orange;">+</span>${dto.point}</td> 
+						<td>${dto.point}</td> 
 					</tr>
 					<c:if test="${status2.count == 5}">
 		     			<c:set var="doneLoop" value="true"/>
@@ -85,10 +79,8 @@
 	<button class="mypright" 
 	
 	<c:if test='${ fn:length(dateSecond) <= 5 }'> disabled  </c:if>
-	> &gt;</button> 
-	  
-</div>
-
+	> &gt;</button>  
+	</div>
 <!-----------------------------3. 내가 등록한 설문조사 ------------------------------------------>
 <div id="test3" style="text-align:center;">
 	<input type="hidden" value="${pc2.totEndPage}" id="endpage">
@@ -148,7 +140,6 @@
 <div id="test4" style="text-align:center;">
 <input type="hidden" value="${pc3.totEndPage}" id="endpage">
 
-
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 		<c:forEach var="Tdto" items="${Tdto}">
@@ -179,7 +170,6 @@
 	<!-- 페이징 끝 -->
 </div>
 <!-- 최근 참여한 설문 끝 -------------------------------------------------------------------------------------->
-
 
 <!-- 4. 문의하기 ---------------------------------------------------------------------------------------------->
 <div id="test5" style="text-align:center;">
@@ -222,8 +212,6 @@
 
 </div>
 <!-- 문의하기 끝 ------------------------------------------------------------------------------------------>
-
-
 
 <!------------- 5. 회원 탈퇴---------------------------------------------------------------------------->
 <div id="test6" style="text-align:center;">

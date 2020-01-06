@@ -150,4 +150,9 @@ public class BoardDAO {
 		return sqlsession.selectList(namespaceBoard + ".bestServey");
 	}
 	
+	//[]
+	public List<TakeSurvey> pointlog_last(String loginUser) {
+		return sqlsession.selectList(namespaceBoard+".pointlog",loginUser);
+	}
+
 }

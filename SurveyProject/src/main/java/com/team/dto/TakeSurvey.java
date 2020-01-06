@@ -15,5 +15,6 @@ public class TakeSurvey {
 	private String title;
 	private String nick;
 	private Date dt;
+	private String to_char;
 	
 }

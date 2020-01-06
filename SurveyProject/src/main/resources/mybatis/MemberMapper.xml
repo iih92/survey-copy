@@ -6,63 +6,58 @@
 
 	<!-- 회원 가입 -->
 	<insert id="singUp" parameterType="Mdto">
-		insert into member (id,pw,nick)
-		values(#{id},#{pw},#{nick})
+		insert into user (id,pw,nick) values(#{id},#{pw},#{nick})
 	</insert>
 
 	<!-- 로그인 -->
 	<select id="signIn" parameterType="String" resultType="Mdto">
-		select *
-		from member where id=#{id}
+		select * from user where id=#{id}
 	</select>
 
 	<!-- 아이디 중복 체크 -->
 	<select id="checkOverId" parameterType="String" resultType="int">
-		select count(*) from member where id = #{id}
+		select count(*) from user where id = #{id}
 	</select>
 
 	<!-- 닉네임 중복 체크 -->
 	<select id="checkOverNick" parameterType="String"
 		resultType="int">
-		select count(*) from member where nick = #{nick}
+		select count(*) from user where nick = #{nick}
 	</select>
 
 	<!-- 내 정보 변경 -->
 	<update id="changePw" parameterType="Mdto">
-		update member set pw = #{pw}
-		where nick = #{nick}
+		update user set pw = #{pw} where nick = #{nick}
 	</update>
 
 	<!-- 닉네임 변경 -->
 	<update id="changeNick" parameterType="Mdto">
-		update member set
-		nick=#{nick}
-		where id=#{id}
+		update user set nick=#{nick} where id=#{id}
 	</update>
 	
 	<!-- 포인트 적립 -->
 	<update id="addPoint" parameterType="Mdto">
-		update member set point=point+#{point} where nick=#{nick}
-	</update>
-	
-	<!-- 포인트 차감 -->
-	<update id="MinusPoint" parameterType="Mdto">
-		update member set point=point-#{point} where nick=#{nick}
+		update user set point=point+#{point} where nick=#{nick}
 	</update>
 
 	<!-- 사용자 포인트 가져오기 -->
 	<select id="userPoint" parameterType="Mdto" resultType="Mdto">
-		select point from member where nick=#{nick}
+		select point from user where nick=#{nick}
 	</select>
 	
 	<!-- 사용자 정보 가져오기 -->
 	<select id="info" parameterType="Mdto" resultType="Mdto">
-		select * from member where nick=#{nick}
+		select * from user where nick=#{nick}
 	</select>
 	
 	<!-- 회원 탈퇴 -->
 	<delete id="leave" parameterType="Mdto">
-		delete member where nick=#{nick}
+		delete from user where nick=#{nick}
 	</delete>
+	
+	<!-- 포인트 차감 -->
+   <update id="MinusPoint" parameterType="Mdto">
+      update user set point=(point-#{point}) where nick=#{nick}
+   </update>
 	
 </mapper>

@@ -240,7 +240,7 @@ public class BoardService implements IBoardService {
 		if(daoNum == 1) {
 			totalPage = getTotalPage();
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum + 1;
+			startPage = (start - 1) * pageNum;
 			endPage = pageNum * start;
 			
 			PageCount pc = new PageCount();
@@ -254,7 +254,7 @@ public class BoardService implements IBoardService {
 		} else if(daoNum == 2) {
 			totalPage = getTotalPage_nick(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum + 1;
+			startPage = (start - 1) * pageNum;
 			endPage = pageNum * start;
 			
 			PageCount pc2 = new PageCount();
@@ -268,7 +268,7 @@ public class BoardService implements IBoardService {
 		} else {
 			totalPage = getTotalPage_take(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum + 1;
+			startPage = (start - 1) * pageNum;
 			endPage = pageNum * start;
 			
 			PageCount pc3 = new PageCount();

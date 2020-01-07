@@ -22,7 +22,7 @@ create table board(
   createDate DATE default sysdate,
   hit number DEFAULT 0,
   point number,
-  nick varchar2(4000)
+  nick varchar2(20)
 );
 create SEQUENCE board_num;
 
@@ -37,7 +37,7 @@ create table reply (
   cNum number primary key not null,
   num NUMBER not null,
   cDate DATE default sysdate not null,
-  nick varchar2(4000) not null,
+  nick varchar2(20) not null,
   content varchar2(4000),
   depth number default 0,
   intent number default 0
@@ -47,7 +47,7 @@ create sequence reply_num;
 /*등록한 설문조사 테이블*/
 create table TakeSurvey(
   num NUMBER,
-  nick varchar2(4000),
+  nick varchar2(20),
   title varchar2(4000),
   deadline DATE,
   hit number DEFAULT 0,

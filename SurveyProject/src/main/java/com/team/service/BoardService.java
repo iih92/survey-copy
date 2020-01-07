@@ -66,7 +66,7 @@ public class BoardService implements IBoardService {
 		BoardDTO dto = dao.surveySelect(num);
 		String code = dto.getCode();	
 		/*설문 중복 참여 검사*/
-		List<String> voteUser = dao.VoteSelect(num);
+		List<String> voteUser = dao.voteSelect(num);
 		model.addAttribute("dto",dto);
 		model.addAttribute("code", code);
 		model.addAttribute("voteUser", voteUser);
@@ -283,37 +283,37 @@ public class BoardService implements IBoardService {
 	
 	//[페이징 전체 행수 가져오기]
 	private int getTotalPage() { return dao.getTotalPage(); }
-	private int getTotalPage_nick(String loginUser) { return dao.getTotalPage_nick(loginUser); }
-	private int getTotalPage_take(String loginUser) { return dao.getTotalPage_take(loginUser); }
+	private int getTotalPage_nick(String loginUser) { return dao.getTotalPageNick(loginUser); }
+	private int getTotalPage_take(String loginUser) { return dao.getTotalPageTake(loginUser); }
 	
 	//[페이징 된대로 가져오기_내가 등록한 설문조사]
 	@Override
-	public List<BoardDTO> page_board_list_nick(Model model) {
-		model.addAttribute("list", dao.page_board_list_nick(pagingNum(model,2)));
-		return dao.page_board_list_nick(pagingNum(model,2));
+	public List<BoardDTO> pageBoardListNick(Model model) {
+		model.addAttribute("list", dao.pageBoardListNick(pagingNum(model,2)));
+		return dao.pageBoardListNick(pagingNum(model,2));
 	}
 	
 	//[페이징 된대로 가져오기_최근 한 설문조사]
 	@Override
-	public List<TakeSurvey> page_board_list_take(Model model) {
-		model.addAttribute("Tdto", dao.page_board_list_take(pagingNum(model,3)));
-		return dao.page_board_list_take(pagingNum(model,3));	
+	public List<TakeSurvey> pageBoardListTake(Model model) {
+		model.addAttribute("Tdto", dao.pageBoardListTake(pagingNum(model,3)));
+		return dao.pageBoardListTake(pagingNum(model,3));	
 	}
 	
 	//[페이징 된대로 가져오기_main 및 각각 정렬기능]
-	public void page_board_list(Model model) {
+	public void pageBoardList(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");		
 		HttpSession session = request.getSession(); 	
 		try {
 			if(session.getAttribute("lineupSession") == null) {
-				model.addAttribute("list", dao.page_board_list(pagingNum(model,1)));
+				model.addAttribute("list", dao.pageBoardList(pagingNum(model,1)));
 			} else if(session.getAttribute("lineupSession").equals("1")) {
-				model.addAttribute("list", dao.page_board_list(pagingNum(model,1)));
+				model.addAttribute("list", dao.pageBoardList(pagingNum(model,1)));
 			} else if(session.getAttribute("lineupSession").equals("2")) {
-	 			model.addAttribute("list", dao.page_board_list_dead((pagingNum(model,1))));
+	 			model.addAttribute("list", dao.pageBoardListDead((pagingNum(model,1))));
 			} else if(session.getAttribute("lineupSession").equals("3")) {
-				model.addAttribute("list", dao.page_board_list_hit((pagingNum(model,1))));
+				model.addAttribute("list", dao.pageBoardListHit((pagingNum(model,1))));
 			}	
 		} catch(NullPointerException e) {}
 	}
@@ -322,7 +322,7 @@ public class BoardService implements IBoardService {
 	
 	//[참여한 설문조사 등록]
 	@Override
-	public void takeSurbey(int num, Model model) {
+	public void takeSurvey(int num, Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		/*세션값 받아오기*/
@@ -336,18 +336,18 @@ public class BoardService implements IBoardService {
 		Tdto.setDeadline(dto.getDeadline());
 		Tdto.setHit(dto.getHit());
 		Tdto.setNick(loginUser);	
-		dao.takeSurbey(Tdto);
+		dao.takeSurvey(Tdto);
 	}
 	
 	//[참여한 설문조사 검색(최신순)]
 	@Override
-	public void TakeSurbeySearch(Model model) {
+	public void takeSurveySearch(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		//세션값 받아오기
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");		
-		model.addAttribute("Tdto",dao.TakeSurbeySearch(loginUser));
+		model.addAttribute("Tdto",dao.takeSurveySearch(loginUser));
 	}
 	
 	//[포인트 내역 가져오기]
@@ -363,7 +363,7 @@ public class BoardService implements IBoardService {
 	
 	//[]
 	@Override
-	public List<String> ajax_getDatesecond(Model model) {Map<String,Object> map = model.asMap();
+	public List<String> ajaxGetDateSecond(Model model) {Map<String,Object> map = model.asMap();
 	HttpServletRequest request = (HttpServletRequest)map.get("request");
 	HttpSession session = request.getSession();
 	String loginUser = (String) session.getAttribute("loginUser");	
@@ -372,7 +372,7 @@ public class BoardService implements IBoardService {
 	
 	//[]
 	@Override
-	public List<TakeSurvey> ajax_pointHistory(Model model) {Map<String,Object> map = model.asMap();
+	public List<TakeSurvey> ajaxPointHistory(Model model) {Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();String loginUser = (String) session.getAttribute("loginUser");	
 		return dao.pointHistory(loginUser);
@@ -392,27 +392,27 @@ public class BoardService implements IBoardService {
 
 	//[best 설문조사 가져오기]
 	@Override
-	public void bestServey(Model model) {
-		model.addAttribute("bestSurvey",dao.bestServey());	
+	public void bestSurvey(Model model) {
+		model.addAttribute("bestSurvey",dao.bestSurvey());	
 	} 
 	
 	//[포인트내역 마지막]
 	@Override
-	public void pointlog_last(Model model) {
+	public void pointLogLast(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");	
-		model.addAttribute("pointLog",dao.pointlog_last(loginUser));
+		model.addAttribute("pointLog",dao.pointLogLast(loginUser));
 	} 
 	
 	//[]
-	public List<TakeSurvey> pointlog_last_ajax(Model model){
+	public List<TakeSurvey> ajaxPointLogLast(Model model){
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		HttpSession session = request.getSession();
 		String loginUser = (String) session.getAttribute("loginUser");	
-		return dao.pointlog_last(loginUser);
+		return dao.pointLogLast(loginUser);
 	}
 	
 }

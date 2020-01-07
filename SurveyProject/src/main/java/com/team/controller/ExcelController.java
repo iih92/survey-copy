@@ -28,7 +28,7 @@ public class ExcelController {
 	@Autowired
 	private IBoardService bService;
 	
-	//[]
+	//[엑셀 파일 생성]
 	@RequestMapping(value="makeExcel.do", method=RequestMethod.GET)
 	@ResponseBody
 	public void makeExcel(Model model,HttpServletRequest request, 
@@ -42,7 +42,7 @@ public class ExcelController {
 		ExcelService.makeExcel(title + ".xls", xlsResult, xlsCnt, xlsPer, question);
 	}
 	
-	//[]
+	//[엑셀 파일 다운]
 	@RequestMapping(value="/downLoadExel.do")
 	public void downLoadFile(HttpServletRequest request, HttpServletResponse response, ModelMap model, RedirectAttributes ra) throws Exception {
 		String path = request.getParameter("title") + ".xls";  // Link의 자바파일에서 excel 파일이 생성된 경로
@@ -96,6 +96,5 @@ public class ExcelController {
 	        }
 	    }
 	}	
-	
 	
 }

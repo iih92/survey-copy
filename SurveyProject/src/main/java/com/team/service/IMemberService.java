@@ -16,6 +16,6 @@ public interface IMemberService {
 	public void userPoint(Model model);
 	public MemberDTO info(Model model);
 	public void leave(Model model);
-	public void MinusPoint(Model model);
+	public void minusPoint(Model model);
 
 }

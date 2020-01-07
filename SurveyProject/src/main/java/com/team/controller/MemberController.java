@@ -77,7 +77,7 @@ public class MemberController {
 	//[아이디 중복체크]
 	@RequestMapping(value = "idCheck",  method = RequestMethod.POST)	
 	@ResponseBody
-	public int idcheck(@RequestBody String id) {
+	public int idCheck(@RequestBody String id) {
 		int count = 0;	
 		count = mService.idCheck(id);
 		return count;
@@ -86,7 +86,7 @@ public class MemberController {
 	//[닉네임 중복체크]
 	@RequestMapping(value = "nickCheck",  method = RequestMethod.POST)	
 	@ResponseBody
-	public int nickcheck(@RequestBody String nick) {
+	public int nickCheck(@RequestBody String nick) {
 		int count = 0;	
 		count = mService.nickCheck(nick);
 		return count;
@@ -119,15 +119,15 @@ public class MemberController {
 	public String myDetail(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request); 
 		/*페이징 - 나의 등록한 설문조사*/
-		bService.TakeSurbeySearch(model);
-		bService.page_board_list_nick(model);
+		bService.takeSurveySearch(model);
+		bService.pageBoardListNick(model);
 		bService.pagingNum(model,2);
 		/*페이징 - 최근한 설문조사*/
-		bService.page_board_list_take(model);
+		bService.pageBoardListTake(model);
 		bService.pagingNum(model,3);
 		bService.pointHistory(model);
 		
-		bService.pointlog_last(model);
+		bService.pointLogLast(model);
 		return "MyPage/detail";
 	}
 	
@@ -182,7 +182,7 @@ public class MemberController {
 	@ResponseBody
 	public List<TakeSurvey> page3(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);		 
-		return bService.pointlog_last_ajax(model);
+		return bService.ajaxPointLogLast(model);
 	}
 	
 	//[]
@@ -190,7 +190,7 @@ public class MemberController {
 	@ResponseBody
 	public List<TakeSurvey> page4(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	 
-		return bService.pointlog_last_ajax(model);
+		return bService.ajaxPointLogLast(model);
 	} 
 
 }

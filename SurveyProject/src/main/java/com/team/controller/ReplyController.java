@@ -16,7 +16,7 @@ public class ReplyController {
 	@Autowired
 	private IReplyService rService;
 
-	//[댓글]
+	//[댓글 저장]
 	@RequestMapping(value = "replySave")
 	public String replySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);

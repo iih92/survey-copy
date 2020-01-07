@@ -17,7 +17,7 @@
 <body>
 <div style="text-align:center; width:100%; height:1000px; border:1px solid red;">내 정보 변경 예시</div>
 
-<!------------------------------1. 내 정보 변경 ------------------------------------------>
+<!------------------------------1. 내 정보 변경 ---------------------------------------------------->
 <div id="test1" style="text-align:center;">
 
    <div class="title">
@@ -64,8 +64,16 @@
 	   			<c:if test="${not doneLoop}">
 					<tr>
 						<td>${dto.dt }</td>
-						<td>${dto.title}</td>    
-						<td style="color:#ff8b02;font-weight: 1000;">${dto.point}</td> 
+						<td>${dto.title}</td>
+						<c:choose>
+							<c:when test="${dto.point < 0 }">   
+								<td style="color:red;font-weight: 1000;">${dto.point}</td> 
+							</c:when>
+							
+							<c:otherwise>
+								<td style="color:#01aef0;font-weight: 1000;">+${dto.point}</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 					<c:if test="${status2.count == 5}">
 		     			<c:set var="doneLoop" value="true"/>
@@ -75,6 +83,7 @@
 		</tbody>
 	</table> 
 	<br>
+	
 	<button class="mypleft"> &lt; </button> 
 	<button class="mypright" 
 	
@@ -90,7 +99,7 @@
 		<c:forEach var="dto" items="${list}">
 			<c:if test="${dto.nick eq loginUser}">
 				<tr onclick="location.href='boarddetail?num=${dto.num}'">
-				<td style="color:#ff8b02;font-weight: 1000;" >${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
+				<td style="color:#01aef0;font-weight: 1000;" >${dto.title}</td> <td>${dto.deadline}</td> <td>${dto.hit}</td> <td>${dto.point}</td>
 				</tr>	
 			</c:if>
 		</c:forEach>
@@ -143,7 +152,7 @@
 	<table class="RegisterSurbey">
 		<tr> <th>설문조사 제목</th> <th>마감날짜</th> <th>조회수</th> <th>포인트</th> </tr>
 		<c:forEach var="Tdto" items="${Tdto}">
-			<tr><td style="color:#ff8b02;font-weight: 1000;" >${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
+			<tr><td style="color:#01aef0;font-weight: 1000;" >${Tdto.title}</td> <td>${Tdto.deadline}</td> <td>${Tdto.hit}</td> <td>${Tdto.point}</td> </tr>
 		</c:forEach>
 	</table>
 	

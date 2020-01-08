@@ -121,6 +121,17 @@ $(document).ready(function(){
 });
 </script>
 
+<script>
+	function modifyBoard(){
+		var result = confirm("수정시엔 투표 결과가 초기화됩니다.");
+		if(result == true){
+			location.href='boardmodify?num=${dto.num}'
+		} else if(result == false){
+		
+		}
+	}
+</script>
+
 <!-- 카카오톡 공유하기 -->
 <script src="//developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -360,7 +371,14 @@ $(document).ready(function(){
 
 		<c:choose>
 			<c:when test="${dto.nick == loginUser }">
-				<input type="button" class="modify" onclick="location.href='boardmodify?num=${dto.num}'" value="수정">
+				<input type="button" class="modify" onclick="modifyBoard()" value="수정">
+				<input type="button" class="delButton" onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
+				<input type="button" class="resultButton" onclick="location.href='result?num=${dto.num}'" value="결과보기">
+			</c:when>
+			
+			<c:when test="${ admin == 1 }">
+				<input type="button" class="surveySave" id="surveySave" style="margin-left:78%;" value="등록">
+				<input type="button" class="modify" onclick="modifyBoard()" style="margin-left:1%;" value="수정">
 				<input type="button" class="delButton" onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
 				<input type="button" class="resultButton" onclick="location.href='result?num=${dto.num}'" value="결과보기">
 			</c:when>

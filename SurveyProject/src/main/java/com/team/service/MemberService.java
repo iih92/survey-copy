@@ -2,10 +2,12 @@ package com.team.service;
 
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -15,6 +17,9 @@ import com.team.dto.MemberDTO;
 @Service
 public class MemberService implements IMemberService{
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private MemberDAO dao;
 	
@@ -27,7 +32,7 @@ public class MemberService implements IMemberService{
 		String nick = request.getParameter("nick");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-
+		pw = passwordEncoder.encode(pw);
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);
 		dto.setId(id);
@@ -40,10 +45,10 @@ public class MemberService implements IMemberService{
 	public String[] signIn(MemberDTO dto) {
 		String[] result = new String[2];
 		MemberDTO mdto = new MemberDTO();
-		mdto = dao.signIn(dto.getId(), dto.getPw());
+		mdto = dao.signIn(dto.getId());
 
 		try {
-			if(dto.getPw().equals(mdto.getPw())) {
+			if(passwordEncoder.matches(dto.getPw(), mdto.getPw())) {
 				/*비밀번호 일치*/
 				result[0]="1";
 				result[1]=mdto.getNick();
@@ -79,6 +84,7 @@ public class MemberService implements IMemberService{
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String nick = request.getParameter("nick");
 		String pw = request.getParameter("pw");
+		pw = passwordEncoder.encode(pw);
 		MemberDTO dto = new MemberDTO();
 		dto.setPw(pw);
 		dto.setNick(nick);
@@ -159,8 +165,13 @@ public class MemberService implements IMemberService{
 		String nick = (String) session.getAttribute("loginUser");
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);
-		model.addAttribute("dto",dao.info(dto));
-		return dao.info(dto);
+		dto = dao.info(dto);
+		try {
+			if(passwordEncoder.matches(request.getParameter("pw"), dto.getPw())) dto.setPw("1");
+			else dto.setPw("0");			
+		} catch (Exception e) {}
+		model.addAttribute("dto",dto);
+		return dto;
 	}
 
 	//[회원 탈퇴]
@@ -176,4 +187,47 @@ public class MemberService implements IMemberService{
 		session.invalidate();
 	}
 
+	//[admin 체크]
+	@Override
+	public void adminChk(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		HttpSession session = request.getSession();
+		String nick = (String) session.getAttribute("loginUser");
+		MemberDTO dto = new MemberDTO();
+		dto.setNick(nick);
+		dto = dao.adminChk(dto);
+		session.setAttribute("admin", dto.getAdmin());
+	}
+
+	//[모든 회원 정보 가져오기]
+	@Override
+	public void userList(Model model) {
+		model.addAttribute("userList",dao.userList());
+	}
+	
+	//[회원 포인트 수정]
+	@Override
+	public void adminModify(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		int point = Integer.parseInt(request.getParameter("point"));
+		MemberDTO dto = new MemberDTO();
+		dto.setPoint(point);
+		dto.setNick(request.getParameter("nick"));
+		System.out.println(dto.getPoint());
+		System.out.println(dto.getNick());
+		dao.adminModify(dto);
+	}
+	
+	//[회원 강제 탈퇴 시키기]
+	@Override
+	public void adminLeave(Model model) {
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		String nick = request.getParameter("nick");
+		System.out.println(nick);
+		dao.adminLeave(nick);
+	}
+	
 }

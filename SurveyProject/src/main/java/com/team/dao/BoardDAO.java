@@ -49,12 +49,15 @@ public class BoardDAO {
 
 	//[게시글 수정하기]
 	public int surveyUpdate(BoardDTO dto) {
-		int num = 0;
+		int num = dto.getNum();
+		int Rnum = 0;
 		try {
+			sqlsession.delete(namespaceBoard + ".voteDelete", num);
+			sqlsession.delete(namespaceBoard + ".takesurveyDelete", num);
 			sqlsession.insert(namespaceBoard + ".surveyUpdate", dto);				
-			num = sqlsession.selectOne(namespaceBoard + ".currentNum");
+			Rnum = sqlsession.selectOne(namespaceBoard + ".currentNum");
 		} catch (Exception e) { }
-		return num;
+		return Rnum;
 	}
 
 	//[모든 게시글 가져오기]

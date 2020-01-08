@@ -17,5 +17,9 @@ public interface IMemberService {
 	public MemberDTO info(Model model);
 	public void leave(Model model);
 	public void minusPoint(Model model);
+	public void adminChk(Model model);
+	public void userList(Model model);
+	public void adminLeave(Model model);
+	public void adminModify(Model model);
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +64,7 @@
 	 			<c:forEach var="dto" items="${pointLog}" varStatus="status2">
 	   			<c:if test="${not doneLoop}">
 					<tr>
-						<td>${dto.dt }</td>
+						<td><fmt:formatDate value="${dto.dt}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td>${dto.title}</td>
 						<c:choose>
 							<c:when test="${dto.point < 0 }">   
@@ -83,11 +84,11 @@
 		</tbody>
 	</table> 
 	<br>
-	
+	 
 	<button class="mypleft"> &lt; </button> 
 	<button class="mypright" 
 	
-	<c:if test='${ fn:length(dateSecond) <= 5 }'> disabled  </c:if>
+	<c:if test='${ fn:length(pointLog) <= 5 }'> disabled  </c:if>
 	> &gt;</button>  
 	</div>
 <!-----------------------------3. 내가 등록한 설문조사 ------------------------------------------>

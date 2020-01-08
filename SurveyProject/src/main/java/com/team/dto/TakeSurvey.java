@@ -1,6 +1,8 @@
 package com.team.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +16,7 @@ public class TakeSurvey {
 	private Date deadline;
 	private String title;
 	private String nick;
-	private Date dt;
+	private Timestamp dt;
 	private String to_char;
 	
 }

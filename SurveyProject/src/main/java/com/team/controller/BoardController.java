@@ -30,6 +30,7 @@ public class BoardController {
 	public String mainPage(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request);   
 		mService.userPoint(model);
+		mService.adminChk(model);
 		bService.pageBoardList(model);
 		bService.pagingNum(model,1); 
 		bService.bestSurvey(model);

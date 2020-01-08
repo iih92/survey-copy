@@ -1,5 +1,7 @@
 package com.team.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,7 +33,7 @@ public class MemberDAO {
 	}
 
 	//[로그인]
-	public MemberDTO signIn(String id,String pw) {
+	public MemberDTO signIn(String id) {
 		return session.selectOne(namespaceMember+".signIn", id);		 
 	}
 	
@@ -57,7 +59,7 @@ public class MemberDAO {
 	
 	//[포인트 가져오기]
 	public MemberDTO userPoint(MemberDTO dto) {
-		return session.selectOne(namespaceMember+".userPoint", dto);	 
+		return session.selectOne(namespaceMember +".userPoint", dto);	 
 	}
 
 	//[회원 정보 가져오기]
@@ -69,5 +71,26 @@ public class MemberDAO {
 	public void leave(MemberDTO dto) {
 		session.delete(namespaceMember + ".leave", dto);	
 	}
+
+	//[admin 확인]
+	public MemberDTO adminChk(MemberDTO dto) {
+		return session.selectOne(namespaceMember +".adminChk", dto);	
+	}
+
+	//[전체 유저 정보 가져오기]
+	public List<MemberDTO> userList() {
+		return session.selectList(namespaceMember + ".userList");
+	}
+
+	//[회원 포인트 수정]
+	public void adminModify(MemberDTO dto) {
+		session.update(namespaceMember + ".adminModify", dto);
+	}
+	
+	//[회원 강제 탈퇴]
+	public void adminLeave(String nick) {
+		session.delete(namespaceMember + ".adminLeave", nick);
+	}
+
 
 }

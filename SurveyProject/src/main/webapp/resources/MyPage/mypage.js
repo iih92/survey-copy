@@ -509,9 +509,12 @@ $(document).ready(function(){
 	function leave(){
 		$.ajax({
     		url : 'leave.do',
-    		type : 'POST',
+    		type : 'GET',
+    		data : {
+    			"pw" : pwChk
+    		},
     		success : function(data) {
-    			if(data.pw == pwChk){
+    			if(data.pw == 1){
     				var result = confirm('정말 회원 탈퇴를 하시겠습니까?'); 
     				if(result) { 
         				location.href = "leave";

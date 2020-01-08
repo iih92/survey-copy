@@ -33,7 +33,7 @@
 
 	<!-- 설문조사 (전체)가져오기 -->
 	<select id="surveyAllSelect" resultType="Bdto">
-		SELECT * FROM BOARD order by num desc
+		SELECT * FROM board order by num desc
 	</select>
 
 	<!-- 설문조사 삭제 -->

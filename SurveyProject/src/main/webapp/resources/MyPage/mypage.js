@@ -208,7 +208,13 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
-										output += "<td> "+data[i].point+"</td>";
+										
+										if(data[i].point<0){
+											output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+										}else{
+											output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+										}
+										
 										output += "</tr>";
 										
 									 	
@@ -263,7 +269,12 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
-										output += "<td> "+data[i].point+"</td>";
+										
+										if(data[i].point<0){
+											output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+										}else{
+											output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+										}
 										output += "</tr>";
 										
 								 			
@@ -370,7 +381,7 @@ $(document).ready(function(){
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
 									output += "<tr onclick=location.href='result?num="+data[i].num+"'>"
-									output += "<td>"+data[i].title+"</td>"
+									output += "<td style='color:#01aef0;font-weight: 1000;'>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"
 									output += "<td>"+data[i].hit+"</td>"
 									output += "<td>"+data[i].point+"</td>"
@@ -466,7 +477,7 @@ $(document).ready(function(){
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
 									output += "<tr>"
-									output += "<td>"+data[i].title+"</td>"
+									output += "<td style='color:#01aef0;font-weight: 1000;'>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"
 									output += "<td>"+data[i].hit+"</td>"
 									output += "<td>"+data[i].point+"</td>"

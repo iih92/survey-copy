@@ -36,11 +36,8 @@ public class BoardController {
 		return "Main/main";
 	}
 	
-<<<<<<< HEAD
+
 	//[정렬]
-=======
-	//[게시글 나열]
->>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 	@RequestMapping(value="lineupMain")
 	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
 		session.setAttribute("lineupSession", request.getParameter("lineup"));

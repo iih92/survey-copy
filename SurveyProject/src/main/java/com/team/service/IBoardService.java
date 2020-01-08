@@ -20,23 +20,23 @@ public interface IBoardService {
 	public int surveyVote(Model model);
 	public String[] surveyQuestion(Model model);
 	public String[] surveyResult(Model model);
-	public void bestServey(Model model);
+	public void bestSurvey(Model model);
 	
 	/*페이징*/
-	public void page_board_list(Model model);
+	public void pageBoardList(Model model);
 	public PageCount pagingNum(Model model, int daonum);
-	public List<BoardDTO> page_board_list_nick(Model model);
-	public List<TakeSurvey> page_board_list_take(Model model);
+	public List<BoardDTO> pageBoardListNick(Model model);
+	public List<TakeSurvey> pageBoardListTake(Model model);
 	
 	/*참여한 설문조사*/
-	public void takeSurbey(int num, Model model);
-	public void TakeSurbeySearch(Model model);
+	public void takeSurvey(int num, Model model);
+	public void takeSurveySearch(Model model);
 	
 	/*포인트내역*/
 	public void pointHistory(Model model);
-	public List<TakeSurvey> ajax_pointHistory(Model model);
-	public List<String> ajax_getDatesecond(Model model); 
+	public List<TakeSurvey> ajaxPointHistory(Model model);
+	public List<String> ajaxGetDateSecond(Model model); 
 	//포인트내역 마지막
-	public void pointlog_last(Model model); 
-	public List<TakeSurvey> pointlog_last_ajax(Model model); 
+	public void pointLogLast(Model model); 
+	public List<TakeSurvey> ajaxPointLogLast(Model model); 
 }

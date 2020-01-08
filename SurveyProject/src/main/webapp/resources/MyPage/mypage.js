@@ -157,6 +157,11 @@ $(document).ready(function(){
 					if(cnt<=0){
 						$(".mypleft").attr('disabled',true);
 					}
+					$.ajax({
+						url: "page3.do?start="+cnt,
+						success: function(data) { 
+						}, error: function() {}
+					}); 
 					
 						$('.mypleft').click(function(){
 								
@@ -175,7 +180,7 @@ $(document).ready(function(){
 								//		console.log(data[i].title);
 								//	}
 									//$(".RegisterSurbey").html(output);
-									
+									console.log(data);
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
 							 		
@@ -187,9 +192,21 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-									 		
+										var date = new Date(data[i].dt);
+										var year = date.getFullYear();
+										var month = date.getMonth()+1;
+										var day = date.getDay();
+										var hour = date.getHours();
+										var min = date.getMinutes();
+										var sec = date.getSeconds();
+
+										var retVal =   year + "-" + (month < 10 ? "0" + month : month) + "-" 
+										                        + (day < 10 ? "0" + day : day) + " " 
+										                        + (hour < 10 ? "0" + hour : hour) + ":"
+										                        + (min < 10 ? "0" + min : min) + ":" 
+										                        + (sec < 10 ? "0" + sec : sec);
 										output += "<tr>";
-										output += "<td>"+data[i].to_char+"</td>";
+										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
 										output += "<td> "+data[i].point+"</td>";
 										output += "</tr>";
@@ -217,7 +234,7 @@ $(document).ready(function(){
 								url: "page4.do?start="+cnt,
 								success: function(data) {
 									//$(".RegisterSurbey").empty(); 
-									
+									console.log(data);
 								 	
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
@@ -230,9 +247,21 @@ $(document).ready(function(){
 									
 									
 									for(var i = pagingCntF ; i<pagingLength; i++){
-								 	
+										var date = new Date(data[i].dt);
+										var year = date.getFullYear();
+										var month = date.getMonth()+1;
+										var day = date.getDay();
+										var hour = date.getHours();
+										var min = date.getMinutes();
+										var sec = date.getSeconds();
+
+										var retVal =   year + "-" + (month < 10 ? "0" + month : month) + "-" 
+										                        + (day < 10 ? "0" + day : day) + " " 
+										                        + (hour < 10 ? "0" + hour : hour) + ":"
+										                        + (min < 10 ? "0" + min : min) + ":" 
+										                        + (sec < 10 ? "0" + sec : sec);
 										output += "<tr>";
-										output += "<td>"+data[i].to_char+"</td>";
+										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
 										output += "<td> "+data[i].point+"</td>";
 										output += "</tr>";

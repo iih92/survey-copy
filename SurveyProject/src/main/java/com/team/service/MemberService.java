@@ -122,7 +122,7 @@ public class MemberService implements IMemberService{
 	
 	//[포인트 차감]
 	@Override
-	public void MinusPoint(Model model) {
+	public void minusPoint(Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();
@@ -134,7 +134,7 @@ public class MemberService implements IMemberService{
 		MemberDTO dto = new MemberDTO();
 		dto.setNick(nick);
 		dto.setPoint(point);
-		dao.MinusPoint(dto);
+		dao.minusPoint(dto);
 	}
 
 	//[포인트 가져오기] 

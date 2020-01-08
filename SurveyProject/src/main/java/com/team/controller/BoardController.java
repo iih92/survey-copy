@@ -30,13 +30,17 @@ public class BoardController {
 	public String mainPage(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("request",request);   
 		mService.userPoint(model);
-		bService.page_board_list(model);
+		bService.pageBoardList(model);
 		bService.pagingNum(model,1); 
-		bService.bestServey(model);
+		bService.bestSurvey(model);
 		return "Main/main";
 	}
 	
+<<<<<<< HEAD
 	//[정렬]
+=======
+	//[게시글 나열]
+>>>>>>> branch 'master' of https://github.com/WooSungByeon/survey.git
 	@RequestMapping(value="lineupMain")
 	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
 		session.setAttribute("lineupSession", request.getParameter("lineup"));
@@ -54,7 +58,7 @@ public class BoardController {
 	public String surveySave(Model model, HttpServletRequest request, RedirectAttributes redirect) {
 		model.addAttribute("request", request);
 		/*포인트 차감 및 포인트 가져오기*/
-		mService.MinusPoint(model);
+		mService.minusPoint(model);
 		mService.userPoint(model);
 		int num = bService.surveySave(model);
 
@@ -119,7 +123,7 @@ public class BoardController {
 		model.addAttribute("request", request);
 		int num = bService.surveyVote(model);	
 		/*참여한 설문조사 저장하기*/
-		bService.takeSurbey(num, model);
+		bService.takeSurvey(num, model);
 		mService.addPoint(model);
 		mService.userPoint(model);
 		return "redirect:mainpage";
@@ -142,20 +146,20 @@ public class BoardController {
 		return answer;
 	}
 	
-	//[마이페이지_페이징 처리(나의 설문조사)]
+	//[마이페이지 페이징 처리(나의 설문조사)]
 	@RequestMapping(value = "page.do")
 	@ResponseBody
 	public List<BoardDTO> page(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	
-		return bService.page_board_list_nick(model);
+		return bService.pageBoardListNick(model);
 	}
 	
-	//[마이페이지_페이징 처리(최근 설문조사)]
+	//[마이페이지 페이징 처리(최근 설문조사)]
 	@RequestMapping(value = "page2.do")
 	@ResponseBody
 	public List<TakeSurvey> page2(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);	
-		return bService.page_board_list_take(model);
+		return bService.pageBoardListTake(model);
 	}
 
 }

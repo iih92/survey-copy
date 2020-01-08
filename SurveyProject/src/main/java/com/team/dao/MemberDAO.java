@@ -51,7 +51,7 @@ public class MemberDAO {
 	}
 	
 	//[포인트 차감]
-	public void MinusPoint(MemberDTO dto) {
+	public void minusPoint(MemberDTO dto) {
 		session.update(namespaceMember + ".MinusPoint", dto);
 	}
 	

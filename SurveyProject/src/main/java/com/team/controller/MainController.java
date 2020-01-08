@@ -16,7 +16,7 @@ public class MainController {
 	//[첫 메인 페이지]
 	@RequestMapping(value = "/")
 	public String home(Model model) {
-		bService.bestServey(model);
+		bService.bestSurvey(model);
 		return "home/main";
 	}
 	

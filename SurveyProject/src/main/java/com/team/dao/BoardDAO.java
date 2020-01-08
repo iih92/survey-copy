@@ -38,7 +38,7 @@ public class BoardDAO {
 	}
 	
 	//[설문조사 중복참여 검사]
-	public List<String> VoteSelect(int num) {
+	public List<String> voteSelect(int num) {
 		return sqlsession.selectList(namespaceBoard + ".VoteSelect", num);
 	}
 
@@ -93,45 +93,45 @@ public class BoardDAO {
 	}
 	
 	//[최신순으로 정렬하기]
-	public List<BoardDTO> page_board_list(PageCount pc) {
+	public List<BoardDTO> pageBoardList(PageCount pc) {
 		return sqlsession.selectList(namespaceBoard+".board_pagingList",pc);
 	}
 
 	//[마이페이지 - 등록한 설문조사]
-	public int getTotalPage_nick(String loginUser) {
+	public int getTotalPageNick(String loginUser) {
 		return sqlsession.selectOne(namespaceBoard+".board_getTotalPage_nick", loginUser);
 	}
-	public List<BoardDTO> page_board_list_nick(PageCount pc2) {
+	public List<BoardDTO> pageBoardListNick(PageCount pc2) {
 		return sqlsession.selectList(namespaceBoard+".board_pagingList_nick",pc2);
 	}
 	
 	//[마이페이지 - 최근 설문조사]
-	public int getTotalPage_take(String loginUser) {
+	public int getTotalPageTake(String loginUser) {
 		return sqlsession.selectOne(namespaceBoard+".getTotalPage_take", loginUser);
 	}
-	public List<TakeSurvey> page_board_list_take(PageCount pc3) {
+	public List<TakeSurvey> pageBoardListTake(PageCount pc3) {
 		return sqlsession.selectList(namespaceBoard+".board_pagingList_take",pc3);
 	}
 	
 	/*---------------------------Paging 메소드-----------------------------*/
 
 	//[참여 설문조사 등록]
-	public void takeSurbey(TakeSurvey tdto) {
+	public void takeSurvey(TakeSurvey tdto) {
 		sqlsession.insert(namespaceBoard+".takeSurbey",tdto);	
 	}
 	
 	//[참여 설문조사 가져오기]
-	public List<TakeSurvey> TakeSurbeySearch(String loginUser) {
+	public List<TakeSurvey> takeSurveySearch(String loginUser) {
 		return sqlsession.selectList(namespaceBoard+".TakeSurbeySearch",loginUser);
 	}
 	
 	//[마감 날짜로 정렬하기]
-	public List<BoardDTO> page_board_list_dead(PageCount pc) {
+	public List<BoardDTO> pageBoardListDead(PageCount pc) {
 		return sqlsession.selectList(namespaceBoard+".board_pagingList_deadline",pc);
 	}
 	
 	//[조회순으로 정렬하기]
-	public List<BoardDTO> page_board_list_hit(PageCount pc) {
+	public List<BoardDTO> pageBoardListHit(PageCount pc) {
 		return sqlsession.selectList(namespaceBoard+".board_pagingList_hit",pc);
 	}
 
@@ -146,12 +146,12 @@ public class BoardDAO {
 	}
 	
 	//[best 설문조사 가져오기]
-	public List<BoardDTO> bestServey(){
+	public List<BoardDTO> bestSurvey(){
 		return sqlsession.selectList(namespaceBoard + ".bestServey");
 	}
 	
 	//[]
-	public List<TakeSurvey> pointlog_last(String loginUser) {
+	public List<TakeSurvey> pointLogLast(String loginUser) {
 		return sqlsession.selectList(namespaceBoard+".pointlog",loginUser);
 	}
 

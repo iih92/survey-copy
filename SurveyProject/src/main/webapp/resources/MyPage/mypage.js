@@ -538,7 +538,7 @@ $(document).ready(function(){
 	function leave(){
 		$.ajax({
     		url : 'leave.do',
-    		type : 'GET',
+    		type : 'POST',
     		data : {
     			"pw" : pwChk
     		},

@@ -82,6 +82,9 @@ create table user(
   point INT DEFAULT 5000
 );
 
+alter table user add admin int not null default '0'; 
+alter table user change pw pw varchar(255); 
+
 create table board(
   num INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title varchar(255),

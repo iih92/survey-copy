@@ -75,6 +75,9 @@
                      </c:otherwise>
                   </c:choose>
                         <li class="link"><button class="makeform" type="submit" onClick="location.href='board'">설문등록</button></li>
+                        <c:if test="${ admin == 1 }">
+	                        <li class="link"><button class="admin" type="submit" onClick="location.href='admin'">관리자 페이지</button></li>
+                        </c:if>
                         <li class="link"><button class="search"><i class="fa fa-search"></i></button></li>
                 </ul>
             </div>

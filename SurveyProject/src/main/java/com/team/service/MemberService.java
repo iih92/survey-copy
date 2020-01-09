@@ -215,8 +215,6 @@ public class MemberService implements IMemberService{
 		MemberDTO dto = new MemberDTO();
 		dto.setPoint(point);
 		dto.setNick(request.getParameter("nick"));
-		System.out.println(dto.getPoint());
-		System.out.println(dto.getNick());
 		dao.adminModify(dto);
 	}
 	
@@ -226,7 +224,6 @@ public class MemberService implements IMemberService{
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String nick = request.getParameter("nick");
-		System.out.println(nick);
 		dao.adminLeave(nick);
 	}
 	

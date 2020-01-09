@@ -163,6 +163,24 @@ html, body {
     color: #00ebfe;
 }
 
+.admin{
+	margin-left: 20px; 
+	background: #ffaa45 !important; 
+	padding: 5px 10px 5px 10px;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    border: none;
+    font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+    font-weight: 1000;
+}
+
+.admin:hover{
+    background-color: #ffffff !important;
+    color: #ffaa45;
+}
+
 /* 아이콘 */
 .search{
     color: white;

@@ -60,4 +60,24 @@
       update user set point=(point-#{point}) where nick=#{nick}
    </update>
 	
+	<!-- admin 확인 -->
+	<select id="adminChk" parameterType="Mdto" resultType="Mdto">
+		select admin from user where nick=#{nick}
+	</select>
+	
+	<!-- 모든 유저 가져오기 -->
+	<select id="userList" resultType="Mdto">
+		select * from user
+	</select>
+	
+	<!-- 유저 강제 탈퇴 -->
+	<select id="adminModify" parameterType="Mdto">
+		update user set point=#{point} where nick=#{nick}
+	</select>
+	
+	<!-- 유저 강제 탈퇴 -->
+	<select id="adminLeave">
+		delete from user where nick=#{nick}
+	</select>
+	
 </mapper>

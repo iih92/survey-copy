@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -36,7 +37,7 @@ public class MemberController {
 	private JavaMailSender mailSender;
 
 	//[회원가입]
-	@RequestMapping("signUp")
+	@RequestMapping(value = "signUp", method = RequestMethod.POST)
 	public String registerSave(Model model, HttpServletRequest request) {
 		model.addAttribute("request", request);
 		mService.signUp(model);

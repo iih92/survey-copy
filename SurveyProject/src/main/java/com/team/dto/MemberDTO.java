@@ -10,5 +10,6 @@ public class MemberDTO {
 	private String pw;
 	private String nick;
 	private int point;
+	private int admin;
 	
 }

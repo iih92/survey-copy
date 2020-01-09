@@ -377,7 +377,7 @@ $(document).ready(function(){
 			</c:when>
 			
 			<c:when test="${ admin == 1 }">
-				<input type="button" class="surveySave" id="surveySave" style="margin-left:78%;" value="등록">
+				<input type="button" class="surveySave" id="surveySave" style="margin-left:80.3%;" value="등록">
 				<input type="button" class="modify" onclick="modifyBoard()" style="margin-left:1%;" value="수정">
 				<input type="button" class="delButton" onclick="location.href='boardDelete?num=${dto.num}'" value="삭제">
 				<input type="button" class="resultButton" onclick="location.href='result?num=${dto.num}'" value="결과보기">

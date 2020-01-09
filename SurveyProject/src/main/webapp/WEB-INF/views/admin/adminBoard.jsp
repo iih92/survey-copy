@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="resources/admin/vendor/perfect-scrollbar/perfect-scrollbar.css">
 	<link rel="stylesheet" type="text/css" href="resources/admin/css/util.css">
 	<link rel="stylesheet" type="text/css" href="resources/admin/css/main.css">
-<title>Insert title here</title>
+<title>게시글 보기(관리자)</title>
 </head>
 <body>
 	<c:if test="${ admin == 0 }">

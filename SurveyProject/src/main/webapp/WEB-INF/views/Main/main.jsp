@@ -97,7 +97,7 @@ $(document).ready(function(){
 								<div class="hashDiv">
 								<c:forEach var="val" items="${tagArr}" varStatus="status">
 									<a href="search?hashtag=${val}" class="hashtagLink">#${val}</a>
-									<c:if test="${(status.count mod 5) == 0}"> <br> </c:if>
+									<c:if test="${(status.count mod 4) == 0}"> <br> </c:if>
 								</c:forEach>
 								</div>
 							</div>

@@ -141,6 +141,7 @@ $(document).ready(function(){
 		change();
 	});
 
+	/*포인트 ajax---------------------------------------------------------------------*/
 	$("#navM2").click(function(){
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
@@ -152,7 +153,7 @@ $(document).ready(function(){
 			type: "GET",
 			success: function() {
 				$('#sectionMy').load("../survey/detail #test2", function() {
-						
+					
 					cnt = 0;
 					if(cnt<=0){
 						$(".mypleft").attr('disabled',true);
@@ -160,8 +161,99 @@ $(document).ready(function(){
 					$.ajax({
 						url: "page3.do?start="+cnt,
 						success: function(data) { 
+							var pagingN = data.length/5+1;
+
+							for(var i = 1;i<pagingN;i++){
+								$(".mypright").before("<a class='pHistoryB' id='pHistoryB"+i+"' value='"+i+"'>"+i+"</a>");
+							}
+							$(".pHistoryB").css({
+								padding: '5px 12px 5px 12px',
+								'margin-right': '3px',
+								width: '25px',
+								color: '#474c4c',
+								font: '20px tahoma',
+								'font-weight': '500',
+								border: '1px solid #d2d2d2',
+								'text-align': 'center',
+								'text-decoration': 'none',
+								'border-radius': '50%',
+								'background-color': "white"
+							});
+							$("#pHistoryB1").css({
+								'color':'white',
+								'background-color':'#01aef0'
+							});
+							
+							$(".pHistoryB").click(function(){
+								var id = $(this).attr("id");
+								var value = $(this).attr("value");
+								$(".mypright").attr('disabled',false);
+								$('.pHistoryB').css({
+									'color':'black',
+									'background-color':'white'
+								});
+								$(this).css({
+									'color':'white',
+									'background-color':'#01aef0'
+								});
+								
+								
+								
+
+								cnt = value-1;
+
+								if(cnt >= 1){
+		                            $(".mypleft").attr('disabled',false);
+		                        }
+								var pagingCntF= cnt * 5;
+								var pagingCntL= cnt * 5 + 5;
+						 		
+								var pagingLength = pagingCntL;
+								if( cnt <= 0 ){ 
+									pagingLength = 5;
+									pagingCntF = 0;
+								}
+								var output="";
+								for(var i = pagingCntF ; i<pagingLength; i++){
+									if(i >= data.length){
+										$(".mypright").attr('disabled',true);
+										break;
+									}
+									var date = new Date(data[i].dt);
+									var year = date.getFullYear();
+									var month = date.getMonth()+1;
+									var day = date.getDay();
+									var hour = date.getHours();
+									var min = date.getMinutes();
+									var sec = date.getSeconds();
+									
+									var retVal =   year + "-" + (month < 10 ? "0" + month : month) + "-" 
+									                        + (day < 10 ? "0" + day : day) + " " 
+									                        + (hour < 10 ? "0" + hour : hour) + ":"
+									                        + (min < 10 ? "0" + min : min) + ":" 
+									                        + (sec < 10 ? "0" + sec : sec);
+									output += "<tr>";
+									output += "<td>"+retVal+"</td>";
+									output += "<td>"+data[i].title+"</td>";
+									if(data[i].point<0){
+										output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+									}else{
+										output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+									}
+									output += "</tr>";
+									
+								 	
+								}
+								$("#pointTbody").html(output);
+								
+								
+								
+								
+							});
+							
 						}, error: function() {}
 					}); 
+					
 					
 						$('.mypleft').click(function(){
 								
@@ -172,6 +264,16 @@ $(document).ready(function(){
 							$.ajax({
 								url: "page3.do?start="+cnt,
 								success: function(data) {
+									console.log("카운트 값 : "+cnt);
+									var cssN = cnt+1;
+									$('.pHistoryB').css({
+										'color':'black',
+										'background-color':'white'
+									});
+									$('#pHistoryB'+cssN).css({
+										'color':'white',
+										'background-color':'#01aef0'
+									});
 									//$(".RegisterSurbey").empty(); 
 									
 								//	console.log("ajax 안으로 들어왔다"); 
@@ -179,8 +281,7 @@ $(document).ready(function(){
 								//	for(var i=0;i<data.length;i++){
 								//		console.log(data[i].title);
 								//	}
-									//$(".RegisterSurbey").html(output);
-									console.log(data);
+									//$(".RegisterSurbey").html(output);  
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
 							 		
@@ -208,7 +309,13 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
-										output += "<td> "+data[i].point+"</td>";
+										
+										if(data[i].point<0){
+											output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+										}else{
+											output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+										}
+										
 										output += "</tr>";
 										
 									 	
@@ -233,8 +340,20 @@ $(document).ready(function(){
 							$.ajax({
 								url: "page4.do?start="+cnt,
 								success: function(data) {
-									//$(".RegisterSurbey").empty(); 
-									console.log(data);
+									console.log("카운트 값 : "+cnt);
+									var cssN = cnt+1;
+									$('.pHistoryB').css({
+										'color':'black',
+										'background-color':'white'
+									});
+									$('#pHistoryB'+cssN).css({
+										'color':'white',
+										'background-color':'#01aef0'
+											
+									});
+									
+									
+									//$(".RegisterSurbey").empty();  
 								 	
 									var pagingCntF= cnt * 5;
 									var pagingCntL= cnt * 5 + 5;
@@ -263,7 +382,12 @@ $(document).ready(function(){
 										output += "<tr>";
 										output += "<td>"+retVal+"</td>";
 										output += "<td>"+data[i].title+"</td>";
-										output += "<td> "+data[i].point+"</td>";
+										
+										if(data[i].point<0){
+											output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+										}else{
+											output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+										}
 										output += "</tr>";
 										
 								 			
@@ -370,7 +494,7 @@ $(document).ready(function(){
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
 									output += "<tr onclick=location.href='result?num="+data[i].num+"'>"
-									output += "<td>"+data[i].title+"</td>"
+									output += "<td style='color:#01aef0;font-weight: 1000;'>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"
 									output += "<td>"+data[i].hit+"</td>"
 									output += "<td>"+data[i].point+"</td>"
@@ -466,7 +590,7 @@ $(document).ready(function(){
 								for (var i = 0; i < data.length; i++) {
 									var deadline = moment(data[i].deadline).format('YYYY-MM-DD');
 									output += "<tr>"
-									output += "<td>"+data[i].title+"</td>"
+									output += "<td style='color:#01aef0;font-weight: 1000;'>"+data[i].title+"</td>"
 									output += "<td>"+deadline+"</td>"
 									output += "<td>"+data[i].hit+"</td>"
 									output += "<td>"+data[i].point+"</td>"

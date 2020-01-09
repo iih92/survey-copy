@@ -37,7 +37,8 @@ public class BoardController {
 		return "Main/main";
 	}
 	
-	//[게시글 나열]
+
+	//[정렬]
 	@RequestMapping(value="lineupMain")
 	public String lineupMain(Model model, HttpServletRequest request,HttpSession session) {
 		session.setAttribute("lineupSession", request.getParameter("lineup"));

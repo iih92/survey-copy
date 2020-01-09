@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -13,6 +16,7 @@
 	</c:if>
 	<%@include file="../include/header.jsp" %>
 	<a href="adminUser">유저 정보 보기</a>
+	
 	<a href="adminBoard">게시글 모두 보기</a>
 	<%@include file="../include/footer.jsp" %>
 </body>

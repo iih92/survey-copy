@@ -137,7 +137,15 @@
 		</c:forEach>
 
 		<!-- 다음 버튼 -->
-		<li><button class="paging_af" value=2>&gt;</button></li>
+		<c:choose>
+			<c:when test="${pc3.totEndPage == 1 }">
+				<li><button class="paging_af" value=2 disabled="disabled">&gt;</button></li>
+			</c:when>
+			
+			<c:otherwise>
+				<li><button class="paging_af" value=2 >&gt;</button></li>
+			</c:otherwise>
+		</c:choose>
 		</ul>
 	</div>
 
@@ -171,10 +179,20 @@
 					<c:otherwise>
 						<li><a id="num${cnt}" value="${cnt}" class="nofocus">${cnt}</a></li>
 					</c:otherwise>
-				</c:choose>
+				</c:choose>	
 			</c:forEach>		
+			
 		<!-- 다음 버튼 -->
-		<li><button class="paging_af" value=2>&gt;</button></li>
+		<c:choose>
+			<c:when test="${pc3.totEndPage == 1 }">
+				<li><button class="paging_af" value=2 disabled="disabled">&gt;</button></li>
+			</c:when>
+			
+			<c:otherwise>
+				<li><button class="paging_af" value=2 >&gt;</button></li>
+			</c:otherwise>
+		</c:choose>
+		
 		</ul>
 	</div>
 	<!-- 페이징 끝 -->

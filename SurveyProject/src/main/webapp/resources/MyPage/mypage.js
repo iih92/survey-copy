@@ -141,6 +141,7 @@ $(document).ready(function(){
 		change();
 	});
 
+	/*포인트 ajax---------------------------------------------------------------------*/
 	$("#navM2").click(function(){
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("font-weight","normal"); 
 		$("#navM1, #navM3, #navM4 ,#navM5, #navM6").css("background-color","#efefef");
@@ -161,15 +162,12 @@ $(document).ready(function(){
 						url: "page3.do?start="+cnt,
 						success: function(data) { 
 							var pagingN = data.length/5+1;
-							
-							console.log(pagingN);
-							 
 
 							for(var i = 1;i<pagingN;i++){
-								$(".mypright").before("<button class='pHistoryB' id='pHistoryB"+i+"' value='"+i+"'>"+i+"</button>");
+								$(".mypright").before("<a class='pHistoryB' id='pHistoryB"+i+"' value='"+i+"'>"+i+"</a>");
 							}
 							$(".pHistoryB").css({
-								padding: '4px',
+								padding: '5px 12px 5px 12px',
 								'margin-right': '3px',
 								width: '25px',
 								color: '#474c4c',
@@ -201,10 +199,12 @@ $(document).ready(function(){
 								
 								
 								
-								//console.log(id+" "+value); 
+
 								cnt = value-1;
-								console.log(cnt);
-								
+
+								if(cnt >= 1){
+		                            $(".mypleft").attr('disabled',false);
+		                        }
 								var pagingCntF= cnt * 5;
 								var pagingCntL= cnt * 5 + 5;
 						 		
@@ -235,7 +235,11 @@ $(document).ready(function(){
 									output += "<tr>";
 									output += "<td>"+retVal+"</td>";
 									output += "<td>"+data[i].title+"</td>";
-									output += "<td> "+data[i].point+"</td>";
+									if(data[i].point<0){
+										output += "<td style='color:red;font-weight: 1000;'>"+data[i].point+"</td>";	
+									}else{
+										output += "<td style='color:#01aef0;font-weight: 1000;'>+"+data[i].point+"</td>";
+									}
 									output += "</tr>";
 									
 								 	

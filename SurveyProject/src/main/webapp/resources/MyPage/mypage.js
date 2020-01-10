@@ -38,19 +38,21 @@ $(document).ready(function(){
 	                			if (data > 0) {
 	                				$("#nick_check").text("사용중인 닉네임입니다.");
 	                				$("#nick_check").css("color", "#f82a2aa3");
+	                				$('#btnNick').css('background-color','#797979');
 	                				$('#btnNick').attr('disabled',true);
 	                            } else {
 	                            	//특수문자 불가 확인
 	                            	if(nick.match(special_pattern)) {
 	                            		$("#nick_check").text("특수문자 사용할 수 없습니다.");
 	                            		$("#nick_check").css("color", "#f82a2aa3");
+	                            		$('#btnNick').css('background-color','#797979');
 	                            		$('#btnNick').attr('disabled',true);
 	                               } else {
 	                            	   //닉네임 가능 확인
 	                            	   $("#nick_check").text("사용가능한 닉네임 입니다.");
 	                            	   $("#nick_check").css("color", "#01aef0");
 	                            	   $('#btnNick').attr('disabled',false);
-	                            	   $('#btnNick').css('background-color','#01aef0')
+	                            	   $('#btnNick').css('background-color','#01aef0');
 	                            	   $('#nick').val(nick);
 	                            	   nick_check = true;
 	                               }
@@ -71,6 +73,7 @@ $(document).ready(function(){
 	                		if(pw.length < 7) {
 	                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
 	                			$('#mesage').attr('color', '#f82a2aa3');
+	                			$('#btnPw').css('background-color','#797979');
 	                			$('#btnPw').attr('disabled',true);
 	                		}
 	                	}  
@@ -81,7 +84,8 @@ $(document).ready(function(){
 		                	if(!(pwChk === "")) {
 		                		if(pw.length < 7) {
 		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-		                			$('#mesage').attr('color', '#f82a2aa3');
+		                			$('#mesage').css('color', '#f82a2aa3');
+		                			$('#btnPw').css('background-color','#797979');
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   	$('#mesage').html('비밀번호 일치합니다.');
@@ -90,7 +94,8 @@ $(document).ready(function(){
 		                    	   	$('#btnPw').css('background-color','#01aef0')
 		                      } else {
 		                    	  	$('#mesage').html('비밀번호 일치하지 않습니다.');
-		                    	  	$('#mesage').attr('color', '#f82a2aa3');
+		                    	  	$('#mesage').css('color', '#f82a2aa3');
+		                    	  	$('#btnPw').css('background-color','#797979');
 		                    	  	$('#btnPw').attr('disabled',true);
 		                      }
 		                   }
@@ -103,7 +108,8 @@ $(document).ready(function(){
 		                	if(!(pw === "")) {
 		                		if(pw.length < 7) {
 		                			$("#mesage").html("*비밀번호 7자리 이상 입력해주세요.");
-		                			$('#mesage').attr('color', '#f82a2aa3');
+		                			$('#mesage').css('color', '#f82a2aa3');
+		                			$('#btnPw').css('background-color','#797979');
 		                			$('#btnPw').attr('disabled',true);
 		                       } else if(pw === pwChk) {
 		                    	   $('#mesage').html('비밀번호 일치합니다.');
@@ -112,7 +118,8 @@ $(document).ready(function(){
 		                    	   $('#btnPw').css('background-color','#01aef0')
 		                      } else {
 		                    	  $('#mesage').html('비밀번호 일치하지 않습니다.');
-		                    	  $('#mesage').attr('color', '#f82a2aa3');
+		                    	  $('#mesage').css('color', '#f82a2aa3');
+		                    	  $('#btnPw').css('background-color','#797979');
 		                    	  $('#btnPw').attr('disabled',true);
 		                      }
 		                   }

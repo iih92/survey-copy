@@ -240,9 +240,9 @@ public class BoardService implements IBoardService {
 		if(daoNum == 1) {
 			totalPage = getTotalPage();
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum;
-			endPage = pageNum * start;
-			
+			startPage = pageNum;
+	        endPage = pageNum * (start-1);
+	         
 			PageCount pc = new PageCount();
 			pc.setTotEndPage(totEndPage);
 			pc.setStartPage(startPage);
@@ -254,8 +254,8 @@ public class BoardService implements IBoardService {
 		} else if(daoNum == 2) {
 			totalPage = getTotalPage_nick(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum;
-			endPage = pageNum * start;
+			startPage = pageNum;
+	        endPage = pageNum * (start-1);
 			
 			PageCount pc2 = new PageCount();
 			pc2.setTotEndPage(totEndPage);
@@ -268,8 +268,8 @@ public class BoardService implements IBoardService {
 		} else {
 			totalPage = getTotalPage_take(loginUser);
 			totEndPage = totalPage/pageNum + (totalPage%pageNum == 0 ?0 :1);
-			startPage = (start - 1) * pageNum;
-			endPage = pageNum * start;
+			startPage = pageNum;
+	        endPage = pageNum * (start-1);
 			
 			PageCount pc3 = new PageCount();
 			pc3.setTotEndPage(totEndPage);

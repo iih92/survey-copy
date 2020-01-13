@@ -126,3 +126,16 @@ create table TakeSurvey(
   point int  
 );
 /*------------------------------mysql-------------------------------------*/
+
+/* 외래키 추가  */
+alter table user add unique userNick(nick);
+alter table TakeSurvey add constraint takesurveyNick foreign key (nick) references user(nick) on update cascade on delete cascade;
+alter table board add constraint boardNick foreign key (nick) references user(nick) on update cascade on delete cascade;
+alter table vote add constraint voteNick foreign key (nick) references user(nick) on update cascade on delete cascade;
+alter table reply add constraint replyNick foreign key (nick) references user(nick) on update cascade on delete cascade;
+/* 외래키 삭제 */
+alter table TakeSurvey drop FOREIGN KEY takesurveyNick;
+alter table board drop FOREIGN KEY boardNick;
+alter table vote drop FOREIGN KEY voteNick;
+alter table reply drop FOREIGN KEY replyNick;
+
